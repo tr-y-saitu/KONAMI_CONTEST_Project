@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="FIRE">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="FIRE\GameObject">
+      <UniqueIdentifier>{461069e6-e2d4-4229-b048-4c866ad5767e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\GameObject\Sample">
+      <UniqueIdentifier>{ce0bf232-32ef-4dfb-a2cb-d9d66b89be5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\Camera">
+      <UniqueIdentifier>{d264b51a-dc46-49e0-b0ba-4f7846b69003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\Collision">
+      <UniqueIdentifier>{53616327-880c-4528-89a1-658e4b716591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\Effect">
+      <UniqueIdentifier>{75612400-b9fd-4849-b972-eec7ce4e488b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\System">
+      <UniqueIdentifier>{ee35b705-19b4-4ff1-bcff-4e3d1a4bb435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\System\UI">
+      <UniqueIdentifier>{50057d77-0f5e-47e6-bf6b-1decf389e163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\System\GameManager">
+      <UniqueIdentifier>{bb6fb232-91a8-43b3-bf05-8e8d31633021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\System\FPS">
+      <UniqueIdentifier>{22fb1dac-6fee-4f5f-9310-0a489fc355bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\Main">
+      <UniqueIdentifier>{f9258ac0-65db-4ec1-b50f-326c03f0abea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\Instructions">
+      <UniqueIdentifier>{25fff66e-55d7-401d-b3aa-38543d553e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\GameObject\Object">
+      <UniqueIdentifier>{91be70d6-c9cb-418e-b1f8-83f8a8bece0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\GameObject\SkyDome">
+      <UniqueIdentifier>{e816de76-851f-4a9b-b708-c6060a60a1d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\GameObject\Room">
+      <UniqueIdentifier>{6405c3ee-864b-4d09-9577-71d9ab3baf43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\GameObject\Character">
+      <UniqueIdentifier>{e41ffea9-dc16-4d2f-bdcb-b967917f23f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\System\Calculation">
+      <UniqueIdentifier>{587b5e3d-bc1e-4a4e-b7f8-cb8b82b949cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\GameObject\Object\Gem">
+      <UniqueIdentifier>{204d91f3-37c6-4aac-8482-aa9fa95bcc35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\GameObject\Object\TreasureChest">
+      <UniqueIdentifier>{8328a902-5880-43f1-8256-4b1f0a1ea48f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BG.cpp">
+      <Filter>FIRE\System\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>FIRE\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>FIRE\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Effekseer.cpp">
+      <Filter>FIRE\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>FIRE\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>FIRE\System\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>FIRE\System\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ObstructFloat.cpp">
+      <Filter>FIRE\GameObject\Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="ObstructStatic.cpp">
+      <Filter>FIRE\GameObject\Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSSetting.cpp">
+      <Filter>FIRE\System\FPS</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGroundOb ject.cpp">
+      <Filter>FIRE\GameObject\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Confetti.cpp">
+      <Filter>FIRE\GameObject\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyDome.cpp">
+      <Filter>FIRE\GameObject\SkyDome</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>FIRE\GameObject\Room</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>FIRE\GameObject\Room</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>FIRE\GameObject\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>FIRE\GameObject\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Calculation.cpp">
+      <Filter>FIRE\System\Calculation</Filter>
+    </ClCompile>
+    <ClCompile Include="Gem.cpp">
+      <Filter>FIRE\GameObject\Object\Gem</Filter>
+    </ClCompile>
+    <ClCompile Include="GemManager.cpp">
+      <Filter>FIRE\GameObject\Object\Gem</Filter>
+    </ClCompile>
+    <ClCompile Include="TreasureChest.cpp">
+      <Filter>FIRE\GameObject\Object\TreasureChest</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BG.h">
+      <Filter>FIRE\System\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>FIRE\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>FIRE\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Effekseer.h">
+      <Filter>FIRE\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>FIRE\System\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>FIRE\System\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ゲーム構造.h">
+      <Filter>FIRE\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="ObstructFloat.h">
+      <Filter>FIRE\GameObject\Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="ObstructStatic.h">
+      <Filter>FIRE\GameObject\Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSSetting.h">
+      <Filter>FIRE\System\FPS</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGroundObject.h">
+      <Filter>FIRE\GameObject\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Confetti.h">
+      <Filter>FIRE\GameObject\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyDome.h">
+      <Filter>FIRE\GameObject\SkyDome</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>FIRE\GameObject\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>FIRE\GameObject\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>FIRE\GameObject\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>FIRE\GameObject\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculation.h">
+      <Filter>FIRE\System\Calculation</Filter>
+    </ClInclude>
+    <ClInclude Include="Gem.h">
+      <Filter>FIRE\GameObject\Object\Gem</Filter>
+    </ClInclude>
+    <ClInclude Include="GemManager.h">
+      <Filter>FIRE\GameObject\Object\Gem</Filter>
+    </ClInclude>
+    <ClInclude Include="TreasureChest.h">
+      <Filter>FIRE\GameObject\Object\TreasureChest</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
