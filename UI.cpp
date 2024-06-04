@@ -11,6 +11,7 @@
 UI::UI()
 	:	menuGraph			(-1)
 	,	strGetModleHandel	(-1)
+	,	isHitGemToChest		(false)
 {
 	strGetModleHandel = MV1LoadModel("data/model/UI/GET!.mv1");
 	MV1SetScale(strGetModleHandel, VGet(0.05f, 0.05f, 0.0f));
@@ -42,9 +43,10 @@ void UI::Initialize()
 /// <summary>
 /// •`‰æ
 /// </summary>
-void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest)
+void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest, float nowTimer)
 {
-	int _uiColor = GetColor(200, 200, 200);
+	char _timeCount[256];					// ƒQ[ƒ€‚ÌŒo‰ßŠÔ
+	int _uiColor = GetColor(200, 200, 200);	// Fİ’è’l
 	// ƒXƒe[ƒg‚²‚Æ‚É•`‰æ‚ğ•ÏX
 	switch (state)
 	{
@@ -61,6 +63,10 @@ void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest)
 		// ƒQ[ƒ€’†
 	case STATE_GAME:
 		
+		
+		sprintf_s(_timeCount, "```%f•bŒo‰ß```", nowTimer);
+		DrawString(250, 400, _timeCount, GetColor(255, 100, 100), true);
+
 		// uGET!vƒ‚ƒfƒ‹‚ğ•`‰æ
 		MV1SetPosition(strGetModleHandel, VGet(0,0,0));
 		if (isHitGemToChest)

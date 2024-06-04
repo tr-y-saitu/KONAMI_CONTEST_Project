@@ -14,7 +14,7 @@ public:
 	~UI();		// デストラクタ
 
 	void Initialize();		// 初期化
-	void Draw(int state,Player& player,bool clearFlag, TreasureChest& chest);	// 描画
+	void Draw(int state,Player& player,bool clearFlag, TreasureChest& chest,float nowTimer);	// 描画
 
 	// Getter
 	const bool GetIsHitGemToChest()const { return isHitGemToChest; }

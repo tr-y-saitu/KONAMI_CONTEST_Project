@@ -22,8 +22,8 @@ public:
 	// 宝石が登場するデータ
 	struct EntryGemDataBase
 	{
-		int entryFrameCount;		// 登場するフレーム数
-		VECTOR entryPosition;		// 登場する位置
+		float	entryTime;			// 登場する時間
+		VECTOR	entryPosition;		// 登場する位置
 	};
 
 	// メソッド
@@ -43,10 +43,10 @@ public:
 	int SettingGemModle(int type);
 
 	/// <summary>
-/// 宝石のエントリー情報を設定
-/// </summary>
-/// <param name="data">宝石のエントリー情報を格納する多次元配列</param>
-/// <param name="size">多次元配列の添え字数</param>
+	/// 宝石のエントリー情報を設定
+	/// </summary>
+	/// <param name="data">宝石のエントリー情報を格納する多次元配列</param>
+	/// <param name="size">多次元配列の添え字数</param>
 	void SettingEntryData(EntryGemDataBase data[], int size);
 
 	// 宝石のベースモデルハンドル

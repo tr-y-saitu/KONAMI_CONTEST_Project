@@ -74,7 +74,7 @@ private:
 	bool	isHitTreasureChest;	// 宝箱と接触したか
 
 	// エントリー情報
-	int		entryFrameCount;	// 登場するフレーム数
+	float	entryTime;			// 登場する時間
 	VECTOR	entryPosition;		// 登場する位置
 };
 

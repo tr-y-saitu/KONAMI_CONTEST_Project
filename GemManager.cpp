@@ -87,7 +87,7 @@ int GemManager::SettingGemModle(int type)
 
 /// <summary>
 /// 宝石のエントリー情報を設定
-/// </summary>
+/// <summary>
 /// <param name="data">宝石のエントリー情報を格納する多次元配列</param>
 /// <param name="size">多次元配列の添え字数</param>
 void GemManager::SettingEntryData(EntryGemDataBase data[],int size)
@@ -96,7 +96,7 @@ void GemManager::SettingEntryData(EntryGemDataBase data[],int size)
 	for (int i = 0; i < size; i++)
 	{
 		// 登場フレーム数を設定
-		data[i].entryFrameCount = (i * 2);
+		data[i].entryTime = i * 0.5;
 		// 登場座標の設定
 		data[i].entryPosition = VGet(0, 10, 0);
 	}

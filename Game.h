@@ -45,6 +45,8 @@ public:
 	void ChangeGameState();	// ゲームステートの切り替え
 	void ProcessKey();		// ゲーム進行にかかわるキー入力処理
 	void DrawTimer();		// 制限時間の描画
+	void SettingTimer();	// 現在経過時間の更新
+	
 
 	const int GetNowTimer() { return nowTimer; }
 	const int GetFrameCount() { return gameFrameCount; }
@@ -80,7 +82,7 @@ private:
 	int		gameFrameCount;	// ゲームフレームカウント
 	int		previousTime;	// ゲームループが始まる前の時間
 	int		timer;			// ゲーム時間
-	int		nowTimer;		// 現在の制限時間
+	float	nowTimer;		// 現在の制限時間
 	bool	keyOn;			// キー入力されているか
 	bool	keyRelease;		// キー入力が離れたか
 	bool	prevKeyOn;		// 前フレームでキー入力があったか
