@@ -72,5 +72,9 @@ private:
 	bool	isHitGround;	// 床と接触したか
 	bool	previousIsHitPlayer;	// 前のフレームでプレイヤーと接触していたか
 	bool	isHitTreasureChest;	// 宝箱と接触したか
+
+	// エントリー情報
+	int		entryFrameCount;	// 登場するフレーム数
+	VECTOR	entryPosition;		// 登場する位置
 };
 
