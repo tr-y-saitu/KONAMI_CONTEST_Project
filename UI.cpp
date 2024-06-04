@@ -89,7 +89,4 @@ void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest)
 	default:
 		break;
 	}
-
-
-
 }
