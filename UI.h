@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 #include "DxLib.h"
@@ -10,11 +10,23 @@ class TreasureChest;
 class UI
 {
 public:
-	UI();		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~UI();		// ƒfƒXƒgƒ‰ƒNƒ^
+	UI();		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~UI();		// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	void Initialize();		// ‰Šú‰»
-	void Draw(int state,Player& player,bool clearFlag, TreasureChest& chest,float nowTimer);	// •`‰æ
+	/// <summary>
+	/// UIã®åˆæœŸåŒ–
+	/// </summary>
+	void Initialize();
+
+	/// <summary>
+	/// UIã®æ›´æ–°
+	/// </summary>
+	/// <param name="state">ã‚²ãƒ¼ãƒ ã‚¹ãƒ†ãƒ¼ãƒˆ</param>
+	/// <param name="player">ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¯ãƒ©ã‚¹</param>
+	/// <param name="clearFlag">ã‚¯ãƒªã‚¢ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹</param>
+	/// <param name="chest">å®ç®±ã‚¯ãƒ©ã‚¹</param>
+	/// <param name="nowTimer">ã‚²ãƒ¼ãƒ ã®ç¾åœ¨çµŒéæ™‚é–“</param>
+	void Draw(int state,Player& player,bool clearFlag, TreasureChest& chest,float nowTimer);	// æç”»
 
 	// Getter
 	const bool GetIsHitGemToChest()const { return isHitGemToChest; }
@@ -23,12 +35,12 @@ public:
 	void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }
 
 private:
-	// ’è”
+	// å®šæ•°
 
-	// •Ï”
-	int		menuGraph;		// ƒƒjƒ…[‰æ‘œ
-	int		strGetModleHandel;	// uGET!v‚Ìƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
-	bool	isHitGemToChest;	// •óÎ‚Æ•ó” ‚ªÚG‚µ‚½
+	// å¤‰æ•°
+	int		menuGraph;		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»åƒ
+	int		strGetModleHandel;	// ã€ŒGET!ã€ã®ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+	bool	isHitGemToChest;	// å®çŸ³ã¨å®ç®±ãŒæ¥è§¦ã—ãŸ
 };
 
 

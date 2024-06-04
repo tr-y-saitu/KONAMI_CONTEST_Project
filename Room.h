@@ -1,39 +1,39 @@
-#pragma once
+ï»¿#pragma once
 
 #include "DxLib.h"
 
 /// <summary>
-/// •”‰®
+/// éƒ¨å±‹
 /// </summary>
 class Room
 {
 public:
-	Room();		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~Room();	// ƒfƒXƒgƒ‰ƒNƒ^
+	Room();		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~Room();	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	// ƒƒ\ƒbƒh
-	void Initialize();		// ‰Šú‰»
-	void Update();			// XV.
-	void Draw();			// •`‰æ.
+	// ãƒ¡ã‚½ãƒƒãƒ‰
+	void Initialize();		// åˆæœŸåŒ–
+	void Update();			// æ›´æ–°.
+	void Draw();			// æç”».
 
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìæ“¾.
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—.
 	int GetModelHandle() { return modelHandle; }
 
-	// ƒ|ƒWƒVƒ‡ƒ“‚Ìgetter/setter.
+	// ãƒã‚¸ã‚·ãƒ§ãƒ³ã®getter/setter.
 	const VECTOR& GetPos() const { return pos; }
 	const int GetWidth() { return w; }
 	const int GetHeight() { return h; }
 	void SetPos(const VECTOR set) { pos = set; }
 
 private:
-	int		modelHandle;	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
-	VECTOR	pos;			// ƒ|ƒWƒVƒ‡ƒ“.
-	VECTOR	dir;			// •ûŒü
-	int		w;				// •
-	int		h;				// ‚‚³
-	VECTOR	scale;			// ƒXƒP[ƒ‹
-	float	speed;			// ˆÚ“®ƒXƒs[ƒh
-	int		r;				// ‹…Œ^“–‚½‚è”»’è‚Ì”¼Œa
+	int		modelHandle;	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+	VECTOR	pos;			// ãƒã‚¸ã‚·ãƒ§ãƒ³.
+	VECTOR	dir;			// æ–¹å‘
+	int		w;				// å¹…
+	int		h;				// é«˜ã•
+	VECTOR	scale;			// ã‚¹ã‚±ãƒ¼ãƒ«
+	float	speed;			// ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+	int		r;				// çƒå‹å½“ãŸã‚Šåˆ¤å®šã®åŠå¾„
 
 
 

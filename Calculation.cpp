@@ -1,21 +1,21 @@
-#include "Calculation.h"
+ï»¿#include "Calculation.h"
 
 
 Calculation::Calculation()
 {
-	// ˆ—‚È‚µ
+	// å‡¦ç†ãªã—
 }
 
 Calculation::~Calculation()
 {
-	// ˆ—‚È‚µ
+	// å‡¦ç†ãªã—
 }
 
 /// <summary>
-/// üŒ`•âŠÔŠÖ”
+/// ç·šå½¢è£œé–“é–¢æ•°
 /// </summary>
-/// <param name="num">üŒ`•âŠÔ‚µ‚½‚¢floatŒ^•Ï”</param>
-/// <returns>üŒ`•âŠÔ‚³‚ê‚½floatŒ^‚Ì•Ô‚è’l</returns>
+/// <param name="num">ç·šå½¢è£œé–“ã—ãŸã„floatå‹å¤‰æ•°</param>
+/// <returns>ç·šå½¢è£œé–“ã•ã‚ŒãŸfloatå‹ã®è¿”ã‚Šå€¤</returns>
 float Calculation::Lerp_F(const float num1, const float num2, float t)
 {
 	float reNum = num1 + (num2 - num1) * t;

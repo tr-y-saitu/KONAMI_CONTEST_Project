@@ -1,62 +1,62 @@
-#pragma once
+ï»¿#pragma once
 
 
 
 /// <summary>
-/// •óÎƒ}ƒl[ƒWƒƒ[ƒNƒ‰ƒX
+/// å®çŸ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¯ãƒ©ã‚¹
 /// </summary>
 class GemManager final
 {
 public:
 	/// <summary>
-	/// •óÎ‚Ìƒ^ƒCƒv
+	/// å®çŸ³ã®ã‚¿ã‚¤ãƒ—
 	/// </summary>
 	enum GemType
 	{
-		DIAMOND,	// ƒ_ƒCƒAƒ‚ƒ“ƒh
-		RUBY,		// ƒ‹ƒr[
-		SAPPHIRE,	// ƒTƒtƒ@ƒCƒA
-		EMERALD		// ƒGƒƒ‰ƒ‹ƒh
+		DIAMOND,	// ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰
+		RUBY,		// ãƒ«ãƒ“ãƒ¼
+		SAPPHIRE,	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢
+		EMERALD		// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 	};
 
-	// •óÎ‚ª“oê‚·‚éƒf[ƒ^
+	// å®çŸ³ãŒç™»å ´ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 	struct EntryGemDataBase
 	{
-		float	entryTime;			// “oê‚·‚éŠÔ
-		VECTOR	entryPosition;		// “oê‚·‚éˆÊ’u
+		float	entryTime;			// ç™»å ´ã™ã‚‹æ™‚é–“
+		VECTOR	entryPosition;		// ç™»å ´ã™ã‚‹ä½ç½®
 	};
 
-	// ƒƒ\ƒbƒh
+	// ãƒ¡ã‚½ãƒƒãƒ‰
 	GemManager();
 	virtual ~GemManager();
 
 	/// <summary>
-	/// •óÎƒ‚ƒfƒ‹‚Ìƒnƒ“ƒhƒ‹‚ğƒ[ƒh
+	/// å®çŸ³ãƒ¢ãƒ‡ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰
 	/// </summary>
 	void LoadModle();
 
 	/// <summary>
-	/// •óÎ‚Ìƒ‚ƒfƒ‹‚ğİ’è
+	/// å®çŸ³ã®ãƒ¢ãƒ‡ãƒ«ã‚’è¨­å®š
 	/// </summary>
-	/// <param name="type">•óÎ‚Ìí—Ş</param>
-	/// <returns>‚»‚Ìí—Ş‚Ìƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹</returns>
+	/// <param name="type">å®çŸ³ã®ç¨®é¡</param>
+	/// <returns>ãã®ç¨®é¡ã®ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«</returns>
 	int SettingGemModle(int type);
 
 	/// <summary>
-	/// •óÎ‚ÌƒGƒ“ƒgƒŠ[î•ñ‚ğİ’è
+	/// å®çŸ³ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼æƒ…å ±ã‚’è¨­å®š
 	/// </summary>
-	/// <param name="data">•óÎ‚ÌƒGƒ“ƒgƒŠ[î•ñ‚ğŠi”[‚·‚é‘½ŸŒ³”z—ñ</param>
-	/// <param name="size">‘½ŸŒ³”z—ñ‚Ì“Y‚¦š”</param>
+	/// <param name="data">å®çŸ³ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹å¤šæ¬¡å…ƒé…åˆ—</param>
+	/// <param name="size">å¤šæ¬¡å…ƒé…åˆ—ã®æ·»ãˆå­—æ•°</param>
 	void SettingEntryData(EntryGemDataBase data[], int size);
 
-	// •óÎ‚Ìƒx[ƒXƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
-	int modelHandleDiamond;		// ƒ_ƒCƒAƒ‚ƒ“ƒh
-	int modelHandleRuby;		// ƒ‹ƒr[
-	int modelHandleSapphire;	// ƒTƒtƒ@ƒCƒA
-	int	modelHandleEmerald;		// ƒGƒƒ‰ƒ‹ƒh
+	// å®çŸ³ã®ãƒ™ãƒ¼ã‚¹ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+	int modelHandleDiamond;		// ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰
+	int modelHandleRuby;		// ãƒ«ãƒ“ãƒ¼
+	int modelHandleSapphire;	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢
+	int	modelHandleEmerald;		// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 
 	
-	// ÀÛ‚Ìƒf[ƒ^
+	// å®Ÿéš›ã®ãƒ‡ãƒ¼ã‚¿
 	EntryGemDataBase entryGemDataBase[100];
 
 private:

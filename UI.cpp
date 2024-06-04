@@ -1,4 +1,4 @@
-#include "Game.h"
+ï»¿#include "Game.h"
 #include "Player.h"
 #include "TreasureChest.h"
 #include "UI.h"
@@ -6,7 +6,7 @@
 
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 UI::UI()
 	:	menuGraph			(-1)
@@ -18,17 +18,17 @@ UI::UI()
 }
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 UI::~UI()
 {
-	// 3Dƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìíœ
+	// 3Dãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
 	MV1DeleteModel(strGetModleHandel);
 }
 
 
 /// <summary>
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 /// </summary>
 void UI::Initialize()
 {
@@ -41,33 +41,37 @@ void UI::Initialize()
 
 
 /// <summary>
-/// •`‰æ
+/// UIã®æ›´æ–°
 /// </summary>
+/// <param name="state">ã‚²ãƒ¼ãƒ ã‚¹ãƒ†ãƒ¼ãƒˆ</param>
+/// <param name="player">ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¯ãƒ©ã‚¹</param>
+/// <param name="clearFlag">ã‚¯ãƒªã‚¢ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹</param>
+/// <param name="chest">å®ç®±ã‚¯ãƒ©ã‚¹</param>
+/// <param name="nowTimer">ã‚²ãƒ¼ãƒ ã®ç¾åœ¨çµŒéæ™‚é–“</param>
 void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest, float nowTimer)
 {
-	char _timeCount[256];					// ƒQ[ƒ€‚ÌŒo‰ßŠÔ
-	int _uiColor = GetColor(200, 200, 200);	// Fİ’è’l
-	// ƒXƒe[ƒg‚²‚Æ‚É•`‰æ‚ğ•ÏX
+	char _timeCount[256];					// ã‚²ãƒ¼ãƒ ã®çµŒéæ™‚é–“
+	int _uiColor = GetColor(200, 200, 200);	// è‰²è¨­å®šå€¤
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã”ã¨ã«æç”»ã‚’å¤‰æ›´
 	switch (state)
 	{
-		// ƒ^ƒCƒgƒ‹
+		// ã‚¿ã‚¤ãƒˆãƒ«
 	case STATE_MENU:
 
-		// •¶š‚ğ•`‰æ
+		// æ–‡å­—ã‚’æç”»
 
-		// ƒ^ƒCƒgƒ‹”wŒi‚Ì•`‰æ
+		// ã‚¿ã‚¤ãƒˆãƒ«èƒŒæ™¯ã®æç”»
 		DrawGraph(0, 0, menuGraph, true);
 
 		break;
 
-		// ƒQ[ƒ€’†
+		// ã‚²ãƒ¼ãƒ ä¸­
 	case STATE_GAME:
-		
-		
-		sprintf_s(_timeCount, "```%f•bŒo‰ß```", nowTimer);
+		// ç¾åœ¨ã®çµŒéæ™‚é–“ã‚’æç”»
+		sprintf_s(_timeCount, "ï½ï½ï½%fç§’çµŒéï½ï½ï½", nowTimer);
 		DrawString(250, 400, _timeCount, GetColor(255, 100, 100), true);
 
-		// uGET!vƒ‚ƒfƒ‹‚ğ•`‰æ
+		// ã€ŒGET!ã€ãƒ¢ãƒ‡ãƒ«ã‚’æç”»
 		MV1SetPosition(strGetModleHandel, VGet(0,0,0));
 		if (isHitGemToChest)
 		{
@@ -77,19 +81,19 @@ void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest, fl
 
 		break;
 
-		// ƒNƒŠƒA‰æ–Ê
+		// ã‚¯ãƒªã‚¢ç”»é¢
 	case STATE_CLEAR:
 
-		// ƒNƒŠƒA•¶š
-		// •\¦
+		// ã‚¯ãƒªã‚¢æ–‡å­—
+		// è¡¨ç¤º
 
 		break;
 
-		// ƒQ[ƒ€ƒI[ƒo[
+		// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
 	case STATE_GAMEOVER:
 
-		// ƒQ[ƒ€ƒI[ƒo[•¶š
-		// •\¦
+		// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼æ–‡å­—
+		// è¡¨ç¤º
 		break;
 
 	default:

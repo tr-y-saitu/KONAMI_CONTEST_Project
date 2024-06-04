@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include "math.h"
 #include "Calculation.h"
 #include "TreasureChest.h"
@@ -9,7 +9,7 @@
 
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 Collision::Collision()
 {
@@ -18,7 +18,7 @@ Collision::Collision()
 
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 Collision::~Collision()
 {
@@ -30,169 +30,169 @@ Collision::~Collision()
 
 void Collision::HitPlayerToEnemy(Player& player, Enemy& enemy)
 {
-	// “–‚½‚Á‚½‚©A“–‚½‚Á‚Ä‚¢‚È‚¢‚©
+	// å½“ãŸã£ãŸã‹ã€å½“ãŸã£ã¦ã„ãªã„ã‹
 	bool isHit = false;
 
-	// î•ñ‚Ìæ“¾
-	VECTOR _playerPos = player.GetPos();		// ƒvƒŒƒCƒ„[‚ÌÀ•W
-	VECTOR _enemyPos = enemy.GetPos();			// ƒGƒlƒ~[‚ÌÀ•W
-	double _rPlayer = player.GetRadius();		// ƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è‚Ì”¼Œa
-	double _rEnemy = enemy.GetRudius();			// ƒGƒlƒ~[‚Ì“–‚½‚è”»’è‚Ì”¼Œa
+	// æƒ…å ±ã®å–å¾—
+	VECTOR _playerPos = player.GetPos();		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åº§æ¨™
+	VECTOR _enemyPos = enemy.GetPos();			// ã‚¨ãƒãƒŸãƒ¼ã®åº§æ¨™
+	double _rPlayer = player.GetRadius();		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å½“ãŸã‚Šåˆ¤å®šã®åŠå¾„
+	double _rEnemy = enemy.GetRudius();			// ã‚¨ãƒãƒŸãƒ¼ã®å½“ãŸã‚Šåˆ¤å®šã®åŠå¾„
 
-	// ƒvƒŒƒCƒ„[‚ÆƒGƒlƒ~[‚Ì“–‚½‚è”»’è
-	// ƒGƒlƒ~[‚ª‘¶İ‚µ‚Ä‚¢‚é‚©‚Ì’l‚¾‚¯‚à‚ç‚¤
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã‚¨ãƒãƒŸãƒ¼ã®å½“ãŸã‚Šåˆ¤å®š
+	// ã‚¨ãƒãƒŸãƒ¼ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹ã®å€¤ã ã‘ã‚‚ã‚‰ã†
 	if (enemy.GetVisibleFlag() == true)
 	{
-		// ƒvƒŒƒCƒ„[‚©‚çƒGƒlƒ~[‚ÌƒxƒNƒgƒ‹
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰ã‚¨ãƒãƒŸãƒ¼ã®ãƒ™ã‚¯ãƒˆãƒ«
 		VECTOR _difference = VSub(_playerPos, _enemyPos);
 
-		// â‘Î’lŒvZ
+		// çµ¶å¯¾å€¤è¨ˆç®—
 		double distance = sqrt((_difference.x * _difference.x) + (_difference.y * _difference.y) + (_difference.z * _difference.z));
 
-		// ‹——£‚ğZo
+		// è·é›¢ã‚’ç®—å‡º
 		//double _d = sqrt((_playerPos.x * _enemyPos.x) + (_playerPos.y * _enemyPos.y) + (_playerPos.z * _enemyPos.z));
-		// “–‚½‚é‹——£
+		// å½“ãŸã‚‹è·é›¢
 		double _rSum = _rPlayer + _rEnemy;
 
 		
-		// ’†S“_‚Æ‚Ì‹——£‚ğ‹‚ß‚é
+		// ä¸­å¿ƒç‚¹ã¨ã®è·é›¢ã‚’æ±‚ã‚ã‚‹
 		double _PlayerToEnemy = sqrt(pow(_playerPos.x + _enemyPos.x, 2) + pow(_playerPos.y + _enemyPos.y, 2) + pow(_playerPos.z + _enemyPos.z, 2));
 
 
-		// ”¼Œa‚Æ‚Ì‹——£‚ª2‚Â‚Ì”¼Œa‚Ì‡Œv‚æ‚è‚à¬‚³‚¯‚ê‚Î
+		// åŠå¾„ã¨ã®è·é›¢ãŒ2ã¤ã®åŠå¾„ã®åˆè¨ˆã‚ˆã‚Šã‚‚å°ã•ã‘ã‚Œã°
 		if ( distance <= _rSum)
 		{
 			isHit = true;
 		}
 	}
-	// “–‚½‚Á‚Ä‚¢‚é‚©”Û‚©
+	// å½“ãŸã£ã¦ã„ã‚‹ã‹å¦ã‹
 	player.SetIsHitEnemy(isHit);
 }
 
 
 /// <summary>
-/// ƒvƒŒƒCƒ„[‚Æ•óÎ‚Æ‚Ì“–‚½‚è”»’è
+/// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨å®çŸ³ã¨ã®å½“ãŸã‚Šåˆ¤å®š
 /// </summary>
-/// <param name="player">ƒvƒŒƒCƒ„[</param>
-/// <param name="gem">•óÎ</param>
+/// <param name="player">ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼</param>
+/// <param name="gem">å®çŸ³</param>
 void Collision::IsHitPlayerToGem(Player& player, Gem& gem)
 {
-	// Å‰‚Í“–‚½‚Á‚Ä‚¢‚È‚¢‚ğ‘ã“ü
+	// æœ€åˆã¯å½“ãŸã£ã¦ã„ãªã„ã‚’ä»£å…¥
 	bool isHit = false;
 
-	// î•ñ‚Ìæ“¾
-	VECTOR _playerPos = player.GetPos();		// ƒvƒŒƒCƒ„[À•W
-	VECTOR _gemPos = gem.GetPos();				// •óÎÀ•W
-	double _rPlayer = player.GetRadius();		// ƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è‚Ì”¼Œa
-	double _rGem = gem.GetRadius();				// •óÎ‚Ì“–‚½‚è”»’è‚Ì”¼Œa
+	// æƒ…å ±ã®å–å¾—
+	VECTOR _playerPos = player.GetPos();		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åº§æ¨™
+	VECTOR _gemPos = gem.GetPos();				// å®çŸ³åº§æ¨™
+	double _rPlayer = player.GetRadius();		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å½“ãŸã‚Šåˆ¤å®šã®åŠå¾„
+	double _rGem = gem.GetRadius();				// å®çŸ³ã®å½“ãŸã‚Šåˆ¤å®šã®åŠå¾„
 
-	// ƒvƒŒƒCƒ„[‚ÆƒGƒlƒ~[‚Ì“–‚½‚è”»’è
-	// ƒGƒlƒ~[‚ª‘¶İ‚µ‚Ä‚¢‚é‚©‚Ì’l‚¾‚¯‚à‚ç‚¤
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã‚¨ãƒãƒŸãƒ¼ã®å½“ãŸã‚Šåˆ¤å®š
+	// ã‚¨ãƒãƒŸãƒ¼ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹ã®å€¤ã ã‘ã‚‚ã‚‰ã†
 	if (gem.GetVisibleFlag() == true)
 	{
-		// ƒvƒŒƒCƒ„[‚©‚ç•óÎiƒWƒFƒ€j‚ÌƒxƒNƒgƒ‹
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰å®çŸ³ï¼ˆã‚¸ã‚§ãƒ ï¼‰ã®ãƒ™ã‚¯ãƒˆãƒ«
 		VECTOR _difference = VSub(_playerPos, _gemPos);
 
-		// â‘Î’lŒvZ
+		// çµ¶å¯¾å€¤è¨ˆç®—
 		double distance = sqrt((_difference.x * _difference.x) + (_difference.y * _difference.y) + (_difference.z * _difference.z));
 
-		// ‹——£‚ğZo
+		// è·é›¢ã‚’ç®—å‡º
 		//double _d = sqrt((_playerPos.x * _gemPos.x) + (_playerPos.y * _gemPos.y) + (_playerPos.z * _gemPos.z));
-		// “–‚½‚é‹——£
+		// å½“ãŸã‚‹è·é›¢
 		double _rSum = _rPlayer + _rGem;
 
 
-		// ”¼Œa‚Æ‚Ì‹——£‚ª2‚Â‚Ì”¼Œa‚Ì‡Œv‚æ‚è‚à¬‚³‚¯‚ê‚Î
+		// åŠå¾„ã¨ã®è·é›¢ãŒ2ã¤ã®åŠå¾„ã®åˆè¨ˆã‚ˆã‚Šã‚‚å°ã•ã‘ã‚Œã°
 		if (distance <= _rSum)
 		{
 			isHit = true;
 		}
 	}
-	// “–‚½‚Á‚Ä‚¢‚é‚©”Û‚©
+	// å½“ãŸã£ã¦ã„ã‚‹ã‹å¦ã‹
 	gem.SetIsHitPlayer(isHit);
 	player.SetIsHitGem(isHit);
 }
 
 /// <summary>
-/// •óÎ‚Æ•ó” ‚Ì“–‚½‚è”»’è
+/// å®çŸ³ã¨å®ç®±ã®å½“ãŸã‚Šåˆ¤å®š
 /// </summary>
-/// <param name="gem">•óÎ</param>
-/// <param name="chest">•ó” </param>
+/// <param name="gem">å®çŸ³</param>
+/// <param name="chest">å®ç®±</param>
 void Collision::IsHitGemToTreasureChest(Gem& gem, TreasureChest& chest)
 {
-	// Å‰‚Í“–‚½‚Á‚Ä‚¢‚È‚¢‚ğ‘ã“ü
+	// æœ€åˆã¯å½“ãŸã£ã¦ã„ãªã„ã‚’ä»£å…¥
 	bool isHit = false;
 
-	// î•ñ‚Ìæ“¾
-	VECTOR _gemPos = gem.GetPos();		// •óÎ‚ÌÀ•W
-	VECTOR _chestPos = chest.GetPos();	// •ó” ‚ÌÀ•W
-	double _rGem = gem.GetRadius();		// •óÎ‚Ì”¼Œa
-	double _rChest = chest.GetRadius();	// •ó” ‚Ì”¼Œa
+	// æƒ…å ±ã®å–å¾—
+	VECTOR _gemPos = gem.GetPos();		// å®çŸ³ã®åº§æ¨™
+	VECTOR _chestPos = chest.GetPos();	// å®ç®±ã®åº§æ¨™
+	double _rGem = gem.GetRadius();		// å®çŸ³ã®åŠå¾„
+	double _rChest = chest.GetRadius();	// å®ç®±ã®åŠå¾„
 
-	// •óÎ‚Æ•ó” ‚Ì“–‚½‚è”»’è
-	// •óÎ‚ª‚ª‘¶İ‚µ‚Ä‚¢‚é‚©‚Ì’l‚¾‚¯‚à‚ç‚¤
+	// å®çŸ³ã¨å®ç®±ã®å½“ãŸã‚Šåˆ¤å®š
+	// å®çŸ³ãŒãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹ã®å€¤ã ã‘ã‚‚ã‚‰ã†
 	if (gem.GetVisibleFlag() == true)
 	{
-		// ƒvƒŒƒCƒ„[‚©‚ç•óÎiƒWƒFƒ€j‚ÌƒxƒNƒgƒ‹
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰å®çŸ³ï¼ˆã‚¸ã‚§ãƒ ï¼‰ã®ãƒ™ã‚¯ãƒˆãƒ«
 		VECTOR _difference = VSub(_gemPos, _chestPos);
 
-		// â‘Î’lŒvZ
+		// çµ¶å¯¾å€¤è¨ˆç®—
 		double distance = sqrt((_difference.x * _difference.x) + (_difference.y * _difference.y) + (_difference.z * _difference.z));
 
-		// “–‚½‚é‹——£
+		// å½“ãŸã‚‹è·é›¢
 		double _rSum = _rGem + _rChest;
 
-		// ”¼Œa‚Æ‚Ì‹——£‚ª2‚Â‚Ì”¼Œa‚Ì‡Œv‚æ‚è‚à¬‚³‚¯‚ê‚Î
+		// åŠå¾„ã¨ã®è·é›¢ãŒ2ã¤ã®åŠå¾„ã®åˆè¨ˆã‚ˆã‚Šã‚‚å°ã•ã‘ã‚Œã°
 		if (distance <= _rSum)
 		{
-			// ÚG‚µ‚Ä‚¢‚é
+			// æ¥è§¦ã—ã¦ã„ã‚‹
 			isHit = true;
 		}
 	}
-	// “–‚½‚Á‚Ä‚¢‚é‚©”Û‚©
+	// å½“ãŸã£ã¦ã„ã‚‹ã‹å¦ã‹
 	gem.SetIsHitChest(isHit);
 	chest.SetIsHitGem(isHit);
  }
 
 
 /// <summary>
-/// •óÎ‚Ì‚¢‚¸‚ê‚©‚Æ•ó” ‚ª“–‚½‚Á‚½‚©
+/// å®çŸ³ã®ã„ãšã‚Œã‹ã¨å®ç®±ãŒå½“ãŸã£ãŸã‹
 /// </summary>
-/// <param name="gem">•óÎ</param>
-/// <param name="chest">•ó” </param>
-/// <returns>•óÎ‚Æ•ó” ‚ªÚG‚µ‚½‚©</returns>
+/// <param name="gem">å®çŸ³</param>
+/// <param name="chest">å®ç®±</param>
+/// <returns>å®çŸ³ã¨å®ç®±ãŒæ¥è§¦ã—ãŸã‹</returns>
 bool Collision::IsHitGemToTreasureChestBool(Gem& gem, TreasureChest& chest)
 {
-	// Å‰‚Í“–‚½‚Á‚Ä‚¢‚È‚¢‚ğ‘ã“ü
+	// æœ€åˆã¯å½“ãŸã£ã¦ã„ãªã„ã‚’ä»£å…¥
 	bool isHit = false;
 
-	// î•ñ‚Ìæ“¾
-	VECTOR _gemPos = gem.GetPos();		// •óÎ‚ÌÀ•W
-	VECTOR _chestPos = chest.GetPos();	// •ó” ‚ÌÀ•W
-	double _rGem = gem.GetRadius();		// •óÎ‚Ì”¼Œa
-	double _rChest = chest.GetRadius();	// •ó” ‚Ì”¼Œa
+	// æƒ…å ±ã®å–å¾—
+	VECTOR _gemPos = gem.GetPos();		// å®çŸ³ã®åº§æ¨™
+	VECTOR _chestPos = chest.GetPos();	// å®ç®±ã®åº§æ¨™
+	double _rGem = gem.GetRadius();		// å®çŸ³ã®åŠå¾„
+	double _rChest = chest.GetRadius();	// å®ç®±ã®åŠå¾„
 
-	// •óÎ‚Æ•ó” ‚Ì“–‚½‚è”»’è
-	// •óÎ‚ª‚ª‘¶İ‚µ‚Ä‚¢‚é‚©‚Ì’l‚¾‚¯‚à‚ç‚¤
+	// å®çŸ³ã¨å®ç®±ã®å½“ãŸã‚Šåˆ¤å®š
+	// å®çŸ³ãŒãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹ã®å€¤ã ã‘ã‚‚ã‚‰ã†
 	if (gem.GetVisibleFlag() == true)
 	{
-		// ƒvƒŒƒCƒ„[‚©‚ç•óÎiƒWƒFƒ€j‚ÌƒxƒNƒgƒ‹
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰å®çŸ³ï¼ˆã‚¸ã‚§ãƒ ï¼‰ã®ãƒ™ã‚¯ãƒˆãƒ«
 		VECTOR _difference = VSub(_gemPos, _chestPos);
 
-		// â‘Î’lŒvZ
+		// çµ¶å¯¾å€¤è¨ˆç®—
 		double distance = sqrt((_difference.x * _difference.x) + (_difference.y * _difference.y) + (_difference.z * _difference.z));
 
-		// “–‚½‚é‹——£
+		// å½“ãŸã‚‹è·é›¢
 		double _rSum = _rGem + _rChest;
 
-		// ”¼Œa‚Æ‚Ì‹——£‚ª2‚Â‚Ì”¼Œa‚Ì‡Œv‚æ‚è‚à¬‚³‚¯‚ê‚Î
+		// åŠå¾„ã¨ã®è·é›¢ãŒ2ã¤ã®åŠå¾„ã®åˆè¨ˆã‚ˆã‚Šã‚‚å°ã•ã‘ã‚Œã°
 		if (distance <= _rSum)
 		{
-			// ÚG‚µ‚Ä‚¢‚é
+			// æ¥è§¦ã—ã¦ã„ã‚‹
 			isHit = true;
 		}
 	}
-	// “–‚½‚Á‚Ä‚¢‚é‚©”Û‚©
+	// å½“ãŸã£ã¦ã„ã‚‹ã‹å¦ã‹
 	gem.SetIsHitChest(isHit);
 	chest.SetIsHitGem(isHit);
 	

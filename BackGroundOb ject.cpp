@@ -1,88 +1,88 @@
-#include "BackGroundObject.h"
+ï»¿#include "BackGroundObject.h"
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 BGObj::BGObj()
     :returnPosX     (3000)
     ,scrollSpeed   (4)
 {
-    // À•Wİ’è
+    // åº§æ¨™è¨­å®š
     pos = VGet(0, 100, 800);
-    // •ûŒüİ’è
+    // æ–¹å‘è¨­å®š
     dir = VGet(0, 0, 0);
-    // ƒXƒP[ƒ‹‚ğİ’è
+    // ã‚¹ã‚±ãƒ¼ãƒ«ã‚’è¨­å®š
     scale = VGet(1, 1, 1);
 
     pos2 = VGet(0, 0, 0);
 
-    // ”wŒi‰æ‘œ‚Ì“Ç‚İ‚İ
-    graphHandle = LoadGraph("data/texture/ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg (4).png");
+    // èƒŒæ™¯ç”»åƒã®èª­ã¿è¾¼ã¿
+    graphHandle = LoadGraph("data/texture/ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆ (4).png");
     graphUniverse= LoadGraph("data/texture/OIP (10).jpg");
 }
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 BGObj::~BGObj()
 {
-    // ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìíœ
+    // ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
     MV1DeleteModel(modelHandle);
 }
 
 /// <summary>
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 /// </summary>
-/// <param name="graphHnadle">ƒOƒ‰ƒtƒnƒ“ƒhƒ‹</param>
+/// <param name="graphHnadle">ã‚°ãƒ©ãƒ•ãƒãƒ³ãƒ‰ãƒ«</param>
 void BGObj::Initialize(int graph, int texture,VECTOR initVec,int speed)
 {
-    // ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìİ’è
+    // ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®è¨­å®š
     modelHandle = graph;
 
-    // ƒeƒNƒXƒ`ƒƒ‚Ìİ’è
+    // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è¨­å®š
     texrureHandle = texture;
 
-    // ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Éİ’è‚µ‚½‚¢ƒeƒNƒXƒ`ƒƒ‚ğ“\‚è•t‚¯
+    // ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã«è¨­å®šã—ãŸã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è²¼ã‚Šä»˜ã‘
     MV1SetTextureGraphHandle(modelHandle, 0, texrureHandle, true);
 
-    // ƒ‚ƒfƒ‹‚ÌƒXƒP[ƒ‹‚ğİ’è
+    // ãƒ¢ãƒ‡ãƒ«ã®ã‚¹ã‚±ãƒ¼ãƒ«ã‚’è¨­å®š
     MV1SetScale(modelHandle, scale);
 
-    // À•Wİ’è
+    // åº§æ¨™è¨­å®š
     pos = initVec;
 
-    // •ûŒüİ’è
+    // æ–¹å‘è¨­å®š
     dir = VGet(0, 0, 0);
 
     pos2 = VGet(0, 0, 0);
 
-    // s—ñ‚É’PˆÊs—ñ‚ğ‘ã“ü
+    // è¡Œåˆ—ã«å˜ä½è¡Œåˆ—ã‚’ä»£å…¥
     matrix = MGetIdent();
 
 }
 
 /// <summary>
-/// XV
+/// æ›´æ–°
 /// </summary>
 void BGObj::Update()
 {
-    // ‚¸‚Á‚Æ‰ñ“]ˆÚ“®‚µ‚Ä‚¢‚Ä‚Ù‚µ‚¢
+    // ãšã£ã¨å›è»¢ç§»å‹•ã—ã¦ã„ã¦ã»ã—ã„
     
-    // MATRIX‚ÉŠp“x‚ğw’è
-    //matrix = MGetRotY(DX_PI_F / 4.0f);  // (45“x‰ñ“]‚·‚és—ñ)
-    // MATRIX•ªA©•ª‚Ìpos‚ğ•ÏŠ·‚³‚¹‚é 
-    //pos = VTransform(pos, matrix);  // matrix‚É‚Í‰ñ“]s—ñ‚ğ“ü‚ê‚Ä‚¢‚é‚Ì‚Å‰ñ“]‚·‚é
+    // MATRIXã«è§’åº¦ã‚’æŒ‡å®š
+    //matrix = MGetRotY(DX_PI_F / 4.0f);  // (45åº¦å›è»¢ã™ã‚‹è¡Œåˆ—)
+    // MATRIXåˆ†ã€è‡ªåˆ†ã®posã‚’å¤‰æ›ã•ã›ã‚‹ 
+    //pos = VTransform(pos, matrix);  // matrixã«ã¯å›è»¢è¡Œåˆ—ã‚’å…¥ã‚Œã¦ã„ã‚‹ã®ã§å›è»¢ã™ã‚‹
     
 
-    //// w’è²‚ğ²‚É‰ñ“]‚·‚és—ñ‚ğæ“¾
+    //// æŒ‡å®šè»¸ã‚’è»¸ã«å›è»¢ã™ã‚‹è¡Œåˆ—ã‚’å–å¾—
     //matrix = MGetRotAxis(VGet(0, 0, 0), DX_PI_F / 180.0f);
-    //// matrix•ªA©•ª‚ÌÀ•W‚ğ•ÏŠ·i‰ñ“]j
+    //// matrixåˆ†ã€è‡ªåˆ†ã®åº§æ¨™ã‚’å¤‰æ›ï¼ˆå›è»¢ï¼‰
     //pos = VTransform(pos, matrix);
 
     dir = VGet(-1, 0, 0);
 
 
-    // ³‹K‰»
+    // æ­£è¦åŒ–
     if (VSquareSize(dir) > 0)
     {
         dir = VNorm(dir);
@@ -90,7 +90,7 @@ void BGObj::Update()
 
     auto velocity = VScale(dir, scrollSpeed);
          
-    // ‰æ–Ê’[‚És‚Á‚Ä‚¢‚Ü‚Á‚½‚ç
+    // ç”»é¢ç«¯ã«è¡Œã£ã¦ã„ã¾ã£ãŸã‚‰
     if (pos.x <= -returnPosX)
     {
         pos.x = returnPosX;
@@ -98,10 +98,10 @@ void BGObj::Update()
 
     pos = VAdd(pos, velocity);
 
-    // ƒ‚ƒfƒ‹‚ÌŠg‘å—¦‚ğƒZƒbƒg
+    // ãƒ¢ãƒ‡ãƒ«ã®æ‹¡å¤§ç‡ã‚’ã‚»ãƒƒãƒˆ
     //MV1SetScale(modelHandle, VGet(2, 2, 2));
 
-    // 3Dƒ‚ƒfƒ‹‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğİ’è
+    // 3Dãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’è¨­å®š
     MV1SetPosition(modelHandle,pos);
     
 
@@ -109,19 +109,19 @@ void BGObj::Update()
 
 
 /// <summary>
-/// •`‰æ
+/// æç”»
 /// </summary>
 void BGObj::Draw()
 {
-    // ƒ‚ƒfƒ‹‚Ì•`‰æ
+    // ãƒ¢ãƒ‡ãƒ«ã®æç”»
     MV1DrawModel(modelHandle);
 
     //MV1DrawMesh(modelHandle, 0);
 
-    // 3D‹óŠÔ‚É‰æ‘œ‚ğ•`‰æ
+    // 3Dç©ºé–“ã«ç”»åƒã‚’æç”»
     //DrawBillboard3D(VGet(3000, 0, 500), 0.5f, 0.5f, 2000.0f, 0.0f, graphHandle, true);
 
-    // 3D‹óŠÔã‚É2ŸŒ³“I‚È•ÏŒ`‚ğ‰Á‚¦‚½‰æ‘œ‚ğ•`‰æ
+    // 3Dç©ºé–“ä¸Šã«2æ¬¡å…ƒçš„ãªå¤‰å½¢ã‚’åŠ ãˆãŸç”»åƒã‚’æç”»
    /* DrawModiBillboard3D(VGet(320.0f, 240.0f, 100.0f),
         -100.0f, 200.0f,
         100.0f, 200.0f,

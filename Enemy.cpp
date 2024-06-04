@@ -1,4 +1,4 @@
-// ƒGƒlƒ~[ƒNƒ‰ƒX
+ï»¿// ã‚¨ãƒãƒŸãƒ¼ã‚¯ãƒ©ã‚¹
 
 #include "Enemy.h"
 
@@ -12,38 +12,38 @@ Enemy::Enemy()
 	,	graphSize		(1)
 	,	r				(2)
 {
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìİ’è
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®è¨­å®š
 	modelHandle = MV1LoadModel("data/model/enemy/KillerModel1.mv1");
-	// ƒ|ƒWƒVƒ‡ƒ“‚Ìİ’è
+	// ãƒã‚¸ã‚·ãƒ§ãƒ³ã®è¨­å®š
 	pos = VGet(0, 0, 0);
-	// •ûŒü‚Ìİ’è
+	// æ–¹å‘ã®è¨­å®š
 	dir = VGet(0, 0, 0);
-	// ƒTƒCƒY‚Ì’²®
+	// ã‚µã‚¤ã‚ºã®èª¿æ•´
 	scale = VGet(0.05f, 0.05f, 0.05f);
 	MV1SetScale(modelHandle, scale);
 
 
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Enemy::~Enemy()
 {
-	// ƒ‚ƒfƒ‹‚ÌƒAƒ“ƒ[ƒh
+	// ãƒ¢ãƒ‡ãƒ«ã®ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
 
 }
 
 /// <summary>
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 /// </summary>
 void Enemy::Initialize()
 {
-	// ƒ|ƒWƒVƒ‡ƒ“‚Ìİ’è
+	// ãƒã‚¸ã‚·ãƒ§ãƒ³ã®è¨­å®š
 	pos = VGet(0, 0, 0);
 
-	// •ûŒü‚Ìİ’è
+	// æ–¹å‘ã®è¨­å®š
 	dir = VGet(0, 0, 0);
 	
-	// ƒTƒCƒY‚ğ“¾‚é
+	// ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	GetGraphSize(graphHandle, &w, &h);
 
 	
@@ -54,16 +54,16 @@ void Enemy::Initialize()
 }
 
 
-// ƒGƒlƒ~[‚ÌXV
+// ã‚¨ãƒãƒŸãƒ¼ã®æ›´æ–°
 void Enemy::Update(int timer)
 {
-	// À•W‚ğİ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	//pos = VGet(20, 10, 20);
 
-	// ‰E‚©‚ç¶‚ÉˆÚ“®
+	// å³ã‹ã‚‰å·¦ã«ç§»å‹•
 	dir = VGet(0, 0, 0);
 
-	// ³‹K‰»
+	// æ­£è¦åŒ–
 	if (VSquareSize(dir) > 0)
 	{
 		dir = VNorm(dir);
@@ -71,22 +71,22 @@ void Enemy::Update(int timer)
 
 	auto velocity = VScale(dir, SPEED );
 
-	// ÀˆÚ“®
+	// å®Ÿç§»å‹•
 	pos = VAdd(pos, velocity);
 
-	// 3Dƒ‚ƒfƒ‹‚Ìƒ|ƒWƒVƒ‡ƒ“İ’è
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¸ã‚·ãƒ§ãƒ³è¨­å®š
 	MV1SetPosition(modelHandle, pos);
 
 }
 
 
-// ƒGƒlƒ~[‚Ì•`‰æ
+// ã‚¨ãƒãƒŸãƒ¼ã®æç”»
 void Enemy::Draw()
 {
-	// ƒGƒlƒ~[‚Ì•`‰æ
+	// ã‚¨ãƒãƒŸãƒ¼ã®æç”»
 	MV1DrawModel(modelHandle);
 
-	// ƒGƒlƒ~[‚Ì“–‚½‚è”»’è‚ğ•`‰æ
+	// ã‚¨ãƒãƒŸãƒ¼ã®å½“ãŸã‚Šåˆ¤å®šã‚’æç”»
 	DrawSphere3D(pos, r, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
 }
 

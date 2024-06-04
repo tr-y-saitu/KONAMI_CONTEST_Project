@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "DxLib.h"
 
@@ -6,25 +6,25 @@
 class Confetti
 {
 public:
-	// ƒƒ\ƒbƒh
-	Confetti();		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~Confetti();	// ƒfƒXƒgƒ‰ƒNƒ^
-	void Initialize(int model,VECTOR initVec, int initSpeed,int initType);	// ‰Šú‰»
-	void Update(int index);		// XV
-	void Draw();		// •`‰æ
-	// ƒQƒbƒgƒZƒbƒg
+	// ãƒ¡ã‚½ãƒƒãƒ‰
+	Confetti();		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~Confetti();	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void Initialize(int model,VECTOR initVec, int initSpeed,int initType);	// åˆæœŸåŒ–
+	void Update(int index);		// æ›´æ–°
+	void Draw();		// æç”»
+	// ã‚²ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	void SetPos(const VECTOR set) { pos = set; }
 	const VECTOR& GetPos()const { return pos; }
 
 private:
-	int		modelHandle;	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
-	VECTOR	pos;			// ƒ|ƒWƒVƒ‡ƒ“
-	VECTOR	dir;			// •ûŒü
-	int		w;				// •
-	int		h;				// ‚‚³
-	int		retrunPosY;		// ˆÚ“®‚µ‚Ä‰ŠúˆÊ’u‚É–ß‚·À•W
-	int		speed;			// ƒXƒs[ƒh
-	int		radian;			// ƒ‰ƒWƒAƒ“Šp“x
-	int		colorType;		// ƒJƒ‰[ƒ^ƒCƒv
-	int		rotateType;		// ‰ñ“]ƒ^ƒCƒv
+	int		modelHandle;	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+	VECTOR	pos;			// ãƒã‚¸ã‚·ãƒ§ãƒ³
+	VECTOR	dir;			// æ–¹å‘
+	int		w;				// å¹…
+	int		h;				// é«˜ã•
+	int		retrunPosY;		// ç§»å‹•ã—ã¦åˆæœŸä½ç½®ã«æˆ»ã™åº§æ¨™
+	int		speed;			// ã‚¹ãƒ”ãƒ¼ãƒ‰
+	int		radian;			// ãƒ©ã‚¸ã‚¢ãƒ³è§’åº¦
+	int		colorType;		// ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
+	int		rotateType;		// å›è»¢ã‚¿ã‚¤ãƒ—
 };

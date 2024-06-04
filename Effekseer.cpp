@@ -1,4 +1,4 @@
-#include "DxLib.h"
+﻿#include "DxLib.h"
 //#include "EffekseerForDXLib.h"
 #include "Effekseer.h"
 
@@ -16,87 +16,87 @@ Effekseer1::Effekseer1()
 
 Effekseer1::~Effekseer1()
 {
-	// �G�t�F�N�g���\�[�X���폜����B(Effekseer�I�����ɔj�������̂ō폜���Ȃ��Ă�����)
+	// エフェクトリソースを削除する。(Effekseer終了時に破棄されるので削除しなくてもいい)
 	//DeleteEffekseerEffect(effectResourceHandle);
 }
 
-// �G�t�F�N�V�A���g�����߂̏���
+// エフェクシアを使うための準備
 void Effekseer1::ReadyEffekseerForDXLib()
 {
-	//// �`���𗠉�ʂɐݒ肷��
+	//// 描画先を裏画面に設定する
 	//SetDrawScreen(DX_SCREEN_BACK);
 
-	//// DirectX11���g�p����悤�ɂ���B(DirectX9���A�ꕔ�@�\�s��)
-	//// Effekseer���g�p����ɂ͕K���ݒ肷��B
+	//// DirectX11を使用するようにする。(DirectX9も可、一部機能不可)
+	//// Effekseerを使用するには必ず設定する。
 	//SetUseDirect3DVersion(DX_DIRECT3D_11);
 
-	//// Z�o�b�t�@��L���ɂ���B
-	//// Effekseer���g�p����ꍇ�A2D�Q�[���ł�Z�o�b�t�@���g�p����B
+	//// Zバッファを有効にする。
+	//// Effekseerを使用する場合、2DゲームでもZバッファを使用する。
 	//SetUseZBuffer3D(TRUE);
 
-	//// Z�o�b�t�@�ւ̏������݂�L���ɂ���B
-	//// Effekseer���g�p����ꍇ�A2D�Q�[���ł�Z�o�b�t�@���g�p����B
+	//// Zバッファへの書き込みを有効にする。
+	//// Effekseerを使用する場合、2DゲームでもZバッファを使用する。
 	//SetWriteZBuffer3D(TRUE);
 
 }
 
-// ������
+// 初期化
 void Effekseer1::Initialize()
 {
-	// �G�t�F�N�g���\�[�X�̓ǂݍ���
+	// エフェクトリソースの読み込み
 	//effectResourceHandle = LoadEffekseerEffect("Laser01.efkefc", 25.0f);
 
-	// �Ȃ�ł������̂ŉ摜��ǂݍ���
+	// なんでもいいので画像を読み込む
 	graphBackGroundHandle = LoadGraph(_T("Texture/Background.png"));
 	graphFrontHandle = LoadGraph(_T("Texture/Front.png"));
 
-	// ���Ԃ��������i����I�ɃG�t�F�N�g���Đ����邽�߁j
+	// 時間を初期化（定期的にエフェクトを再生するため）
 	time = 0;
 
-	// �t���X�N���[���؂�ւ��t���O��ݒ肷��
+	// フルスクリーン切り替えフラグを設定する
 	isFullScreen = false;
 
-	// �G�t�F�N�g��\������ʒu��ݒ�
+	// エフェクトを表示する位置を設定
 	pos = VGet(100.0f, 250.0f, 0.0f);
 
-	// ���[���h���W���X�N���[�����W�ɕϊ�����
+	// ワールド座標をスクリーン座標に変換する
 	pos = ConvWorldPosToScreenPos(VGet(0,10,20));
 
-	// �X�N���[�����W�����[���h���W�ɕϊ�����
+	// スクリーン座標をワールド座標に変換する
 	//pos = ConvScreenPosToWorldPos(pos);
 
-	// �Đ����̃G�t�F�N�g�̃n���h��������������
+	// 再生中のエフェクトのハンドルを初期化する
 	playingEffectHandle = -1;
 
 }
 
 void Effekseer1::Update()
 {
-	// ����I�ɃG�t�F�N�g���Đ�����
+	// 定期的にエフェクトを再生する
 	if (time % 60 == 0)
 	{
-		// �G�t�F�N�g���Đ�����B
+		// エフェクトを再生する。
 		//playingEffectHandle = PlayEffekseer2DEffect(effectResourceHandle);
 		
-		// �G�t�F�N�g�̈ʒu�����Z�b�g����B
+		// エフェクトの位置をリセットする。
 		pos.x = 100.0f;
 	}
 
 
-	// �Đ����̃G�t�F�N�g���ړ�����B
+	// 再生中のエフェクトを移動する。
 	//SetPosPlayingEffekseer2DEffect(playingEffectHandle, pos.x, pos.y, 0);
 	pos.x += 2.0f;
 
-	// Effekseer�ɂ��Đ����̃G�t�F�N�g���X�V����B
+	// Effekseerにより再生中のエフェクトを更新する。
 	//UpdateEffekseer2D();
 
-	// ���Ԃ��o�߂�����
+	// 時間を経過させる
 	time++;
 
-	//// ���[���h���W���X�N���[�����W�ɕϊ�����
+	//// ワールド座標をスクリーン座標に変換する
 	//pos = ConvWorldPosToScreenPos(pos);
 
-	// ()���̍��W���J�����̎��E�ɓ����Ă��Ȃ����ǂ����𔻒f����
+	// ()内の座標がカメラの視界に入っていないかどうかを判断する
 	int flag = CheckCameraViewClip(pos);
 	int gg = 0;
 }
@@ -104,13 +104,13 @@ void Effekseer1::Update()
 
 void Effekseer1::Draw()
 {
-	// ���ł������̂ŉ摜��`�悷��B
-	// �������ĕ`�悵����łȂ��ƁAEffekseer�͕`��ł��Ȃ��B
+	// 何でもいいので画像を描画する。
+	// こうして描画した後でないと、Effekseerは描画できない。
 	DrawGraph(0, 0, graphBackGroundHandle, TRUE);
 
-	// Effekseer�ɂ��Đ����̃G�t�F�N�g��`�悷��B
+	// Effekseerにより再生中のエフェクトを描画する。
 	//DrawEffekseer2D();
 
-	// �G�t�F�N�g�̏�ɂ��摜��`��ł���B
+	// エフェクトの上にも画像を描画できる。
 	DrawGraph(0, 0, graphFrontHandle, TRUE);
 }

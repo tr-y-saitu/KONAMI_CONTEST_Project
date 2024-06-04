@@ -1,4 +1,4 @@
-// ƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹
+ï»¿// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«
 
 #include <stdio.h>
 #include <iostream>
@@ -24,7 +24,7 @@
 #include "Game.h"
 
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Game::Game()
 	:	isHitCount		(0)
 	,	isClearCount	(0)
@@ -32,7 +32,7 @@ Game::Game()
 	,	nowTimer		(0)
 	,	isDrawGetUi		(false)
 {
-	// •Ï”‚Ì‰Šú‰»
+	// å¤‰æ•°ã®åˆæœŸåŒ–
 	gameState = STATE_MENU;
 	gameFrameCount = 0;
 	previousTime = 0;
@@ -42,35 +42,35 @@ Game::Game()
 	keyRelease = false;
 	prevKeyOn = false;
 	menuGraph = -1;
-	// ƒx[ƒXƒ‚ƒfƒ‹‚Ìƒ[ƒh
-	modelHandleGemDia = MV1LoadModel("data/model/Gem/Diamonds.mv1");	// ƒ_ƒCƒA
-	modelHandleGemRuby = MV1LoadModel("data/model/Gem/Ruby.mv1");	// ƒ‹ƒr[
+	// ãƒ™ãƒ¼ã‚¹ãƒ¢ãƒ‡ãƒ«ã®ãƒ­ãƒ¼ãƒ‰
+	modelHandleGemDia = MV1LoadModel("data/model/Gem/Diamonds.mv1");	// ãƒ€ã‚¤ã‚¢
+	modelHandleGemRuby = MV1LoadModel("data/model/Gem/Ruby.mv1");	// ãƒ«ãƒ“ãƒ¼
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Game::~Game()
 {
 }
 
 /// <summary>
-/// ƒQ[ƒ€‚ªƒXƒ^[ƒg‚µ‚Ä‚©‚ç‚ÌƒtƒŒ[ƒ€”‚ğ”‚¦‚é
+/// ã‚²ãƒ¼ãƒ ãŒã‚¹ã‚¿ãƒ¼ãƒˆã—ã¦ã‹ã‚‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’æ•°ãˆã‚‹
 /// </summary>
 void Game::CountGameFraem()
 {
-	// ƒQ[ƒ€ƒtƒŒ[ƒ€‚ğ”‚¦‚é
+	// ã‚²ãƒ¼ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ•°ãˆã‚‹
 	gameFrameCount++;
 }
 
 /// <summary>
-/// ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ì¶¬
+/// ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
 /// </summary>
 void Game::Create()
 {
-	// ‘SƒIƒuƒWƒFƒNƒg‚Ì¶¬
-	player = new Player();		// ƒvƒŒƒCƒ„[
-	enemy = new Enemy();		// ƒGƒlƒ~[
-	camera = new Camera();		// ƒJƒƒ‰
-	collision = new Collision();	// “–‚½‚è”»’èiƒRƒŠƒWƒ‡ƒ“j
+	// å…¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
+	player = new Player();		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+	enemy = new Enemy();		// ã‚¨ãƒãƒŸãƒ¼
+	camera = new Camera();		// ã‚«ãƒ¡ãƒ©
+	collision = new Collision();	// å½“ãŸã‚Šåˆ¤å®šï¼ˆã‚³ãƒªã‚¸ãƒ§ãƒ³ï¼‰
 	ui = new UI();
 	skyDome = new SkyDome();
 	room = new Room();
@@ -85,11 +85,11 @@ void Game::Create()
 }
 
 /// <summary>
-/// ¶¬‚µ‚½ƒIƒuƒWƒFƒNƒg‚Ìíœ
+/// ç”Ÿæˆã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰Šé™¤
 /// </summary>
 void Game::DeleteGame()
 {
-	// íœ
+	// å‰Šé™¤
 	delete(player);
 	delete(enemy);
 	delete(camera);
@@ -110,23 +110,23 @@ void Game::DeleteGame()
 
 
 /// <summary>
-/// ƒQ[ƒ€Å‰‚Ì‰Šú‰»
+/// ã‚²ãƒ¼ãƒ æœ€åˆã®åˆæœŸåŒ–
 /// </summary>
 void Game::InitializeGameStart()
 {
-	// Effekseer‚ğg—p‚·‚é
+	// Effekseerã‚’ä½¿ç”¨ã™ã‚‹
 	//effekseer1->ReadyEffekseerForDXLib();
 
-	// ƒtƒHƒ“ƒgİ’è
-	ChangeFont("ƒ`ƒ‡[ƒNS");
+	// ãƒ•ã‚©ãƒ³ãƒˆè¨­å®š
+	ChangeFont("ãƒãƒ§ãƒ¼ã‚¯S");
 
 	isHitCount = 0;
 	nowTimer = 0;
 
-	// ‚R‚cƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ
-	gemManager->LoadModle();		// •óÎ‚Ìƒ‚ƒfƒ‹ƒ[ƒh
+	// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿
+	gemManager->LoadModle();		// å®çŸ³ã®ãƒ¢ãƒ‡ãƒ«ãƒ­ãƒ¼ãƒ‰
 
-	// ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ì‰Šú‰»
+	// ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–
 	player->Initialize();
 	ui->Initialize();
 	skyDome->Initialize();
@@ -138,25 +138,25 @@ void Game::InitializeGameStart()
 		gem[i]->Initialize(VGet(i , 0, -5),*gemManager);
 	}
 	
-	// •óÎ‚ÌƒGƒ“ƒgƒŠ[î•ñ‚ğİ’è
+	// å®çŸ³ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼æƒ…å ±ã‚’è¨­å®š
 	gemManager->SettingEntryData(gemManager->entryGemDataBase,gem.size());
 	//effekseer1->Initialize();
 
-	// ƒQ[ƒ€‚ªn‚Ü‚é‘O‚ÌGetNowCount‚ğæ“¾
+	// ã‚²ãƒ¼ãƒ ãŒå§‹ã¾ã‚‹å‰ã®GetNowCountã‚’å–å¾—
 	previousTime = GetNowHiPerformanceCount();
 
-	gameFrameCount = 0;			// ƒtƒŒ[ƒ€ƒJƒEƒ“ƒg‚Ì‰Šú‰»
-	isDrawGetUi = false;		// •óÎ‚ğƒQƒbƒg‚µ‚½‚ÌUI‰‰o‚ğ‚·‚é‚©‚Ç‚¤‚©
+	gameFrameCount = 0;			// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ãƒˆã®åˆæœŸåŒ–
+	isDrawGetUi = false;		// å®çŸ³ã‚’ã‚²ãƒƒãƒˆã—ãŸæ™‚ã®UIæ¼”å‡ºã‚’ã™ã‚‹ã‹ã©ã†ã‹
 	
 }
 
 
 /// <summary>
-/// ‰Šú‰»ˆ—
+/// åˆæœŸåŒ–å‡¦ç†
 /// </summary>
 void Game::Initialize()
 {
-	// ƒQ[ƒ€‚ªn‚Ü‚é‘O‚ÌGetNowCount‚ğæ“¾
+	// ã‚²ãƒ¼ãƒ ãŒå§‹ã¾ã‚‹å‰ã®GetNowCountã‚’å–å¾—
 	previousTime = GetNowHiPerformanceCount();
 
 	gameFrameCount = 0;
@@ -176,7 +176,7 @@ void Game::Initialize()
 	{
 		gem[i]->Initialize(VGet(i - 10, 10, -5),*gemManager);
 	}
-	// •óÎ‚ÌƒGƒ“ƒgƒŠ[î•ñ‚ğİ’è
+	// å®çŸ³ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼æƒ…å ±ã‚’è¨­å®š
 	gemManager->SettingEntryData(gemManager->entryGemDataBase, gem.size());
 	//effekseer1->Initialize();
 }
@@ -185,34 +185,34 @@ void Game::Initialize()
 
 
 /// <summary>
-/// ƒQ[ƒ€ƒXƒe[ƒgØ‚è‘Ö‚¦
+/// ã‚²ãƒ¼ãƒ ã‚¹ãƒ†ãƒ¼ãƒˆåˆ‡ã‚Šæ›¿ãˆ
 /// </summary>
 void Game::ChangeGameState()
 {
-	// ‘¦À‚ÉØ‚è‘Ö‚í‚è‚·‚¬‚é‚Ì‚ÅA‚¿‚å‚Á‚ÆŠÔ‚ğ~‚ß‚é
+	// å³åº§ã«åˆ‡ã‚Šæ›¿ã‚ã‚Šã™ãã‚‹ã®ã§ã€ã¡ã‚‡ã£ã¨æ™‚é–“ã‚’æ­¢ã‚ã‚‹
 	WaitTimer(500);
 
-	// ƒXƒe[ƒg‚ªØ‚è‘Ö‚í‚Á‚½uŠÔAƒL[‚ğ—£‚µ‚½”»’è‚ğƒŠƒZƒbƒg
+	// ã‚¹ãƒ†ãƒ¼ãƒˆãŒåˆ‡ã‚Šæ›¿ã‚ã£ãŸç¬é–“ã€ã‚­ãƒ¼ã‚’é›¢ã—ãŸåˆ¤å®šã‚’ãƒªã‚»ãƒƒãƒˆ
 	keyOn = false;
 	keyRelease = false;
 
-	// ƒXƒe[ƒgØ‚è‘Ö‚¦ˆ—
+	// ã‚¹ãƒ†ãƒ¼ãƒˆåˆ‡ã‚Šæ›¿ãˆå‡¦ç†
 	switch (gameState)
 	{
-		// ƒ^ƒCƒgƒ‹
+		// ã‚¿ã‚¤ãƒˆãƒ«
 	case STATE_MENU:
 		break;
 
-		// ƒQ[ƒ€’†
+		// ã‚²ãƒ¼ãƒ ä¸­
 	case STATE_GAME:
 		Initialize();
 		break;
 
-		// ƒNƒŠƒA‰æ–Ê
+		// ã‚¯ãƒªã‚¢ç”»é¢
 	case STATE_CLEAR:
 		break;
 
-		// ƒQ[ƒ€ƒI[ƒo[
+		// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
 	case STATE_GAMEOVER:
 		break;
 
@@ -224,17 +224,17 @@ void Game::ChangeGameState()
 }
 
 /// <summary>
-/// ƒAƒbƒvƒf[ƒgƒQ[ƒ€
+/// ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚²ãƒ¼ãƒ 
 /// </summary>
 void Game::UpdateGame()
 {
-	// ƒL[“ü—Íˆ—
+	// ã‚­ãƒ¼å…¥åŠ›å‡¦ç†
 	ProcessKey();
 
-	// ƒXƒe[ƒg‚²‚Æ‚Éˆ—‚ğ•ª‚¯‚é
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã”ã¨ã«å‡¦ç†ã‚’åˆ†ã‘ã‚‹
 	switch (gameState)
 	{
-		// ƒƒjƒ…[ //////////////////////////////////////
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ //////////////////////////////////////
 	case STATE_MENU:
 
 		if (keyRelease)
@@ -246,17 +246,17 @@ void Game::UpdateGame()
 
 		break;
 
-		// ƒQ[ƒ€’† //////////////////////////////////////
+		// ã‚²ãƒ¼ãƒ ä¸­ //////////////////////////////////////
 	case STATE_GAME:
-		// ƒQ[ƒ€‚ªŠJn‚µ‚Ä‚©‚ç‚ÌŠÔ‚ğŒv‘ª
+		// ã‚²ãƒ¼ãƒ ãŒé–‹å§‹ã—ã¦ã‹ã‚‰ã®æ™‚é–“ã‚’è¨ˆæ¸¬
 		SettingTimer();
 
-		// ƒQ[ƒ€ƒtƒŒ[ƒ€‚ğ”‚¦‚é
+		// ã‚²ãƒ¼ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ•°ãˆã‚‹
 		CountGameFraem();
 
-		// ƒQ[ƒ€ƒAƒbƒvƒf[ƒg
-		// “–‚½‚è”»’èˆ—
-		//collision->HitPlayerToEnemy(*player, *enemy);	// ƒvƒŒƒCƒ„[‚ÆƒGƒlƒ~[‚Ì“–‚½‚è”»’è
+		// ã‚²ãƒ¼ãƒ ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
+		// å½“ãŸã‚Šåˆ¤å®šå‡¦ç†
+		//collision->HitPlayerToEnemy(*player, *enemy);	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã‚¨ãƒãƒŸãƒ¼ã®å½“ãŸã‚Šåˆ¤å®š
 		for (int i = 0; i < gem.size(); i++)
 		{
 			collision->IsHitPlayerToGem(*player, *gem[i]);
@@ -266,33 +266,33 @@ void Game::UpdateGame()
 				ui->SetIsHitGemToChest(true);
 			}
 		}
-		// ƒeƒXƒg—p
+		// ãƒ†ã‚¹ãƒˆç”¨
 		//collision->IsHitGemToTreasureChest(*gem[1], *treasureChest);
 
-		// ƒLƒƒƒ‰ƒNƒ^[XV
-		player->Update(*enemy);	// ƒvƒŒƒCƒ„[
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ›´æ–°
+		player->Update(*enemy);	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
-		// ƒJƒƒ‰XV
+		// ã‚«ãƒ¡ãƒ©æ›´æ–°
 		camera->Update(*player, *enemy, *bgobj2[0]);
 		
-		// ƒIƒuƒWƒFƒNƒgXV
-		skyDome->Update();		// ”wŒi
-		room->Update();			// •”‰®
-		floor->Update();		// °
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ›´æ–°
+		skyDome->Update();		// èƒŒæ™¯
+		room->Update();			// éƒ¨å±‹
+		floor->Update();		// åºŠ
 		for (int i = 0; i < gem.size(); i++)
 		{
-			gem[i]->Update(calculation);	// •óÎ
-			treasureChest->Update(*gem[i]);	// •ó” XV
+			gem[i]->Update(calculation);	// å®çŸ³
+			treasureChest->Update(*gem[i]);	// å®ç®±æ›´æ–°
 		}
 		//effekseer1->Update();
 		
-		// §ŒÀŠÔ‚ªŒo‰ß‚µ‚½‚ç
+		// åˆ¶é™æ™‚é–“ãŒçµŒéã—ãŸã‚‰
 		if (nowTimer >= 90)
 		{
-			// ƒNƒŠƒA‚µ‚½
+			// ã‚¯ãƒªã‚¢ã—ãŸ
 			isClearFlag = true;
 
-			// ƒNƒŠƒA‚µ‚Ä‚©‚ç‚ÌƒJƒEƒ“ƒg
+			// ã‚¯ãƒªã‚¢ã—ã¦ã‹ã‚‰ã®ã‚«ã‚¦ãƒ³ãƒˆ
 			isClearCount++;
 
 			if (isClearCount >= 100)
@@ -304,10 +304,10 @@ void Game::UpdateGame()
 
 		break;
 
-	// ƒNƒŠƒA /////////////////////////////////////////
+	// ã‚¯ãƒªã‚¢ /////////////////////////////////////////
 	case STATE_CLEAR:
 
-		// ƒL[“ü—Í‚³‚ê‚½‚ç
+		// ã‚­ãƒ¼å…¥åŠ›ã•ã‚ŒãŸã‚‰
 		if (keyRelease)
 		{
 			gameState = STATE_MENU;
@@ -315,10 +315,10 @@ void Game::UpdateGame()
 		}
 		break;
 
-	// ƒQ[ƒ€ƒI[ƒo[ ///////////////////////////////
+	// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ ///////////////////////////////
 	case STATE_GAMEOVER:
 
-		// ƒL[“ü—Í‚³‚ê‚½‚ç
+		// ã‚­ãƒ¼å…¥åŠ›ã•ã‚ŒãŸã‚‰
 		if (keyRelease)
 		{
 			gameState = STATE_MENU;
@@ -333,11 +333,11 @@ void Game::UpdateGame()
 
 
 /// <summary>
-/// ƒQ[ƒ€is‚É‚©‚©‚í‚éƒL[“ü—Í
+/// ã‚²ãƒ¼ãƒ é€²è¡Œã«ã‹ã‹ã‚ã‚‹ã‚­ãƒ¼å…¥åŠ›
 /// </summary>
 void Game::ProcessKey()
 {
-	// ƒL[‚ğ—£‚µ‚½uŠÔ‚ğ‚Æ‚é
+	// ã‚­ãƒ¼ã‚’é›¢ã—ãŸç¬é–“ã‚’ã¨ã‚‹
 	if (keyOn)
 	{
 		if (CheckHitKey(KEY_INPUT_SPACE) == 0)
@@ -363,50 +363,50 @@ void Game::ProcessKey()
 }
 
 /// <summary>
-/// §ŒÀŠÔ‚Ì•`‰æ
+/// åˆ¶é™æ™‚é–“ã®æç”»
 /// </summary>
 void Game::DrawTimer()
 {
-	// ƒtƒHƒ“ƒgƒTƒCƒYİ’è
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºè¨­å®š
 	SetFontSize(100);
 
-	// F•Û
+	// è‰²ä¿æŒ
 	int _color = GetColor(200, 200, 200);
 
-	// ŠÔ‚ğ•Û‚·‚é
-	timer = (GetNowHiPerformanceCount() - previousTime);		// Œ»İŠÔ - Å‰‚ÌŒv‘ªŠÔ
-	int _nowTimer = (timer % 1000000000)/1000000;				// ˆêŒ…‚Ì•b”
+	// æ™‚é–“ã‚’ä¿æŒã™ã‚‹
+	timer = (GetNowHiPerformanceCount() - previousTime);		// ç¾åœ¨æ™‚é–“ - æœ€åˆã®è¨ˆæ¸¬æ™‚é–“
+	int _nowTimer = (timer % 1000000000)/1000000;				// ä¸€æ¡ã®ç§’æ•°
 	nowTimer = (timer % 1000000000) / 1000000;
 	char timerStr[256];
 	sprintf_s(timerStr, "TIME: %d / 90", _nowTimer);
 	DrawString(850, 0, timerStr, _color, true);
 	nowTimer = _nowTimer;
 	
-	// 20•bŒo‰ß‚²‚Æ‚É(_nowTimer‚ª‚O‚Å‚Í‚È‚¢‚Æ‚«BŠJn’¼Œã‚Ì‚Í–³‹)
+	// 20ç§’çµŒéã”ã¨ã«(_nowTimerãŒï¼ã§ã¯ãªã„ã¨ãã€‚é–‹å§‹ç›´å¾Œã®æ™‚ã¯ç„¡è¦–)
 	if (_nowTimer % 20 == 0 && _nowTimer != 0)
 	{
 		char _timeCount[256];
-		sprintf_s(_timeCount, "```%f•bŒo‰ß```", nowTimer);
+		sprintf_s(_timeCount, "ï½ï½ï½%fç§’çµŒéï½ï½ï½", nowTimer);
 		DrawString(250, 400, _timeCount, GetColor(255,100,100), true);
 	}
 }
 
 
 /// <summary>
-/// Œ»İŒo‰ßŠÔ‚ÌXV
+/// ç¾åœ¨çµŒéæ™‚é–“ã®æ›´æ–°
 /// </summary>
 void Game::SettingTimer()
 {
-	// Œ»İŠÔ - Å‰‚ÌŒv‘ªŠÔ
+	// ç¾åœ¨æ™‚é–“ - æœ€åˆã®è¨ˆæ¸¬æ™‚é–“
 	timer = (GetNowHiPerformanceCount() - previousTime);
-	// Œ»İŒo‰ßŠÔi‚PŒ…•\¦j
+	// ç¾åœ¨çµŒéæ™‚é–“ï¼ˆï¼‘æ¡è¡¨ç¤ºï¼‰
 	nowTimer = (timer % 1000000000) / 1000000;
 
 }
 
 
 /// <summary>
-/// ƒQ[ƒ€‚Ì•`‰æ
+/// ã‚²ãƒ¼ãƒ ã®æç”»
 /// </summary>
 void Game::DrawGame()
 {
@@ -417,22 +417,22 @@ void Game::DrawGame()
 	if (gameState == STATE_GAME)
 	{
 		//skyDome->Draw();
-		player->Draw(gameFrameCount);	// ƒvƒŒƒCƒ„[
-		//enemy->Draw();				// ƒGƒlƒ~[
-		room->Draw();					// •”‰®
-		floor->Draw();					// °
+		player->Draw(gameFrameCount);	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+		//enemy->Draw();				// ã‚¨ãƒãƒŸãƒ¼
+		room->Draw();					// éƒ¨å±‹
+		floor->Draw();					// åºŠ
 		for (int i = 0; i < gem.size(); i++)
 		{
 			gem[i]->Draw();
 		}
-		treasureChest->Draw();			// •ó” 
-		//DrawTimer();					// §ŒÀŠÔ
+		treasureChest->Draw();			// å®ç®±
+		//DrawTimer();					// åˆ¶é™æ™‚é–“
 	}
 
-	// UI•`‰æ
+	// UIæç”»
 	ui->Draw(GetGameState(),*player,isClearFlag,*treasureChest,nowTimer);
 
-	// ƒGƒtƒFƒNƒg‚ÌÄ¶
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å†ç”Ÿ
 	//effekseer1->Draw();
 }
 

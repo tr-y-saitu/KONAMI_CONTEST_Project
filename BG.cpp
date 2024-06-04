@@ -1,16 +1,16 @@
-#include"BG.h"
+﻿#include"BG.h"
 
 BG::BG()
 	:graphHandle	(-1)
 	,w				(0)
 	,h				(0)
 {
-	// �����Ȃ�
+	// 処理なし
 }
 
 BG::~BG()
 {
-	// �����Ȃ�
+	// 処理なし
 }
 
 
@@ -18,13 +18,13 @@ BG::~BG()
 
 void BG::Initialize(int graph, int index)
 {
-	// �摜�����[�h
+	// 画像をロード
 	graphHandle = graph;
 
-	// �摜�T�C�Y�̓ǂݎ��
+	// 画像サイズの読み取り
 	GetGraphSize(graphHandle, &w, &h);
 
-	// ���W�̐ݒ�
+	// 座標の設定
 	pos.x = index * w;
 	pos.y = h * 0.5f;
 }
@@ -33,10 +33,10 @@ void BG::Update(float buf)
 {
 	pos.y = 960;
 
-	// �w�i���X�N���[��
+	// 背景横スクロール
 	pos.x -= BG_SCROLL_SPEED + buf;
 
-	// �w�i��X���W���w�i�̈�]�v�ɍ��ɂȂ�����A�E�Ɉړ�
+	// 背景のX座標が背景の一つ余計に左になったら、右に移動
 	if (pos.x < -w + w * 0.5f)
 	{
 		pos.x += w * 2;

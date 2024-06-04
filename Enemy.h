@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "DxLib.h"
 
@@ -7,43 +7,43 @@
 class Enemy
 {
 public:
-	Enemy();		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~Enemy();		// ƒfƒXƒgƒ‰ƒNƒ^
+	Enemy();		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~Enemy();		// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	void Initialize();		// ‰Šú‰»ˆ—
-	void Update(int timer);	// XV
-	void Draw();	// •`‰æ
+	void Initialize();		// åˆæœŸåŒ–å‡¦ç†
+	void Update(int timer);	// æ›´æ–°
+	void Draw();	// æç”»
 
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	int GetModelHandle() { return modelHandle; }
 
-	// ƒQƒbƒg
+	// ã‚²ãƒƒãƒˆ
 	const VECTOR& GetPos()const { return pos; }
 	const bool GetVisibleFlag() { return visibleFlag; }
 	const int GetWidth() { return w; }
 	const int GetHeight() { return h; }
 	const int GetRudius() { return r; }
-	// ƒZƒbƒg
+	// ã‚»ãƒƒãƒˆ
 	const float GetSpeedBuf() { return speedBuf; }
 	void SetPos(const VECTOR set) { pos = set; }
 
 private:
-	// ’è”
-	const float SPEED = 5.0f;	// ˆÚ“®ƒXƒs[ƒh
+	// å®šæ•°
+	const float SPEED = 5.0f;	// ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
 
-	// •Ï”
-	int		modelHandle;	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
-	VECTOR	scale;			// ƒXƒP[ƒ‹
-	int		graphHandle;	// 2Dƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
-	int		w;				// •
-	int		h;				// ‚‚³
-	VECTOR	pos;			// ƒ|ƒWƒVƒ‡ƒ“
-	VECTOR	dir;			// •ûŒü
-	bool	visibleFlag;	// ‘¶İ‚µ‚Ä‚¢‚é‚©
-	float	speedBuf;		// ˆÚ“®ƒXƒs[ƒh‚Ìƒoƒt’l
-	double	sizeBuf;		// ‰æ‘œƒTƒCƒY‚Ìƒoƒt
-	double	graphSize;		// ‰æ‘œƒTƒCƒY
-	int		r;				// ‹…Œ^“–‚½‚è”»’è‚Ì”¼Œa
+	// å¤‰æ•°
+	int		modelHandle;	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+	VECTOR	scale;			// ã‚¹ã‚±ãƒ¼ãƒ«
+	int		graphHandle;	// 2Dãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+	int		w;				// å¹…
+	int		h;				// é«˜ã•
+	VECTOR	pos;			// ãƒã‚¸ã‚·ãƒ§ãƒ³
+	VECTOR	dir;			// æ–¹å‘
+	bool	visibleFlag;	// å­˜åœ¨ã—ã¦ã„ã‚‹ã‹
+	float	speedBuf;		// ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰ã®ãƒãƒ•å€¤
+	double	sizeBuf;		// ç”»åƒã‚µã‚¤ã‚ºã®ãƒãƒ•
+	double	graphSize;		// ç”»åƒã‚µã‚¤ã‚º
+	int		r;				// çƒå‹å½“ãŸã‚Šåˆ¤å®šã®åŠå¾„
 
 };
 

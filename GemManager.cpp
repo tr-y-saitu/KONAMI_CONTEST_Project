@@ -1,8 +1,8 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 #include "GemManager.h"
 
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 GemManager::GemManager()
 	: modelHandleDiamond	(-1)
 	, modelHandleRuby		(-1)
@@ -12,92 +12,92 @@ GemManager::GemManager()
 
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 GemManager::~GemManager()
 {
 
 }
 
 
-// ƒ‚ƒfƒ‹‚Ìƒ[ƒh
+// ãƒ¢ãƒ‡ãƒ«ã®ãƒ­ãƒ¼ãƒ‰
 void GemManager::LoadModle()
 {
-	// •óÎ‚Ìƒ‚ƒfƒ‹‚ğƒ[ƒh
+	// å®çŸ³ã®ãƒ¢ãƒ‡ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰
 	if (modelHandleDiamond <= -1)
-	{	// ƒ_ƒCƒAƒ‚ƒ“ƒh
+	{	// ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰
 		modelHandleDiamond	= MV1LoadModel("data/model/Gem/Diamonds.mv1");
 	}
 	if (modelHandleRuby <= -1)
-	{	// ƒ‹ƒr[
+	{	// ãƒ«ãƒ“ãƒ¼
 		modelHandleRuby		= MV1LoadModel("data/model/Gem/Ruby.mv1");
 	}
 	if (modelHandleSapphire <= -1)
-	{	// ƒTƒtƒ@ƒCƒA
+	{	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢
 		modelHandleSapphire = MV1LoadModel("data/model/Gem/Sapphire.mv1");
 	}
 	if (modelHandleEmerald <= -1)
-	{	// ƒGƒƒ‰ƒ‹ƒh
+	{	// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 		modelHandleEmerald	= MV1LoadModel("data/model/Gem/Emerald.mv1");
 	}
 
 }
 
 /// <summary>
-/// ƒ^ƒCƒv‚ğ‚à‚ç‚Á‚Äƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ğİ’è
+/// ã‚¿ã‚¤ãƒ—ã‚’ã‚‚ã‚‰ã£ã¦ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’è¨­å®š
 /// </summary>
-/// <param name="type">•óÎ‚Ìƒ^ƒCƒv</param>
-/// <returns>‚»‚Ìƒ^ƒCƒv‚Ìƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹</returns>
+/// <param name="type">å®çŸ³ã®ã‚¿ã‚¤ãƒ—</param>
+/// <returns>ãã®ã‚¿ã‚¤ãƒ—ã®ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«</returns>
 int GemManager::SettingGemModle(int type)
 {
-	// ‚»‚Ìƒ^ƒCƒv‚Ìƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
+	// ãã®ã‚¿ã‚¤ãƒ—ã®ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
 	int reTypeModelHandle = -1;
 
-	// í—Ş(ƒ^ƒCƒv)‚Ì”»’è
+	// ç¨®é¡(ã‚¿ã‚¤ãƒ—)ã®åˆ¤å®š
 	switch (type)
 	{
-	// ƒ_ƒCƒAƒ‚ƒ“ƒh
+	// ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰
 	case DIAMOND:	
 		reTypeModelHandle = modelHandleDiamond;
 		break;
 
-	// ƒ‹ƒr[
+	// ãƒ«ãƒ“ãƒ¼
 	case RUBY:		
 		reTypeModelHandle = modelHandleRuby;
 		break;
 
-	// ƒTƒtƒ@ƒCƒA
+	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢
 	case SAPPHIRE:	
 		reTypeModelHandle = modelHandleSapphire;
 		break;
 
-	// ƒGƒƒ‰ƒ‹ƒh
+	// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 	case EMERALD:	
 		reTypeModelHandle = modelHandleEmerald;
 		break;
 
-	// ‚»‚êˆÈŠO
+	// ãã‚Œä»¥å¤–
 	default:
 		break;
 	}
 	
-	// ‚»‚Ìƒ^ƒCƒv‚Ìƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãã®ã‚¿ã‚¤ãƒ—ã®ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return reTypeModelHandle;
 }
 
 
 /// <summary>
-/// •óÎ‚ÌƒGƒ“ƒgƒŠ[î•ñ‚ğİ’è
+/// å®çŸ³ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼æƒ…å ±ã‚’è¨­å®š
 /// <summary>
-/// <param name="data">•óÎ‚ÌƒGƒ“ƒgƒŠ[î•ñ‚ğŠi”[‚·‚é‘½ŸŒ³”z—ñ</param>
-/// <param name="size">‘½ŸŒ³”z—ñ‚Ì“Y‚¦š”</param>
+/// <param name="data">å®çŸ³ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹å¤šæ¬¡å…ƒé…åˆ—</param>
+/// <param name="size">å¤šæ¬¡å…ƒé…åˆ—ã®æ·»ãˆå­—æ•°</param>
 void GemManager::SettingEntryData(EntryGemDataBase data[],int size)
 {
-	// •óÎ‚Ì“oêî•ñ‚ğ‘‚«‚Ş
+	// å®çŸ³ã®ç™»å ´æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€
 	for (int i = 0; i < size; i++)
 	{
-		// “oêƒtƒŒ[ƒ€”‚ğİ’è
+		// ç™»å ´ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’è¨­å®š
 		data[i].entryTime = i * 0.5;
-		// “oêÀ•W‚Ìİ’è
+		// ç™»å ´åº§æ¨™ã®è¨­å®š
 		data[i].entryPosition = VGet(0, 10, 0);
 	}
 }

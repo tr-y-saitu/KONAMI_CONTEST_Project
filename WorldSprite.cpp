@@ -1,25 +1,25 @@
-#include "WorldSprite.h"
+ï»¿#include "WorldSprite.h"
 
 /// <summary>
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 /// </summary>
-/// <param name="textureGraph">ƒeƒNƒXƒ`ƒƒ‚Ì‰æ‘œƒnƒ“ƒhƒ‹</param>
-/// <param name="chipPixelSize">ƒXƒvƒ‰ƒCƒg‚Ì‚Pƒ`ƒbƒv‚ÌƒsƒNƒZƒ‹ƒTƒCƒY</param>
-/// <param name="spriteNo">ƒXƒvƒ‰ƒCƒg”Ô†</param>
+/// <param name="textureGraph">ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç”»åƒãƒãƒ³ãƒ‰ãƒ«</param>
+/// <param name="chipPixelSize">ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ï¼‘ãƒãƒƒãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚µã‚¤ã‚º</param>
+/// <param name="spriteNo">ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç•ªå·</param>
 void WorldSprite::Initialize(int textureGraph, int chipPixelSize, int spriteNo)
 {
     this->textureGraph = textureGraph;
 
-    // NOTE:‰Šú‰»‚ÉŒÅ’è‚µ‚Ä‚¢‚é‚ªA•ÏX‚µ‚½‚¯‚ê‚Î©•ª‚ÅŠÖ”‚ğ’Ç‰Á‚·‚é•K—v‚ª‚ ‚é
-    // ‚S’¸“_•ª‚Ìuvƒf[ƒ^‚ğİ’è
+    // NOTE:åˆæœŸåŒ–æ™‚ã«å›ºå®šã—ã¦ã„ã‚‹ãŒã€å¤‰æ›´ã—ãŸã‘ã‚Œã°è‡ªåˆ†ã§é–¢æ•°ã‚’è¿½åŠ ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+    // ï¼”é ‚ç‚¹åˆ†ã®uvãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
     int texW, texH;
     GetGraphTextureSize(textureGraph, &texW, &texH);
     int chipNum = texW / chipPixelSize;
     int chipNoX = spriteNo % chipNum;
     int chipNoY = spriteNo / chipNum;
-    float oneChipUVRate = 1.0f / (float)chipNum;   // ƒeƒNƒXƒ`ƒƒ‘S•”‚ğ1.0‚Æ‚µ‚½‚ÌcihpˆêŒÂ‚É‘Î‚·‚éuv‚ÌƒTƒCƒY
-    Vertex[0].u = (chipNoX + 0.0f) * oneChipUVRate;     // ƒeƒNƒXƒ`ƒƒ‚ÌÀ•W‚ğİ’è
-    Vertex[0].v = (chipNoY + 0.0f) * oneChipUVRate;     // u‚Í‰¡²À•W v‚Íc²À•W
+    float oneChipUVRate = 1.0f / (float)chipNum;   // ãƒ†ã‚¯ã‚¹ãƒãƒ£å…¨éƒ¨ã‚’1.0ã¨ã—ãŸæ™‚ã®cihpä¸€å€‹ã«å¯¾ã™ã‚‹uvã®ã‚µã‚¤ã‚º
+    Vertex[0].u = (chipNoX + 0.0f) * oneChipUVRate;     // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åº§æ¨™ã‚’è¨­å®š
+    Vertex[0].v = (chipNoY + 0.0f) * oneChipUVRate;     // uã¯æ¨ªè»¸åº§æ¨™ vã¯ç¸¦è»¸åº§æ¨™
     Vertex[1].u = (chipNoX + 1.0f) * oneChipUVRate;
     Vertex[1].v = (chipNoY + 0.0f) * oneChipUVRate;
     Vertex[2].u = (chipNoX + 0.0f) * oneChipUVRate;
@@ -27,22 +27,22 @@ void WorldSprite::Initialize(int textureGraph, int chipPixelSize, int spriteNo)
     Vertex[3].u = (chipNoX + 1.0f) * oneChipUVRate;
     Vertex[3].v = (chipNoY + 1.0f) * oneChipUVRate;
 
-    // ƒfƒBƒtƒ…[ƒYAƒXƒyƒLƒ…ƒ‰‚Í‰Šú‰»‚ÉŒÅ’è
-    // ƒfƒBƒtƒ…[ƒY¨ŠgU”½ËŒõ@@¨Œõ“–‚Ä‚Ä–¾‚é‚­‚·‚é
-    // ƒXƒyƒLƒ…ƒ‰@¨‹¾–Ê”½ËŒõ@@¨Œõ‘ò‚ğ•\‚·
-    // ƒmƒ‹ƒ€@@@¨ƒxƒNƒgƒ‹‚Ì’·‚³
+    // ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã€ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã¯åˆæœŸåŒ–æ™‚ã«å›ºå®š
+    // ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºâ†’æ‹¡æ•£åå°„å…‰ã€€ã€€â†’å…‰å½“ã¦ã¦æ˜ã‚‹ãã™ã‚‹
+    // ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã€€â†’é¡é¢åå°„å…‰ã€€ã€€â†’å…‰æ²¢ã‚’è¡¨ã™
+    // ãƒãƒ«ãƒ ã€€ã€€ã€€â†’ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•
     for (int i = 0; i < 4; i++)
     {
         Vertex[i].dif = GetColorU8(255, 255, 255, 255);
         Vertex[i].spc = GetColorU8(0, 0, 0, 0);
-        Vertex[i].norm = VGet(0.0f, 0.0f, -1.0f);   // ‰ñ“]‚ğƒTƒ|[ƒg‚µ‚È‚¢‚Ì‚Åƒm[ƒ}ƒ‹‚àŒÅ’è
+        Vertex[i].norm = VGet(0.0f, 0.0f, -1.0f);   // å›è»¢ã‚’ã‚µãƒãƒ¼ãƒˆã—ãªã„ã®ã§ãƒãƒ¼ãƒãƒ«ã‚‚å›ºå®š
 
-        // •â•ƒeƒNƒXƒ`ƒƒ‚ğƒTƒ|[ƒg‚µ‚È‚¢‚Ì‚ÅuvŒÅ’è
+        // è£œåŠ©ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚µãƒãƒ¼ãƒˆã—ãªã„ã®ã§uvå›ºå®š
         Vertex[i].su = 0.0f;
         Vertex[i].sv = 0.0f;
     }
 
-    // ‚Qƒ|ƒŠƒSƒ“•ª‚ÌƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚ğƒZƒbƒg
+    // ï¼’ãƒãƒªã‚´ãƒ³åˆ†ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
     Index[0] = 0;
     Index[1] = 1;
     Index[2] = 2;
@@ -52,14 +52,14 @@ void WorldSprite::Initialize(int textureGraph, int chipPixelSize, int spriteNo)
 }
 
 /// <summary>
-/// ƒTƒCƒY‚Æƒ|ƒWƒVƒ‡ƒ“‚É‰‚¶‚Ä‚S’¸“_•ª‚Ì’¸“_ˆÊ’u‚ğ’²®
+/// ã‚µã‚¤ã‚ºã¨ãƒã‚¸ã‚·ãƒ§ãƒ³ã«å¿œã˜ã¦ï¼”é ‚ç‚¹åˆ†ã®é ‚ç‚¹ä½ç½®ã‚’èª¿æ•´
 /// </summary>
-/// <param name="pos">ƒ|ƒWƒVƒ‡ƒ“</param>
-/// <param name="chipSize">”z’u‚·‚éƒ[ƒ‹ƒhƒXƒvƒ‰ƒCƒg‚ÌƒTƒCƒY</param>
+/// <param name="pos">ãƒã‚¸ã‚·ãƒ§ãƒ³</param>
+/// <param name="chipSize">é…ç½®ã™ã‚‹ãƒ¯ãƒ¼ãƒ«ãƒ‰ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ã‚µã‚¤ã‚º</param>
 void WorldSprite::SetTransform(const VECTOR& pos, float spriteSize)
 {
     this->pos = pos;
-    // ƒsƒ{ƒbƒg’†S‚Åİ’è
+    // ãƒ”ãƒœãƒƒãƒˆä¸­å¿ƒã§è¨­å®š
     Vertex[0].pos = VScale(VGet(-1.0f, 1.0f, 0.0f), spriteSize * 0.5f);
     Vertex[1].pos = VScale(VGet(1.0f, 1.0f, 0.0f), spriteSize * 0.5f);
     Vertex[2].pos = VScale(VGet(-1.0, -1.0f, 0.0f), spriteSize * 0.5f);
@@ -71,10 +71,10 @@ void WorldSprite::SetTransform(const VECTOR& pos, float spriteSize)
 }
 
 /// <summary>
-/// •`‰æ
+/// æç”»
 /// </summary>
 void WorldSprite::Draw()
 {
-    // ‚Qƒ|ƒŠƒSƒ“‚Ì•`‰æ(3D‹óŠÔ‚ÉOŠpŒ`ƒ|ƒŠƒSƒ“‚ÌW‡‚ğ•`‰æ‚·‚é)
+    // ï¼’ãƒãƒªã‚´ãƒ³ã®æç”»(3Dç©ºé–“ã«ä¸‰è§’å½¢ãƒãƒªã‚´ãƒ³ã®é›†åˆã‚’æç”»ã™ã‚‹)
     DrawPolygonIndexed3D(Vertex, 4, Index, 2, textureGraph, FALSE);
 }

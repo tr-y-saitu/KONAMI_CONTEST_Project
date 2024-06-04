@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 #include "DxLib.h"
 #include <vector>
 #include "Calculation.h"
 
 
-// ƒvƒƒgƒ^ƒCƒvéŒ¾
+// ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 class BG;
 class Room;
 class Floor;
@@ -28,24 +28,24 @@ class TreasureChest;
 
 
 /// <summary>
-/// ƒQ[ƒ€§ŒäƒNƒ‰ƒX
+/// ã‚²ãƒ¼ãƒ åˆ¶å¾¡ã‚¯ãƒ©ã‚¹
 /// </summary>
 class Game
 {
 public:
 	Game();
 	virtual ~Game();
-	void CountGameFraem() ;	// ƒQ[ƒ€ƒtƒŒ[ƒ€‚ğ”‚¦‚é
-	void Create();			// ¶¬
-	void Initialize();		// ‰Šú‰»ˆ—
-	void InitializeGameStart();	// ƒQ[ƒ€Å‰‚Ì‰Šú‰»
-	void DeleteGame();		// ¶¬‚µ‚½ƒIƒuƒWƒFƒNƒg‚Ìíœ
-	void UpdateGame();		// ƒQ[ƒ€ƒAƒbƒvƒf[ƒg
-	void DrawGame();		// ƒQ[ƒ€•`‰æ
-	void ChangeGameState();	// ƒQ[ƒ€ƒXƒe[ƒg‚ÌØ‚è‘Ö‚¦
-	void ProcessKey();		// ƒQ[ƒ€is‚É‚©‚©‚í‚éƒL[“ü—Íˆ—
-	void DrawTimer();		// §ŒÀŠÔ‚Ì•`‰æ
-	void SettingTimer();	// Œ»İŒo‰ßŠÔ‚ÌXV
+	void CountGameFraem() ;	// ã‚²ãƒ¼ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ•°ãˆã‚‹
+	void Create();			// ç”Ÿæˆ
+	void Initialize();		// åˆæœŸåŒ–å‡¦ç†
+	void InitializeGameStart();	// ã‚²ãƒ¼ãƒ æœ€åˆã®åˆæœŸåŒ–
+	void DeleteGame();		// ç”Ÿæˆã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰Šé™¤
+	void UpdateGame();		// ã‚²ãƒ¼ãƒ ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
+	void DrawGame();		// ã‚²ãƒ¼ãƒ æç”»
+	void ChangeGameState();	// ã‚²ãƒ¼ãƒ ã‚¹ãƒ†ãƒ¼ãƒˆã®åˆ‡ã‚Šæ›¿ãˆ
+	void ProcessKey();		// ã‚²ãƒ¼ãƒ é€²è¡Œã«ã‹ã‹ã‚ã‚‹ã‚­ãƒ¼å…¥åŠ›å‡¦ç†
+	void DrawTimer();		// åˆ¶é™æ™‚é–“ã®æç”»
+	void SettingTimer();	// ç¾åœ¨çµŒéæ™‚é–“ã®æ›´æ–°
 	
 
 	const int GetNowTimer() { return nowTimer; }
@@ -53,7 +53,7 @@ public:
 	const int GetGameState() { return gameState; }
 	const bool GetIsClearFlag() { return isClearFlag; }
 
-	// g—pƒNƒ‰ƒX
+	// ä½¿ç”¨ã‚¯ãƒ©ã‚¹
 	Player*		player;
 	Enemy*		enemy;
 	Camera*		camera;
@@ -74,40 +74,40 @@ public:
 	std::vector<Gem*>	gem;
 
 private:
-	// ’è”
-	const int GEM_TOTAL_NUM = 100;	// •óÎ‚Ì‘‡‚Ì”
+	// å®šæ•°
+	const int GEM_TOTAL_NUM = 100;	// å®çŸ³ã®ç·åˆã®æ•°
 
-	// •Ï”
-	int		gameState;		// Œ»İ‚ÌƒXƒe[ƒg
-	int		gameFrameCount;	// ƒQ[ƒ€ƒtƒŒ[ƒ€ƒJƒEƒ“ƒg
-	int		previousTime;	// ƒQ[ƒ€ƒ‹[ƒv‚ªn‚Ü‚é‘O‚ÌŠÔ
-	int		timer;			// ƒQ[ƒ€ŠÔ
-	float	nowTimer;		// Œ»İ‚Ì§ŒÀŠÔ
-	bool	keyOn;			// ƒL[“ü—Í‚³‚ê‚Ä‚¢‚é‚©
-	bool	keyRelease;		// ƒL[“ü—Í‚ª—£‚ê‚½‚©
-	bool	prevKeyOn;		// ‘OƒtƒŒ[ƒ€‚ÅƒL[“ü—Í‚ª‚ ‚Á‚½‚©
-	int		isHitCount;		// ƒqƒbƒg‚µ‚Ä‚©‚ç‰½ƒtƒŒ[ƒ€Œo‰ß‚µ‚½‚©
-	bool	isClearFlag;	// ƒNƒŠƒA‚µ‚½‚©‚Ìƒtƒ‰ƒO
-	double	isClearCount;	// ƒNƒŠƒA‚µ‚Ä‚©‚ç‚ÌƒJƒEƒ“ƒg
-	bool	isDrawGetUi;	// •óÎƒQƒbƒg‚ÌUI‰‰o‚ğ‚·‚é‚©‚Ç‚¤‚©
+	// å¤‰æ•°
+	int		gameState;		// ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆ
+	int		gameFrameCount;	// ã‚²ãƒ¼ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ãƒˆ
+	int		previousTime;	// ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ—ãŒå§‹ã¾ã‚‹å‰ã®æ™‚é–“
+	int		timer;			// ã‚²ãƒ¼ãƒ æ™‚é–“
+	float	nowTimer;		// ç¾åœ¨ã®åˆ¶é™æ™‚é–“
+	bool	keyOn;			// ã‚­ãƒ¼å…¥åŠ›ã•ã‚Œã¦ã„ã‚‹ã‹
+	bool	keyRelease;		// ã‚­ãƒ¼å…¥åŠ›ãŒé›¢ã‚ŒãŸã‹
+	bool	prevKeyOn;		// å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã§ã‚­ãƒ¼å…¥åŠ›ãŒã‚ã£ãŸã‹
+	int		isHitCount;		// ãƒ’ãƒƒãƒˆã—ã¦ã‹ã‚‰ä½•ãƒ•ãƒ¬ãƒ¼ãƒ çµŒéã—ãŸã‹
+	bool	isClearFlag;	// ã‚¯ãƒªã‚¢ã—ãŸã‹ã®ãƒ•ãƒ©ã‚°
+	double	isClearCount;	// ã‚¯ãƒªã‚¢ã—ã¦ã‹ã‚‰ã®ã‚«ã‚¦ãƒ³ãƒˆ
+	bool	isDrawGetUi;	// å®çŸ³ã‚²ãƒƒãƒˆæ™‚ã®UIæ¼”å‡ºã‚’ã™ã‚‹ã‹ã©ã†ã‹
 
-	// ƒƒjƒ…[
-	int		menuGraph;		// ƒƒjƒ…[—p‰æ‘œ
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	int		menuGraph;		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ç”»åƒ
 
-	// ƒ‚ƒfƒ‹Œ³
-	int		modelHandleGemDia;	// •óÎiƒ_ƒCƒAj
-	int		modelHandleGemRuby;	// •óÎiƒ‹ƒr[j
+	// ãƒ¢ãƒ‡ãƒ«å…ƒ
+	int		modelHandleGemDia;	// å®çŸ³ï¼ˆãƒ€ã‚¤ã‚¢ï¼‰
+	int		modelHandleGemRuby;	// å®çŸ³ï¼ˆãƒ«ãƒ“ãƒ¼ï¼‰
 
 };
 
 
-// ƒQ[ƒ€isó‘Ô
+// ã‚²ãƒ¼ãƒ é€²è¡ŒçŠ¶æ…‹
 enum STATE
 {
-	STATE_MENU,			// ƒƒjƒ…[
-	STATE_GAME,			// ƒQ[ƒ€’†
-	STATE_CLEAR,		// ƒNƒŠƒA
-	STATE_GAMEOVER,		// ƒQ[ƒ€ƒI[ƒo[
+	STATE_MENU,			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	STATE_GAME,			// ã‚²ãƒ¼ãƒ ä¸­
+	STATE_CLEAR,		// ã‚¯ãƒªã‚¢
+	STATE_GAMEOVER,		// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
 };
 
 
