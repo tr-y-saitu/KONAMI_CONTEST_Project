@@ -137,6 +137,9 @@ void Game::InitializeGameStart()
 	{
 		gem[i]->Initialize(VGet(i , 0, -5),*gemManager);
 	}
+	
+	// 宝石のエントリー情報を設定
+	gemManager->SettingEntryData(gemManager->entryGemDataBase,gem.size());
 	//effekseer1->Initialize();
 
 	// ゲームが始まる前のGetNowCountを取得
@@ -173,6 +176,8 @@ void Game::Initialize()
 	{
 		gem[i]->Initialize(VGet(i - 10, 10, -5),*gemManager);
 	}
+	// 宝石のエントリー情報を設定
+	gemManager->SettingEntryData(gemManager->entryGemDataBase, gem.size());
 	//effekseer1->Initialize();
 }
 
