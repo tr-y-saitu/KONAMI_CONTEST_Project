@@ -1,9 +1,9 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 #include "FPSSetting.h"
 
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 FPSSetting::FPSSetting()
 	:	prevTime		(0)
@@ -13,15 +13,15 @@ FPSSetting::FPSSetting()
 }
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 FPSSetting::~FPSSetting()
 {
-	// ˆ—‚È‚µ
+	// å‡¦ç†ãªã—
 }
 
 /// <summary>
-/// ƒQ[ƒ€ŠJn‘O‚ÌŠÔ‚ğŒv‘ª
+/// ã‚²ãƒ¼ãƒ é–‹å§‹å‰ã®æ™‚é–“ã‚’è¨ˆæ¸¬
 /// </summary>
 void FPSSetting::SettingPreviousFPS()
 {
@@ -29,16 +29,16 @@ void FPSSetting::SettingPreviousFPS()
 }
 
 /// <summary>
-/// 60FPS‚É‡‚í‚¹‚é
+/// 60FPSã«åˆã‚ã›ã‚‹
 /// </summary>
 void FPSSetting::Setting60FPS()
 {
-	// ‚PƒtƒŒ[ƒ€I—¹Œã‚ÌŠÔ‚ğŒv‘ª
+	// ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ çµ‚äº†å¾Œã®æ™‚é–“ã‚’è¨ˆæ¸¬
 	afterTime = GetNowHiPerformanceCount();
-	// 60FPS‚É‚È‚é‚æ‚¤‚É‘Ò‹@‚·‚é@@60•ª‚Ìˆê•b@0.01666......
+	// 60FPSã«ãªã‚‹ã‚ˆã†ã«å¾…æ©Ÿã™ã‚‹ã€€ã€€60åˆ†ã®ä¸€ç§’ã€€0.01666......
 	while (afterTime - prevTime < FPS_60)
 	{
-		// ‚±‚Ì“_‚Å‚ÌŠÔ‚ğŒv‘ª‚µ‚ÄŸ‚É”õ‚¦‚é
+		// ã“ã®æ™‚ç‚¹ã§ã®æ™‚é–“ã‚’è¨ˆæ¸¬ã—ã¦æ¬¡ã«å‚™ãˆã‚‹
 		afterTime = GetNowHiPerformanceCount();
 	}
 

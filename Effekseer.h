@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 class Effekseer1
@@ -6,17 +6,17 @@ class Effekseer1
 public:
 	Effekseer1();
 	~Effekseer1();
-	void ReadyEffekseerForDXLib();	// ƒGƒtƒFƒNƒVƒA‚ğg‚¤€”õ
+	void ReadyEffekseerForDXLib();	// ã‚¨ãƒ•ã‚§ã‚¯ã‚·ã‚¢ã‚’ä½¿ã†æº–å‚™
 	void Initialize();
 	void Update();
 	void Draw();
-	int		effectResourceHandle;		// ƒGƒtƒFƒNƒgƒŠƒ\[ƒX
-	int		graphBackGroundHandle;		// ”wŒi‰æ‘œ
-	int		graphFrontHandle;			// è‘O‰æ‘œ
-	int		time;						// ’èŠú“I‚ÉƒGƒtƒFƒNƒg‚ğÄ¶‚·‚éŠÔ
-	bool	isFullScreen;				// ƒtƒ‹ƒXƒNƒŠ[ƒ“Ø‚è‘Ö‚¦‚æ‚¤ƒtƒ‰ƒO
-	VECTOR	pos;						// ƒGƒtƒFƒNƒg‚ğ•`‰æ‚·‚éˆÊ’u
-	int		playingEffectHandle;		// Ä¶’†‚ÌƒGƒtƒFƒNƒgƒnƒ“ƒhƒ‹
+	int		effectResourceHandle;		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚½ãƒ¼ã‚¹
+	int		graphBackGroundHandle;		// èƒŒæ™¯ç”»åƒ
+	int		graphFrontHandle;			// æ‰‹å‰ç”»åƒ
+	int		time;						// å®šæœŸçš„ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿã™ã‚‹æ™‚é–“
+	bool	isFullScreen;				// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚ˆã†ãƒ•ãƒ©ã‚°
+	VECTOR	pos;						// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æç”»ã™ã‚‹ä½ç½®
+	int		playingEffectHandle;		// å†ç”Ÿä¸­ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
 
 private:
 

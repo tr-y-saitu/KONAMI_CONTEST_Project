@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 class FPSSetting
@@ -12,7 +12,7 @@ public:
 private:
 	const int FPS_60 = 16667;
 
-	LONGLONG	prevTime;		// ƒ‹[ƒv‚ªn‚Ü‚é‘O‚ÌŠÔ
-	LONGLONG	afterTime;		// ƒQ[ƒ€ˆ—‚ªI‚í‚Á‚½ŠÔ
+	LONGLONG	prevTime;		// ãƒ«ãƒ¼ãƒ—ãŒå§‹ã¾ã‚‹å‰ã®æ™‚é–“
+	LONGLONG	afterTime;		// ã‚²ãƒ¼ãƒ å‡¦ç†ãŒçµ‚ã‚ã£ãŸæ™‚é–“
 };
 

@@ -1,4 +1,4 @@
-#include "Game.h"
+ï»¿#include "Game.h"
 #include "Player.h"
 #include "TreasureChest.h"
 #include "UI.h"
@@ -6,7 +6,7 @@
 
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 UI::UI()
 	:	menuGraph			(-1)
@@ -17,17 +17,17 @@ UI::UI()
 }
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 UI::~UI()
 {
-	// 3Dƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìíœ
+	// 3Dãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
 	MV1DeleteModel(strGetModleHandel);
 }
 
 
 /// <summary>
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 /// </summary>
 void UI::Initialize()
 {
@@ -40,28 +40,28 @@ void UI::Initialize()
 
 
 /// <summary>
-/// •`‰æ
+/// æç”»
 /// </summary>
 void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest)
 {
 	int _uiColor = GetColor(200, 200, 200);
-	// ƒXƒe[ƒg‚²‚Æ‚É•`‰æ‚ğ•ÏX
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã”ã¨ã«æç”»ã‚’å¤‰æ›´
 	switch (state)
 	{
-		// ƒ^ƒCƒgƒ‹
+		// ã‚¿ã‚¤ãƒˆãƒ«
 	case STATE_MENU:
 
-		// •¶š‚ğ•`‰æ
+		// æ–‡å­—ã‚’æç”»
 
-		// ƒ^ƒCƒgƒ‹”wŒi‚Ì•`‰æ
+		// ã‚¿ã‚¤ãƒˆãƒ«èƒŒæ™¯ã®æç”»
 		DrawGraph(0, 0, menuGraph, true);
 
 		break;
 
-		// ƒQ[ƒ€’†
+		// ã‚²ãƒ¼ãƒ ä¸­
 	case STATE_GAME:
 		
-		// uGET!vƒ‚ƒfƒ‹‚ğ•`‰æ
+		// ã€ŒGET!ã€ãƒ¢ãƒ‡ãƒ«ã‚’æç”»
 		MV1SetPosition(strGetModleHandel, VGet(0,0,0));
 		if (isHitGemToChest)
 		{
@@ -71,19 +71,19 @@ void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest)
 
 		break;
 
-		// ƒNƒŠƒA‰æ–Ê
+		// ã‚¯ãƒªã‚¢ç”»é¢
 	case STATE_CLEAR:
 
-		// ƒNƒŠƒA•¶š
-		// •\¦
+		// ã‚¯ãƒªã‚¢æ–‡å­—
+		// è¡¨ç¤º
 
 		break;
 
-		// ƒQ[ƒ€ƒI[ƒo[
+		// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
 	case STATE_GAMEOVER:
 
-		// ƒQ[ƒ€ƒI[ƒo[•¶š
-		// •\¦
+		// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼æ–‡å­—
+		// è¡¨ç¤º
 		break;
 
 	default:

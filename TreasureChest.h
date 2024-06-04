@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 
 class Gem;
 
 /// <summary>
-/// •ó” ƒNƒ‰ƒX
+/// å®ç®±ã‚¯ãƒ©ã‚¹
 /// </summary>
 class TreasureChest final
 {
@@ -11,9 +11,9 @@ public:
 	TreasureChest();
 	virtual ~TreasureChest();
 
-	void Initialize();		// ‰Šú‰»
-	void Update(Gem& gem);			// XV
-	void Draw();			// •`‰æ
+	void Initialize();		// åˆæœŸåŒ–
+	void Update(Gem& gem);			// æ›´æ–°
+	void Draw();			// æç”»
 
 	// Getter
 	const VECTOR& GetPos()const { return pos; }
@@ -25,21 +25,21 @@ public:
 	void SetIsHitGem(const bool set) { isHitGem = set; }
 
 private:
-	// •Ï”
-	// ƒ‚ƒfƒ‹
-	int		modelHanlde;		// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
+	// å¤‰æ•°
+	// ãƒ¢ãƒ‡ãƒ«
+	int		modelHanlde;		// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
 
-	// î•ñ
-	VECTOR	pos;			// ƒ|ƒWƒVƒ‡ƒ“
-	VECTOR	scale;			// ƒXƒP[ƒ‹
-	int		width;			// •
-	int		height;			// ‚‚³
+	// æƒ…å ±
+	VECTOR	pos;			// ãƒã‚¸ã‚·ãƒ§ãƒ³
+	VECTOR	scale;			// ã‚¹ã‚±ãƒ¼ãƒ«
+	int		width;			// å¹…
+	int		height;			// é«˜ã•
 
-	// ƒtƒ‰ƒO
-	bool	isHitGem;		// •ó” ‚ª•óÎ‚ÆÚG‚µ‚½‚©
+	// ãƒ•ãƒ©ã‚°
+	bool	isHitGem;		// å®ç®±ãŒå®çŸ³ã¨æ¥è§¦ã—ãŸã‹
 
-	// “–‚½‚è”»’è
-	float	radius;			// ‹…Œ^“–‚½‚è”»’è—p‚Ì”¼Œa
+	// å½“ãŸã‚Šåˆ¤å®š
+	float	radius;			// çƒå‹å½“ãŸã‚Šåˆ¤å®šç”¨ã®åŠå¾„
 };
 
 

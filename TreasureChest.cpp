@@ -1,8 +1,8 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 #include "Gem.h"
 #include "TreasureChest.h"
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TreasureChest::TreasureChest()
 	: modelHanlde		(-1)
 	, width				(0)
@@ -13,40 +13,40 @@ TreasureChest::TreasureChest()
 	modelHanlde = MV1LoadModel("data/model/TreasureChest/TreasureChest.mv1");
 	pos = VGet(7, 0, 0);
 	scale = VGet(0.005f, 0.005f, 0.005f);
-	// ƒ‚ƒfƒ‹‚Ì‰ñ“](ˆá˜aŠ´‚È‚¢ˆÊ’u‚ÉC³)
+	// ãƒ¢ãƒ‡ãƒ«ã®å›è»¢(é•å’Œæ„Ÿãªã„ä½ç½®ã«ä¿®æ­£)
 	MV1SetRotationXYZ(modelHanlde, VGet(0.0f, -90.0f * DX_PI_F / 180.0f, 0.0f));
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TreasureChest::~TreasureChest()
 {
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìíœ
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
 	MV1DeleteModel(modelHanlde);
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void TreasureChest::Initialize()
 {
 	pos = VGet(7, 0, -5);
-	// ƒXƒP[ƒ‹‚Ìİ’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«ã®è¨­å®š
 	MV1SetScale(modelHanlde, scale);
 	radius = 3.0f;
 }
 
-// XV
+// æ›´æ–°
 void TreasureChest::Update(Gem& gem)
 {
-	// 3Dƒ‚ƒfƒ‹‚ÌÀ•Wİ’è
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®åº§æ¨™è¨­å®š
 	MV1SetPosition(modelHanlde, pos);
 }
 
-// •`‰æ
+// æç”»
 void TreasureChest::Draw()
 {
-	// 3Dƒ‚ƒfƒ‹‚Ì•`‰æ
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®æç”»
 	MV1DrawModel(modelHanlde);
 
-	// ‹…Œ^‚Ì“–‚½‚è”»’è‚Ì•`‰æ
+	// çƒå‹ã®å½“ãŸã‚Šåˆ¤å®šã®æç”»
 	DrawSphere3D(pos, radius, 32, GetColor(0, 0, 255), GetColor(255, 255, 255), false);
 }
 

@@ -1,13 +1,13 @@
-#pragma once
+ï»¿#pragma once
 
 
-// ƒCƒ“ƒNƒ‹[ƒh
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include <stdio.h>	
 #include <math.h>
 #include "DxLib.h"
 
 /// <summary>
-/// ŒvZƒNƒ‰ƒX
+/// è¨ˆç®—ã‚¯ãƒ©ã‚¹
 /// </summary>
 class Calculation
 {
@@ -15,7 +15,7 @@ public:
 	Calculation();
 	~Calculation();
 
-	float Lerp_F(const float num1,const float num2,float t);		// üŒ`•âŠÔŠÖ”
+	float Lerp_F(const float num1,const float num2,float t);		// ç·šå½¢è£œé–“é–¢æ•°
 
 private:
 

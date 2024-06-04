@@ -1,7 +1,7 @@
-#include "Confetti.h"
+ï»¿#include "Confetti.h"
 
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Confetti::Confetti()
 	:	w			(0)
 	,	h			(0)
@@ -15,29 +15,29 @@ Confetti::Confetti()
 	dir = VGet(0, 0, 0);
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Confetti::~Confetti()
 {
-	// ˆ—‚È‚µ
+	// å‡¦ç†ãªã—
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void Confetti::Initialize(int model,VECTOR initVec, int initSpeed,int initType)
 {
-	// À•W‚Ì‰Šú‰»
+	// åº§æ¨™ã®åˆæœŸåŒ–
 	pos = initVec;
-	// ‘¬“x
+	// é€Ÿåº¦
 	speed = initSpeed;
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 	modelHandle = model;
-	// Šp“x‚Ì‰Šú‰»
+	// è§’åº¦ã®åˆæœŸåŒ–
 	radian = 0;
-	// F‚ğw’è
+	// è‰²ã‚’æŒ‡å®š
 	colorType = initType;
-	// ‰ñ“]‚Ìƒ^ƒCƒv‚ğw’è
+	// å›è»¢ã®ã‚¿ã‚¤ãƒ—ã‚’æŒ‡å®š
 	rotateType = initType;
 
-	// ƒXƒyƒA‚«‚ã‚©‚ç[‚ğ—Î‚É•ÏX
+	// ã‚¹ãƒšã‚¢ãã‚…ã‹ã‚‰ãƒ¼ã‚’ç·‘ã«å¤‰æ›´
 	if (colorType == 0)
 	{
 		MV1SetMaterialSpcColor(modelHandle, 0, GetColorF(1.0f, 1.0f, 0.0f, 1.0f));
@@ -52,12 +52,12 @@ void Confetti::Initialize(int model,VECTOR initVec, int initSpeed,int initType)
 	}
 }
 
-// XV
+// æ›´æ–°
 void Confetti::Update(int index)
 {
 	
 
-	// ƒ‚ƒfƒ‹‚Ì‰ñ“]
+	// ãƒ¢ãƒ‡ãƒ«ã®å›è»¢
 	if (radian < 360)
 	{
 		radian += 25;
@@ -66,7 +66,7 @@ void Confetti::Update(int index)
 	{
 		radian = 0;
 	}
-	// ‰ñ“]‚Ìƒ^ƒCƒv‚²‚Æ‚É‰ñ“]
+	// å›è»¢ã®ã‚¿ã‚¤ãƒ—ã”ã¨ã«å›è»¢
 	if (rotateType == 0)
 	{
 		MV1SetRotationXYZ(modelHandle, VGet(radian * index * DX_PI_F / 180.0f, radian * DX_PI_F / 180.0f, 0.0f));
@@ -81,36 +81,36 @@ void Confetti::Update(int index)
 	}
 	
 
-	// •ûŒü‚Ìİ’è
+	// æ–¹å‘ã®è¨­å®š
 	dir = VGet(0, -1, 0);
 
-	// ³‹K‰»
+	// æ­£è¦åŒ–
 	if (VSquareSize(dir) > 0)
 	{
 		dir = VNorm(dir);
 	}
 
 
-	// ³‹K‰»ŒãAƒXƒs[ƒh‚ğŠ|‚¯‚é
+	// æ­£è¦åŒ–å¾Œã€ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’æ›ã‘ã‚‹
 	auto velocity = VScale(dir, speed);
 
-	// ƒ|ƒWƒVƒ‡ƒ“ˆÚ“®
+	// ãƒã‚¸ã‚·ãƒ§ãƒ³ç§»å‹•
 	pos = VAdd(pos, velocity);
 
-	// ‚à‚µ‰æ–Ê’[‚És‚Á‚½‚ç–ß‚·
+	// ã‚‚ã—ç”»é¢ç«¯ã«è¡Œã£ãŸã‚‰æˆ»ã™
 	/*if (pos.y <= -200)
 	{
 		pos.y = 500;
 	}*/
 
-	// ƒ‚ƒfƒ‹‚ÌÀ•W‚ğİ’è
+	// ãƒ¢ãƒ‡ãƒ«ã®åº§æ¨™ã‚’è¨­å®š
 	MV1SetPosition(modelHandle, pos);
 }
 
-// •`‰æ
+// æç”»
 void Confetti::Draw()
 {
-	// ƒ‚ƒfƒ‹‚Ì•`‰æ
+	// ãƒ¢ãƒ‡ãƒ«ã®æç”»
 	MV1DrawModel(modelHandle);
 }
 

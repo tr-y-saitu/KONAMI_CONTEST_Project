@@ -1,4 +1,4 @@
-#include "Calculation.h"
+ï»¿#include "Calculation.h"
 #include "GemManager.h"
 #include "Gem.h"
 
@@ -6,7 +6,7 @@
 
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 Gem::Gem()
 	: modelHandle			(-1)
@@ -31,135 +31,135 @@ Gem::Gem()
 }
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 Gem::~Gem()
 {
-	// 3Dƒ‚ƒfƒ‹‚Ìíœ
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®å‰Šé™¤
 	MV1DeleteModel(modelHandle);
 }
 
 /// <summary>
-/// ƒ^ƒCƒv‚²‚Æ‚ÌˆÚ“®ƒAƒ‹ƒSƒŠƒYƒ€‚Ìİ’è
+/// ã‚¿ã‚¤ãƒ—ã”ã¨ã®ç§»å‹•ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®è¨­å®š
 /// </summary>
-/// <param name="gemTyep">•óÎ‚Ìí—Ş</param>
-/// <returns>‚»‚Ìƒ^ƒCƒv‚ÌˆÚ“®•ûŒü</returns>
+/// <param name="gemTyep">å®çŸ³ã®ç¨®é¡</param>
+/// <returns>ãã®ã‚¿ã‚¤ãƒ—ã®ç§»å‹•æ–¹å‘</returns>
 VECTOR Gem::SettingMoveType(int gemTyep)
 {
-	// •Ô‚è’l—p•ûŒü
+	// è¿”ã‚Šå€¤ç”¨æ–¹å‘
 	VECTOR reDir = VGet(0, 0, 0);
 
-	// •óÎ‚Ìƒ^ƒCƒv‚ğó‚¯‚Ä•ûŒü‚ğİ’è
+	// å®çŸ³ã®ã‚¿ã‚¤ãƒ—ã‚’å—ã‘ã¦æ–¹å‘ã‚’è¨­å®š
 	switch (gemType)
 	{
-		// ƒ_ƒCƒAƒ‚ƒ“ƒh
+		// ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰
 	case GemManager::DIAMOND:
-		reDir = VGet(0.3f, 0.7f, 0.0f);	// Î‚ß‰E
+		reDir = VGet(0.3f, 0.7f, 0.0f);	// æ–œã‚å³
 		break;
 
-		// ƒ‹ƒr[
+		// ãƒ«ãƒ“ãƒ¼
 	case GemManager::RUBY:
-		reDir = VGet(0.5f, 1.0f, 0.0f);	// Î‚ß‰Eiã‹­‚ßj
+		reDir = VGet(0.5f, 1.0f, 0.0f);	// æ–œã‚å³ï¼ˆä¸Šå¼·ã‚ï¼‰
 		break;
 		
-		// ƒTƒtƒ@ƒCƒA
+		// ã‚µãƒ•ã‚¡ã‚¤ã‚¢
 	case GemManager::SAPPHIRE:
-		reDir = VGet(0.2f, 1.0f, 0.0f);	// Î‚ß‰E(‰Eã‚ß)
+		reDir = VGet(0.2f, 1.0f, 0.0f);	// æ–œã‚å³(å³å¼±ã‚)
 		break;
 		
-		// ƒGƒƒ‰ƒ‹ƒh
+		// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 	case GemManager::EMERALD:
-		reDir = VGet(1.0f, 0.1f, 0.0f);	// Î‚ß‰E(‰E‹­‚ß)
+		reDir = VGet(1.0f, 0.1f, 0.0f);	// æ–œã‚å³(å³å¼·ã‚)
 		break;
 
-		// ‚»‚Ì‘¼
+		// ãã®ä»–
 	default:
 		break;
 	}
 
-	// ‚»‚Ìƒ^ƒCƒv‚Ì•ûŒü‚ğ•Ô‚·
+	// ãã®ã‚¿ã‚¤ãƒ—ã®æ–¹å‘ã‚’è¿”ã™
 	return reDir;
 }
 
 
 /// <summary>
-/// •óÎ‚Ìƒ^ƒCƒv•Ê‚Å—‰º‘¬“x‚ğİ’è
+/// å®çŸ³ã®ã‚¿ã‚¤ãƒ—åˆ¥ã§è½ä¸‹é€Ÿåº¦ã‚’è¨­å®š
 /// </summary>
-/// <param name="gemType">•óÎ‚Ìƒ^ƒCƒv</param>
-/// <returns>—‰º‘¬“x</returns>
+/// <param name="gemType">å®çŸ³ã®ã‚¿ã‚¤ãƒ—</param>
+/// <returns>è½ä¸‹é€Ÿåº¦</returns>
 float Gem::SettingFallSpeedType(int gemType)
 {
-	// •Ô‚è’l
+	// è¿”ã‚Šå€¤
 	float reFallSpeed = 0;
 	
-	// ƒ^ƒCƒv•Ê‚É—‰º‘¬“x‚ğİ’è
+	// ã‚¿ã‚¤ãƒ—åˆ¥ã«è½ä¸‹é€Ÿåº¦ã‚’è¨­å®š
 	switch (gemType)
 	{
-		// ƒ_ƒCƒAƒ‚ƒ“ƒh
+		// ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰
 	case GemManager::DIAMOND:
 		fallSpeed = 0.05f;
 		break;
 
-		// ƒ‹ƒr[
+		// ãƒ«ãƒ“ãƒ¼
 	case GemManager::RUBY:
 		fallSpeed = 0.001f;
 		break;
 
-		// ƒTƒtƒ@ƒCƒA
+		// ã‚µãƒ•ã‚¡ã‚¤ã‚¢
 	case GemManager::SAPPHIRE:
 		fallSpeed = 0.001f;
 		break;
 
-		// ƒGƒƒ‰ƒ‹ƒh
+		// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 	case GemManager::EMERALD:
 		fallSpeed = 0.01f;
 		break;
 
-		// ‚»‚Ì‘¼
+		// ãã®ä»–
 	default:	
 		break;
 	}
 
-	// İ’è‚µ‚½—‰º‘¬“x
+	// è¨­å®šã—ãŸè½ä¸‹é€Ÿåº¦
 	return reFallSpeed;
 }
 
 /// <summary>
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 /// </summary>
 void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 {
-	// 3Dƒ‚ƒfƒ‹İ’è
-	gemType = GetRand(3);					// •óÎ‚Ìí—Ş‚ğ—”‚Åİ’è
-	// ƒx[ƒX‚Ìƒ‚ƒfƒ‹‚Ìî•ñ‚ğ‚à‚Æ‚Éƒ‚ƒfƒ‹‚ğƒ[ƒh
+	// 3Dãƒ¢ãƒ‡ãƒ«è¨­å®š
+	gemType = GetRand(3);					// å®çŸ³ã®ç¨®é¡ã‚’ä¹±æ•°ã§è¨­å®š
+	// ãƒ™ãƒ¼ã‚¹ã®ãƒ¢ãƒ‡ãƒ«ã®æƒ…å ±ã‚’ã‚‚ã¨ã«ãƒ¢ãƒ‡ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰
 	modelHandle = MV1DuplicateModel(gemManager.SettingGemModle(gemType));	
 
-	// ƒXƒe[ƒ^ƒXî•ñ
-	pos = initPos;							// À•W‚ğˆø”‚Åİ’è
-	dir = VGet(0, 0, 0);					// •ûŒü‚Ìİ’è
-	contactDir = SettingMoveType(gemType);	// •óÎ‚Ìƒ^ƒCƒv‚ÌƒvƒŒƒCƒ„[‚Æ“–‚½‚Á‚½‚Ì•ûŒü‚ğİ’è
-	radius = 0.1;							// ‹…Œ^‚Ì‚ ‚½‚è”»’è‚Ì”¼Œa
-	boundPower = 1.5f;						// ƒoƒEƒ“ƒh‚·‚é’l
-	fallSpeed = SettingFallSpeedType(gemType);	// —‰º‘¬“x‚ğƒ^ƒCƒv‚²‚Æ‚Éİ’è
-	MV1SetScale(modelHandle, scale);		// ƒXƒP[ƒ‹‚Ìİ’è
-	scaleAdjust = 0.02f;					// ƒXƒP[ƒ‹‚Ì’²®—p
-	rotateCount = 0;						// ‰ñ“]—¦
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æƒ…å ±
+	pos = initPos;							// åº§æ¨™ã‚’å¼•æ•°ã§è¨­å®š
+	dir = VGet(0, 0, 0);					// æ–¹å‘ã®è¨­å®š
+	contactDir = SettingMoveType(gemType);	// å®çŸ³ã®ã‚¿ã‚¤ãƒ—ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨å½“ãŸã£ãŸæ™‚ã®æ–¹å‘ã‚’è¨­å®š
+	radius = 0.1;							// çƒå‹ã®ã‚ãŸã‚Šåˆ¤å®šã®åŠå¾„
+	boundPower = 1.5f;						// ãƒã‚¦ãƒ³ãƒ‰ã™ã‚‹å€¤
+	fallSpeed = SettingFallSpeedType(gemType);	// è½ä¸‹é€Ÿåº¦ã‚’ã‚¿ã‚¤ãƒ—ã”ã¨ã«è¨­å®š
+	MV1SetScale(modelHandle, scale);		// ã‚¹ã‚±ãƒ¼ãƒ«ã®è¨­å®š
+	scaleAdjust = 0.02f;					// ã‚¹ã‚±ãƒ¼ãƒ«ã®èª¿æ•´ç”¨
+	rotateCount = 0;						// å›è»¢ç‡
 
-	// ƒtƒ‰ƒO
-	isHitPlayer = false;		// ƒvƒŒƒCƒ„[‚ÆÚG‚µ‚½‚©
-	visibleFlag = true;			// ‘¶İ‚µ‚Ä‚¢‚é‚©
-	isHitGround = false;		// ’nã‚ÆÚG‚µ‚½‚©
-	previousIsHitPlayer = false;// ‘O‚ÌƒtƒŒ[ƒ€‚ÅƒvƒŒƒCƒ„[‚ÆÚG‚µ‚½‚©
-	isHitPlayer = false;		// ƒvƒŒƒCƒ„[‚ÆÚG’†‚©
+	// ãƒ•ãƒ©ã‚°
+	isHitPlayer = false;		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ¥è§¦ã—ãŸã‹
+	visibleFlag = true;			// å­˜åœ¨ã—ã¦ã„ã‚‹ã‹
+	isHitGround = false;		// åœ°ä¸Šã¨æ¥è§¦ã—ãŸã‹
+	previousIsHitPlayer = false;// å‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ¥è§¦ã—ãŸã‹
+	isHitPlayer = false;		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ¥è§¦ä¸­ã‹
 }
 
 /// <summary>
-/// XV
+/// æ›´æ–°
 /// </summary>
-/// <param name="cal">ŒvZƒNƒ‰ƒX</param>
+/// <param name="cal">è¨ˆç®—ã‚¯ãƒ©ã‚¹</param>
 void Gem::Update(Calculation& cal)
 {
-	// ­‚µ‚¸‚Â‰ñ“]‚PƒtƒŒ[ƒ€‚¸‚Â1“x‰ñ“]‚·‚é
+	// å°‘ã—ãšã¤å›è»¢ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ãšã¤1åº¦å›è»¢ã™ã‚‹
 	if (rotateCount <= 360)
 	{
 		rotateCount++;
@@ -168,58 +168,58 @@ void Gem::Update(Calculation& cal)
 	{
 		rotateCount = 0;
 	}
-	// ­‚µ‚¸‚Â‰ñ“]‚·‚é
+	// å°‘ã—ãšã¤å›è»¢ã™ã‚‹
 	MV1SetRotationXYZ(modelHandle, VGet(0.0f, rotateCount * DX_PI_F / 180.0f, 0.0f));
 
 	
 
 	///////////////////////////////////////////////////////////////
-	// d—Íˆ— ////////////////////////////////////////////
-	// —‰º‘¬“x‚Éd—Í‚ğ‰ÁZ
+	// é‡åŠ›å‡¦ç† ////////////////////////////////////////////
+	// è½ä¸‹é€Ÿåº¦ã«é‡åŠ›ã‚’åŠ ç®—
 	fallSpeed -= GRAVITY_POWER;
 	
-	//// ’n–Ê‚É‚Â‚¢‚Ä‚¢‚È‚¢‚Éì“®
+	//// åœ°é¢ã«ã¤ã„ã¦ã„ãªã„æ™‚ã«ä½œå‹•
 	//if (isHitGround == false)
 	//{
-	//	// d—Í‚ğ—‰º‘¬“x‚É‰ÁZ‚·‚é
+	//	// é‡åŠ›ã‚’è½ä¸‹é€Ÿåº¦ã«åŠ ç®—ã™ã‚‹
 	//	fallSpeed = -JUMP_POWER;
 	//}
 
-	// °‚æ‚è‰º‚É‚Í—‚¿‚È‚¢
+	// åºŠã‚ˆã‚Šä¸‹ã«ã¯è½ã¡ãªã„
 	if (pos.y <= 0.1 && isHitGround == false)
 	{
-		pos.y = 0.1;				// À•W‚ğ’n–Ê‚ÉŒÅ’è
-		isHitGround = true;		// ’n–Ê‚É‚Â‚¢‚Ä‚¢‚éó‘Ô
-		visibleFlag = false;	// ‘¶İ‚ğÁ‚·
+		pos.y = 0.1;				// åº§æ¨™ã‚’åœ°é¢ã«å›ºå®š
+		isHitGround = true;		// åœ°é¢ã«ã¤ã„ã¦ã„ã‚‹çŠ¶æ…‹
+		visibleFlag = false;	// å­˜åœ¨ã‚’æ¶ˆã™
 		
 	}
 
 	///////////////////////////////////////////////////////////////
-	// ƒoƒEƒ“ƒhˆ— ////////////////////////////////////////////
-	// °‚É‚Â‚¢‚½‚ç’µ‚Ë‚é
+	// ãƒã‚¦ãƒ³ãƒ‰å‡¦ç† ////////////////////////////////////////////
+	// åºŠã«ã¤ã„ãŸã‚‰è·³ã­ã‚‹
 	if (isHitGround == true)
 	{
 		pos.y = 0.1;
-		// d—Í‚É‹t‚ç‚¤i‚±‚ê‚â‚ç‚È‚¢‚Æ’n–ÊŠÑ’Ê‚·‚éj
+		// é‡åŠ›ã«é€†ã‚‰ã†ï¼ˆã“ã‚Œã‚„ã‚‰ãªã„ã¨åœ°é¢è²«é€šã™ã‚‹ï¼‰
 		fallSpeed += GRAVITY_POWER * 1.2f;
 		//dir = VAdd(dir, VGet(0, 1, 0));
 		//isHitGround = false;
-		scaleAdjust -= 0.0005f;		// ­‚µ‚Ã‚ÂƒXƒP[ƒ‹‚ğ¬‚³‚­‚·‚é
-		// ƒXƒP[ƒ‹‚ğİ’è
+		scaleAdjust -= 0.0005f;		// å°‘ã—ã¥ã¤ã‚¹ã‚±ãƒ¼ãƒ«ã‚’å°ã•ãã™ã‚‹
+		// ã‚¹ã‚±ãƒ¼ãƒ«ã‚’è¨­å®š
 		MV1SetScale(modelHandle, VGet(scaleAdjust, scaleAdjust, scaleAdjust));
 	}
-	// ƒXƒP[ƒ‹‚ªƒ[ƒˆÈ‰º‚É‚È‚Á‚½‚çC³
+	// ã‚¹ã‚±ãƒ¼ãƒ«ãŒã‚¼ãƒ­ä»¥ä¸‹ã«ãªã£ãŸã‚‰ä¿®æ­£
 	if (scaleAdjust <= 0)
 	{
 		scaleAdjust = 0;
 	}
 	
-	// ƒoƒEƒ“ƒh‚³‚¹‚é‚È‚çƒRƒƒ“ƒg‚Í‚¸‚¹
-	//// üŒ`•âŠÔ‚ÅƒoƒEƒ“ƒh‚·‚é’l‚ğŒˆ‚ß‚é
+	// ãƒã‚¦ãƒ³ãƒ‰ã•ã›ã‚‹ãªã‚‰ã‚³ãƒ¡ãƒ³ãƒˆã¯ãšã›
+	//// ç·šå½¢è£œé–“ã§ãƒã‚¦ãƒ³ãƒ‰ã™ã‚‹å€¤ã‚’æ±ºã‚ã‚‹
 	//boundPower= cal.Lerp_F(boundPower, 0.0f, 0.01);
-	//if (pos.y >= boundPower)	// ’n–Ê‚æ‚è‚àã‚È‚ç
+	//if (pos.y >= boundPower)	// åœ°é¢ã‚ˆã‚Šã‚‚ä¸Šãªã‚‰
 	//{
-	//	// ƒoƒEƒ“ƒh‚ª×‚©‚·‚¬‚½‚ç‚È‚­‚·
+	//	// ãƒã‚¦ãƒ³ãƒ‰ãŒç´°ã‹ã™ããŸã‚‰ãªãã™
 	//	if (boundPower <= 0.3)
 	//	{
 	//		boundPower = 0;
@@ -227,60 +227,60 @@ void Gem::Update(Calculation& cal)
 	//	isHitGround = false;
 	//}
 	
-	// ƒvƒŒƒCƒ„[‚ÆÚG‚µ‚½‚ç
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ¥è§¦ã—ãŸã‚‰
 	if (isHitPlayer)
 	{
 		fallSpeed = +JUMP_POWER;
-		dir = VAdd(dir, contactDir);	// •óÎ‚²‚Æ‚Éˆá‚¤•ûŒü
+		dir = VAdd(dir, contactDir);	// å®çŸ³ã”ã¨ã«é•ã†æ–¹å‘
 		isHitGround = false;
 		isHitPlayer = false;
 	}
 
-	// ˆÚ“®ˆ— /////////////////////////////////////////////////////
+	// ç§»å‹•å‡¦ç† /////////////////////////////////////////////////////
 	
-	// ³‹K‰»
+	// æ­£è¦åŒ–
 	if (VSquareSize(dir) > 0)
 	{
 		dir = VNorm(dir);
 	}
-	// •ûŒüİ’èˆ— ///////////////////////////////////////////////////
+	// æ–¹å‘è¨­å®šå‡¦ç† ///////////////////////////////////////////////////
 	
-	// ˆÚ“®—Ê‚ğo‚·
+	// ç§»å‹•é‡ã‚’å‡ºã™
 	auto velocity = VScale(dir, MOVE_SPEED);
 
-	// •ûŒü‚Ì³‹K‰»
+	// æ–¹å‘ã®æ­£è¦åŒ–
 	/*if (VSize(velocity) != 0)
 	{
 		dir = VNorm(dir);
 	}*/
 
 	
-	// —‰º‘¬“x‚ğˆÚ“®—Ê‚É‰Á‚¦‚é
+	// è½ä¸‹é€Ÿåº¦ã‚’ç§»å‹•é‡ã«åŠ ãˆã‚‹
 	auto fallVelocity = VGet(0, fallSpeed, 0);
 	velocity = VAdd(velocity, fallVelocity);
 
-	// ƒ|ƒWƒVƒ‡ƒ“‚ÌXV
+	// ãƒã‚¸ã‚·ãƒ§ãƒ³ã®æ›´æ–°
 	pos = VAdd(pos, velocity);
 
 
 	/////////////////////////////////////////////////////////////////
 	
-	// 3Dƒ‚ƒfƒ‹‚ÌÀ•Wİ’è
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®åº§æ¨™è¨­å®š
 	MV1SetPosition(modelHandle, pos);
 }
 
 /// <summary>
-/// •`‰æ
+/// æç”»
 /// </summary>
 void Gem::Draw()
 {
-	// 3Dƒ‚ƒfƒ‹‚Ì•`‰æ
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®æç”»
 	MV1DrawModel(modelHandle);
 
-	// ‹…Œ^‚Ì“–‚½‚è”»’è‚Ì•`‰æ
+	// çƒå‹ã®å½“ãŸã‚Šåˆ¤å®šã®æç”»
 	DrawSphere3D(pos, radius, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
 
-	// ƒvƒŒƒCƒ„[‚ÆÚG‚µ‚½‚ç
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ¥è§¦ã—ãŸã‚‰
 	if (isHitPlayer)
 	{
 		DrawFormatString(100, 100, GetColor(255, 255, 255), "Gem Hit", true);

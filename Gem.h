@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "DxLib.h"
 
@@ -7,7 +7,7 @@ class GemManager;
 
 
 /// <summary>
-/// •óÎiƒWƒFƒ€j
+/// å®çŸ³ï¼ˆã‚¸ã‚§ãƒ ï¼‰
 /// </summary>
 class Gem final
 {
@@ -15,17 +15,17 @@ public:
 	Gem();
 	virtual ~Gem();
 
-	// ƒƒ\ƒbƒh
-	VECTOR SettingMoveType(int gemType);	// ƒ^ƒCƒv‚²‚Æ‚ÌˆÚ“®ƒAƒ‹ƒSƒŠƒYƒ€‚Ìİ’è
-	float SettingFallSpeedType(int gemType);// ƒ^ƒCƒv‚²‚Æ‚Ì—‰º‘¬“xw’è
-	void Initialize(VECTOR initPos,GemManager gemManager);		// ‰Šú‰»
-	void Update(Calculation& cal);		// XV
-	void Draw();						// •`‰æ
+	// ãƒ¡ã‚½ãƒƒãƒ‰
+	VECTOR SettingMoveType(int gemType);	// ã‚¿ã‚¤ãƒ—ã”ã¨ã®ç§»å‹•ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®è¨­å®š
+	float SettingFallSpeedType(int gemType);// ã‚¿ã‚¤ãƒ—ã”ã¨ã®è½ä¸‹é€Ÿåº¦æŒ‡å®š
+	void Initialize(VECTOR initPos,GemManager gemManager);		// åˆæœŸåŒ–
+	void Update(Calculation& cal);		// æ›´æ–°
+	void Draw();						// æç”»
 
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìæ“¾.
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—.
 	int GetModelHandle() const { return modelHandle; }
 
-	// ƒ|ƒWƒVƒ‡ƒ“‚Ìgetter/setter.
+	// ãƒã‚¸ã‚·ãƒ§ãƒ³ã®getter/setter.
 	const VECTOR& GetPos() const { return pos; }
 	const int GetWidth() const{ return width; }
 	const int GetHeight() const { return height; }
@@ -42,35 +42,35 @@ public:
 	void SetIsHitChest(const bool set) { isHitTreasureChest = set; }
 
 private:
-	// ’è”
-	const float GRAVITY_POWER = 0.002f;		// •óÎ‚É‚©‚©‚éd—Í‚Ì’l
-	const float MOVE_SPEED = 0.13f;			// ˆÚ“®‘¬“x
-	const float JUMP_POWER = 0.1f;			// ƒvƒŒƒCƒ„[‚É“–‚½‚Á‚½‚ÌƒWƒƒƒ“ƒv—Ê
+	// å®šæ•°
+	const float GRAVITY_POWER = 0.002f;		// å®çŸ³ã«ã‹ã‹ã‚‹é‡åŠ›ã®å€¤
+	const float MOVE_SPEED = 0.13f;			// ç§»å‹•é€Ÿåº¦
+	const float JUMP_POWER = 0.1f;			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å½“ãŸã£ãŸæ™‚ã®ã‚¸ãƒ£ãƒ³ãƒ—é‡
 
-	// •Ï”
-	// ƒ‚ƒfƒ‹ŠÖŒW
-	int		modelHandle;	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
+	// å¤‰æ•°
+	// ãƒ¢ãƒ‡ãƒ«é–¢ä¿‚
+	int		modelHandle;	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
 
-	// ƒXƒe[ƒ^ƒX
-	int		gemType;		// •óÎ‚Ìí—Ş(ƒ_ƒCƒA,ƒ‹ƒr[,ƒTƒtƒ@ƒCƒA,ƒGƒƒ‰ƒ‹ƒh)
-	VECTOR	pos;			// ƒ|ƒWƒVƒ‡ƒ“
-	VECTOR	dir;			// •ûŒü
-	VECTOR	contactDir;		// ÚG‚Ì•ûŒü
-	int		width;			// •
-	int		height;			// ‚‚³
-	VECTOR	scale;			// ƒXƒP[ƒ‹
-	float	scaleAdjust;	// ƒXƒP[ƒ‹‚Ì’²®
-	float	speed;			// ˆÚ“®ƒXƒs[ƒh
-	float	radius;			// ‹…Œ^“–‚½‚è”»’è‚Ì”¼Œa
-	float	fallSpeed;		// —‰º‘¬“x
-	float	boundPower;		// ƒoƒEƒ“ƒh‚·‚é’l
-	float	rotateCount;	// ƒQ[ƒ€’†‚É­‚µ‚Ã‚Â‰ñ“]‚³‚¹‚é‚½‚ß‚ÌƒJƒEƒ“ƒg
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	int		gemType;		// å®çŸ³ã®ç¨®é¡(ãƒ€ã‚¤ã‚¢,ãƒ«ãƒ“ãƒ¼,ã‚µãƒ•ã‚¡ã‚¤ã‚¢,ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰)
+	VECTOR	pos;			// ãƒã‚¸ã‚·ãƒ§ãƒ³
+	VECTOR	dir;			// æ–¹å‘
+	VECTOR	contactDir;		// æ¥è§¦æ™‚ã®æ–¹å‘
+	int		width;			// å¹…
+	int		height;			// é«˜ã•
+	VECTOR	scale;			// ã‚¹ã‚±ãƒ¼ãƒ«
+	float	scaleAdjust;	// ã‚¹ã‚±ãƒ¼ãƒ«ã®èª¿æ•´
+	float	speed;			// ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+	float	radius;			// çƒå‹å½“ãŸã‚Šåˆ¤å®šã®åŠå¾„
+	float	fallSpeed;		// è½ä¸‹é€Ÿåº¦
+	float	boundPower;		// ãƒã‚¦ãƒ³ãƒ‰ã™ã‚‹å€¤
+	float	rotateCount;	// ã‚²ãƒ¼ãƒ ä¸­ã«å°‘ã—ã¥ã¤å›è»¢ã•ã›ã‚‹ãŸã‚ã®ã‚«ã‚¦ãƒ³ãƒˆ
 
-	// ƒtƒ‰ƒO
-	bool	visibleFlag;	// ‘¶İ‚µ‚Ä‚¢‚é‚©
-	bool	isHitPlayer;	// ƒvƒŒƒCƒ„[‚ÆÚG’†‚©
-	bool	isHitGround;	// °‚ÆÚG‚µ‚½‚©
-	bool	previousIsHitPlayer;	// ‘O‚ÌƒtƒŒ[ƒ€‚ÅƒvƒŒƒCƒ„[‚ÆÚG‚µ‚Ä‚¢‚½‚©
-	bool	isHitTreasureChest;	// •ó” ‚ÆÚG‚µ‚½‚©
+	// ãƒ•ãƒ©ã‚°
+	bool	visibleFlag;	// å­˜åœ¨ã—ã¦ã„ã‚‹ã‹
+	bool	isHitPlayer;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ¥è§¦ä¸­ã‹
+	bool	isHitGround;	// åºŠã¨æ¥è§¦ã—ãŸã‹
+	bool	previousIsHitPlayer;	// å‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ¥è§¦ã—ã¦ã„ãŸã‹
+	bool	isHitTreasureChest;	// å®ç®±ã¨æ¥è§¦ã—ãŸã‹
 };
 

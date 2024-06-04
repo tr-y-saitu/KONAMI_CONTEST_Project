@@ -1,11 +1,11 @@
-// 2023 Takeru Yui All Rights Reserved.
+ï»¿// 2023 Takeru Yui All Rights Reserved.
 #pragma once
 #include <vector>
 
 class WorldSprite;
 
 /// <summary>
-/// 2D‚Ì”wŒiƒ}ƒbƒv
+/// 2Dã®èƒŒæ™¯ãƒãƒƒãƒ—
 /// </summary>
 class Map
 {
@@ -17,21 +17,21 @@ public:
 	void Update();
 	void Draw();
 
-	// ƒ}ƒbƒvƒ`ƒbƒv‚ÌƒTƒCƒY
+	// ãƒãƒƒãƒ—ãƒãƒƒãƒ—ã®ã‚µã‚¤ã‚º
 	static const float	ChipSize;
 	static const int	ChipPixelSize;
 
 private:
-	static const int	StageData1ColNum = 16;		// ƒ}ƒbƒvs
-	static const int	StageData1RowNum = 20;		// ƒ}ƒbƒv—ñ
+	static const int	StageData1ColNum = 16;		// ãƒãƒƒãƒ—è¡Œ
+	static const int	StageData1RowNum = 20;		// ãƒãƒƒãƒ—åˆ—
 	static const int	Stage1Data[StageData1ColNum][StageData1RowNum];
-	static const int	StageData2ColNum = 14;		// ƒ}ƒbƒvs
-	static const int	StageData2RowNum = 18;		// ƒ}ƒbƒv—ñ
+	static const int	StageData2ColNum = 14;		// ãƒãƒƒãƒ—è¡Œ
+	static const int	StageData2RowNum = 18;		// ãƒãƒƒãƒ—åˆ—
 	static const int	Stage2Data[StageData2ColNum][StageData2RowNum];
 
 	std::vector<std::vector<int>> currentData;
-	int dataColNum = 0;		// ÀÛ‚Ég—p‚·‚éƒ}ƒbƒv‚Ìs”
-	int dataRowNum = 0;		// ÀÛ‚Ég—p‚·‚éƒ}ƒbƒv‚Ì—ñ”
+	int dataColNum = 0;		// å®Ÿéš›ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ—ã®è¡Œæ•°
+	int dataRowNum = 0;		// å®Ÿéš›ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ—ã®åˆ—æ•°
 	std::vector<WorldSprite*> sprites;
 	int chipGraph;
 };

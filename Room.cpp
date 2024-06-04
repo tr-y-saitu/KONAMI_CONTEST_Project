@@ -1,8 +1,8 @@
-#include "Room.h"
+ï»¿#include "Room.h"
 
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 Room::Room()
 	:	modelHandle		(0)
@@ -13,49 +13,49 @@ Room::Room()
 {
 	modelHandle = MV1LoadModel("data/model/Room/RoomFloorModel.mv1");
 	scale = VGet(0.02f ,0.02f, 0.02f);
-	// ƒXƒP[ƒ‹‚Ìİ’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«ã®è¨­å®š
 	MV1SetScale(modelHandle, scale);
 	pos = VGet(0, 0, 0);
 	dir = VGet(0, 0, 0);
 }
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 Room::~Room()
 {
-	// ƒ‚ƒfƒ‹‚ÌƒAƒ“ƒ[ƒh
+	// ãƒ¢ãƒ‡ãƒ«ã®ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
 	MV1DeleteModel(modelHandle);
 }
 
 /// <summary>
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 /// </summary>
 void Room::Initialize()
 {
-	pos = VGet(6, 0, 9);		// À•W‚ÌƒZƒbƒg
-	dir = VGet(0, 0, 0);		// •ûŒü‚ÌƒZƒbƒg
+	pos = VGet(6, 0, 9);		// åº§æ¨™ã®ã‚»ãƒƒãƒˆ
+	dir = VGet(0, 0, 0);		// æ–¹å‘ã®ã‚»ãƒƒãƒˆ
 
 }
 
 
 
 /// <summary>
-/// XV
+/// æ›´æ–°
 /// </summary>
 void Room::Update()
 {
-	// 3Dƒ‚ƒfƒ‹‚Ìƒ|ƒWƒVƒ‡ƒ“İ’è
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¸ã‚·ãƒ§ãƒ³è¨­å®š
 	MV1SetPosition(modelHandle, pos);
 
 }
 
 
 /// <summary>
-/// •`‰æ
+/// æç”»
 /// </summary>
 void Room::Draw()
 {
-	// 3Dƒ‚ƒfƒ‹‚Ì•`‰æ
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®æç”»
 	MV1DrawModel(modelHandle);
 }
