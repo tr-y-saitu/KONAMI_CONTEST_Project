@@ -32,15 +32,16 @@ public:
 	int	modelHandleEmerald;		// エメラルド
 
 	// 宝石が登場するデータ
-	struct EntryGemData
+	struct EntryGemDataBase
 	{
 		int entryFrameCount;		// 登場するフレーム数
 		VECTOR entryPosition;		// 登場する位置
 	};
-
+	
+	// 実際のデータ
+	EntryGemDataBase entryGemDataBase[100][2];
 
 private:
-
 
 };
 

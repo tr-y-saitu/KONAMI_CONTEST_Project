@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "GemManager.h"
 
+
 // コンストラクタ
 GemManager::GemManager()
 	: modelHandleDiamond	(-1)
