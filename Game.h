@@ -35,43 +35,82 @@ class Game
 public:
 	Game();
 	virtual ~Game();
-	void CountGameFraem() ;	// ゲームフレームを数える
-	void Create();			// 生成
-	void Initialize();		// 初期化処理
-	void InitializeGameStart();	// ゲーム最初の初期化
-	void DeleteGame();		// 生成したオブジェクトの削除
-	void UpdateGame();		// ゲームアップデート
-	void DrawGame();		// ゲーム描画
-	void ChangeGameState();	// ゲームステートの切り替え
-	void ProcessKey();		// ゲーム進行にかかわるキー入力処理
+
+	/// <summary>
+	/// ゲームフレームを数える
+	/// </summary>
+	void CountGameFraem();
+
+	/// <summary>
+	/// 全オブジェクトをnew　インスタンス
+	/// </summary>
+	void Create();
+
+	/// <summary>
+	/// 全オブジェクトの初期化処理
+	/// </summary>
+	void Initialize();
+
+	/// <summary>
+	/// ゲーム起動時のみ行う全オブジェクトの初期化
+	/// </summary>
+	void InitializeGameStart();
+
+	/// <summary>
+	/// インスタンス化した全オブジェクトの削除
+	/// </summary>
+	void DeleteGame();
+
+	/// <summary>
+	/// 全オブジェクトの更新
+	/// </summary>
+	void UpdateGame();
+
+	/// <summary>
+	/// 全オブジェクトの描画
+	/// </summary>
+	void DrawGame();
+
+	/// <summary>
+	/// ゲームステートの切り替え
+	/// </summary>
+	void ChangeGameState();
+
+	/// <summary>
+	/// ゲーム進行にかかわるキー入力処理
+	/// </summary>
+	void ProcessKey();
+
+	/// <summary>
+	/// 制限時間の描画
+	/// </summary>
 	void DrawTimer();		// 制限時間の描画
 
+	// Getter/Setter
 	const int GetNowTimer() { return nowTimer; }
 	const int GetFrameCount() { return gameFrameCount; }
 	const int GetGameState() { return gameState; }
 	const bool GetIsClearFlag() { return isClearFlag; }
 
+
 	// 使用クラス
-	Player*		player;
-	Enemy*		enemy;
-	Camera*		camera;
-	Collision*	collision;
-	BGObj*		bgobj[5];
-	BGObj*		bgobj2[4];
-	UI*			ui;
-	SkyDome*	skyDome;
-	BG*			bg[3];
+	Player* player;			// プレイヤー
+	Enemy* enemy;			// エネミー
+	Camera* camera;			// カメラ
+	Collision* collision;		// 当たり判定
+	UI* ui;				// UI
+	SkyDome* skyDome;		// スカイドーム
 	Effekseer1* effekseer1;
 	FPSSetting* fpsSetting;
-	Room*		room;
-	Floor*		floor;
-	Calculation calculation;
-	GemManager*	gemManager;
-	TreasureChest* treasureChest;
-
-	std::vector<Gem*>	gem;
+	Room* room;			// 部屋
+	Floor* floor;			// 床
+	Calculation calculation;	// 計算用
+	GemManager* gemManager;		// 宝石管理クラス
+	std::vector<Gem*>	gem;		// 宝石
+	TreasureChest* treasureChest;	// 宝箱
 
 private:
+
 	// 定数
 	const int GEM_TOTAL_NUM = 100;	// 宝石の総合の数
 
@@ -87,7 +126,7 @@ private:
 	int		isHitCount;		// ヒットしてから何フレーム経過したか
 	bool	isClearFlag;	// クリアしたかのフラグ
 	double	isClearCount;	// クリアしてからのカウント
-	bool	isDrawGetUi;	// 宝石ゲット時のUI演出をするかどうか
+	bool	isDrawGetUI;	// 宝石ゲット時のUI演出をするかどうか
 
 	// メニュー
 	int		menuGraph;		// メニュー用画像

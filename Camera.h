@@ -8,10 +8,10 @@
 #include "DxLib.h"
 
 class Player;
-class Enemy;
-class BGObj;
-class Car;
 
+/// <summary>
+/// カメラクラス
+/// </summary>
 class Camera
 {
 public:
@@ -26,7 +26,11 @@ public:
 	Camera();							// コンストラクタ.
 	~Camera();							// デストラクタ.-
 
-	void Update(Player& player,Enemy& enemy,BGObj& bgobj);	                    // 更新.
+	/// <summary>
+	/// カメラの更新
+	/// </summary>
+	/// <param name="player">プレイヤークラス</param>
+	void Update(Player& player);
 
 private:
 	VECTOR	pos;			// ポジション.

@@ -14,14 +14,14 @@
 //-----------------------------------------------------------------------------
 Camera::Camera()
 {
-    // 描画範囲の設定
-    SetCameraNearFar(0.1f, 1500.0f);
+	// 描画範囲の設定
+	SetCameraNearFar(0.1f, 1500.0f);
 
 	// カメラのポジション
 	pos = VGet(-7, 5, -22);
 
-    //(0,10,-20)の視点から(0,10,0)のターゲットを見る角度にカメラを設置
-    //SetCameraPositionAndTarget_UpVecY(VGet(0, 10, -20), VGet(0.0f, 10.0f, 200.0f));
+	//(0,10,-20)の視点から(0,10,0)のターゲットを見る角度にカメラを設置
+	//SetCameraPositionAndTarget_UpVecY(VGet(0, 10, -20), VGet(0.0f, 10.0f, 200.0f));
 
 	// 視野角の設定
 	//SetupCamera_Perspective(90 * DX_PI_F / 180.0f);
@@ -41,7 +41,7 @@ Camera::~Camera()
 //-----------------------------------------------------------------------------
 // @brief  更新.
 //-----------------------------------------------------------------------------
-void Camera::Update(Player& player,Enemy& enemy, BGObj& bgobj)
+void Camera::Update(Player& player)
 {
 	// カメラを設定
 	SetCameraPositionAndTarget_UpVecY(pos, VGet(-7, 5, 20));

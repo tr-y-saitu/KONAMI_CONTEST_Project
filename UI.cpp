@@ -9,8 +9,10 @@
 /// コンストラクタ
 /// </summary>
 UI::UI()
-	:	menuGraph			(-1)
-	,	strGetModleHandel	(-1)
+	: menuGraph(-1)
+	, strGetModleHandel(-1)
+	, isHitGemToChest(false)
+	, strGetDrawCount(0)
 {
 	strGetModleHandel = MV1LoadModel("data/model/UI/GET!.mv1");
 	MV1SetScale(strGetModleHandel, VGet(0.05f, 0.05f, 0.0f));
@@ -35,13 +37,15 @@ void UI::Initialize()
 	{
 		menuGraph = LoadGraph("data/texture/Menu/GemPiratesMenuGraph.png");
 	}
+	isHitGemToChest = false;
+	strGetDrawCount = 0;
 }
 
 
 /// <summary>
 /// 描画
 /// </summary>
-void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest)
+void UI::Draw(int state, Player& player, bool& isDrawUIFlag, TreasureChest& chest)
 {
 	int _uiColor = GetColor(200, 200, 200);
 	// ステートごとに描画を変更
@@ -59,12 +63,24 @@ void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest)
 
 		// ゲーム中
 	case STATE_GAME:
-		
-		// 「GET!」モデルを描画
-		MV1SetPosition(strGetModleHandel, VGet(0,0,0));
-		if (isHitGemToChest)
+
+		// 「GET!」モデルの座標を設定
+		MV1SetPosition(strGetModleHandel, VGet(0, 0, 0));
+
+		// 宝石と宝箱が接触したら(描画指定時間を超えていなければ)
+		if (isHitGemToChest && strGetDrawCount <= STRING_GET_DRAW_TIME)
 		{
+			// 「GET!」モデルを描画する時間を進める
+			strGetDrawCount++;
+			// 3Dモデル描画
 			MV1DrawModel(strGetModleHandel);
+		}
+		// 描画指定時間を超えたらゼロに戻す
+		if (strGetDrawCount >= STRING_GET_DRAW_TIME)
+		{
+			isDrawUIFlag = false;
+			strGetDrawCount = 0;
+			isHitGemToChest = false;
 		}
 
 
@@ -88,7 +104,5 @@ void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest)
 	default:
 		break;
 	}
-
-
 
 }
