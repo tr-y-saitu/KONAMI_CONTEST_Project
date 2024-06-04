@@ -102,7 +102,7 @@ void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
 		// 登場フレーム数を設定
 		data[i].entryTime = i + 1.0f;
 		// 登場座標の設定
-		data[i].entryPosition = VGet(_randomPosX,10,-5);
+		data[i].entryPosition = VGet(_randomPosX,10 + i,-5);
 	}
 }
 

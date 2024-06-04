@@ -47,6 +47,7 @@ public:
 private:
 	// 定数
 	const float GRAVITY_POWER = 0.002f;		// 宝石にかかる重力の値
+	const float GRAVITY_POWER_LIMIT = 0.005f;// 宝石にかかる重力の限界値
 	const float MOVE_SPEED = 0.13f;			// 移動速度
 	const float JUMP_POWER = 0.1f;			// プレイヤーに当たった時のジャンプ量
 

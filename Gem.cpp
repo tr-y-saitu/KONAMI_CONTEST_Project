@@ -161,40 +161,101 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 /// <param name="cal">計算クラス</param>
 void Gem::Update(Calculation& cal, float nowTimer)
 {
-	// 少しずつ回転１フレームずつ1度回転する
-	if (rotateCount <= 360)
+	// 登場時間になったら存在
+	if(entryTime >= nowTimer)
 	{
-		rotateCount++;
-	}
-	if (rotateCount >= 360)
-	{
-		rotateCount = 0;
-	}
-	// 少しずつ回転する
-	MV1SetRotationXYZ(modelHandle, VGet(0.0f, rotateCount * DX_PI_F / 180.0f, 0.0f));
-
-	///////////////////////////////////////////////////////////////
-	// 重力処理 ////////////////////////////////////////////
-	// 落下速度に重力を加算
-	fallSpeed -= GRAVITY_POWER;
-	
-	//// 地面についていない時に作動
-	//if (isHitGround == false)
-	//{
-	//	// 重力を落下速度に加算する
-	//	fallSpeed = -JUMP_POWER;
-	//}
-
-	// 床より下には落ちない
-	if (pos.y <= 0.1 && isHitGround == false)
-	{
-		pos.y = 0.1;				// 座標を地面に固定
-		isHitGround = true;		// 地面についている状態
-		visibleFlag = false;	// 存在を消す
-		
+		visibleFlag = true;
 	}
 
-	///////////////////////////////////////////////////////////////
+	// 存在する時に更新
+	if (visibleFlag)
+	{
+		// 少しずつ回転１フレームずつ1度回転する
+		if (rotateCount <= 360)
+		{
+			rotateCount++;
+		}
+		if (rotateCount >= 360)
+		{
+			rotateCount = 0;
+		}
+		// 少しずつ回転する
+		MV1SetRotationXYZ(modelHandle, VGet(0.0f, rotateCount * DX_PI_F / 180.0f, 0.0f));
+
+		///////////////////////////////////////////////////////////////
+		// 重力処理 ////////////////////////////////////////////
+		// 落下速度に重力を加算
+		fallSpeed -= GRAVITY_POWER;
+
+		// 床より下には落ちない
+		if (pos.y <= 0.1 && isHitGround == false)
+		{
+			pos.y = 0.1;				// 座標を地面に固定
+			isHitGround = true;		// 地面についている状態
+			visibleFlag = false;	// 存在を消す
+			entryTime = 0;			// 登場時間を強制的にゼロにする
+		}
+
+		// バウンドさせるならコメントはずせ
+		//// 線形補間でバウンドする値を決める
+		//boundPower= cal.Lerp_F(boundPower, 0.0f, 0.01);
+		//if (pos.y >= boundPower)	// 地面よりも上なら
+		//{
+		//	// バウンドが細かすぎたらなくす
+		//	if (boundPower <= 0.3)
+		//	{
+		//		boundPower = 0;
+		//	}
+		//	isHitGround = false;
+		//}
+
+		// プレイヤーと接触したら
+		if (isHitPlayer)
+		{
+			fallSpeed = +JUMP_POWER;
+			dir = VAdd(dir, contactDir);	// 宝石ごとに違う方向
+			isHitGround = false;
+			isHitPlayer = false;
+		}
+
+		// 移動処理 /////////////////////////////////////////////////////
+
+		// 正規化
+		if (VSquareSize(dir) > 0)
+		{
+			dir = VNorm(dir);
+		}
+		// 方向設定処理 ///////////////////////////////////////////////////
+
+		// 移動量を出す
+		auto velocity = VScale(dir, MOVE_SPEED);
+
+		// 方向の正規化
+		/*if (VSize(velocity) != 0)
+		{
+			dir = VNorm(dir);
+		}*/
+
+		// 重力加速度の限界値を越えない
+		if (fallSpeed >= GRAVITY_POWER_LIMIT)
+		{
+			fallSpeed = GRAVITY_POWER_LIMIT;
+		}
+
+		// 落下速度を移動量に加える
+		auto fallVelocity = VGet(0, fallSpeed, 0);
+		velocity = VAdd(velocity, fallVelocity);
+
+		// ポジションの更新
+		pos = VAdd(pos, velocity);
+
+
+		/////////////////////////////////////////////////////////////////
+
+		// 3Dモデルの座標設定
+		MV1SetPosition(modelHandle, pos);
+	}
+
 	// バウンド処理 ////////////////////////////////////////////
 	// 床についたら跳ねる
 	if (isHitGround == true)
@@ -214,59 +275,6 @@ void Gem::Update(Calculation& cal, float nowTimer)
 		scaleAdjust = 0;
 	}
 	
-	// バウンドさせるならコメントはずせ
-	//// 線形補間でバウンドする値を決める
-	//boundPower= cal.Lerp_F(boundPower, 0.0f, 0.01);
-	//if (pos.y >= boundPower)	// 地面よりも上なら
-	//{
-	//	// バウンドが細かすぎたらなくす
-	//	if (boundPower <= 0.3)
-	//	{
-	//		boundPower = 0;
-	//	}
-	//	isHitGround = false;
-	//}
-	
-	// プレイヤーと接触したら
-	if (isHitPlayer)
-	{
-		fallSpeed = +JUMP_POWER;
-		dir = VAdd(dir, contactDir);	// 宝石ごとに違う方向
-		isHitGround = false;
-		isHitPlayer = false;
-	}
-
-	// 移動処理 /////////////////////////////////////////////////////
-	
-	// 正規化
-	if (VSquareSize(dir) > 0)
-	{
-		dir = VNorm(dir);
-	}
-	// 方向設定処理 ///////////////////////////////////////////////////
-	
-	// 移動量を出す
-	auto velocity = VScale(dir, MOVE_SPEED);
-
-	// 方向の正規化
-	/*if (VSize(velocity) != 0)
-	{
-		dir = VNorm(dir);
-	}*/
-
-	
-	// 落下速度を移動量に加える
-	auto fallVelocity = VGet(0, fallSpeed, 0);
-	velocity = VAdd(velocity, fallVelocity);
-
-	// ポジションの更新
-	pos = VAdd(pos, velocity);
-
-
-	/////////////////////////////////////////////////////////////////
-	
-	// 3Dモデルの座標設定
-	MV1SetPosition(modelHandle, pos);
 }
 
 /// <summary>
