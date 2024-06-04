@@ -1,7 +1,7 @@
-#include "Floor.h"
+ï»¿#include "Floor.h"
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 Floor::Floor()
 	:	modelHandle		(0)
@@ -10,9 +10,9 @@ Floor::Floor()
 	,	speed			(0)
 	,	r				(0)
 {
-	// ƒ‚ƒfƒ‹‚Ì“Ç‚Ýž‚Ý
+	// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿
 	modelHandle = MV1LoadModel("data/model/Room/RoomFloorModel.mv1");
-	// ƒXƒP[ƒ‹‚ÌÝ’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«ã®è¨­å®š
 	scale = VGet(0.01f, 0.01f, 0.01f);
 	MV1SetScale(modelHandle, scale);
 	pos = VGet(0, 0, 0);
@@ -21,43 +21,43 @@ Floor::Floor()
 
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 Floor::~Floor()
 {
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìíœ
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
 	MV1DeleteModel(modelHandle);
 }
 
 /// <summary>
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 /// </summary>
 void Floor::Initialize(VECTOR initPos)
 {
 	// initPos
-	// °‚Éƒ^ƒCƒ‹‚ð•À‚×‚é‚½‚ß‚É‰ŠúÀ•W‚ðˆø”‚Å‚à‚ç‚¤
+	// åºŠã«ã‚¿ã‚¤ãƒ«ã‚’ä¸¦ã¹ã‚‹ãŸã‚ã«åˆæœŸåº§æ¨™ã‚’å¼•æ•°ã§ã‚‚ã‚‰ã†
 
-	// ƒ|ƒWƒVƒ‡ƒ“‚Ì‰Šú‰»
-	// ‚±‚±‚Å°‚ð•À‚×‚é
+	// ãƒã‚¸ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
+	// ã“ã“ã§åºŠã‚’ä¸¦ã¹ã‚‹
 	pos = initPos;
 	dir = VGet(0, 0, 0);
 }
 
 /// <summary>
-/// XV
+/// æ›´æ–°
 /// </summary>
 void Floor::Update()
 {
-	// 3Dƒ‚ƒfƒ‹‚Ìƒ|ƒWƒVƒ‡ƒ“Ý’è
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¸ã‚·ãƒ§ãƒ³è¨­å®š
 	MV1SetPosition(modelHandle, pos);
 }
 
 /// <summary>
-/// •`‰æ
+/// æç”»
 /// </summary>
 void Floor::Draw()
 {
-	// 3Dƒ‚ƒfƒ‹‚Ì•`‰æ
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®æç”»
 	MV1DrawModel(modelHandle);
 }
 

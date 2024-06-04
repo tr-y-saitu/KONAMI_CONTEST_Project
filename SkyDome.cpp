@@ -1,8 +1,8 @@
-#include "SkyDome.h"
+ï»¿#include "SkyDome.h"
 
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 SkyDome::SkyDome()
 	:modelHandle	(-1)
@@ -13,57 +13,57 @@ SkyDome::SkyDome()
 	,w				(0)
 	,h				(0)
 {
-	// ˆ—‚È‚µ
+	// å‡¦ç†ãªã—
 }
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 SkyDome::~SkyDome()
 {
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìíœ
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
 	MV1DeleteModel(modelHandle);
 }
 
 /// <summary>
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 /// </summary>
 void SkyDome::Initialize()
 {
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ì“Ç‚İ‚İ
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®èª­ã¿è¾¼ã¿
 	modelHandle = MV1LoadModel("data/model/skyDome/Sky_Twilight01.pmx");
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ìƒnƒ“ƒhƒ‹“Ç‚İ‚İ
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒãƒ³ãƒ‰ãƒ«èª­ã¿è¾¼ã¿
 	textureHandle = LoadGraph("data/model/skyDome/Tex_SkyDome_Twilght01.png");
 
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Éİ’è‚µ‚½‚¢ƒeƒNƒXƒ`ƒƒ‚ğ“\‚è•t‚¯
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã«è¨­å®šã—ãŸã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è²¼ã‚Šä»˜ã‘
 	MV1SetTextureGraphHandle(modelHandle, 0, textureHandle, true);
 
-	// ƒ‚ƒfƒ‹‚ÌŠg‘å—¦‚ğƒZƒbƒg
+	// ãƒ¢ãƒ‡ãƒ«ã®æ‹¡å¤§ç‡ã‚’ã‚»ãƒƒãƒˆ
 	MV1SetScale(modelHandle, VGet(0.1f, 0.1f, 0.1f));
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	pos = VGet(0, 0, 0);
 
-	// •ûŒüİ’è
+	// æ–¹å‘è¨­å®š
 	dir = VGet(0, 0, 0);
 }
 
 /// <summary>
-/// XV
+/// æ›´æ–°
 /// </summary>
 void SkyDome::Update()
 {
-	// 3Dƒ‚ƒfƒ‹‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğİ’è
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’è¨­å®š
 	MV1SetPosition(modelHandle,pos);
 }
 
 /// <summary>
-/// •`‰æ
+/// æç”»
 /// </summary>
 void SkyDome::Draw()
 {
-	// 3Dƒ‚ƒfƒ‹‚Ì•`‰æi‹ój
+	// 3Dãƒ¢ãƒ‡ãƒ«ã®æç”»ï¼ˆç©ºï¼‰
 	MV1DrawModel(modelHandle);
 }
 

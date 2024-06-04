@@ -1,7 +1,7 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 #include "GemManager.h"
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 GemManager::GemManager()
 	: modelHandleDiamond	(-1)
 	, modelHandleRuby		(-1)
@@ -11,75 +11,75 @@ GemManager::GemManager()
 
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 GemManager::~GemManager()
 {
 
 }
 
 
-// ƒ‚ƒfƒ‹‚Ìƒ[ƒh
+// ãƒ¢ãƒ‡ãƒ«ã®ãƒ­ãƒ¼ãƒ‰
 void GemManager::LoadModle()
 {
-	// •óÎ‚Ìƒ‚ƒfƒ‹‚ğƒ[ƒh
+	// å®çŸ³ã®ãƒ¢ãƒ‡ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰
 	if (modelHandleDiamond <= -1)
-	{	// ƒ_ƒCƒAƒ‚ƒ“ƒh
+	{	// ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰
 		modelHandleDiamond	= MV1LoadModel("data/model/Gem/Diamonds.mv1");
 	}
 	if (modelHandleRuby <= -1)
-	{	// ƒ‹ƒr[
+	{	// ãƒ«ãƒ“ãƒ¼
 		modelHandleRuby		= MV1LoadModel("data/model/Gem/Ruby.mv1");
 	}
 	if (modelHandleSapphire <= -1)
-	{	// ƒTƒtƒ@ƒCƒA
+	{	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢
 		modelHandleSapphire = MV1LoadModel("data/model/Gem/Sapphire.mv1");
 	}
 	if (modelHandleEmerald <= -1)
-	{	// ƒGƒƒ‰ƒ‹ƒh
+	{	// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 		modelHandleEmerald	= MV1LoadModel("data/model/Gem/Emerald.mv1");
 	}
 
 }
 
 /// <summary>
-/// ƒ^ƒCƒv‚ğ‚à‚ç‚Á‚Äƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ğİ’è
+/// ã‚¿ã‚¤ãƒ—ã‚’ã‚‚ã‚‰ã£ã¦ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’è¨­å®š
 /// </summary>
-/// <param name="type">•óÎ‚Ìƒ^ƒCƒv</param>
-/// <returns>‚»‚Ìƒ^ƒCƒv‚Ìƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹</returns>
+/// <param name="type">å®çŸ³ã®ã‚¿ã‚¤ãƒ—</param>
+/// <returns>ãã®ã‚¿ã‚¤ãƒ—ã®ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«</returns>
 int GemManager::SettingGemModle(int type)
 {
-	// ‚»‚Ìƒ^ƒCƒv‚Ìƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
+	// ãã®ã‚¿ã‚¤ãƒ—ã®ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
 	int reTypeModelHandle = -1;
 
-	// í—Ş(ƒ^ƒCƒv)‚Ì”»’è
+	// ç¨®é¡(ã‚¿ã‚¤ãƒ—)ã®åˆ¤å®š
 	switch (type)
 	{
-	// ƒ_ƒCƒAƒ‚ƒ“ƒh
+	// ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰
 	case DIAMOND:	
 		reTypeModelHandle = modelHandleDiamond;
 		break;
 
-	// ƒ‹ƒr[
+	// ãƒ«ãƒ“ãƒ¼
 	case RUBY:		
 		reTypeModelHandle = modelHandleRuby;
 		break;
 
-	// ƒTƒtƒ@ƒCƒA
+	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢
 	case SAPPHIRE:	
 		reTypeModelHandle = modelHandleSapphire;
 		break;
 
-	// ƒGƒƒ‰ƒ‹ƒh
+	// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 	case EMERALD:	
 		reTypeModelHandle = modelHandleEmerald;
 		break;
 
-	// ‚»‚êˆÈŠO
+	// ãã‚Œä»¥å¤–
 	default:
 		break;
 	}
 	
-	// ‚»‚Ìƒ^ƒCƒv‚Ìƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãã®ã‚¿ã‚¤ãƒ—ã®ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return reTypeModelHandle;
 }
 

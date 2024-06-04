@@ -1,35 +1,35 @@
-#pragma once
+ï»¿#pragma once
 
 
 
 /// <summary>
-/// •óÎƒ}ƒl[ƒWƒƒ[ƒNƒ‰ƒX
+/// å®çŸ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¯ãƒ©ã‚¹
 /// </summary>
 class GemManager final
 {
 public:
 	/// <summary>
-	/// •óÎ‚Ìƒ^ƒCƒv
+	/// å®çŸ³ã®ã‚¿ã‚¤ãƒ—
 	/// </summary>
 	enum GemType
 	{
-		DIAMOND,	// ƒ_ƒCƒAƒ‚ƒ“ƒh
-		RUBY,		// ƒ‹ƒr[
-		SAPPHIRE,	// ƒTƒtƒ@ƒCƒA
-		EMERALD		// ƒGƒƒ‰ƒ‹ƒh
+		DIAMOND,	// ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰
+		RUBY,		// ãƒ«ãƒ“ãƒ¼
+		SAPPHIRE,	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢
+		EMERALD		// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 	};
 
-	// ƒƒ\ƒbƒh
+	// ãƒ¡ã‚½ãƒƒãƒ‰
 	GemManager();
 	virtual ~GemManager();
-	void LoadModle();			// •óÎƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìƒ[ƒh
-	int SettingGemModle(int type);		// •óÎ‚Ìƒ‚ƒfƒ‹‚ğİ’è
+	void LoadModle();			// å®çŸ³ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ­ãƒ¼ãƒ‰
+	int SettingGemModle(int type);		// å®çŸ³ã®ãƒ¢ãƒ‡ãƒ«ã‚’è¨­å®š
 
-	// •óÎ‚Ìƒx[ƒXƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
-	int modelHandleDiamond;		// ƒ_ƒCƒAƒ‚ƒ“ƒh
-	int modelHandleRuby;		// ƒ‹ƒr[
-	int modelHandleSapphire;	// ƒTƒtƒ@ƒCƒA
-	int	modelHandleEmerald;		// ƒGƒƒ‰ƒ‹ƒh
+	// å®çŸ³ã®ãƒ™ãƒ¼ã‚¹ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+	int modelHandleDiamond;		// ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰
+	int modelHandleRuby;		// ãƒ«ãƒ“ãƒ¼
+	int modelHandleSapphire;	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢
+	int	modelHandleEmerald;		// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 
 private:
 

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "DxLib.h"
 
@@ -9,14 +9,14 @@ public:
 	SkyDome();
 	~SkyDome();
 
-	void Initialize();	// ‰Šú‰»
-	void Update();		// XV
-	void Draw();		// •`‰æ
+	void Initialize();	// åˆæœŸåŒ–
+	void Update();		// æ›´æ–°
+	void Draw();		// æç”»
 
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	int GetModelHandle() { return modelHandle; }
 
-	// ƒ|ƒWƒVƒ‡ƒ“‚Ìgetter/setter.
+	// ãƒã‚¸ã‚·ãƒ§ãƒ³ã®getter/setter.
 	const VECTOR& GetPos() const { return pos; }
 	const int GetWidth() { return w; }
 	const int GetHeight() { return h; }
@@ -25,16 +25,16 @@ public:
 
 
 private:
-	// ’è”
+	// å®šæ•°
 	const float SPEED = 5.0f;
 
-	int		modelHandle;	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
-	int		textureHandle;	// ƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹
-	VECTOR	pos;			// ƒ|ƒWƒVƒ‡ƒ“
-	VECTOR	pos2;			// ‰ñ“]‚·‚é‘O‚Ìƒ|ƒWƒVƒ‡ƒ“
-	VECTOR	dir;			// •ûŒü
-	int		w;				// •
-	int		h;				// ‚‚³
+	int		modelHandle;	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+	int		textureHandle;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«
+	VECTOR	pos;			// ãƒã‚¸ã‚·ãƒ§ãƒ³
+	VECTOR	pos2;			// å›è»¢ã™ã‚‹å‰ã®ãƒã‚¸ã‚·ãƒ§ãƒ³
+	VECTOR	dir;			// æ–¹å‘
+	int		w;				// å¹…
+	int		h;				// é«˜ã•
 
 };
 

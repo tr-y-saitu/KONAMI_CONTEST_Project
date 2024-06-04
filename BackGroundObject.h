@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "DxLib.h"
 
@@ -7,17 +7,17 @@ class BGObj
 public:
 	static const int INIT_SCALE = 0.5f;
 
-	// ƒƒ“ƒoƒƒ\ƒbƒh
-	BGObj();			// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~BGObj();			// ƒfƒXƒgƒ‰ƒNƒ^
-	void Initialize(int graph,int texture,VECTOR initVec,int speed);	// ‰Šú‰»
-	void Update();		// XV
-	void Draw();		// •`‰æ
+	// ãƒ¡ãƒ³ãƒãƒ¡ã‚½ãƒƒãƒ‰
+	BGObj();			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~BGObj();			// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void Initialize(int graph,int texture,VECTOR initVec,int speed);	// åˆæœŸåŒ–
+	void Update();		// æ›´æ–°
+	void Draw();		// æç”»
 	
-	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	int GetModelHandle() { return modelHandle; }
 
-	// ƒ|ƒWƒVƒ‡ƒ“‚Ìgetter/setter.
+	// ãƒã‚¸ã‚·ãƒ§ãƒ³ã®getter/setter.
 	const VECTOR& GetPos() const { return pos; }
 	const int GetWidth() { return w; }
 	const int GetHeight() { return h; }
@@ -27,24 +27,24 @@ public:
 	void SetScale(const VECTOR set) { scale = set; }
 
 private:
-	// ’è”
+	// å®šæ•°
 	const float SPEED = 5.0f;
 
-	int		modelHandle;	// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
-	int		texrureHandle;	// ƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹
-	VECTOR	pos;			// ƒ|ƒWƒVƒ‡ƒ“
+	int		modelHandle;	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+	int		texrureHandle;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«
+	VECTOR	pos;			// ãƒã‚¸ã‚·ãƒ§ãƒ³
 	VECTOR	pos2;			
-	VECTOR	dir;			// •ûŒü
-	MATRIX	matrix;			// s—ñi‰ñ“]‚Åg—pj
-	int		w;				// •
-	int		h;				// ‚‚³
-	VECTOR	scale;			// ƒXƒP[ƒ‹ƒTƒCƒY
+	VECTOR	dir;			// æ–¹å‘
+	MATRIX	matrix;			// è¡Œåˆ—ï¼ˆå›è»¢ã§ä½¿ç”¨ï¼‰
+	int		w;				// å¹…
+	int		h;				// é«˜ã•
+	VECTOR	scale;			// ã‚¹ã‚±ãƒ¼ãƒ«ã‚µã‚¤ã‚º
 
-	int		returnPosX;		// ˆÊ’u‚ğ–ß‚·ƒ^ƒCƒ~ƒ“ƒO
-	int		scrollSpeed;	// ‰æ–ÊƒXƒNƒ[ƒ‹‚·‚é‘¬“x
+	int		returnPosX;		// ä½ç½®ã‚’æˆ»ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+	int		scrollSpeed;	// ç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹é€Ÿåº¦
 
-	int		graphHandle;	// ”wŒi‰æ‘œƒnƒ“ƒhƒ‹
-	int		graphUniverse;	// ‰F’ˆ‰æ‘œƒnƒ“ƒhƒ‹
+	int		graphHandle;	// èƒŒæ™¯ç”»åƒãƒãƒ³ãƒ‰ãƒ«
+	int		graphUniverse;	// å®‡å®™ç”»åƒãƒãƒ³ãƒ‰ãƒ«
 
 };
 

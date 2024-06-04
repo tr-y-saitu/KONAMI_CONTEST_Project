@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "DxLib.h"
 
 class BG
@@ -7,18 +7,18 @@ public:
 	BG();
 	~BG();
 
-	void Initialize(int graph, int index);	// ‰Šú‰»
-	void Update(float buf);		// XV
-	void Draw();		// •`‰æ
+	void Initialize(int graph, int index);	// åˆæœŸåŒ–
+	void Update(float buf);		// æ›´æ–°
+	void Draw();		// æç”»
 
 private:
-	// ’è”
+	// å®šæ•°
 	const float BG_SCROLL_SPEED = 5.0f;
 
-	int		graphHandle;		// ”wŒiƒXƒNƒ[ƒ‹—p‰æ‘œ
-	VECTOR	pos;				// ƒ|ƒWƒVƒ‡ƒ“
-	int		w;					// •
-	int		h;					// ‚‚³
+	int		graphHandle;		// èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç”¨ç”»åƒ
+	VECTOR	pos;				// ãƒã‚¸ã‚·ãƒ§ãƒ³
+	int		w;					// å¹…
+	int		h;					// é«˜ã•
 
 };
 
