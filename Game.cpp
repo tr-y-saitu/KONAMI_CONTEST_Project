@@ -138,8 +138,16 @@ void Game::InitializeGameStart()
 		gem[i]->Initialize(VGet(i , 0, -5),*gemManager);
 	}
 	
-	// 宝石のエントリー情報を設定
-	gemManager->SettingEntryData(gemManager->entryGemDataBase,gem.size());
+	// 宝石のエントリー情報を作成
+	gemManager->CreateEntryData(gemManager->entryGemDataBase,gem.size());
+	
+	// 宝石のエントリー情報を書き込み
+	for (int i = 0; i < gem.size(); i++)
+	{
+		gemManager->SettingEntryDataBase(*gem[i], i);
+	}
+
+	// エフェクシアを使用
 	//effekseer1->Initialize();
 
 	// ゲームが始まる前のGetNowCountを取得
@@ -147,7 +155,6 @@ void Game::InitializeGameStart()
 
 	gameFrameCount = 0;			// フレームカウントの初期化
 	isDrawGetUi = false;		// 宝石をゲットした時のUI演出をするかどうか
-	
 }
 
 
@@ -177,7 +184,14 @@ void Game::Initialize()
 		gem[i]->Initialize(VGet(i - 10, 10, -5),*gemManager);
 	}
 	// 宝石のエントリー情報を設定
-	gemManager->SettingEntryData(gemManager->entryGemDataBase, gem.size());
+	gemManager->CreateEntryData(gemManager->entryGemDataBase, gem.size());
+	
+	// 宝石のエントリー情報を書き込み
+	for (int i = 0; i < gem.size(); i++)
+	{
+		gemManager->SettingEntryDataBase(*gem[i], i);
+	}
+	
 	//effekseer1->Initialize();
 }
 
@@ -281,8 +295,8 @@ void Game::UpdateGame()
 		floor->Update();		// 床
 		for (int i = 0; i < gem.size(); i++)
 		{
-			gem[i]->Update(calculation);	// 宝石
-			treasureChest->Update(*gem[i]);	// 宝箱更新
+			gem[i]->Update(calculation,nowTimer);	// 宝石
+			treasureChest->Update(*gem[i]);			// 宝箱更新
 		}
 		//effekseer1->Update();
 		
@@ -401,7 +415,6 @@ void Game::SettingTimer()
 	timer = (GetNowHiPerformanceCount() - previousTime);
 	// 現在経過時間（１桁表示）
 	nowTimer = (timer % 1000000000) / 1000000;
-
 }
 
 

@@ -135,7 +135,8 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 	modelHandle = MV1DuplicateModel(gemManager.SettingGemModle(gemType));	
 
 	// ステータス情報
-	pos = initPos;							// 座標を引数で設定
+	pos = entryPosition;					// 宝石マネージャーで設定した初期座標
+	//pos = initPos;						// 座標を引数で設定
 	dir = VGet(0, 0, 0);					// 方向の設定
 	contactDir = SettingMoveType(gemType);	// 宝石のタイプのプレイヤーと当たった時の方向を設定
 	radius = 0.1;							// 球型のあたり判定の半径
@@ -153,11 +154,12 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 	isHitPlayer = false;		// プレイヤーと接触中か
 }
 
+
 /// <summary>
 /// 更新
 /// </summary>
 /// <param name="cal">計算クラス</param>
-void Gem::Update(Calculation& cal)
+void Gem::Update(Calculation& cal, float nowTimer)
 {
 	// 少しずつ回転１フレームずつ1度回転する
 	if (rotateCount <= 360)
@@ -170,8 +172,6 @@ void Gem::Update(Calculation& cal)
 	}
 	// 少しずつ回転する
 	MV1SetRotationXYZ(modelHandle, VGet(0.0f, rotateCount * DX_PI_F / 180.0f, 0.0f));
-
-	
 
 	///////////////////////////////////////////////////////////////
 	// 重力処理 ////////////////////////////////////////////

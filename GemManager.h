@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-
+class Gem;
 
 /// <summary>
 /// 宝石マネージャークラス
@@ -47,8 +47,16 @@ public:
 	/// </summary>
 	/// <param name="data">宝石のエントリー情報を格納する多次元配列</param>
 	/// <param name="size">多次元配列の添え字数</param>
-	void SettingEntryData(EntryGemDataBase data[], int size);
+	void CreateEntryData(EntryGemDataBase data[], int size);
+		
+	/// <summary>
+	/// 宝石のエントリー情報を設定
+	/// </summary>
+	/// <param name="gem">宝石クラス</param>
+	/// <param name="size">宝石の総数</param>
+	void SettingEntryDataBase(Gem& gem, int index);
 
+	// 変数
 	// 宝石のベースモデルハンドル
 	int modelHandleDiamond;		// ダイアモンド
 	int modelHandleRuby;		// ルビー

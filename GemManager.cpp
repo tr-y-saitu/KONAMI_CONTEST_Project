@@ -1,4 +1,5 @@
 ﻿#include "DxLib.h"
+#include "Gem.h"
 #include "GemManager.h"
 
 
@@ -86,22 +87,39 @@ int GemManager::SettingGemModle(int type)
 
 
 /// <summary>
-/// 宝石のエントリー情報を設定
+/// 宝石のエントリーデータの作成
 /// <summary>
 /// <param name="data">宝石のエントリー情報を格納する多次元配列</param>
 /// <param name="size">多次元配列の添え字数</param>
-void GemManager::SettingEntryData(EntryGemDataBase data[],int size)
+void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
 {
+	// 乱数の初期化
+	SRand(0);
 	// 宝石の登場情報を書き込む
 	for (int i = 0; i < size; i++)
 	{
+		int _randomPosX = GetRand(5) - 15.0f;
 		// 登場フレーム数を設定
-		data[i].entryTime = i * 0.5;
+		data[i].entryTime = i + 1.0f;
 		// 登場座標の設定
-		data[i].entryPosition = VGet(0, 10, 0);
+		data[i].entryPosition = VGet(_randomPosX,10,-5);
 	}
 }
 
+/// <summary>
+/// 宝石のエントリー情報を設定
+/// </summary>
+/// <param name="gem">宝石クラス</param>
+/// <param name="size">宝石の総数</param>
+void GemManager::SettingEntryDataBase(Gem& gem,int index)
+{
+	// 簡単に変数にする
+	float _gemEntryTime = entryGemDataBase[index].entryTime;
+	VECTOR _gemPos = entryGemDataBase[index].entryPosition;
+	// 実際に書き込み
+	gem.SetEntryTime(_gemEntryTime);// 登場時間の設定
+	gem.SetEntryPosition(_gemPos);	// 登場座標の設定
+}
 
 
 
