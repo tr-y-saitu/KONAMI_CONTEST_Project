@@ -43,8 +43,12 @@ void UI::Initialize()
 
 
 /// <summary>
-/// 描画
+/// UIの描画
 /// </summary>
+/// <param name="state">ゲームステート</param>
+/// <param name="player">プレイヤークラス</param>
+/// <param name="isDrawUIFlag">UIを描画する指示</param>
+/// <param name="chest">宝箱クラス</param>
 void UI::Draw(int state, Player& player, bool& isDrawUIFlag, TreasureChest& chest)
 {
 	int _uiColor = GetColor(200, 200, 200);
@@ -78,8 +82,11 @@ void UI::Draw(int state, Player& player, bool& isDrawUIFlag, TreasureChest& ches
 		// 描画指定時間を超えたらゼロに戻す
 		if (strGetDrawCount >= STRING_GET_DRAW_TIME)
 		{
+			// UIを描画する指示をオフにする
 			isDrawUIFlag = false;
+			// 描画指定時間をゼロにする
 			strGetDrawCount = 0;
+			// 宝石と宝箱は当たっていない
 			isHitGemToChest = false;
 		}
 
