@@ -136,7 +136,6 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 
 	// ステータス情報
 	pos = entryPosition;					// 宝石マネージャーで設定した初期座標
-	//pos = initPos;						// 座標を引数で設定
 	dir = VGet(0, 0, 0);					// 方向の設定
 	contactDir = SettingMoveType(gemType);	// 宝石のタイプのプレイヤーと当たった時の方向を設定
 	radius = 0.1;							// 球型のあたり判定の半径
@@ -165,6 +164,11 @@ void Gem::Update(Calculation& cal, float nowTimer)
 	if(entryTime <= nowTimer)
 	{
 		visibleFlag = true;
+	}
+	// 地面にある宝石は存在を消す
+	if (isHitGround)
+	{
+		visibleFlag = false;
 	}
 
 	// 存在する時に更新
@@ -287,8 +291,12 @@ void Gem::Draw()
 	// 3Dモデルの描画
 	MV1DrawModel(modelHandle);
 
-	// 球型の当たり判定の描画
-	DrawSphere3D(pos, radius, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
+	// 宝石当たり判定描画
+	if (visibleFlag)
+	{
+		// 球型の当たり判定の描画
+		DrawSphere3D(pos, radius, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
+	}
 
 	// プレイヤーと接触したら
 	if (isHitPlayer)

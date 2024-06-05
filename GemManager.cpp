@@ -16,7 +16,11 @@ GemManager::GemManager()
 // デストラクタ
 GemManager::~GemManager()
 {
-
+	// モデルの削除
+	/*MV1DeleteModel(modelHandleDiamond);
+	MV1DeleteModel(modelHandleRuby);
+	MV1DeleteModel(modelHandleSapphire);
+	MV1DeleteModel(modelHandleEmerald);*/
 }
 
 
@@ -101,9 +105,9 @@ void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
 		// X軸の初期位置をランダムで持たせる
 		int _randomPosX = GetRand(5) - 15.0f;
 		// 登場時間を設定
-		data[i].entryTime = i + 1.0f;
+		data[i].entryTime = i;
 		// 登場座標の設定
-		data[i].entryPosition = VGet(_randomPosX, 15 + i/10 , -5);
+		data[i].entryPosition = VGet(_randomPosX, 15 , -5);
 	}
 }
 

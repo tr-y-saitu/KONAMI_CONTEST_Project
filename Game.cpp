@@ -146,7 +146,7 @@ void Game::InitializeGameStart()
 	{
 		gemManager->SettingEntryDataBase(*gem[i], i);
 	}
-
+	
 	// エフェクシアを使用
 	//effekseer1->Initialize();
 
@@ -183,10 +183,10 @@ void Game::Initialize()
 	{
 		gem[i]->Initialize(VGet(i - 10, 10, -5),*gemManager);
 	}
-	// 宝石のエントリー情報を設定
+	// 宝石の個数分エントリー情報を設定
 	gemManager->CreateEntryData(gemManager->entryGemDataBase, gem.size());
 	
-	// 宝石のエントリー情報を書き込み
+	// 宝石の個数分エントリー情報を書き込み
 	for (int i = 0; i < gem.size(); i++)
 	{
 		gemManager->SettingEntryDataBase(*gem[i], i);
@@ -300,22 +300,6 @@ void Game::UpdateGame()
 		}
 		//effekseer1->Update();
 		
-		// 制限時間が経過したら
-		if (nowTimer >= 90)
-		{
-			// クリアした
-			isClearFlag = true;
-
-			// クリアしてからのカウント
-			isClearCount++;
-
-			if (isClearCount >= 100)
-			{
-				gameState = STATE_CLEAR;
-				ChangeGameState();
-			}
-		}
-
 		break;
 
 	// クリア /////////////////////////////////////////

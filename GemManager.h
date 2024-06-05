@@ -65,7 +65,7 @@ public:
 
 	
 	// 実際のデータ
-	EntryGemDataBase entryGemDataBase[100];
+	EntryGemDataBase entryGemDataBase[100];	// 宝石のエントリー情報を格納するための構造体
 
 private:
 
