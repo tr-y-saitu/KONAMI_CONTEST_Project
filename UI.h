@@ -13,8 +13,20 @@ public:
 	UI();		// コンストラクタ
 	~UI();		// デストラクタ
 
-	void Initialize();		// 初期化
-	void Draw(int state,Player& player,bool clearFlag, TreasureChest& chest);	// 描画
+	/// <summary>
+	/// UIの初期化
+	/// </summary>
+	void Initialize();
+
+	/// <summary>
+	/// UIの更新
+	/// </summary>
+	/// <param name="state">ゲームステート</param>
+	/// <param name="player">プレイヤークラス</param>
+	/// <param name="clearFlag">クリアしているかどうか</param>
+	/// <param name="chest">宝箱クラス</param>
+	/// <param name="nowTimer">ゲームの現在経過時間</param>
+	void Draw(int state,Player& player,bool clearFlag, TreasureChest& chest,float nowTimer);	// 描画
 
 	// Getter
 	const bool GetIsHitGemToChest()const { return isHitGemToChest; }
@@ -24,6 +36,7 @@ public:
 
 private:
 	// 定数
+	const int UI_COLOR = GetColor(200, 200, 200);	// UIの文字の色
 
 	// 変数
 	int		menuGraph;		// メニュー画像

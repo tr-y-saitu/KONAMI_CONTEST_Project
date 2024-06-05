@@ -1,6 +1,6 @@
 ﻿#pragma once
-
 #include "DxLib.h"
+#include "GemManager.h"
 
 class Calculation;
 class GemManager;
@@ -19,7 +19,7 @@ public:
 	VECTOR SettingMoveType(int gemType);	// タイプごとの移動アルゴリズムの設定
 	float SettingFallSpeedType(int gemType);// タイプごとの落下速度指定
 	void Initialize(VECTOR initPos,GemManager gemManager);		// 初期化
-	void Update(Calculation& cal);		// 更新
+	void Update(Calculation& cal,float nowTimer);		// 更新
 	void Draw();						// 描画
 
 	// モデルハンドルの取得.
@@ -34,16 +34,20 @@ public:
 	const bool GetIsHitGround() const { return isHitGround; }
 	const bool GetIsHitChest() const { return isHitTreasureChest; }
 	const float GetRadius() const { return radius; }
-	
+	const float GetEntyrTime()const { return entryTime; }
+
 	// setter
 	void SetPos(const VECTOR set) { pos = set; }
 	void SetIsHitPlayer(const bool set) { isHitPlayer = set; }
 	void SetIsHitGround(const bool set) { isHitGround = set; }
 	void SetIsHitChest(const bool set) { isHitTreasureChest = set; }
+	void SetEntryTime(const float set) { entryTime = set; }
+	void SetEntryPosition(const VECTOR set) { entryPosition = set; }
 
 private:
 	// 定数
 	const float GRAVITY_POWER = 0.002f;		// 宝石にかかる重力の値
+	const float GRAVITY_POWER_LIMIT = 0.3f;// 宝石にかかる重力の限界値
 	const float MOVE_SPEED = 0.13f;			// 移動速度
 	const float JUMP_POWER = 0.1f;			// プレイヤーに当たった時のジャンプ量
 
@@ -72,5 +76,9 @@ private:
 	bool	isHitGround;	// 床と接触したか
 	bool	previousIsHitPlayer;	// 前のフレームでプレイヤーと接触していたか
 	bool	isHitTreasureChest;	// 宝箱と接触したか
+
+	// エントリー情報
+	float	entryTime;			// 登場する時間
+	VECTOR	entryPosition;		// 登場する位置
 };
 

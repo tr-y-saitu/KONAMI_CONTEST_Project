@@ -11,6 +11,7 @@
 UI::UI()
 	:	menuGraph			(-1)
 	,	strGetModleHandel	(-1)
+	,	isHitGemToChest		(false)
 {
 	strGetModleHandel = MV1LoadModel("data/model/UI/GET!.mv1");
 	MV1SetScale(strGetModleHandel, VGet(0.05f, 0.05f, 0.0f));
@@ -40,11 +41,16 @@ void UI::Initialize()
 
 
 /// <summary>
-/// 描画
+/// UIの更新
 /// </summary>
-void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest)
+/// <param name="state">ゲームステート</param>
+/// <param name="player">プレイヤークラス</param>
+/// <param name="clearFlag">クリアしているかどうか</param>
+/// <param name="chest">宝箱クラス</param>
+/// <param name="nowTimer">ゲームの現在経過時間</param>
+void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest, float nowTimer)
 {
-	int _uiColor = GetColor(200, 200, 200);
+	char _timeCount[256];					// ゲームの経過時間
 	// ステートごとに描画を変更
 	switch (state)
 	{
@@ -60,7 +66,10 @@ void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest)
 
 		// ゲーム中
 	case STATE_GAME:
-		
+		// 現在の経過時間を描画
+		sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
+		DrawString(250, 400, _timeCount, UI_COLOR, true);
+
 		// 「GET!」モデルを描画
 		MV1SetPosition(strGetModleHandel, VGet(0,0,0));
 		if (isHitGemToChest)

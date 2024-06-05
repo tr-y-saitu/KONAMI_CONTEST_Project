@@ -42,7 +42,7 @@ private:
 	const float GRAVITY = 0.5f;			// キャラに掛かる重力加速度
 	const float JUMP_POWER = 25.0f;		// キャラのジャンプ力
 	const float SMALL_JUMP_POWER = 17.0f;	// 小ジャンプ力
-	const float SPEED = 0.1f;			// キャラの移動スピード
+	const float SPEED = 0.15f;			// キャラの移動スピード
 	const int	MOVE_LIMIT_Y = 820;		// キャラのY座標の移動制限
 	const int	MOVE_LIMIT_X = 1600;
 
