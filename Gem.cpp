@@ -236,8 +236,6 @@ void Gem::Update(Calculation& cal, float nowTimer)
 
 		/////////////////////////////////////////////////////////////////
 
-		// 3Dモデルの座標設定
-		MV1SetPosition(modelHandle, pos);
 	}
 
 	// バウンド処理 ////////////////////////////////////////////
@@ -259,6 +257,8 @@ void Gem::Update(Calculation& cal, float nowTimer)
 		scaleAdjust = 0;
 	}
 	
+	// 3Dモデルの座標設定
+	MV1SetPosition(modelHandle, pos);
 }
 
 /// <summary>
@@ -266,6 +266,7 @@ void Gem::Update(Calculation& cal, float nowTimer)
 /// </summary>
 void Gem::Draw()
 {
+	//MV1SetPosition(modelHandle, pos);
 	// 3Dモデルの描画
 	MV1DrawModel(modelHandle);
 
