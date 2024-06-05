@@ -98,11 +98,12 @@ void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
 	// 宝石の登場情報を書き込む
 	for (int i = 0; i < size; i++)
 	{
+		// X軸の初期位置をランダムで持たせる
 		int _randomPosX = GetRand(5) - 15.0f;
-		// 登場フレーム数を設定
+		// 登場時間を設定
 		data[i].entryTime = i + 1.0f;
 		// 登場座標の設定
-		data[i].entryPosition = VGet(_randomPosX,10 + i,-5);
+		data[i].entryPosition = VGet(_randomPosX, 15 + i/10 , -5);
 	}
 }
 

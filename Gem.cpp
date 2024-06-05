@@ -148,7 +148,7 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 
 	// フラグ
 	isHitPlayer = false;		// プレイヤーと接触したか
-	visibleFlag = true;			// 存在しているか
+	visibleFlag = false;			// 存在しているか
 	isHitGround = false;		// 地上と接触したか
 	previousIsHitPlayer = false;// 前のフレームでプレイヤーと接触したか
 	isHitPlayer = false;		// プレイヤーと接触中か
@@ -162,7 +162,7 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 void Gem::Update(Calculation& cal, float nowTimer)
 {
 	// 登場時間になったら存在
-	if(entryTime >= nowTimer)
+	if(entryTime <= nowTimer)
 	{
 		visibleFlag = true;
 	}
@@ -187,10 +187,16 @@ void Gem::Update(Calculation& cal, float nowTimer)
 		// 落下速度に重力を加算
 		fallSpeed -= GRAVITY_POWER;
 
+		// 重力加速度の限界値を越えない
+		if (fallSpeed <= -GRAVITY_POWER_LIMIT)
+		{
+			fallSpeed = -GRAVITY_POWER_LIMIT;
+		}
+
 		// 床より下には落ちない
 		if (pos.y <= 0.1 && isHitGround == false)
 		{
-			pos.y = 0.1;				// 座標を地面に固定
+			pos.y = 0.1;			// 座標を地面に固定
 			isHitGround = true;		// 地面についている状態
 			visibleFlag = false;	// 存在を消す
 			entryTime = 0;			// 登場時間を強制的にゼロにする
@@ -236,11 +242,7 @@ void Gem::Update(Calculation& cal, float nowTimer)
 			dir = VNorm(dir);
 		}*/
 
-		// 重力加速度の限界値を越えない
-		if (fallSpeed >= GRAVITY_POWER_LIMIT)
-		{
-			fallSpeed = GRAVITY_POWER_LIMIT;
-		}
+		
 
 		// 落下速度を移動量に加える
 		auto fallVelocity = VGet(0, fallSpeed, 0);
