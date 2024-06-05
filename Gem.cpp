@@ -135,7 +135,7 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 	modelHandle = MV1DuplicateModel(gemManager.SettingGemModle(gemType));	
 
 	// ステータス情報
-	pos = entryPosition;					// 宝石マネージャーで設定した初期座標
+	pos = initPos;							// 座標を引数で設定
 	dir = VGet(0, 0, 0);					// 方向の設定
 	contactDir = SettingMoveType(gemType);	// 宝石のタイプのプレイヤーと当たった時の方向を設定
 	radius = 0.1;							// 球型のあたり判定の半径
@@ -147,99 +147,54 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 
 	// フラグ
 	isHitPlayer = false;		// プレイヤーと接触したか
-	visibleFlag = false;			// 存在しているか
+	visibleFlag = true;			// 存在しているか
 	isHitGround = false;		// 地上と接触したか
 	previousIsHitPlayer = false;// 前のフレームでプレイヤーと接触したか
 	isHitPlayer = false;		// プレイヤーと接触中か
 }
 
-
 /// <summary>
 /// 更新
 /// </summary>
 /// <param name="cal">計算クラス</param>
-void Gem::Update(Calculation& cal, float nowTimer)
+void Gem::Update(Calculation& cal)
 {
-	// 登場時間になったら存在
-	if(entryTime <= nowTimer)
+	// 少しずつ回転１フレームずつ1度回転する
+	if (rotateCount <= 360)
 	{
-		visibleFlag = true;
+		rotateCount++;
 	}
-	// 地面にある宝石は存在を消す
-	if (isHitGround)
+	if (rotateCount >= 360)
 	{
-		visibleFlag = false;
+		rotateCount = 0;
 	}
+	// 少しずつ回転する
+	MV1SetRotationXYZ(modelHandle, VGet(0.0f, rotateCount * DX_PI_F / 180.0f, 0.0f));
 
-	// 存在する時に更新
-	if (visibleFlag)
+	
+
+	///////////////////////////////////////////////////////////////
+	// 重力処理 ////////////////////////////////////////////
+	// 落下速度に重力を加算
+	fallSpeed -= GRAVITY_POWER;
+	
+	//// 地面についていない時に作動
+	//if (isHitGround == false)
+	//{
+	//	// 重力を落下速度に加算する
+	//	fallSpeed = -JUMP_POWER;
+	//}
+
+	// 床より下には落ちない
+	if (pos.y <= 0.1 && isHitGround == false)
 	{
-		// 少しずつ回転１フレームずつ1度回転する
-		if (rotateCount <= 360)
-		{
-			rotateCount++;
-		}
-		if (rotateCount >= 360)
-		{
-			rotateCount = 0;
-		}
-		// 少しずつ回転する
-		MV1SetRotationXYZ(modelHandle, VGet(0.0f, rotateCount * DX_PI_F / 180.0f, 0.0f));
-
-		///////////////////////////////////////////////////////////////
-		// 重力処理 ////////////////////////////////////////////
-		// 落下速度に重力を加算
-		fallSpeed -= GRAVITY_POWER;
-
-		// 重力加速度の限界値を越えない
-		if (fallSpeed <= -GRAVITY_POWER_LIMIT)
-		{
-			fallSpeed = -GRAVITY_POWER_LIMIT;
-		}
-
-		// 床より下には落ちない
-		if (pos.y <= 0.1 && isHitGround == false)
-		{
-			pos.y = 0.1;			// 座標を地面に固定
-			isHitGround = true;		// 地面についている状態
-			visibleFlag = false;	// 存在を消す
-			entryTime = 0;			// 登場時間を強制的にゼロにする
-		}
-
-		// プレイヤーと接触したら
-		if (isHitPlayer)
-		{
-			fallSpeed = +JUMP_POWER;
-			dir = VAdd(dir, contactDir);	// 宝石ごとに違う方向
-			isHitGround = false;
-			isHitPlayer = false;
-		}
-
-		// 移動処理 /////////////////////////////////////////////////////
-
-		// 正規化
-		if (VSquareSize(dir) > 0)
-		{
-			dir = VNorm(dir);
-		}
-		// 方向設定処理 ///////////////////////////////////////////////////
-
-		// 移動量を出す
-		auto velocity = VScale(dir, MOVE_SPEED);
-
-		// 落下速度を移動量に加える
-		auto fallVelocity = VGet(0, fallSpeed, 0);
-		velocity = VAdd(velocity, fallVelocity);
-
-		// ポジションの更新
-		pos = VAdd(pos, velocity);
-
-		/////////////////////////////////////////////////////////////////
-
-		// 3Dモデルの座標設定
-		MV1SetPosition(modelHandle, pos);
+		pos.y = 0.1;				// 座標を地面に固定
+		isHitGround = true;		// 地面についている状態
+		visibleFlag = false;	// 存在を消す
+		
 	}
 
+	///////////////////////////////////////////////////////////////
 	// バウンド処理 ////////////////////////////////////////////
 	// 床についたら跳ねる
 	if (isHitGround == true)
@@ -259,6 +214,59 @@ void Gem::Update(Calculation& cal, float nowTimer)
 		scaleAdjust = 0;
 	}
 	
+	// バウンドさせるならコメントはずせ
+	//// 線形補間でバウンドする値を決める
+	//boundPower= cal.Lerp_F(boundPower, 0.0f, 0.01);
+	//if (pos.y >= boundPower)	// 地面よりも上なら
+	//{
+	//	// バウンドが細かすぎたらなくす
+	//	if (boundPower <= 0.3)
+	//	{
+	//		boundPower = 0;
+	//	}
+	//	isHitGround = false;
+	//}
+	
+	// プレイヤーと接触したら
+	if (isHitPlayer)
+	{
+		fallSpeed = +JUMP_POWER;
+		dir = VAdd(dir, contactDir);	// 宝石ごとに違う方向
+		isHitGround = false;
+		isHitPlayer = false;
+	}
+
+	// 移動処理 /////////////////////////////////////////////////////
+	
+	// 正規化
+	if (VSquareSize(dir) > 0)
+	{
+		dir = VNorm(dir);
+	}
+	// 方向設定処理 ///////////////////////////////////////////////////
+	
+	// 移動量を出す
+	auto velocity = VScale(dir, MOVE_SPEED);
+
+	// 方向の正規化
+	/*if (VSize(velocity) != 0)
+	{
+		dir = VNorm(dir);
+	}*/
+
+	
+	// 落下速度を移動量に加える
+	auto fallVelocity = VGet(0, fallSpeed, 0);
+	velocity = VAdd(velocity, fallVelocity);
+
+	// ポジションの更新
+	pos = VAdd(pos, velocity);
+
+
+	/////////////////////////////////////////////////////////////////
+	
+	// 3Dモデルの座標設定
+	MV1SetPosition(modelHandle, pos);
 }
 
 /// <summary>
@@ -269,12 +277,8 @@ void Gem::Draw()
 	// 3Dモデルの描画
 	MV1DrawModel(modelHandle);
 
-	// 宝石当たり判定描画
-	if (visibleFlag)
-	{
-		// 球型の当たり判定の描画
-		DrawSphere3D(pos, radius, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
-	}
+	// 球型の当たり判定の描画
+	DrawSphere3D(pos, radius, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
 
 	// プレイヤーと接触したら
 	if (isHitPlayer)

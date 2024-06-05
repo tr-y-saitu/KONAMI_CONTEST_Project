@@ -137,17 +137,6 @@ void Game::InitializeGameStart()
 	{
 		gem[i]->Initialize(VGet(i , 0, -5),*gemManager);
 	}
-	
-	// 宝石のエントリー情報を作成
-	gemManager->CreateEntryData(gemManager->entryGemDataBase,gem.size());
-	
-	// 宝石のエントリー情報を書き込み
-	for (int i = 0; i < gem.size(); i++)
-	{
-		gemManager->SettingEntryDataBase(*gem[i], i);
-	}
-	
-	// エフェクシアを使用
 	//effekseer1->Initialize();
 
 	// ゲームが始まる前のGetNowCountを取得
@@ -155,6 +144,7 @@ void Game::InitializeGameStart()
 
 	gameFrameCount = 0;			// フレームカウントの初期化
 	isDrawGetUi = false;		// 宝石をゲットした時のUI演出をするかどうか
+	
 }
 
 
@@ -183,15 +173,6 @@ void Game::Initialize()
 	{
 		gem[i]->Initialize(VGet(i - 10, 10, -5),*gemManager);
 	}
-	// 宝石の個数分エントリー情報を設定
-	gemManager->CreateEntryData(gemManager->entryGemDataBase, gem.size());
-	
-	// 宝石の個数分エントリー情報を書き込み
-	for (int i = 0; i < gem.size(); i++)
-	{
-		gemManager->SettingEntryDataBase(*gem[i], i);
-	}
-	
 	//effekseer1->Initialize();
 }
 
@@ -262,8 +243,6 @@ void Game::UpdateGame()
 
 		// ゲーム中 //////////////////////////////////////
 	case STATE_GAME:
-		// ゲームが開始してからの時間を計測
-		SettingTimer();
 
 		// ゲームフレームを数える
 		CountGameFraem();
@@ -274,12 +253,15 @@ void Game::UpdateGame()
 		for (int i = 0; i < gem.size(); i++)
 		{
 			collision->IsHitPlayerToGem(*player, *gem[i]);
+			//collision->IsHitGemToTreasureChest(*gem[i],*treasureChest);
 			if (collision->IsHitGemToTreasureChestBool(*gem[i], *treasureChest))
 			{
 				ui->SetIsHitGemToChest(true);
 			}
 		}
-
+		// テスト用
+		//collision->IsHitGemToTreasureChest(*gem[1], *treasureChest);
+		
 		// キャラクター更新
 		player->Update(*enemy);	// プレイヤー
 
@@ -292,11 +274,27 @@ void Game::UpdateGame()
 		floor->Update();		// 床
 		for (int i = 0; i < gem.size(); i++)
 		{
-			gem[i]->Update(calculation,nowTimer);	// 宝石
-			treasureChest->Update(*gem[i]);			// 宝箱更新
+			gem[i]->Update(calculation);	// 宝石
+			treasureChest->Update(*gem[i]);	// 宝箱更新
 		}
 		//effekseer1->Update();
-		
+
+		// 制限時間が経過したら
+		if (nowTimer >= 90)
+		{
+			// クリアした
+			isClearFlag = true;
+
+			// クリアしてからのカウント
+			isClearCount++;
+
+			if (isClearCount >= 100)
+			{
+				gameState = STATE_CLEAR;
+				ChangeGameState();
+			}
+		}
+
 		break;
 
 	// クリア /////////////////////////////////////////
@@ -369,7 +367,7 @@ void Game::DrawTimer()
 	int _color = GetColor(200, 200, 200);
 
 	// 時間を保持する
-	timer = (GetNowHiPerformanceCount() - previousTime);		// 現在時間 - 最初の計測時間
+	timer = (GetNowHiPerformanceCount() - previousTime);
 	int _nowTimer = (timer % 1000000000)/1000000;				// 一桁の秒数
 	nowTimer = (timer % 1000000000) / 1000000;
 	char timerStr[256];
@@ -381,21 +379,9 @@ void Game::DrawTimer()
 	if (_nowTimer % 20 == 0 && _nowTimer != 0)
 	{
 		char _timeCount[256];
-		sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
+		sprintf_s(_timeCount, "～～～%d秒経過～～～", _nowTimer);
 		DrawString(250, 400, _timeCount, GetColor(255,100,100), true);
 	}
-}
-
-
-/// <summary>
-/// 現在経過時間の更新
-/// </summary>
-void Game::SettingTimer()
-{
-	// 現在時間 - 最初の計測時間
-	timer = (GetNowHiPerformanceCount() - previousTime);
-	// 現在経過時間（１桁表示）
-	nowTimer = (timer % 1000000000) / 1000000;
 }
 
 
@@ -410,7 +396,9 @@ void Game::DrawGame()
 	}
 	if (gameState == STATE_GAME)
 	{
+		//skyDome->Draw();
 		player->Draw(gameFrameCount);	// プレイヤー
+		//enemy->Draw();				// エネミー
 		room->Draw();					// 部屋
 		floor->Draw();					// 床
 		for (int i = 0; i < gem.size(); i++)
@@ -418,10 +406,11 @@ void Game::DrawGame()
 			gem[i]->Draw();
 		}
 		treasureChest->Draw();			// 宝箱
+		//DrawTimer();					// 制限時間
 	}
 
 	// UI描画
-	ui->Draw(GetGameState(),*player,isClearFlag,*treasureChest,nowTimer);
+	ui->Draw(GetGameState(),*player,isClearFlag,*treasureChest);
 
 	// エフェクトの再生
 	//effekseer1->Draw();
