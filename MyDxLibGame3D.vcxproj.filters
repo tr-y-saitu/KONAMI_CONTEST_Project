@@ -8,9 +8,6 @@
     <Filter Include="FIRE\GameObject">
       <UniqueIdentifier>{461069e6-e2d4-4229-b048-4c866ad5767e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FIRE\GameObject\Sample">
-      <UniqueIdentifier>{ce0bf232-32ef-4dfb-a2cb-d9d66b89be5c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="FIRE\Camera">
       <UniqueIdentifier>{d264b51a-dc46-49e0-b0ba-4f7846b69003}</UniqueIdentifier>
     </Filter>
@@ -61,9 +58,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BG.cpp">
-      <Filter>FIRE\System\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>FIRE\Camera</Filter>
     </ClCompile>
@@ -82,17 +76,8 @@
     <ClCompile Include="Game.cpp">
       <Filter>FIRE\System\GameManager</Filter>
     </ClCompile>
-    <ClCompile Include="ObstructFloat.cpp">
-      <Filter>FIRE\GameObject\Sample</Filter>
-    </ClCompile>
-    <ClCompile Include="ObstructStatic.cpp">
-      <Filter>FIRE\GameObject\Sample</Filter>
-    </ClCompile>
     <ClCompile Include="FPSSetting.cpp">
       <Filter>FIRE\System\FPS</Filter>
-    </ClCompile>
-    <ClCompile Include="BackGroundOb ject.cpp">
-      <Filter>FIRE\GameObject\Object</Filter>
     </ClCompile>
     <ClCompile Include="Confetti.cpp">
       <Filter>FIRE\GameObject\Object</Filter>
@@ -101,9 +86,6 @@
       <Filter>FIRE\GameObject\SkyDome</Filter>
     </ClCompile>
     <ClCompile Include="Room.cpp">
-      <Filter>FIRE\GameObject\Room</Filter>
-    </ClCompile>
-    <ClCompile Include="Floor.cpp">
       <Filter>FIRE\GameObject\Room</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
@@ -126,9 +108,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BG.h">
-      <Filter>FIRE\System\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>FIRE\Camera</Filter>
     </ClInclude>
@@ -147,17 +126,8 @@
     <ClInclude Include="ゲーム構造.h">
       <Filter>FIRE\Instructions</Filter>
     </ClInclude>
-    <ClInclude Include="ObstructFloat.h">
-      <Filter>FIRE\GameObject\Sample</Filter>
-    </ClInclude>
-    <ClInclude Include="ObstructStatic.h">
-      <Filter>FIRE\GameObject\Sample</Filter>
-    </ClInclude>
     <ClInclude Include="FPSSetting.h">
       <Filter>FIRE\System\FPS</Filter>
-    </ClInclude>
-    <ClInclude Include="BackGroundObject.h">
-      <Filter>FIRE\GameObject\Object</Filter>
     </ClInclude>
     <ClInclude Include="Confetti.h">
       <Filter>FIRE\GameObject\Object</Filter>
@@ -166,9 +136,6 @@
       <Filter>FIRE\GameObject\SkyDome</Filter>
     </ClInclude>
     <ClInclude Include="Room.h">
-      <Filter>FIRE\GameObject\Room</Filter>
-    </ClInclude>
-    <ClInclude Include="Floor.h">
       <Filter>FIRE\GameObject\Room</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">

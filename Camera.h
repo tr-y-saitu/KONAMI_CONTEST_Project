@@ -26,7 +26,7 @@ public:
 	Camera();							// コンストラクタ.
 	~Camera();							// デストラクタ.-
 
-	void Update(Player& player,Enemy& enemy,BGObj& bgobj);	                    // 更新.
+	void Update(Player& player);		// 更新
 
 private:
 	VECTOR	pos;			// ポジション.
