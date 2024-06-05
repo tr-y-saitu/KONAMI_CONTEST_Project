@@ -274,14 +274,11 @@ void Game::UpdateGame()
 		for (int i = 0; i < gem.size(); i++)
 		{
 			collision->IsHitPlayerToGem(*player, *gem[i]);
-			//collision->IsHitGemToTreasureChest(*gem[i],*treasureChest);
 			if (collision->IsHitGemToTreasureChestBool(*gem[i], *treasureChest))
 			{
 				ui->SetIsHitGemToChest(true);
 			}
 		}
-		// テスト用
-		//collision->IsHitGemToTreasureChest(*gem[1], *treasureChest);
 
 		// キャラクター更新
 		player->Update(*enemy);	// プレイヤー
@@ -413,9 +410,7 @@ void Game::DrawGame()
 	}
 	if (gameState == STATE_GAME)
 	{
-		//skyDome->Draw();
 		player->Draw(gameFrameCount);	// プレイヤー
-		//enemy->Draw();				// エネミー
 		room->Draw();					// 部屋
 		floor->Draw();					// 床
 		for (int i = 0; i < gem.size(); i++)
@@ -423,7 +418,6 @@ void Game::DrawGame()
 			gem[i]->Draw();
 		}
 		treasureChest->Draw();			// 宝箱
-		//DrawTimer();					// 制限時間
 	}
 
 	// UI描画

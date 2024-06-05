@@ -36,6 +36,7 @@ public:
 
 private:
 	// 定数
+	const int UI_COLOR = GetColor(200, 200, 200);	// UIの文字の色
 
 	// 変数
 	int		menuGraph;		// メニュー画像

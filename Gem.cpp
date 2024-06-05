@@ -206,19 +206,6 @@ void Gem::Update(Calculation& cal, float nowTimer)
 			entryTime = 0;			// 登場時間を強制的にゼロにする
 		}
 
-		// バウンドさせるならコメントはずせ
-		//// 線形補間でバウンドする値を決める
-		//boundPower= cal.Lerp_F(boundPower, 0.0f, 0.01);
-		//if (pos.y >= boundPower)	// 地面よりも上なら
-		//{
-		//	// バウンドが細かすぎたらなくす
-		//	if (boundPower <= 0.3)
-		//	{
-		//		boundPower = 0;
-		//	}
-		//	isHitGround = false;
-		//}
-
 		// プレイヤーと接触したら
 		if (isHitPlayer)
 		{
@@ -240,21 +227,12 @@ void Gem::Update(Calculation& cal, float nowTimer)
 		// 移動量を出す
 		auto velocity = VScale(dir, MOVE_SPEED);
 
-		// 方向の正規化
-		/*if (VSize(velocity) != 0)
-		{
-			dir = VNorm(dir);
-		}*/
-
-		
-
 		// 落下速度を移動量に加える
 		auto fallVelocity = VGet(0, fallSpeed, 0);
 		velocity = VAdd(velocity, fallVelocity);
 
 		// ポジションの更新
 		pos = VAdd(pos, velocity);
-
 
 		/////////////////////////////////////////////////////////////////
 

@@ -49,8 +49,6 @@ void Collision::HitPlayerToEnemy(Player& player, Enemy& enemy)
 		// 絶対値計算
 		double distance = sqrt((_difference.x * _difference.x) + (_difference.y * _difference.y) + (_difference.z * _difference.z));
 
-		// 距離を算出
-		//double _d = sqrt((_playerPos.x * _enemyPos.x) + (_playerPos.y * _enemyPos.y) + (_playerPos.z * _enemyPos.z));
 		// 当たる距離
 		double _rSum = _rPlayer + _rEnemy;
 
@@ -96,8 +94,6 @@ void Collision::IsHitPlayerToGem(Player& player, Gem& gem)
 		// 絶対値計算
 		double distance = sqrt((_difference.x * _difference.x) + (_difference.y * _difference.y) + (_difference.z * _difference.z));
 
-		// 距離を算出
-		//double _d = sqrt((_playerPos.x * _gemPos.x) + (_playerPos.y * _gemPos.y) + (_playerPos.z * _gemPos.z));
 		// 当たる距離
 		double _rSum = _rPlayer + _rGem;
 

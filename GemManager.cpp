@@ -16,11 +16,7 @@ GemManager::GemManager()
 // デストラクタ
 GemManager::~GemManager()
 {
-	// モデルの削除
-	/*MV1DeleteModel(modelHandleDiamond);
-	MV1DeleteModel(modelHandleRuby);
-	MV1DeleteModel(modelHandleSapphire);
-	MV1DeleteModel(modelHandleEmerald);*/
+	// 処理なし
 }
 
 
@@ -97,8 +93,6 @@ int GemManager::SettingGemModle(int type)
 /// <param name="size">多次元配列の添え字数</param>
 void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
 {
-	// 乱数の初期化
-	SRand(0);
 	// 宝石の登場情報を書き込む
 	for (int i = 0; i < size; i++)
 	{
