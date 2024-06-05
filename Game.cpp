@@ -7,16 +7,13 @@
 #include "Calculation.h"
 #include "Room.h"
 #include "GemManager.h"
-#include "Floor.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Camera.h"
 #include "Collision.h"
-#include "BackGroundObject.h"
 #include "vector"
 #include "UI.h"
 #include "SkyDome.h"
-#include "BG.h"
 #include "Gem.h"
 #include "Confetti.h"
 #include "TreasureChest.h"
@@ -74,7 +71,6 @@ void Game::Create()
 	ui = new UI();
 	skyDome = new SkyDome();
 	room = new Room();
-	floor = new Floor();
 	treasureChest = new TreasureChest();
 	for (int i = 0; i < GEM_TOTAL_NUM; i++)
 	{
@@ -97,7 +93,6 @@ void Game::DeleteGame()
 	delete(ui);
 	delete(skyDome);
 	delete(room);
-	delete(floor);
 	delete(treasureChest);
 	delete(gemManager);
 	for (int i = 0; i < GEM_TOTAL_NUM; i++)
@@ -131,7 +126,6 @@ void Game::InitializeGameStart()
 	ui->Initialize();
 	skyDome->Initialize();
 	room->Initialize();
-	floor->Initialize(VGet(0, 0, 0));
 	treasureChest->Initialize();
 	for (int i = 0; i < gem.size(); i++)
 	{
@@ -177,7 +171,6 @@ void Game::Initialize()
 	ui->Initialize();
 	skyDome->Initialize();
 	room->Initialize();
-	floor->Initialize(VGet(30, 0, 0));
 	treasureChest->Initialize();
 	for (int i = 0; i < gem.size(); i++)
 	{
@@ -284,12 +277,11 @@ void Game::UpdateGame()
 		player->Update(*enemy);	// プレイヤー
 
 		// カメラ更新
-		camera->Update(*player, *enemy, *bgobj2[0]);
+		camera->Update(*player);
 		
 		// オブジェクト更新
 		skyDome->Update();		// 背景
 		room->Update();			// 部屋
-		floor->Update();		// 床
 		for (int i = 0; i < gem.size(); i++)
 		{
 			gem[i]->Update(calculation,nowTimer);	// 宝石
@@ -412,7 +404,6 @@ void Game::DrawGame()
 	{
 		player->Draw(gameFrameCount);	// プレイヤー
 		room->Draw();					// 部屋
-		floor->Draw();					// 床
 		for (int i = 0; i < gem.size(); i++)
 		{
 			gem[i]->Draw();

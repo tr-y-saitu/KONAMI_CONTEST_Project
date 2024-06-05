@@ -4,7 +4,6 @@
 //-----------------------------------------------------------------------------
 //#include "EffekseerForDXLib.h"
 #include "Player.h"
-#include "BackGroundObject.h"
 #include "Camera.h"
 #include "Enemy.h"
 #include "Map.h"
@@ -32,7 +31,7 @@ Camera::~Camera()
 //-----------------------------------------------------------------------------
 // @brief  更新.
 //-----------------------------------------------------------------------------
-void Camera::Update(Player& player,Enemy& enemy, BGObj& bgobj)
+void Camera::Update(Player& player)
 {
 	// カメラを設定
 	SetCameraPositionAndTarget_UpVecY(pos, VGet(-7, 5, 20));

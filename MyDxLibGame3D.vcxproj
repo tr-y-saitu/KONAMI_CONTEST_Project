@@ -160,21 +160,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BackGroundOb ject.cpp" />
-    <ClCompile Include="BG.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Confetti.cpp" />
     <ClCompile Include="Effekseer.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Floor.cpp" />
     <ClCompile Include="FPSSetting.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gem.cpp" />
     <ClCompile Include="GemManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ObstructFloat.cpp" />
-    <ClCompile Include="ObstructStatic.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="SkyDome.cpp" />
@@ -183,21 +178,16 @@
     <ClCompile Include="Calculation.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BackGroundObject.h" />
-    <ClInclude Include="BG.h" />
     <ClInclude Include="Calculation.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Confetti.h" />
     <ClInclude Include="Effekseer.h" />
     <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Floor.h" />
     <ClInclude Include="FPSSetting.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gem.h" />
     <ClInclude Include="GemManager.h" />
-    <ClInclude Include="ObstructFloat.h" />
-    <ClInclude Include="ObstructStatic.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="SkyDome.h" />
