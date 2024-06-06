@@ -33,18 +33,62 @@ class TreasureChest;
 class Game
 {
 public:
-	Game();
-	virtual ~Game();
-	void CountGameFraem() ;	// ゲームフレームを数える
-	void Create();			// 生成
-	void Initialize();		// 初期化処理
-	void InitializeGameStart();	// ゲーム最初の初期化
-	void DeleteGame();		// 生成したオブジェクトの削除
-	void UpdateGame();		// ゲームアップデート
-	void DrawGame();		// ゲーム描画
-	void ChangeGameState();	// ゲームステートの切り替え
-	void ProcessKey();		// ゲーム進行にかかわるキー入力処理
-	void DrawTimer();		// 制限時間の描画
+	Game();                 // コンストラクタ
+	virtual ~Game();        // デストラクタ
+
+	/// <summary>
+	/// 現在のゲームフレームを数える
+	/// </summary>
+	void CountGameFraem() ;
+
+	/// <summary>
+	/// ゲームで使用する全オブジェクトをnewインスタンス
+	/// </summary>
+	void Create();
+
+	/// <summary>
+	/// ゲームオブジェクトすべての初期化処理
+	/// </summary>
+	void Initialize();
+
+	/// <summary>
+	/// ゲーム開始前最初の全オブジェクト初期化処理
+	/// </summary>
+	void InitializeGameStart();
+
+	/// <summary>
+	/// newインスタンスしたオブジェクトの削除
+	/// </summary>
+    void DeleteGame();
+
+	/// <summary>
+	/// ゲーム更新
+	/// </summary>
+	void UpdateGame();
+
+	/// <summary>
+	/// ゲーム描画
+	/// </summary>
+	void DrawGame();
+
+	/// <summary>
+	/// ゲームステートの切り替え
+	/// </summary>
+	void ChangeGameState();
+
+	/// <summary>
+	/// ゲーム進行にかかわるキー入力処理
+	/// </summary>
+	void ProcessKey();
+
+	/// <summary>
+	/// 制限時間の描画
+	/// </summary>
+	void DrawTimer();
+
+	/// <summary>
+	/// 現在経過時間の更新
+	/// </summary>
 	void SettingTimer();	// 現在経過時間の更新
 	
 

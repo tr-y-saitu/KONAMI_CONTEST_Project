@@ -21,7 +21,9 @@
 #include "Game.h"
 
 
-// コンストラクタ
+/// <summary>
+/// コンストラクタ
+/// </summary>
 Game::Game()
 	:	isHitCount		(0)
 	,	isClearCount	(0)
@@ -44,7 +46,9 @@ Game::Game()
 	modelHandleGemRuby = MV1LoadModel("data/model/Gem/Ruby.mv1");	// ルビー
 }
 
-// デストラクタ
+/// <summary>
+/// デストラクタ
+/// </summary>
 Game::~Game()
 {
 }

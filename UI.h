@@ -26,7 +26,7 @@ public:
 	/// <param name="clearFlag">クリアしているかどうか</param>
 	/// <param name="chest">宝箱クラス</param>
 	/// <param name="nowTimer">ゲームの現在経過時間</param>
-	void Draw(int state,Player& player,bool clearFlag, TreasureChest& chest,float nowTimer);	// 描画
+	void Draw(int state,Player& player,bool& isDrawUIFlag, TreasureChest& chest,float nowTimer);	// 描画
 
 	// Getter
 	const bool GetIsHitGemToChest()const { return isHitGemToChest; }
@@ -37,11 +37,13 @@ public:
 private:
 	// 定数
 	const int UI_COLOR = GetColor(200, 200, 200);	// UIの文字の色
+    const int GET_DIRECTION_DRAW_TIME = 100;        // 獲得演出を描画する時間
 
 	// 変数
-	int		menuGraph;		// メニュー画像
-	int		strGetModleHandel;	// 「GET!」のモデルハンドル
-	bool	isHitGemToChest;	// 宝石と宝箱が接触した
+	int		menuGraph;		                // メニュー画像
+	int		getDirectionModelHandle;	    // 宝石獲得演出用モデル
+    int     getDirectionCount;              // 宝石獲得時の演出を管理するカウント
+	bool	isHitGemToChest;	            // 宝石と宝箱が接触した
 };
 
 
