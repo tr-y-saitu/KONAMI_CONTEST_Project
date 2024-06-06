@@ -11,8 +11,8 @@
 Gem::Gem()
 	: modelHandle			(-1)
 	, visibleFlag			(false)
-	, width					(0)
-	, height				(0)
+	, width					(0.5f)
+	, height				(0.5f)
 	, speed					(0)
 	, radius				(0.5f)
 	, isHitPlayer			(false)
@@ -24,6 +24,7 @@ Gem::Gem()
 	, gemType				(0)
 	, scaleAdjust			(0.02f)
 {
+    collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Green.png");
 	pos = VGet(0, 0, 0);
 	dir = VGet(0, 0, 0);
 	contactDir = VGet(0, 0, 0);
@@ -125,8 +126,10 @@ float Gem::SettingFallSpeedType(int gemType)
 }
 
 /// <summary>
-/// 初期化
+/// 宝石の初期化
 /// </summary>
+/// <param name="initPos">初期座標</param>
+/// <param name="gemManager">宝石管理クラス</param>
 void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 {
 	// 3Dモデル設定
@@ -155,9 +158,10 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 
 
 /// <summary>
-/// 更新
+/// 宝石の更新
 /// </summary>
 /// <param name="cal">計算クラス</param>
+/// <param name="nowTimer">現在の経過時間</param>
 void Gem::Update(Calculation& cal, float nowTimer)
 {
 	// 登場時間になったら存在
@@ -262,6 +266,16 @@ void Gem::Update(Calculation& cal, float nowTimer)
 }
 
 /// <summary>
+/// 宝石の２次元での当たり判定を3D空間上で表示
+/// </summary>
+void Gem::Draw2DBOXCollision()
+{
+    // 2D四角形当たり判定描画
+    DrawBillboard3D(pos, 0.5f, 0.8f, 0.5f, 0, collisionGraph, true);
+}
+
+
+/// <summary>
 /// 描画
 /// </summary>
 void Gem::Draw()
@@ -273,9 +287,9 @@ void Gem::Draw()
 	// 宝石当たり判定描画
 	if (visibleFlag)
 	{
-		// 球型の当たり判定の描画
-		DrawSphere3D(pos, radius, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
-	}
+        // 2D四角形当たり判定描画
+        Draw2DBOXCollision();
+    }
 
 	// プレイヤーと接触したら
 	if (isHitPlayer)

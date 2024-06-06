@@ -18,7 +18,9 @@ public:
 	// Getter
 	const VECTOR& GetPos()const { return pos; }
 	const bool GetIsHitGem()const { return isHitGem; }
-	const float GetRadius()const { return radius; }	
+	const float GetRadius()const { return radius; }
+    const float GetWidth()const { return width; }
+    const float GetHeight()const { return height; }
 
 	// Setter
 	void SetPos(const VECTOR set) { pos = set; }
@@ -32,8 +34,8 @@ private:
 	// 情報
 	VECTOR	pos;			// ポジション
 	VECTOR	scale;			// スケール
-	int		width;			// 幅
-	int		height;			// 高さ
+	float	width;			// 幅
+	float	height;			// 高さ
 
 	// フラグ
 	bool	isHitGem;		// 宝箱が宝石と接触したか
