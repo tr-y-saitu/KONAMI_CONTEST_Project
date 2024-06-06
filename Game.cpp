@@ -266,9 +266,8 @@ void Game::UpdateGame()
 		//collision->HitPlayerToEnemy(*player, *enemy);	// プレイヤーとエネミーの当たり判定
 		for (int i = 0; i < gem.size(); i++)
 		{
-			//collision->IsHitPlayerToGem(*player, *gem[i]);
             collision->IsHit2DPlayerToGem(*player, *gem[i]);
-            if (collision->IsHitGemToTreasureChestBool(*gem[i], *treasureChest))
+            if (collision->IsHit2DGemToTreasureChest(*gem[i], *treasureChest))
 			{
 				ui->SetIsHitGemToChest(true);
 			}
