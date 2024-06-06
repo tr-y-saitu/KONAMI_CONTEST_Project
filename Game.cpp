@@ -266,10 +266,18 @@ void Game::UpdateGame()
 		//collision->HitPlayerToEnemy(*player, *enemy);	// プレイヤーとエネミーの当たり判定
 		for (int i = 0; i < gem.size(); i++)
 		{
-            collision->IsHit2DPlayerToGem(*player, *gem[i]);
-            if (collision->IsHit2DGemToTreasureChest(*gem[i], *treasureChest))
+            // プレイヤーと宝石との当たり判定
+            bool isHitFlatPlayerToGem = collision->IsHitObject2DBOX(player->GetPos(), gem[i]->GetPos(), player->GetWidth(), player->GetHeight(), gem[i]->GetWidth(), gem[i]->GetHeight());
+            player->SetIsHitGem(isHitFlatPlayerToGem);
+            gem[i]->SetIsHitPlayer(isHitFlatPlayerToGem);
+
+            // 宝石と宝箱の当たり判定
+            bool isHitGemToChest = collision->IsHitObject2DBOX(gem[i]->GetPos(), treasureChest->GetPos(), gem[i]->GetWidth(), gem[i]->GetHeight(), treasureChest->GetWidth(), treasureChest->GetHeight());
+            if (isHitGemToChest)
 			{
-				ui->SetIsHitGemToChest(true);
+                gem[i]->SetIsHitChest(isHitGemToChest);     // 当たった情報を書き込み
+                treasureChest->SetIsHitGem(isHitGemToChest);// 当たった情報を書き込み
+				ui->SetIsHitGemToChest(true);               // 当たった時の演出を出す指令をセット
 			}
 		}
 

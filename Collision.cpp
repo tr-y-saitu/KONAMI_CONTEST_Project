@@ -305,6 +305,54 @@ bool Collision::IsHit2DGemToTreasureChest(Gem& gem, TreasureChest& chest)
 }
 
 
+/// <summary>
+/// オブジェクト同士の2DBOX当たり判定
+/// </summary>
+/// <param name="pos1">対象物１</param>
+/// <param name="pos2">対象物２</param>
+/// <param name="width1">対象物１の幅</param>
+/// <param name="height1">対象物１の高さ</param>
+/// <param name="width2">対象物２の幅</param>
+/// <param name="height2">対象物２の高さ</param>
+/// <returns>当たっているかどうか</returns>
+bool Collision::IsHitObject2DBOX(VECTOR pos1, VECTOR pos2, float width1, float height1, float width2, float height2)
+{
+    // 当たったか、当たっていないか
+    bool isHit = false;
+
+    // オブジェクト同士の当たり判定
+    // バフ分の当たり判定をわかりやすくする
+    // 対象物１
+    VECTOR	obj1Pos = pos1;
+    float	obj1Width = width1;
+    float	obj1Height = height1;
+    float chestLeft = obj1Pos.x - obj1Width * OBJECT_HIT_BUF;
+    float chestRight = obj1Pos.x + obj1Width * OBJECT_HIT_BUF;
+    float chestTop = obj1Pos.y - obj1Height * OBJECT_HIT_BUF;
+    float chestBottom = obj1Pos.y + obj1Height * OBJECT_HIT_BUF;
+    // 宝石
+    VECTOR	obj2Pos = pos2;
+    int		obj2Width = width2;
+    int		obj2Height = height2;
+    float gemLeft = obj2Pos.x - obj2Width * OBJECT_HIT_BUF;
+    float gemRight = obj2Pos.x + obj2Width * OBJECT_HIT_BUF;
+    float gemTop = obj2Pos.y - obj2Height * OBJECT_HIT_BUF;
+    float gemBottom = obj2Pos.y + obj2Height * OBJECT_HIT_BUF;
+
+    // 当たり判定
+    if (((gemLeft <= chestLeft && chestLeft < gemRight) ||
+        (gemLeft > chestLeft && gemLeft < chestRight)) &&
+        ((gemTop <= chestTop && chestTop < gemBottom) ||
+            (gemTop > chestTop && gemTop < chestBottom)))
+    {
+        // 当たっている
+        isHit = true;
+    }
+
+    // 当たっているか否か
+    return isHit;
+
+}
 
 
 

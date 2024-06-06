@@ -55,6 +55,18 @@ public:
     /// <param name="chest">宝箱</param>
     bool IsHit2DGemToTreasureChest(Gem& gem, TreasureChest& chest);
 
+    /// <summary>
+    /// オブジェクト同士の2DBOX当たり判定
+    /// </summary>
+    /// <param name="pos1">対象物１</param>
+    /// <param name="pos2">対象物２</param>
+    /// <param name="width1">対象物１の幅</param>
+    /// <param name="height1">対象物１の高さ</param>
+    /// <param name="width2">対象物２の幅</param>
+    /// <param name="height2">対象物２の高さ</param>
+    /// <returns>当たっているかどうか</returns>
+    bool IsHitObject2DBOX(VECTOR pos1, VECTOR pos2, float width1,float height1,float width2,float height2);
+
     // 定数
 	const float OBJECT_HIT_BUF = 0.5f;  // オブジェクトの当たり判定バフ値
 
