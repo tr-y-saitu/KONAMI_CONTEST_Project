@@ -9,12 +9,13 @@
 /// コンストラクタ
 /// </summary>
 UI::UI()
-	:	menuGraph			(-1)
-	,	strGetModleHandel	(-1)
-	,	isHitGemToChest		(false)
+	:	menuGraph			        (-1)
+	,	WinningDirectionModelHandle	(-1)
+	,	isHitGemToChest             (false)
+    ,   WinningDirectionCount       (0)
 {
-	strGetModleHandel = MV1LoadModel("data/model/UI/GET!.mv1");
-	MV1SetScale(strGetModleHandel, VGet(0.05f, 0.05f, 0.0f));
+	WinningDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
+	MV1SetScale(WinningDirectionModelHandle, VGet(0.05f, 0.05f, 0.0f));
 }
 
 /// <summary>
@@ -23,7 +24,7 @@ UI::UI()
 UI::~UI()
 {
 	// 3Dモデルハンドルの削除
-	MV1DeleteModel(strGetModleHandel);
+	MV1DeleteModel(WinningDirectionModelHandle);
 }
 
 
@@ -48,7 +49,7 @@ void UI::Initialize()
 /// <param name="clearFlag">クリアしているかどうか</param>
 /// <param name="chest">宝箱クラス</param>
 /// <param name="nowTimer">ゲームの現在経過時間</param>
-void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest, float nowTimer)
+void UI::Draw(int state, Player& player, bool isDrawUIFlag,TreasureChest& chest, float nowTimer)
 {
 	char _timeCount[256];					// ゲームの経過時間
 	// ステートごとに描画を変更
@@ -71,10 +72,11 @@ void UI::Draw(int state, Player& player, bool clearFlag,TreasureChest& chest, fl
 		DrawString(250, 400, _timeCount, UI_COLOR, true);
 
 		// 「GET!」モデルを描画
-		MV1SetPosition(strGetModleHandel, VGet(0,0,0));
+		MV1SetPosition(WinningDirectionModelHandle, VGet(0,0,0));
+
 		if (isHitGemToChest)
 		{
-			MV1DrawModel(strGetModleHandel);
+			MV1DrawModel(WinningDirectionModelHandle);
 		}
 
 
