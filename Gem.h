@@ -16,19 +16,45 @@ public:
 	virtual ~Gem();
 
 	// メソッド
-	VECTOR SettingMoveType(int gemType);	// タイプごとの移動アルゴリズムの設定
-	float SettingFallSpeedType(int gemType);// タイプごとの落下速度指定
-	void Initialize(VECTOR initPos,GemManager gemManager);		// 初期化
-	void Update(Calculation& cal,float nowTimer);		// 更新
+
+    /// <summary>
+    /// 宝石のタイプごとの移動アルゴリズムの設定
+    /// </summary>
+    /// <param name="gemTyep">宝石の種類</param>
+    /// <returns>そのタイプの移動方向</returns>
+	VECTOR SettingMoveType(int gemType);
+
+    /// <summary>
+    /// 宝石のタイプ別で落下速度を設定
+    /// </summary>
+    /// <param name="gemType">宝石のタイプ</param>
+    /// <returns>落下速度</returns>
+    float SettingFallSpeedType(int gemType);
+
+    /// <summary>
+    /// 宝石の初期化
+    /// </summary>
+    /// <param name="initPos">初期座標</param>
+    /// <param name="gemManager">宝石管理クラス</param>
+    void Initialize(VECTOR initPos,GemManager gemManager);
+
+    /// <summary>
+    /// 宝石の更新
+    /// </summary>
+    /// <param name="cal">計算クラス</param>
+    /// <param name="nowTimer">現在の経過時間</param>
+    void Update(Calculation& cal,float nowTimer);
+
+	/// <summary>
+	/// 宝石の描画
+	/// </summary>
 	void Draw();						// 描画
 
-	// モデルハンドルの取得.
-	int GetModelHandle() const { return modelHandle; }
-
 	// ポジションのgetter/setter.
+	int GetModelHandle() const { return modelHandle; }
 	const VECTOR& GetPos() const { return pos; }
-	const int GetWidth() const{ return width; }
-	const int GetHeight() const { return height; }
+	const float GetWidth() const{ return width; }
+	const float GetHeight() const { return height; }
 	const bool GetVisibleFlag() const { return visibleFlag; }
 	const bool GetIsHitPlayer() const { return isHitPlayer; }
 	const bool GetIsHitGround() const { return isHitGround; }
@@ -60,8 +86,8 @@ private:
 	VECTOR	pos;			// ポジション
 	VECTOR	dir;			// 方向
 	VECTOR	contactDir;		// 接触時の方向
-	int		width;			// 幅
-	int		height;			// 高さ
+	float	width;			// 幅
+	float	height;			// 高さ
 	VECTOR	scale;			// スケール
 	float	scaleAdjust;	// スケールの調整
 	float	speed;			// 移動スピード

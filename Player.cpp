@@ -18,6 +18,8 @@ Player::Player()
 	,	isHitGem		(false)
 	,	speed			(5)
 	,	r				(1)
+    ,   width           (4.5f)
+    ,   height          (1.0f)
 {
 	// ３Ｄモデルの読み込み
 	modelHandle = MV1LoadModel("data/model/player/trampoline.mv1");
@@ -164,7 +166,7 @@ void Player::Draw(int gameFrameCount)
 	// ３Ｄモデルの描画
 	MV1DrawModel(modelHandle);
 	// 当たり判定を描画
-	DrawSphere3D(pos, r, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
+	//DrawSphere3D(pos, r, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
 
 
 	if (isHitEnemy)

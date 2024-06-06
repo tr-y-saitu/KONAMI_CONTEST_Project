@@ -27,7 +27,11 @@ Collision::~Collision()
 
 
 
-
+/// <summary>
+/// プレイヤーとエネミーの当たり判定
+/// </summary>
+/// <param name="player">プレイヤークラス</param>
+/// <param name="enemy">エネミークラス</param>
 void Collision::HitPlayerToEnemy(Player& player, Enemy& enemy)
 {
 	// 当たったか、当たっていないか
@@ -195,6 +199,58 @@ bool Collision::IsHitGemToTreasureChestBool(Gem& gem, TreasureChest& chest)
 	return isHit;
 
 }
+
+/// <summary>
+/// プレイヤーと宝石の2D当たり判定
+/// </summary>
+/// <param name="player">プレイヤークラス</param>
+/// <param name="gem">宝石クラス</param>
+void Collision::IsHit2DPlayerToGem(Player& player, Gem& gem)
+{
+    // 当たったか、当たっていないか
+    bool isHit = false;
+
+    // プレイヤーと宝石の当たり判定
+    // エネミーが存在しているかの値だけもらう
+    if (gem.GetVisibleFlag() == true)
+    {
+        // バフ分の当たり判定をわかりやすくする
+        // プレイヤー
+        VECTOR	playerPos = player.GetPos();
+        int		playerW = player.GetWidth();
+        int		playerH = player.GetHeight();
+        float playerLeft = playerPos.x - playerW * OBJECT_HIT_BUF;
+        float playerRight = playerPos.x + playerW * OBJECT_HIT_BUF;
+        float playerTop = playerPos.y - playerH * OBJECT_HIT_BUF;
+        float playerBottom = playerPos.y + playerH * OBJECT_HIT_BUF;
+        // 宝石
+        VECTOR	gemPos = gem.GetPos();
+        int		gemW = gem.GetWidth();
+        int		gemH = gem.GetHeight();
+        float gemLeft = gemPos.x - gemW * OBJECT_HIT_BUF;
+        float gemRight = gemPos.x + gemW * OBJECT_HIT_BUF;
+        float gemTop = gemPos.y - gemH * OBJECT_HIT_BUF;
+        float gemBottom = gemPos.y + gemH * OBJECT_HIT_BUF;
+
+        // 当たり判定
+        if (((gemLeft <= playerLeft && playerLeft < gemRight) ||
+            (gemLeft > playerLeft && gemLeft < playerRight)) &&
+            ((gemTop <= playerTop && playerTop < gemBottom) ||
+                (gemTop > playerTop && gemTop < playerBottom)))
+        {
+            // 当たっている
+            isHit = true;
+
+        }
+
+    }
+    // 当たっているか否か
+    player.SetIsHitGem(isHit);
+    gem.SetIsHitPlayer(isHit);
+
+}
+
+
 
 
 
