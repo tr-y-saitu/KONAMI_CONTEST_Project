@@ -45,6 +45,11 @@ public:
     /// <param name="nowTimer">現在の経過時間</param>
     void Update(Calculation& cal,float nowTimer);
 
+    /// <summary>
+    /// 宝石の２次元での当たり判定を3D空間上で表示
+    /// </summary>
+    void Draw2DBOXCollision();
+
 	/// <summary>
 	/// 宝石の描画
 	/// </summary>
@@ -80,6 +85,7 @@ private:
 	// 変数
 	// モデル関係
 	int		modelHandle;	// モデルハンドル
+    int     collisionGraph; // 当たり判定の２次元画像
 
 	// ステータス
 	int		gemType;		// 宝石の種類(ダイア,ルビー,サファイア,エメラルド)

@@ -164,7 +164,7 @@ void Player::Update(Enemy& enemy)
 void Player::Draw2DBOXCollision()
 {
     // 2D四角形当たり判定描画
-    DrawBillboard3D(pos, 0.5f, 0.8f, 4.0f, 0, collisionGraph, true);
+    DrawBillboard3D(pos, 0.5f, 0.9f, 4.0f, 0, collisionGraph, true);
 }
 
 
