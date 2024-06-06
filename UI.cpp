@@ -10,12 +10,12 @@
 /// </summary>
 UI::UI()
 	:	menuGraph			        (-1)
-	,	WinningDirectionModelHandle	(-1)
+	,	getDirectionModelHandle	(-1)
 	,	isHitGemToChest             (false)
-    ,   WinningDirectionCount       (0)
+    ,   getDirectionCount       (0)
 {
-	WinningDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
-	MV1SetScale(WinningDirectionModelHandle, VGet(0.05f, 0.05f, 0.0f));
+	getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
+	MV1SetScale(getDirectionModelHandle, VGet(0.05f, 0.05f, 0.0f));
 }
 
 /// <summary>
@@ -24,7 +24,7 @@ UI::UI()
 UI::~UI()
 {
 	// 3Dモデルハンドルの削除
-	MV1DeleteModel(WinningDirectionModelHandle);
+	MV1DeleteModel(getDirectionModelHandle);
 }
 
 
@@ -49,7 +49,7 @@ void UI::Initialize()
 /// <param name="clearFlag">クリアしているかどうか</param>
 /// <param name="chest">宝箱クラス</param>
 /// <param name="nowTimer">ゲームの現在経過時間</param>
-void UI::Draw(int state, Player& player, bool isDrawUIFlag,TreasureChest& chest, float nowTimer)
+void UI::Draw(int state, Player& player, bool& isDrawUIFlag,TreasureChest& chest, float nowTimer)
 {
 	char _timeCount[256];					// ゲームの経過時間
 	// ステートごとに描画を変更
@@ -71,13 +71,25 @@ void UI::Draw(int state, Player& player, bool isDrawUIFlag,TreasureChest& chest,
 		sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
 		DrawString(250, 400, _timeCount, UI_COLOR, true);
 
-		// 「GET!」モデルを描画
-		MV1SetPosition(WinningDirectionModelHandle, VGet(0,0,0));
+		// 「GET!」モデルのポジションを設定
+		MV1SetPosition(getDirectionModelHandle, VGet(0,0,0));
 
-		if (isHitGemToChest)
+        // 宝石獲得演出(宝石が当たっているかつ演出時間ないである)
+		if (isHitGemToChest && getDirectionCount <= GET_DIRECTION_DRAW_TIME)
 		{
-			MV1DrawModel(WinningDirectionModelHandle);
+            // 演出時間を経過
+            getDirectionCount++;
+
+            // 演出用モデルの描画
+			MV1DrawModel(getDirectionModelHandle);
 		}
+        // 描画指定時間を越えたらゼロに戻す
+        if (getDirectionCount >= GET_DIRECTION_DRAW_TIME)
+        {
+            isDrawUIFlag = false;
+            getDirectionCount = 0;
+            isHitGemToChest = false;
+        }
 
 
 		break;
