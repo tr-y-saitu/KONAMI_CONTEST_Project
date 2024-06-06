@@ -20,10 +20,12 @@ Player::Player()
 	,	r				(1)
     ,   width           (4.5f)
     ,   height          (1.0f)
+    ,   collisionGraph  (-1)
 {
 	// ３Ｄモデルの読み込み
 	modelHandle = MV1LoadModel("data/model/player/trampoline.mv1");
-	pos = VGet(0, 50, 0);	// 座標のセット
+    collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Red.png");
+    pos = VGet(0, 50, 0);	// 座標のセット
 	dir = VGet(0,0,0);		// 方向のセット
 	fallSpeed = 0.0f;		// 落下速度
 	animeIndex = 8;
@@ -59,9 +61,10 @@ void Player::Initialize()
 }
 
 
-//-----------------------------------------------------------------------------
-// @brief  更新.
-//-----------------------------------------------------------------------------
+	/// <summary>
+	/// プレイヤーの更新
+	/// </summary>
+	/// <param name="enemy"></param>
 void Player::Update(Enemy& enemy)
 {
 	// キー入力取得
@@ -155,20 +158,28 @@ void Player::Update(Enemy& enemy)
 
 }
 
+/// <summary>
+ /// プレイヤーの当たり判定描画2DBOX
+ /// </summary>
+void Player::Draw2DBOXCollision()
+{
+    // 2D四角形当たり判定描画
+    DrawBillboard3D(pos, 0.5f, 0.8f, 4.0f, 0, collisionGraph, true);
+}
 
 
 
-//-----------------------------------------------------------------------------
-// @brief  描画.
-//-----------------------------------------------------------------------------
+/// <summary>
+/// プレイヤーの描画
+/// </summary>
+/// <param name="gameFrameCount">現在のフレームカウント</param>
 void Player::Draw(int gameFrameCount)
 {
 	// ３Ｄモデルの描画
 	MV1DrawModel(modelHandle);
-	// 当たり判定を描画
-	//DrawSphere3D(pos, r, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
 
-
+	// 2DBOX当たり判定の描画
+    Draw2DBOXCollision();
 	if (isHitEnemy)
 	{
 		SetFontSize(200);

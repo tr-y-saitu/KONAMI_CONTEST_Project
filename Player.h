@@ -14,9 +14,28 @@ public:
 	Player();				// コンストラクタ.
 	~Player();				// デストラクタ.
 
-	void Initialize();				// 初期化
-	void Update(Enemy& enemy);		// 更新
-	void Draw(int gameFrameCount);	// 描画
+	/// <summary>
+	/// プレイヤーの初期化
+	/// </summary>
+	void Initialize();
+
+	/// <summary>
+	/// プレイヤーの更新
+	/// </summary>
+	/// <param name="enemy"></param>
+	void Update(Enemy& enemy);
+
+    /// <summary>
+    /// プレイヤーの当たり判定描画2DBOX
+    /// </summary>
+    void Draw2DBOXCollision();
+
+	/// <summary>
+	/// プレイヤーの描画
+	/// </summary>
+	/// <param name="gameFrameCount">現在のフレームカウント</param>
+	void Draw(int gameFrameCount);
+
 
 	// モデルハンドルの取得.
 	int GetModelHandle(){ return modelHandle; }
@@ -53,7 +72,8 @@ private:
 	int		divGraphHandle[16];	// 分割画像ハンドル
 	int		animeIndex;		// 画像の添え字
 	int		moveFrameCount;	// 添え字を変更するためにカウントする
-	// 情報
+    int     collisionGraph; // 当たり判定用画像
+    // 情報
 	VECTOR	pos;			// ポジション.
 	VECTOR	dir;			// 方向
 	VECTOR	scale;			// スケール
