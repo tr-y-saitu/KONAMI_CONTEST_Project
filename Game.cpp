@@ -270,9 +270,14 @@ void Game::UpdateGame()
 		//collision->HitPlayerToEnemy(*player, *enemy);	// プレイヤーとエネミーの当たり判定
 		for (int i = 0; i < gem.size(); i++)
 		{
+            // プレイヤーと宝石との当たり判定
             collision->IsHit2DPlayerToGem(*player, *gem[i]);
-            if (collision->IsHit2DGemToTreasureChest(*gem[i], *treasureChest))
+
+            // 宝石と宝箱の当たり判定
+            bool isHitGemToChest = collision->IsHit2DGemToTreasureChest(*gem[i], *treasureChest);
+            if (isHitGemToChest)
 			{
+                // 当たった時の演出を出す指令をセット
 				ui->SetIsHitGemToChest(true);
 			}
 		}
