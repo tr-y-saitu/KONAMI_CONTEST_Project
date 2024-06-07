@@ -68,7 +68,7 @@ void UI::Draw(int state, Player& player, bool& isDrawUIFlag,TreasureChest& chest
 		// ゲーム中
 	case STATE_GAME:
 		// 現在の経過時間を描画
-		sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
+ 		sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
 		DrawString(250, 400, _timeCount, UI_COLOR, true);
 
 		// 「GET!」モデルのポジションを設定

@@ -89,7 +89,8 @@ public:
 	/// <summary>
 	/// 現在経過時間の更新
 	/// </summary>
-	void SettingTimer();	// 現在経過時間の更新
+	/// <param name="resetFlag">計測時間をリセットするかどうかのフラグ</param>
+	void SettingTimer(GemManager& gemManager);
 	
 
 	const int GetNowTimer() { return nowTimer; }

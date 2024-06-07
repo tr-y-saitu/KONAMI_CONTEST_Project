@@ -79,6 +79,7 @@ public:
 	void SetIsHitChest(const bool set) { isHitTreasureChest = set; }
 	void SetEntryTime(const float set) { entryTime = set; }
 	void SetEntryPosition(const VECTOR set) { entryPosition = set; }
+    void SetVisibleFlag(const bool set) { visibleFlag = set; }
 
 private:
 	// 定数

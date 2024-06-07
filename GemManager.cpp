@@ -11,6 +11,7 @@ GemManager::GemManager()
 	, modelHandleSapphire	(-1)
 	, modelHandleEmerald	(-1)
     , gemWaveState          (WAVE_FIRST)
+    , resetTimer            (false)
 {
 
 }
@@ -123,15 +124,11 @@ void GemManager::SettingEntryDataBase(Gem& gem,int index)
 }
 
 /// <summary>
-/// ウェーブステート切り替え
+/// ウェーブステートの切り替え
 /// </summary>
 /// <param name="gem">宝石</param>
-/// <param name="size">宝石の総合数</param>
-void GemManager::ChangeGemWaveState(Gem gem[], int size)
+void GemManager::ChangeGemWaveState(Gem& gem,int index)
 {
-    // 即座に切り替わりすぎるので、ちょっと時間を止める
-    WaitTimer(500);
-
     // ステート切り替え処理
     switch (gemWaveState)
     {
@@ -148,10 +145,7 @@ void GemManager::ChangeGemWaveState(Gem gem[], int size)
         CreateEntryData(entryGemDataBase, GEM_TOTAL_NUM, gemWaveState);
 
         // エントリー情報の書き込み
-        for (int i = 0; i < size; i++)
-        {
-            SettingEntryDataBase(gem[i], i);
-        }
+        SettingEntryDataBase(gem, index);
         break;
 
         // サードステージ
@@ -161,10 +155,7 @@ void GemManager::ChangeGemWaveState(Gem gem[], int size)
         CreateEntryData(entryGemDataBase, GEM_TOTAL_NUM, gemWaveState);
 
         // エントリー情報の書き込み
-        for (int i = 0; i < size; i++)
-        {
-            SettingEntryDataBase(gem[i], i);
-        }
+        SettingEntryDataBase(gem, index);
         break;
 
     default:
@@ -172,27 +163,68 @@ void GemManager::ChangeGemWaveState(Gem gem[], int size)
     }
 }
 
-
-void GemManager::GemWaveUpdate(Gem& gem, int nowTimer)
+/// <summary>
+/// 宝石のウェーブ更新
+/// </summary>
+/// <param name="gem">宝石</param>
+/// <param name="index">宝石の添え字</param>
+/// <param name="nowTimer">現在の時間</param>
+void GemManager::GemWaveUpdate(Gem& gem, int index,float& nowTimer)
 {
     // ウェーブごとに異なる処理
     switch (gemWaveState)
     {
         // ファーストステージ
     case WAVE_FIRST:
-        // このステージは20秒で終わる
+        // 宝石の更新
         gem.Update(calculation, nowTimer);
+
+        // そのウェーブの制限時間が終了したら
+        if (nowTimer >= WAVE_TIME_FIRST)
+        {
+            // タイマーをリセットするフラグを立てる
+            resetTimer = true;
+
+            // セカンドステージへ切り替え
+            gemWaveState = WAVE_SECOND;
+            ChangeGemWaveState(gem, index);
+        }
 
         break;
 
         // セカンドステージ
     case WAVE_SECOND:
+        // 宝石の更新
+        gem.Update(calculation, nowTimer);
+
+        // そのウェーブの制限時間が終了したら
+        if (nowTimer >= WAVE_TIME_SECOND)
+        {
+            // タイマーをリセットするフラグを立てる
+            resetTimer = true;
+
+            // セカンドステージへ切り替え
+            gemWaveState = WAVE_THIRD;
+            ChangeGemWaveState(gem, index);
+        }
 
         break;
 
         // サードステージ
     case WAVE_THIRD:
+        // 宝石の更新
+        gem.Update(calculation, nowTimer);
 
+        // そのウェーブの制限時間が終了したら
+        if (nowTimer >= WAVE_TIME_THIRD)
+        {
+            // タイマーをリセットするフラグを立てる
+            resetTimer = true;
+
+            // セカンドステージへ切り替え
+            gemWaveState = WAVE_THIRD;
+            ChangeGemWaveState(gem, index);
+        }
         break;
 
 

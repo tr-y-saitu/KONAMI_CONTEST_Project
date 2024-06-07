@@ -260,7 +260,7 @@ void Game::UpdateGame()
 		// ゲーム中 //////////////////////////////////////
 	case STATE_GAME:
 		// ゲームが開始してからの時間を計測
-		SettingTimer();
+		SettingTimer(*gemManager);
 
 		// ゲームフレームを数える
 		CountGameFraem();
@@ -292,7 +292,7 @@ void Game::UpdateGame()
 		room->Update();			// 部屋
 		for (int i = 0; i < gem.size(); i++)
 		{
-            gemManager->GemWaveUpdate(*gem[i], nowTimer);  // 宝石更新
+            gemManager->GemWaveUpdate(*gem[i],i, nowTimer); // 宝石更新
 			treasureChest->Update(*gem[i]);			        // 宝箱更新
 		}
 
@@ -391,8 +391,18 @@ void Game::DrawTimer()
 /// <summary>
 /// 現在経過時間の更新
 /// </summary>
-void Game::SettingTimer()
+/// <param name="resetFlag">計測時間をリセットするかどうかのフラグ</param>
+void Game::SettingTimer(GemManager& gemManager)
 {
+    //  時間をリセットするフラグがたったら
+    if (gemManager.GetResetTimer())
+    {
+        // 経過時間をリセット
+        previousTime = GetNowHiPerformanceCount();
+        // フラグをおろす
+        gemManager.SetResetTimer(false);
+    }
+
 	// 現在時間 - 最初の計測時間
 	timer = (GetNowHiPerformanceCount() - previousTime);
 	// 現在経過時間（１桁表示）
