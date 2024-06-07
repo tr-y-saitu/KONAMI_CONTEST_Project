@@ -39,6 +39,11 @@ public:
     void Initialize(VECTOR initPos,GemManager gemManager);
 
     /// <summary>
+    /// 宝石のウェーブステートの作成
+    /// </summary>
+    void ChangeGemWaveState();
+
+    /// <summary>
     /// 宝石の更新
     /// </summary>
     /// <param name="cal">計算クラス</param>
@@ -53,7 +58,7 @@ public:
 	/// <summary>
 	/// 宝石の描画
 	/// </summary>
-	void Draw();						// 描画
+	void Draw();
 
 	// ポジションのgetter/setter.
 	int GetModelHandle() const { return modelHandle; }
@@ -83,6 +88,7 @@ private:
 	const float JUMP_POWER = 0.1f;			// プレイヤーに当たった時のジャンプ量
 
 	// 変数
+
 	// モデル関係
 	int		modelHandle;	// モデルハンドル
     int     collisionGraph; // 当たり判定の２次元画像

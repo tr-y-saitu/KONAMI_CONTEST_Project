@@ -137,7 +137,7 @@ void Game::InitializeGameStart()
 	}
 	
 	// 宝石のエントリー情報を作成
-	gemManager->CreateEntryData(gemManager->entryGemDataBase,gem.size());
+	gemManager->CreateEntryData(gemManager->entryGemDataBase,gem.size(),GemManager::WAVE_FIRST);
 	
 	// 宝石のエントリー情報を書き込み
 	for (int i = 0; i < gem.size(); i++)
@@ -181,7 +181,7 @@ void Game::Initialize()
 		gem[i]->Initialize(VGet(i - 10, 10, -5),*gemManager);
 	}
 	// 宝石の個数分エントリー情報を設定
-	gemManager->CreateEntryData(gemManager->entryGemDataBase, gem.size());
+	gemManager->CreateEntryData(gemManager->entryGemDataBase, gem.size(), GemManager::WAVE_FIRST);
 	
 	// 宝石の個数分エントリー情報を書き込み
 	for (int i = 0; i < gem.size(); i++)
@@ -267,7 +267,6 @@ void Game::UpdateGame()
 
 		// ゲームアップデート
 		// 当たり判定処理
-		//collision->HitPlayerToEnemy(*player, *enemy);	// プレイヤーとエネミーの当たり判定
 		for (int i = 0; i < gem.size(); i++)
 		{
             // プレイヤーと宝石との当たり判定
@@ -286,16 +285,17 @@ void Game::UpdateGame()
 		player->Update(*enemy);	// プレイヤー
 
 		// カメラ更新
-		camera->Update(*player);
+		camera->Update(*player);// カメラ
 		
 		// オブジェクト更新
 		skyDome->Update();		// 背景
 		room->Update();			// 部屋
 		for (int i = 0; i < gem.size(); i++)
 		{
-			gem[i]->Update(calculation,nowTimer);	// 宝石
-			treasureChest->Update(*gem[i]);			// 宝箱更新
+            gemManager->GemWaveUpdate(*gem[i], nowTimer);  // 宝石更新
+			treasureChest->Update(*gem[i]);			        // 宝箱更新
 		}
+
 		//effekseer1->Update();
 		
 		break;

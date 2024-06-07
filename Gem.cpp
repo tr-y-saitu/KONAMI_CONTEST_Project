@@ -157,6 +157,7 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 }
 
 
+
 /// <summary>
 /// 宝石の更新
 /// </summary>
