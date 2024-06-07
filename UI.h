@@ -26,7 +26,7 @@ public:
 	/// <param name="clearFlag">クリアしているかどうか</param>
 	/// <param name="chest">宝箱クラス</param>
 	/// <param name="nowTimer">ゲームの現在経過時間</param>
-	void Draw(int state,Player& player,bool& isDrawUIFlag, TreasureChest& chest,float nowTimer);	// 描画
+	void Draw(int state,Player& player,bool& isDrawUIFlag, TreasureChest& chest,float nowTimer, GemManager& gemManager);	// 描画
 
 	// Getter
 	const bool GetIsHitGemToChest()const { return isHitGemToChest; }

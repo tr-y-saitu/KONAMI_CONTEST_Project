@@ -39,11 +39,6 @@ public:
     void Initialize(VECTOR initPos,GemManager gemManager);
 
     /// <summary>
-    /// 宝石のウェーブステートの作成
-    /// </summary>
-    void ChangeGemWaveState();
-
-    /// <summary>
     /// 宝石の更新
     /// </summary>
     /// <param name="cal">計算クラス</param>
@@ -80,6 +75,7 @@ public:
 	void SetEntryTime(const float set) { entryTime = set; }
 	void SetEntryPosition(const VECTOR set) { entryPosition = set; }
     void SetVisibleFlag(const bool set) { visibleFlag = set; }
+    void SetDirection(const VECTOR set) { dir = set; }
 
 private:
 	// 定数

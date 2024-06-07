@@ -137,7 +137,7 @@ void Game::InitializeGameStart()
 	}
 	
 	// 宝石のエントリー情報を作成
-	gemManager->CreateEntryData(gemManager->entryGemDataBase,gem.size(),GemManager::WAVE_FIRST);
+	gemManager->CreateEntryData(gemManager->entryGemDataBase,gem.size());
 	
 	// 宝石のエントリー情報を書き込み
 	for (int i = 0; i < gem.size(); i++)
@@ -181,7 +181,7 @@ void Game::Initialize()
 		gem[i]->Initialize(VGet(i - 10, 10, -5),*gemManager);
 	}
 	// 宝石の個数分エントリー情報を設定
-	gemManager->CreateEntryData(gemManager->entryGemDataBase, gem.size(), GemManager::WAVE_FIRST);
+	gemManager->CreateEntryData(gemManager->entryGemDataBase, gem.size());
 	
 	// 宝石の個数分エントリー情報を書き込み
 	for (int i = 0; i < gem.size(); i++)
@@ -290,6 +290,21 @@ void Game::UpdateGame()
 		// オブジェクト更新
 		skyDome->Update();		// 背景
 		room->Update();			// 部屋
+        // データのリセットフラグがたったら
+        if (gemManager->GetIsResetEntyrData())
+        {
+            // 宝石の個数分エントリー情報を設定
+            gemManager->CreateEntryData(gemManager->entryGemDataBase, gem.size());
+            // 宝石のエントリー情報を書き込み
+            for (int i = 0; i < gem.size(); i++)
+            {
+                gem[i]->Initialize(VGet(0, 0, 0), *gemManager);
+                gemManager->SettingEntryDataBase(*gem[i], i);
+            }
+            
+            gemManager->SetIsResetEntryData(false);
+        }
+
 		for (int i = 0; i < gem.size(); i++)
 		{
             gemManager->GemWaveUpdate(*gem[i],i, nowTimer); // 宝石更新
@@ -431,7 +446,7 @@ void Game::DrawGame()
 	}
 
 	// UI描画
-	ui->Draw(GetGameState(),*player,isClearFlag,*treasureChest,nowTimer);
+	ui->Draw(GetGameState(),*player,isClearFlag,*treasureChest,nowTimer,*gemManager);
 
 	// エフェクトの再生
 	//effekseer1->Draw();

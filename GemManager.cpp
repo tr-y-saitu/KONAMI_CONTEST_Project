@@ -4,7 +4,9 @@
 #include "Calculation.h"
 
 
-// コンストラクタ
+/// <summary>
+/// コンストラクタ
+/// </summary>
 GemManager::GemManager()
 	: modelHandleDiamond	(-1)
 	, modelHandleRuby		(-1)
@@ -12,18 +14,23 @@ GemManager::GemManager()
 	, modelHandleEmerald	(-1)
     , gemWaveState          (WAVE_FIRST)
     , resetTimer            (false)
+    , isResetEntryData      (false)
 {
 
 }
 
-// デストラクタ
+/// <summary>
+/// デストラクタ
+/// </summary>
 GemManager::~GemManager()
 {
 	// 処理なし
 }
 
 
-// モデルのロード
+/// <summary>
+/// 宝石モデルのロード
+/// </summary>
 void GemManager::LoadModle()
 {
 	// 宝石のモデルをロード
@@ -94,18 +101,90 @@ int GemManager::SettingGemModle(int type)
 /// </summary>
 /// <param name="data">宝石のエントリー情報を格納する多次元配列</param>
 /// <param name="size">多次元配列の添え字数</param>
-/// <param name="waveState">現在のウェーブステート</param>
-void GemManager::CreateEntryData(EntryGemDataBase data[],int size, int waveState)
+void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
 {
-	// 宝石の登場情報を書き込む
-	for (int i = 0; i < size; i++)
-	{
-		// 登場時間を設定
-		data[i].entryTime = i * 5;  // ５秒に一つ
-		// 登場座標の設定
-		data[i].entryPosition = VGet(-18, 15 , -5); // カメラ左上
-	}
+    // ウェーブステートごとに異なる登場情報を作成
+    switch (gemWaveState)
+    {
+    case WAVE_FIRST:
+        // 宝石の登場情報を作成
+        for (int i = 0; i < size; i++)
+        {
+            // 登場時間を設定
+            data[i].entryTime = i * 5;
+            // 登場座標の設定
+            data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
+        }
+        break;
+
+    case WAVE_SECOND:
+        // 宝石の登場情報を作成
+        for (int i = 0; i < size; i++)
+        {
+            // 登場時間を設定
+            data[i].entryTime = i * 3;
+            // 登場座標の設定
+            data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
+        }
+        break;
+
+    case WAVE_THIRD:
+        // 宝石の登場情報を作成
+        for (int i = 0; i < size; i++)
+        {
+            // 登場時間を設定
+            data[i].entryTime = i * 1;
+            // 登場座標の設定
+            data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
+        }
+        break;
+
+    default:
+        break;
+    }
+
 }
+
+/// <summary>
+/// 宝石のエントリー情報を作成（一つ分）
+/// </summary>
+/// <param name="data">宝石のエントリー情報を格納する多次元配列の一つ</param>
+/// <param name="index">その添え字</param>
+void GemManager::CreateEntryDataBase(EntryGemDataBase& data, int index)
+{
+    // ウェーブステートごとに異なる登場情報を作成
+    switch (gemWaveState)
+    {
+    case WAVE_FIRST:
+        // 登場時間の設定
+        data.entryTime = index * 5;
+        // 登場座標の設定
+        data.entryPosition = VGet(-18, 15, -5);
+        break;
+
+    case WAVE_SECOND:
+        // 登場時間の設定
+        data.entryTime = index * 3;
+        // 登場座標の設定
+        data.entryPosition = VGet(-18, 15, -5);
+        break;
+
+    case WAVE_THIRD:
+        // 登場時間の設定
+        data.entryTime = index * 1;
+        // 登場座標の設定
+        data.entryPosition = VGet(-18, 15, -5);
+        break;
+
+    default:
+        break;
+    }
+
+}
+
+
+
+
 
 /// <summary>
 /// 宝石のエントリー情報を設定
@@ -121,46 +200,7 @@ void GemManager::SettingEntryDataBase(Gem& gem,int index)
 	// 実際に書き込み
 	gem.SetEntryTime(_gemEntryTime);// 登場時間の設定
 	gem.SetEntryPosition(_gemPos);	// 登場座標の設定
-}
 
-/// <summary>
-/// ウェーブステートの切り替え
-/// </summary>
-/// <param name="gem">宝石</param>
-void GemManager::ChangeGemWaveState(Gem& gem,int index)
-{
-    // ステート切り替え処理
-    switch (gemWaveState)
-    {
-        // ファーストステージ
-    case WAVE_FIRST:
-        // 一番最初に初期化行っているので行わない
-
-        break;
-
-        // セカンドステージ
-    case WAVE_SECOND:
-        // 初期化処理
-        // エントリー情報の作成
-        CreateEntryData(entryGemDataBase, GEM_TOTAL_NUM, gemWaveState);
-
-        // エントリー情報の書き込み
-        SettingEntryDataBase(gem, index);
-        break;
-
-        // サードステージ
-    case WAVE_THIRD:
-        // 初期化処理
-        // エントリー情報の作成
-        CreateEntryData(entryGemDataBase, GEM_TOTAL_NUM, gemWaveState);
-
-        // エントリー情報の書き込み
-        SettingEntryDataBase(gem, index);
-        break;
-
-    default:
-        break;
-    }
 }
 
 /// <summary>
@@ -169,7 +209,8 @@ void GemManager::ChangeGemWaveState(Gem& gem,int index)
 /// <param name="gem">宝石</param>
 /// <param name="index">宝石の添え字</param>
 /// <param name="nowTimer">現在の時間</param>
-void GemManager::GemWaveUpdate(Gem& gem, int index,float& nowTimer)
+/// FiXME: y.saitu  修正が必要
+void GemManager::GemWaveUpdate(Gem& gem, int index,float nowTimer)
 {
     // ウェーブごとに異なる処理
     switch (gemWaveState)
@@ -187,7 +228,7 @@ void GemManager::GemWaveUpdate(Gem& gem, int index,float& nowTimer)
 
             // セカンドステージへ切り替え
             gemWaveState = WAVE_SECOND;
-            ChangeGemWaveState(gem, index);
+            isResetEntryData = true;
         }
 
         break;
@@ -203,9 +244,9 @@ void GemManager::GemWaveUpdate(Gem& gem, int index,float& nowTimer)
             // タイマーをリセットするフラグを立てる
             resetTimer = true;
 
-            // セカンドステージへ切り替え
+            // サードステージへ切り替え
             gemWaveState = WAVE_THIRD;
-            ChangeGemWaveState(gem, index);
+            isResetEntryData = true;
         }
 
         break;
@@ -216,15 +257,7 @@ void GemManager::GemWaveUpdate(Gem& gem, int index,float& nowTimer)
         gem.Update(calculation, nowTimer);
 
         // そのウェーブの制限時間が終了したら
-        if (nowTimer >= WAVE_TIME_THIRD)
-        {
-            // タイマーをリセットするフラグを立てる
-            resetTimer = true;
-
-            // セカンドステージへ切り替え
-            gemWaveState = WAVE_THIRD;
-            ChangeGemWaveState(gem, index);
-        }
+        
         break;
 
 

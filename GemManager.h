@@ -61,7 +61,14 @@ public:
     /// <param name="data">宝石のエントリー情報を格納する多次元配列</param>
     /// <param name="size">多次元配列の添え字数</param>
     /// <param name="waveState">現在のウェーブステート</param>
-    void CreateEntryData(EntryGemDataBase data[], int size, int waveState);
+    void CreateEntryData(EntryGemDataBase data[], int size);
+
+    /// <summary>
+    /// 宝石のエントリー情報を作成（一つ分）
+    /// </summary>
+    /// <param name="data">宝石のエントリー情報を格納する多次元配列の一つ</param>
+    /// <param name="index">その添え字</param>
+    void CreateEntryDataBase(EntryGemDataBase& data, int index);
 
     /// <summary>
     /// 宝石のエントリー情報を設定
@@ -71,32 +78,28 @@ public:
     void SettingEntryDataBase(Gem& gem, int index);
 
     /// <summary>
-    /// ウェーブステートの切り替え
-    /// </summary>
-    /// <param name="gem">宝石</param>
-    void ChangeGemWaveState(Gem& gem, int index);
-
-    /// <summary>
     /// 宝石のウェーブ更新
     /// </summary>
     /// <param name="gem">宝石</param>
     /// <param name="index">宝石の添え字</param>
     /// <param name="nowTimer">現在の時間</param>
-    void GemWaveUpdate(Gem& gem, int index, float& nowTimer);
+    void GemWaveUpdate(Gem& gem, int index, float nowTimer);
 
     // getter
     const int GetGemWaveState()const { return gemWaveState; }
     const int GetResetTimer()const { return resetTimer; }
+    const int GetIsResetEntyrData()const { return isResetEntryData; }
 
     // setter
     void SetGemWaveState(const int set) { gemWaveState = set; }
     void SetResetTimer(const bool set) { resetTimer = set; }
+    void SetIsResetEntryData(const bool set) { isResetEntryData = set; }
 
     // 定数
     const int GEM_TOTAL_NUM = 100;  // 総合の宝石の数
-    const int WAVE_TIME_FIRST = 5;  // ファーストステージの時間
-    const int WAVE_TIME_SECOND = 15;// セカンドステージの時間
-    const int WAVE_TIME_THIRD = 30; // サードステージの時間
+    const int WAVE_TIME_FIRST = 20;  // ファーストステージの時間
+    const int WAVE_TIME_SECOND = 30;// セカンドステージの時間
+    const int WAVE_TIME_THIRD = 40; // サードステージの時間
 
 	// 変数
 	// 宝石のベースモデルハンドル
@@ -112,5 +115,6 @@ public:
 private:
     int     gemWaveState;       // 現在のウェーブステート
     bool    resetTimer;         // 時間をリセットするフラグ
+    bool    isResetEntryData;     // エントリーデータをリセットする
 };
 

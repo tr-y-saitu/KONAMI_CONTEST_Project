@@ -150,7 +150,7 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 
 	// フラグ
 	isHitPlayer = false;		// プレイヤーと接触したか
-	visibleFlag = false;			// 存在しているか
+	visibleFlag = false;		// 存在しているか
 	isHitGround = false;		// 地上と接触したか
 	previousIsHitPlayer = false;// 前のフレームでプレイヤーと接触したか
 	isHitPlayer = false;		// プレイヤーと接触中か
