@@ -96,9 +96,6 @@ public:
 
     // 定数
     const int GEM_TOTAL_NUM = 100;  // 総合の宝石の数
-    const int WAVE_TIME_FIRST = 20;  // ファーストステージの時間
-    const int WAVE_TIME_SECOND = 30;// セカンドステージの時間
-    const int WAVE_TIME_THIRD = 40; // サードステージの時間
 
 	// 変数
 	// 宝石のベースモデルハンドル

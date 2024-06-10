@@ -18,9 +18,9 @@ GemManager::GemManager()
     , isResetEntryData      (false)
 {
     // WAVEごとの情報を代入
-    waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, WAVE_TIME_FIRST, "WAVE_FIRST");
-    waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, WAVE_TIME_SECOND, "WAVE_SECOND");
-    waveConstantsTable[WAVE_THIRD] = new WaveConstants(1, WAVE_TIME_THIRD, "WAVE_THIRD");
+    waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, 20, "WAVE_FIRST");
+    waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "WAVE_SECOND");
+    waveConstantsTable[WAVE_THIRD] = new WaveConstants(1, 40, "WAVE_THIRD");
 }
 
 /// <summary>
