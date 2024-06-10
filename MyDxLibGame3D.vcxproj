@@ -176,6 +176,7 @@
     <ClCompile Include="TreasureChest.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Calculation.cpp" />
+    <ClCompile Include="WaveConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculation.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="SkyDome.h" />
     <ClInclude Include="TreasureChest.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="WaveConstants.h" />
     <ClInclude Include="ゲーム構造.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

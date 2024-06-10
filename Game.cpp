@@ -171,7 +171,6 @@ void Game::Initialize()
 	isClearCount = 0;
 
 	player->Initialize();
-	//enemy->Initialize();
 	ui->Initialize();
 	skyDome->Initialize();
 	room->Initialize();
@@ -242,6 +241,9 @@ void Game::UpdateGame()
 	// キー入力処理
 	ProcessKey();
 
+    // 現在の宝石の数を調べる
+    int _gemSize = gem.size();
+
 	// ステートごとに処理を分ける
 	switch (gameState)
 	{
@@ -267,7 +269,7 @@ void Game::UpdateGame()
 
 		// ゲームアップデート
 		// 当たり判定処理
-		for (int i = 0; i < gem.size(); i++)
+		for (int i = 0; i < _gemSize; i++)
 		{
             // プレイヤーと宝石との当たり判定
             collision->IsHit2DPlayerToGem(*player, *gem[i]);
@@ -294,9 +296,10 @@ void Game::UpdateGame()
         if (gemManager->GetIsResetEntyrData())
         {
             // 宝石の個数分エントリー情報を設定
-            gemManager->CreateEntryData(gemManager->entryGemDataBase, gem.size());
+            gemManager->CreateEntryData(gemManager->entryGemDataBase, _gemSize);
+            
             // 宝石のエントリー情報を書き込み
-            for (int i = 0; i < gem.size(); i++)
+            for (int i = 0; i < _gemSize; i++)
             {
                 gem[i]->Initialize(VGet(0, 0, 0), *gemManager);
                 gemManager->SettingEntryDataBase(*gem[i], i);
@@ -305,7 +308,7 @@ void Game::UpdateGame()
             gemManager->SetIsResetEntryData(false);
         }
 
-		for (int i = 0; i < gem.size(); i++)
+		for (int i = 0; i < _gemSize; i++)
 		{
             gemManager->GemWaveUpdate(*gem[i],i, nowTimer); // 宝石更新
 			treasureChest->Update(*gem[i]);			        // 宝箱更新

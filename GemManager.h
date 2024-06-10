@@ -1,9 +1,14 @@
 ﻿#pragma once
 #include "Calculation.h"
+#include <iostream>
+#include <map>
+using namespace std;
+
 
 class Gem;
 enum WAVE_STATE;
 class Calculation;
+class WaveConstants;
 
 /// <summary>
 /// 宝石マネージャークラス
@@ -29,7 +34,8 @@ public:
     {
         WAVE_FIRST,     // ファーストステージ
         WAVE_SECOND,    // セカンドステージ
-        WAVE_THIRD      // サードステージ
+        WAVE_THIRD,     // サードステージ
+        WAVE_END        // 終了
     };
 
     // 宝石が登場するデータ
@@ -64,13 +70,6 @@ public:
     void CreateEntryData(EntryGemDataBase data[], int size);
 
     /// <summary>
-    /// 宝石のエントリー情報を作成（一つ分）
-    /// </summary>
-    /// <param name="data">宝石のエントリー情報を格納する多次元配列の一つ</param>
-    /// <param name="index">その添え字</param>
-    void CreateEntryDataBase(EntryGemDataBase& data, int index);
-
-    /// <summary>
     /// 宝石のエントリー情報を設定
     /// </summary>
     /// <param name="gem">宝石クラス</param>
@@ -97,9 +96,6 @@ public:
 
     // 定数
     const int GEM_TOTAL_NUM = 100;  // 総合の宝石の数
-    const int WAVE_TIME_FIRST = 20;  // ファーストステージの時間
-    const int WAVE_TIME_SECOND = 30;// セカンドステージの時間
-    const int WAVE_TIME_THIRD = 40; // サードステージの時間
 
 	// 変数
 	// 宝石のベースモデルハンドル
@@ -111,6 +107,7 @@ public:
 
 	// 実際のデータ
 	EntryGemDataBase entryGemDataBase[100];	// 宝石のエントリー情報を格納するための構造体
+    map<WAVE_STATE, WaveConstants*> waveConstantsTable;  // ウェーブごとの定数
 
 private:
     int     gemWaveState;       // 現在のウェーブステート

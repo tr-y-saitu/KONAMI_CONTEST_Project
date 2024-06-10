@@ -2,6 +2,7 @@
 #include "Gem.h"
 #include "GemManager.h"
 #include "Calculation.h"
+#include "WaveConstants.h"
 
 
 /// <summary>
@@ -16,7 +17,10 @@ GemManager::GemManager()
     , resetTimer            (false)
     , isResetEntryData      (false)
 {
-
+    // WAVEごとの情報を代入
+    waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, 20, "WAVE_FIRST");
+    waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "WAVE_SECOND");
+    waveConstantsTable[WAVE_THIRD] = new WaveConstants(1, 40, "WAVE_THIRD");
 }
 
 /// <summary>
@@ -103,9 +107,13 @@ int GemManager::SettingGemModle(int type)
 /// <param name="size">多次元配列の添え字数</param>
 void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
 {
-    // ウェーブステートごとに異なる登場情報を作成
-    switch (gemWaveState)
+    // 現在のWAVEに必要な情報を引き出す
+    // NOTE:(WAVE_STATE)gemWaveStateでキャスト変換しないと使用できない
+    auto constant = waveConstantsTable[(WAVE_STATE)gemWaveState];
+
+    for (int i = 0; i < size; i++)
     {
+<<<<<<< HEAD
     case WAVE_FIRST:
         // 宝石の登場情報を作成
         for (int i = 0; i < size; i++)
@@ -141,50 +149,15 @@ void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
 
     default:
         break;
+=======
+        // 登場時間を設定
+        data[i].entryTime = i * constant->entryTime;
+        // 登場座標の設定
+        data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
+>>>>>>> main
     }
 
 }
-
-/// <summary>
-/// 宝石のエントリー情報を作成（一つ分）
-/// </summary>
-/// <param name="data">宝石のエントリー情報を格納する多次元配列の一つ</param>
-/// <param name="index">その添え字</param>
-void GemManager::CreateEntryDataBase(EntryGemDataBase& data, int index)
-{
-    // ウェーブステートごとに異なる登場情報を作成
-    switch (gemWaveState)
-    {
-    case WAVE_FIRST:
-        // 登場時間の設定
-        data.entryTime = index * 5;
-        // 登場座標の設定
-        data.entryPosition = VGet(-18, 15, -5);
-        break;
-
-    case WAVE_SECOND:
-        // 登場時間の設定
-        data.entryTime = index * 3;
-        // 登場座標の設定
-        data.entryPosition = VGet(-18, 15, -5);
-        break;
-
-    case WAVE_THIRD:
-        // 登場時間の設定
-        data.entryTime = index * 1;
-        // 登場座標の設定
-        data.entryPosition = VGet(-18, 15, -5);
-        break;
-
-    default:
-        break;
-    }
-
-}
-
-
-
-
 
 /// <summary>
 /// 宝石のエントリー情報を設定
@@ -200,7 +173,6 @@ void GemManager::SettingEntryDataBase(Gem& gem,int index)
 	// 実際に書き込み
 	gem.SetEntryTime(_gemEntryTime);// 登場時間の設定
 	gem.SetEntryPosition(_gemPos);	// 登場座標の設定
-
 }
 
 /// <summary>
@@ -212,57 +184,32 @@ void GemManager::SettingEntryDataBase(Gem& gem,int index)
 /// FiXME: y.saitu  修正が必要
 void GemManager::GemWaveUpdate(Gem& gem, int index,float nowTimer)
 {
-    // ウェーブごとに異なる処理
-    switch (gemWaveState)
+    // 現在のWAVEに必要な情報を引き出す
+    // NOTE:(WAVE_STATE)gemWaveStateでキャスト変換しないと使用できない
+    auto waveConstant = waveConstantsTable[(WAVE_STATE)gemWaveState];
+
+    // もしもWAVEが終了していなければ
+    if (gemWaveState != WAVE_END)
     {
-        // ファーストステージ
-    case WAVE_FIRST:
         // 宝石の更新
         gem.Update(calculation, nowTimer);
 
         // そのウェーブの制限時間が終了したら
-        if (nowTimer >= WAVE_TIME_FIRST)
+        if (nowTimer >= waveConstant->waveEndTime)
         {
             // タイマーをリセットするフラグを立てる
             resetTimer = true;
 
-            // セカンドステージへ切り替え
-            gemWaveState = WAVE_SECOND;
+            // 宝石のデータを更新するフラグを立てる
             isResetEntryData = true;
+
+            // 次のステージへ移行
+            gemWaveState++;
         }
-
-        break;
-
-        // セカンドステージ
-    case WAVE_SECOND:
-        // 宝石の更新
-        gem.Update(calculation, nowTimer);
-
-        // そのウェーブの制限時間が終了したら
-        if (nowTimer >= WAVE_TIME_SECOND)
-        {
-            // タイマーをリセットするフラグを立てる
-            resetTimer = true;
-
-            // サードステージへ切り替え
-            gemWaveState = WAVE_THIRD;
-            isResetEntryData = true;
-        }
-
-        break;
-
-        // サードステージ
-    case WAVE_THIRD:
-        // 宝石の更新
-        gem.Update(calculation, nowTimer);
-
-        // そのウェーブの制限時間が終了したら
-        
-        break;
-
-
-    default:
-        break;
+    }
+    else
+    {
+        // クリアステートに移動させる
     }
 }
 
