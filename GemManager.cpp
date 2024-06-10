@@ -111,7 +111,7 @@ void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
         for (int i = 0; i < size; i++)
         {
             // 登場時間を設定
-            data[i].entryTime = i * 5;
+            data[i].entryTime = i * 1;
             // 登場座標の設定
             data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
         }

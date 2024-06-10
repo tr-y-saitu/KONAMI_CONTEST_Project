@@ -55,22 +55,26 @@ VECTOR Gem::SettingMoveType(int gemTyep)
 	{
 		// ダイアモンド
 	case GemManager::DIAMOND:
-		reDir = VGet(0.3f, 0.7f, 0.0f);	// 斜め右
+        // ４回タッチでゲット
+		reDir = VGet(0.12f, 0.8f, 0.0f);	// 斜め右
 		break;
 
 		// ルビー
 	case GemManager::RUBY:
-		reDir = VGet(0.5f, 1.0f, 0.0f);	// 斜め右（上強め）
+        // ２回タッチでゲット
+		reDir = VGet(0.3f, 0.8f, 0.0f);	// 斜め右（上強め）
 		break;
 		
 		// サファイア
 	case GemManager::SAPPHIRE:
-		reDir = VGet(0.2f, 1.0f, 0.0f);	// 斜め右(右弱め)
+        // ２回タッチでゲット
+		reDir = VGet(0.3f, 0.8f, 0.0f);	// 斜め右(右弱め)
 		break;
 		
 		// エメラルド
 	case GemManager::EMERALD:
-		reDir = VGet(1.0f, 0.1f, 0.0f);	// 斜め右(右強め)
+        // １回タッチでゲット
+		reDir = VGet(1.0f, 0.5f, 0.0f);	// 斜め右(右強め)
 		break;
 
 		// その他
@@ -113,7 +117,7 @@ float Gem::SettingFallSpeedType(int gemType)
 
 		// エメラルド
 	case GemManager::EMERALD:
-		fallSpeed = 0.01f;
+		fallSpeed = 0.001f;
 		break;
 
 		// その他
