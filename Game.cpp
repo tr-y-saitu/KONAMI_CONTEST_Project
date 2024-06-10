@@ -453,4 +453,8 @@ void Game::DrawGame()
 }
 
 
+void Game::UpdateScore(TreasureChest& chest)
+{
+    // 宝石が宝箱の中に入ったら
+}
 

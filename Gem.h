@@ -66,6 +66,7 @@ public:
 	const bool GetIsHitChest() const { return isHitTreasureChest; }
 	const float GetRadius() const { return radius; }
 	const float GetEntyrTime()const { return entryTime; }
+    const int GetGemType()const { return gemType; }
 
 	// setter
 	void SetPos(const VECTOR set) { pos = set; }

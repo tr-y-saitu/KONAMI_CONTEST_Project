@@ -91,6 +91,9 @@ public:
 	/// </summary>
 	/// <param name="resetFlag">計測時間をリセットするかどうかのフラグ</param>
 	void SettingTimer(GemManager& gemManager);
+
+    // （仮）スコアの更新
+    void UpdateScore(TreasureChest& chest);
 	
 
 	const int GetNowTimer() { return nowTimer; }
@@ -128,13 +131,19 @@ private:
 	int		previousTime;	// ゲームループが始まる前の時間
 	int		timer;			// ゲーム時間
 	float	nowTimer;		// 現在の制限時間
-	bool	keyOn;			// キー入力されているか
-	bool	keyRelease;		// キー入力が離れたか
-	bool	prevKeyOn;		// 前フレームでキー入力があったか
 	int		isHitCount;		// ヒットしてから何フレーム経過したか
 	bool	isClearFlag;	// クリアしたかのフラグ
 	double	isClearCount;	// クリアしてからのカウント
 	bool	isDrawGetUi;	// 宝石ゲット時のUI演出をするかどうか
+
+    // スコア
+    int     score;          // スコア
+
+    // キー入力
+	bool	keyOn;			// キー入力されているか
+	bool	keyRelease;		// キー入力が離れたか
+	bool	prevKeyOn;		// 前フレームでキー入力があったか
+
 
 	// メニュー
 	int		menuGraph;		// メニュー用画像
