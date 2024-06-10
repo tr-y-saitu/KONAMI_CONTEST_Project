@@ -49,6 +49,9 @@ VECTOR Gem::SettingMoveType(int gemTyep)
 {
 	// 返り値用方向
 	VECTOR reDir = VGet(0, 0, 0);
+    VECTOR touchesOne = VGet(1.0f, 0.5f, 0.0f);     // １回タッチでゲット
+    VECTOR touchesTwo = VGet(0.25f, 0.8f, 0.0f);    // ２回タッチでゲット
+    VECTOR touchesFour = VGet(0.12f, 0.8f, 0.0f);   // ４回タッチでゲット
 
 	// 宝石のタイプを受けて方向を設定
 	switch (gemType)
@@ -56,25 +59,25 @@ VECTOR Gem::SettingMoveType(int gemTyep)
 		// ダイアモンド
 	case GemManager::DIAMOND:
         // ４回タッチでゲット
-		reDir = VGet(0.12f, 0.8f, 0.0f);	// 斜め右
+		reDir = touchesFour;
 		break;
 
 		// ルビー
 	case GemManager::RUBY:
         // ２回タッチでゲット
-		reDir = VGet(0.3f, 0.8f, 0.0f);	// 斜め右（上強め）
+		reDir = touchesTwo;
 		break;
 		
 		// サファイア
 	case GemManager::SAPPHIRE:
         // ２回タッチでゲット
-		reDir = VGet(0.3f, 0.8f, 0.0f);	// 斜め右(右弱め)
+		reDir = touchesTwo;
 		break;
 		
 		// エメラルド
 	case GemManager::EMERALD:
         // １回タッチでゲット
-		reDir = VGet(1.0f, 0.5f, 0.0f);	// 斜め右(右強め)
+		reDir = touchesOne;
 		break;
 
 		// その他

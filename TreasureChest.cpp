@@ -5,8 +5,8 @@
 // コンストラクタ
 TreasureChest::TreasureChest()
 	: modelHanlde		(-1)
-	, width				(4)
-	, height			(4)
+	, width				(5)
+	, height			(5)
 	, isHitGem			(false)
 	, radius			(0)
 {
