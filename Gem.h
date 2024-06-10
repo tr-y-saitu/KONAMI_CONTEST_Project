@@ -53,7 +53,7 @@ public:
 	/// <summary>
 	/// 宝石の描画
 	/// </summary>
-	void Draw();						// 描画
+	void Draw();
 
 	// ポジションのgetter/setter.
 	int GetModelHandle() const { return modelHandle; }
@@ -74,6 +74,8 @@ public:
 	void SetIsHitChest(const bool set) { isHitTreasureChest = set; }
 	void SetEntryTime(const float set) { entryTime = set; }
 	void SetEntryPosition(const VECTOR set) { entryPosition = set; }
+    void SetVisibleFlag(const bool set) { visibleFlag = set; }
+    void SetDirection(const VECTOR set) { dir = set; }
 
 private:
 	// 定数
@@ -83,6 +85,7 @@ private:
 	const float JUMP_POWER = 0.1f;			// プレイヤーに当たった時のジャンプ量
 
 	// 変数
+
 	// モデル関係
 	int		modelHandle;	// モデルハンドル
     int     collisionGraph; // 当たり判定の２次元画像

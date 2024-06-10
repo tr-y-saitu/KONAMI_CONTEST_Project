@@ -1,26 +1,40 @@
 ﻿#include "DxLib.h"
 #include "Gem.h"
 #include "GemManager.h"
+#include "Calculation.h"
+#include "WaveConstants.h"
 
 
-// コンストラクタ
+/// <summary>
+/// コンストラクタ
+/// </summary>
 GemManager::GemManager()
 	: modelHandleDiamond	(-1)
 	, modelHandleRuby		(-1)
 	, modelHandleSapphire	(-1)
 	, modelHandleEmerald	(-1)
+    , gemWaveState          (WAVE_FIRST)
+    , resetTimer            (false)
+    , isResetEntryData      (false)
 {
-
+    // WAVEごとの情報を代入
+    waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, 20, "WAVE_FIRST");
+    waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "WAVE_SECOND");
+    waveConstantsTable[WAVE_THIRD] = new WaveConstants(1, 40, "WAVE_THIRD");
 }
 
-// デストラクタ
+/// <summary>
+/// デストラクタ
+/// </summary>
 GemManager::~GemManager()
 {
 	// 処理なし
 }
 
 
-// モデルのロード
+/// <summary>
+/// 宝石モデルのロード
+/// </summary>
 void GemManager::LoadModle()
 {
 	// 宝石のモデルをロード
@@ -87,22 +101,24 @@ int GemManager::SettingGemModle(int type)
 
 
 /// <summary>
-/// 宝石のエントリーデータの作成
-/// <summary>
+/// 宝石のエントリー情報を作成
+/// </summary>
 /// <param name="data">宝石のエントリー情報を格納する多次元配列</param>
 /// <param name="size">多次元配列の添え字数</param>
 void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
 {
-	// 宝石の登場情報を書き込む
-	for (int i = 0; i < size; i++)
-	{
-		// X軸の初期位置をランダムで持たせる
-		int _randomPosX = GetRand(5) - 15.0f;
-		// 登場時間を設定
-		data[i].entryTime = i;
-		// 登場座標の設定
-		data[i].entryPosition = VGet(_randomPosX, 15 , -5);
-	}
+    // 現在のWAVEに必要な情報を引き出す
+    // NOTE:(WAVE_STATE)gemWaveStateでキャスト変換しないと使用できない
+    auto constant = waveConstantsTable[(WAVE_STATE)gemWaveState];
+
+    for (int i = 0; i < size; i++)
+    {
+        // 登場時間を設定
+        data[i].entryTime = i * constant->entryTime;
+        // 登場座標の設定
+        data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
+    }
+
 }
 
 /// <summary>
@@ -115,12 +131,48 @@ void GemManager::SettingEntryDataBase(Gem& gem,int index)
 	// 簡単に変数にする
 	float _gemEntryTime = entryGemDataBase[index].entryTime;
 	VECTOR _gemPos = entryGemDataBase[index].entryPosition;
+
 	// 実際に書き込み
 	gem.SetEntryTime(_gemEntryTime);// 登場時間の設定
 	gem.SetEntryPosition(_gemPos);	// 登場座標の設定
 }
 
+/// <summary>
+/// 宝石のウェーブ更新
+/// </summary>
+/// <param name="gem">宝石</param>
+/// <param name="index">宝石の添え字</param>
+/// <param name="nowTimer">現在の時間</param>
+/// FiXME: y.saitu  修正が必要
+void GemManager::GemWaveUpdate(Gem& gem, int index,float nowTimer)
+{
+    // 現在のWAVEに必要な情報を引き出す
+    // NOTE:(WAVE_STATE)gemWaveStateでキャスト変換しないと使用できない
+    auto waveConstant = waveConstantsTable[(WAVE_STATE)gemWaveState];
 
+    // もしもWAVEが終了していなければ
+    if (gemWaveState != WAVE_END)
+    {
+        // 宝石の更新
+        gem.Update(calculation, nowTimer);
 
+        // そのウェーブの制限時間が終了したら
+        if (nowTimer >= waveConstant->waveEndTime)
+        {
+            // タイマーをリセットするフラグを立てる
+            resetTimer = true;
+
+            // 宝石のデータを更新するフラグを立てる
+            isResetEntryData = true;
+
+            // 次のステージへ移行
+            gemWaveState++;
+        }
+    }
+    else
+    {
+        // クリアステートに移動させる
+    }
+}
 
 

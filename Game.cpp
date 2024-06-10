@@ -171,7 +171,6 @@ void Game::Initialize()
 	isClearCount = 0;
 
 	player->Initialize();
-	//enemy->Initialize();
 	ui->Initialize();
 	skyDome->Initialize();
 	room->Initialize();
@@ -242,6 +241,9 @@ void Game::UpdateGame()
 	// キー入力処理
 	ProcessKey();
 
+    // 現在の宝石の数を調べる
+    int _gemSize = gem.size();
+
 	// ステートごとに処理を分ける
 	switch (gameState)
 	{
@@ -260,15 +262,14 @@ void Game::UpdateGame()
 		// ゲーム中 //////////////////////////////////////
 	case STATE_GAME:
 		// ゲームが開始してからの時間を計測
-		SettingTimer();
+		SettingTimer(*gemManager);
 
 		// ゲームフレームを数える
 		CountGameFraem();
 
 		// ゲームアップデート
 		// 当たり判定処理
-		//collision->HitPlayerToEnemy(*player, *enemy);	// プレイヤーとエネミーの当たり判定
-		for (int i = 0; i < gem.size(); i++)
+		for (int i = 0; i < _gemSize; i++)
 		{
             // プレイヤーと宝石との当たり判定
             collision->IsHit2DPlayerToGem(*player, *gem[i]);
@@ -286,16 +287,33 @@ void Game::UpdateGame()
 		player->Update(*enemy);	// プレイヤー
 
 		// カメラ更新
-		camera->Update(*player);
+		camera->Update(*player);// カメラ
 		
 		// オブジェクト更新
 		skyDome->Update();		// 背景
 		room->Update();			// 部屋
-		for (int i = 0; i < gem.size(); i++)
+        // データのリセットフラグがたったら
+        if (gemManager->GetIsResetEntyrData())
+        {
+            // 宝石の個数分エントリー情報を設定
+            gemManager->CreateEntryData(gemManager->entryGemDataBase, _gemSize);
+            
+            // 宝石のエントリー情報を書き込み
+            for (int i = 0; i < _gemSize; i++)
+            {
+                gem[i]->Initialize(VGet(0, 0, 0), *gemManager);
+                gemManager->SettingEntryDataBase(*gem[i], i);
+            }
+            
+            gemManager->SetIsResetEntryData(false);
+        }
+
+		for (int i = 0; i < _gemSize; i++)
 		{
-			gem[i]->Update(calculation,nowTimer);	// 宝石
-			treasureChest->Update(*gem[i]);			// 宝箱更新
+            gemManager->GemWaveUpdate(*gem[i],i, nowTimer); // 宝石更新
+			treasureChest->Update(*gem[i]);			        // 宝箱更新
 		}
+
 		//effekseer1->Update();
 		
 		break;
@@ -391,8 +409,18 @@ void Game::DrawTimer()
 /// <summary>
 /// 現在経過時間の更新
 /// </summary>
-void Game::SettingTimer()
+/// <param name="resetFlag">計測時間をリセットするかどうかのフラグ</param>
+void Game::SettingTimer(GemManager& gemManager)
 {
+    //  時間をリセットするフラグがたったら
+    if (gemManager.GetResetTimer())
+    {
+        // 経過時間をリセット
+        previousTime = GetNowHiPerformanceCount();
+        // フラグをおろす
+        gemManager.SetResetTimer(false);
+    }
+
 	// 現在時間 - 最初の計測時間
 	timer = (GetNowHiPerformanceCount() - previousTime);
 	// 現在経過時間（１桁表示）
@@ -421,7 +449,7 @@ void Game::DrawGame()
 	}
 
 	// UI描画
-	ui->Draw(GetGameState(),*player,isClearFlag,*treasureChest,nowTimer);
+	ui->Draw(GetGameState(),*player,isClearFlag,*treasureChest,nowTimer,*gemManager);
 
 	// エフェクトの再生
 	//effekseer1->Draw();
