@@ -56,10 +56,10 @@ VECTOR Gem::SettingMoveType(int gemTyep)
 	// 宝石のタイプを受けて方向を設定
 	switch (gemType)
 	{
-		// ダイアモンド
-	case GemManager::DIAMOND:
-        // ４回タッチでゲット
-		reDir = touchesFour;
+		// エメラルド
+	case GemManager::EMERALD:
+        // １回タッチでゲット
+		reDir = touchesOne;
 		break;
 
 		// ルビー
@@ -74,10 +74,10 @@ VECTOR Gem::SettingMoveType(int gemTyep)
 		reDir = touchesTwo;
 		break;
 		
-		// エメラルド
-	case GemManager::EMERALD:
-        // １回タッチでゲット
-		reDir = touchesOne;
+		// ダイアモンド
+	case GemManager::DIAMOND:
+        // ４回タッチでゲット
+		reDir = touchesFour;
 		break;
 
 		// その他
@@ -103,9 +103,9 @@ float Gem::SettingFallSpeedType(int gemType)
 	// タイプ別に落下速度を設定
 	switch (gemType)
 	{
-		// ダイアモンド
-	case GemManager::DIAMOND:
-		fallSpeed = 0.05f;
+		// エメラルド
+	case GemManager::EMERALD:
+		fallSpeed = 0.001f;
 		break;
 
 		// ルビー
@@ -118,9 +118,9 @@ float Gem::SettingFallSpeedType(int gemType)
 		fallSpeed = 0.001f;
 		break;
 
-		// エメラルド
-	case GemManager::EMERALD:
-		fallSpeed = 0.001f;
+		// ダイアモンド
+	case GemManager::DIAMOND:
+		fallSpeed = 0.05f;
 		break;
 
 		// その他

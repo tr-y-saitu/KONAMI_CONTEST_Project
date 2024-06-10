@@ -456,5 +456,13 @@ void Game::DrawGame()
 void Game::UpdateScore(TreasureChest& chest)
 {
     // 宝石が宝箱の中に入ったら
+    if (chest.GetIsHitGem())
+    {
+        // 当たった宝石の種類を確認
+        auto _hitGemType = chest.GetHitGemType();
+
+        // スコアを計算
+        score += _hitGemType + 1 * 100;
+    }
 }
 

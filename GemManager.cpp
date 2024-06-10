@@ -66,9 +66,9 @@ int GemManager::SettingGemModle(int type)
 	// 種類(タイプ)の判定
 	switch (type)
 	{
-	// ダイアモンド
-	case DIAMOND:	
-		reTypeModelHandle = modelHandleDiamond;
+	// エメラルド
+	case EMERALD:	
+		reTypeModelHandle = modelHandleEmerald;
 		break;
 
 	// ルビー
@@ -81,12 +81,12 @@ int GemManager::SettingGemModle(int type)
 		reTypeModelHandle = modelHandleSapphire;
 		break;
 
-	// エメラルド
-	case EMERALD:	
-		reTypeModelHandle = modelHandleEmerald;
+	// ダイアモンド
+	case DIAMOND:	
+		reTypeModelHandle = modelHandleDiamond;
 		break;
 
-	// それ以外
+        // それ以外
 	default:
 		break;
 	}

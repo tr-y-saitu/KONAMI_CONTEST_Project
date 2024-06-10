@@ -9,6 +9,7 @@ TreasureChest::TreasureChest()
 	, height			(5)
 	, isHitGem			(false)
 	, radius			(0)
+    , hitGemType      (0)
 {
 	modelHanlde = MV1LoadModel("data/model/TreasureChest/TreasureChest.mv1");
 	pos = VGet(0, 0, 0);
