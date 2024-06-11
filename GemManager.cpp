@@ -113,50 +113,11 @@ void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
 
     for (int i = 0; i < size; i++)
     {
-<<<<<<< HEAD
-    case WAVE_FIRST:
-        // 宝石の登場情報を作成
-        for (int i = 0; i < size; i++)
-        {
-            // 登場時間を設定
-            data[i].entryTime = i * 1;
-            // 登場座標の設定
-            data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
-        }
-        break;
-
-    case WAVE_SECOND:
-        // 宝石の登場情報を作成
-        for (int i = 0; i < size; i++)
-        {
-            // 登場時間を設定
-            data[i].entryTime = i * 3;
-            // 登場座標の設定
-            data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
-        }
-        break;
-
-    case WAVE_THIRD:
-        // 宝石の登場情報を作成
-        for (int i = 0; i < size; i++)
-        {
-            // 登場時間を設定
-            data[i].entryTime = i * 1;
-            // 登場座標の設定
-            data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
-        }
-        break;
-
-    default:
-        break;
-=======
         // 登場時間を設定
         data[i].entryTime = i * constant->entryTime;
         // 登場座標の設定
         data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
->>>>>>> main
     }
-
 }
 
 /// <summary>

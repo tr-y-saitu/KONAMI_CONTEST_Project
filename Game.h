@@ -92,7 +92,10 @@ public:
 	/// <param name="resetFlag">計測時間をリセットするかどうかのフラグ</param>
 	void SettingTimer(GemManager& gemManager);
 
-    // （仮）スコアの更新
+    /// <summary>
+    /// スコアの更新
+    /// </summary>
+    /// <param name="chest">宝箱</param>
     void UpdateScore(TreasureChest& chest);
 	
 
@@ -100,6 +103,7 @@ public:
 	const int GetFrameCount() { return gameFrameCount; }
 	const int GetGameState() { return gameState; }
 	const bool GetIsClearFlag() { return isClearFlag; }
+    const int GetScore() { return score; }
 
 	// 使用クラス
 	Player*		player;
@@ -118,6 +122,7 @@ public:
 	Calculation calculation;
 	GemManager*	gemManager;
 	TreasureChest* treasureChest;
+    Game* game;
 
 	std::vector<Gem*>	gem;
 
@@ -138,6 +143,8 @@ private:
 
     // スコア
     int     score;          // スコア
+    bool    isUpScore;      // スコアをアップさせる
+    int     isUpScoreCount; // スコアをアップさせるためのカウント
 
     // キー入力
 	bool	keyOn;			// キー入力されているか

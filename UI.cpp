@@ -51,7 +51,7 @@ void UI::Initialize()
 /// <param name="clearFlag">クリアしているかどうか</param>
 /// <param name="chest">宝箱クラス</param>
 /// <param name="nowTimer">ゲームの現在経過時間</param>
-void UI::Draw(int state, Player& player, bool& isDrawUIFlag,TreasureChest& chest, float nowTimer,GemManager& gemManager)
+void UI::Draw(int state, Player& player, bool& isDrawUIFlag,TreasureChest& chest, float nowTimer,GemManager& gemManager, int score)
 {
 	char _timeCount[256];					// ゲームの経過時間
 	// ステートごとに描画を変更
@@ -92,6 +92,8 @@ void UI::Draw(int state, Player& player, bool& isDrawUIFlag,TreasureChest& chest
             getDirectionCount = 0;
             isHitGemToChest = false;
         }
+
+        // 現在のWAVEステートの描画
         switch (gemManager.GetGemWaveState())
         {
         case GemManager::WAVE_FIRST:
@@ -109,7 +111,9 @@ void UI::Draw(int state, Player& player, bool& isDrawUIFlag,TreasureChest& chest
         default:
             break;
         }
-        
+
+        // スコアの描画
+        DrawScore(VGet(0, 0, 0), 20, score);
 
 
 		break;
@@ -132,4 +136,19 @@ void UI::Draw(int state, Player& player, bool& isDrawUIFlag,TreasureChest& chest
 	default:
 		break;
 	}
+}
+
+/// <summary>
+/// スコアの描画
+/// </summary>
+/// <param name="pos">スコアを描画する座標</param>
+/// <param name="fontSize">フォントサイズ</param>
+/// <param name="score">スコア</param>
+void UI::DrawScore(VECTOR pos, int fontSize,int score)
+{
+    // フォントサイズの変更
+    SetFontSize(fontSize);
+
+    // スコアの描画
+    DrawFormatString(pos.x, pos.y, UI_COLOR, "SCORE : %d", score);
 }

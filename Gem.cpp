@@ -173,7 +173,7 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 void Gem::Update(Calculation& cal, float nowTimer)
 {
 	// 登場時間になったら存在
-	if(entryTime <= nowTimer)
+	if(entryTime <= nowTimer && !isHitTreasureChest)
 	{
 		visibleFlag = true;
 	}
