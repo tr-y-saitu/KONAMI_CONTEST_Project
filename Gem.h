@@ -67,7 +67,7 @@ public:
     /// <param name="state">宝石の状態</param>
     /// <param name="withTarget">対象と当たっているかどうか</param>
     /// <returns>宝石の対象との接触状態</returns>
-    int ShiftGemState(GEM_STATE state, bool withTarget);
+    int UpdateGemState(GEM_STATE state, bool withTarget);
 
 	/// <summary>
 	/// 宝石の描画

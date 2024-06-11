@@ -127,9 +127,6 @@ public:
     Game* game;
 
     vector<Gem*>	gem;
-    list<Gem*>  gemActive;          // 動作させる宝石
-    list<Gem*>  gemInactive;        // 動作させない宝石
-    
 
 private:
 	// 定数

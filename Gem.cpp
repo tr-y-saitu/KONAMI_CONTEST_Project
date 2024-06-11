@@ -240,9 +240,9 @@ void Gem::Update(Calculation& cal, float nowTimer)
 
         // 状態の変化
         // プレイヤー
-        statusWithPlayer = (GEM_STATE)ShiftGemState((GEM_STATE)statusWithPlayer, isHitPlayer);
+        statusWithPlayer = (GEM_STATE)UpdateGemState((GEM_STATE)statusWithPlayer, isHitPlayer);
         // 宝箱
-        statusWithTreasureChest = (GEM_STATE)ShiftGemState((GEM_STATE)statusWithTreasureChest, isHitTreasureChest);
+        statusWithTreasureChest = (GEM_STATE)UpdateGemState((GEM_STATE)statusWithTreasureChest, isHitTreasureChest);
 
 		// 移動処理 /////////////////////////////////////////////////////
 
@@ -305,7 +305,7 @@ void Gem::Draw2DBOXCollision()
 /// <param name="state">宝石の状態</param>
 /// <param name="withTarget">対象と当たっているかどうか</param>
 /// <returns>宝石の対象との接触状態</returns>
-int Gem::ShiftGemState(GEM_STATE state, bool withTarget)
+int Gem::UpdateGemState(GEM_STATE state, bool withTarget)
 {
     // 移行する状態
     auto _shiftState = state;
@@ -316,17 +316,17 @@ int Gem::ShiftGemState(GEM_STATE state, bool withTarget)
         _shiftState = ENTER;
     }
     // ENTER→STAY (接触し続けている状態)
-    if (state == ENTER && withTarget)
+    else if (state == ENTER && withTarget)
     {
         _shiftState = STAY;
     }
     // STAY→EXIT (接触状態から接触していない状態へ移行した状態)
-    if (state == STAY && !withTarget)
+    else if (state == STAY && !withTarget)
     {
         _shiftState = EXIT;
     }
     // EXIT→NORN (接触していない状態)
-    if (state == EXIT && !withTarget)
+    else if (state == EXIT && !withTarget)
     {
         _shiftState = NORN;
     }
