@@ -190,6 +190,7 @@ bool Collision::IsHitGemToTreasureChestBool(Gem& gem, TreasureChest& chest)
 		{
 			// 接触している
 			isHit = true;
+            gem.SetVisibleFlag(false);
 		}
 	}
 	// 当たっているか否か
@@ -259,6 +260,9 @@ bool Collision::IsHit2DGemToTreasureChest(Gem& gem, TreasureChest& chest)
     // 当たっているか否か
     chest.SetIsHitGem(isHit);
     gem.SetIsHitChest(isHit);
+
+    // 当たった宝石の種類を知る
+    chest.SetHitGemType(gem.GetGemType());
 
     return isHit;
 }

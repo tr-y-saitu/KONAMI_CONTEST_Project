@@ -2,8 +2,10 @@
 
 #include "DxLib.h"
 #include <vector>
+#include <list>
 #include "Calculation.h"
 
+using namespace std;
 
 // プロトタイプ宣言
 class BG;
@@ -91,12 +93,19 @@ public:
 	/// </summary>
 	/// <param name="resetFlag">計測時間をリセットするかどうかのフラグ</param>
 	void SettingTimer(GemManager& gemManager);
+
+    /// <summary>
+    /// スコアの更新
+    /// </summary>
+    /// <param name="chest">宝箱</param>
+    void UpdateScore(TreasureChest& chest);
 	
 
 	const int GetNowTimer() { return nowTimer; }
 	const int GetFrameCount() { return gameFrameCount; }
 	const int GetGameState() { return gameState; }
 	const bool GetIsClearFlag() { return isClearFlag; }
+    const int GetScore() { return score; }
 
 	// 使用クラス
 	Player*		player;
@@ -115,8 +124,9 @@ public:
 	Calculation calculation;
 	GemManager*	gemManager;
 	TreasureChest* treasureChest;
+    Game* game;
 
-	std::vector<Gem*>	gem;
+    vector<Gem*>	gem;
 
 private:
 	// 定数
@@ -128,13 +138,19 @@ private:
 	int		previousTime;	// ゲームループが始まる前の時間
 	int		timer;			// ゲーム時間
 	float	nowTimer;		// 現在の制限時間
-	bool	keyOn;			// キー入力されているか
-	bool	keyRelease;		// キー入力が離れたか
-	bool	prevKeyOn;		// 前フレームでキー入力があったか
 	int		isHitCount;		// ヒットしてから何フレーム経過したか
 	bool	isClearFlag;	// クリアしたかのフラグ
 	double	isClearCount;	// クリアしてからのカウント
 	bool	isDrawGetUi;	// 宝石ゲット時のUI演出をするかどうか
+
+    // スコア
+    int     score;          // スコア
+
+    // キー入力
+	bool	keyOn;			// キー入力されているか
+	bool	keyRelease;		// キー入力が離れたか
+	bool	prevKeyOn;		// 前フレームでキー入力があったか
+
 
 	// メニュー
 	int		menuGraph;		// メニュー用画像

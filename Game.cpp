@@ -30,6 +30,7 @@ Game::Game()
 	,	isClearFlag		(false)
 	,	nowTimer		(0)
 	,	isDrawGetUi		(false)
+    ,   score           (0)
 {
 	// 変数の初期化
 	gameState = STATE_MENU;
@@ -81,6 +82,8 @@ void Game::Create()
 		gem.push_back(new Gem());
 	}
 	gemManager = new GemManager();
+    game = new Game();
+
 	//effekseer1 = new Effekseer1();
 }
 
@@ -103,7 +106,7 @@ void Game::DeleteGame()
 	{
 		delete(gem[i]);
 	}
-
+    delete(game);
 	//delete(effekseer1);
 }
 
@@ -169,6 +172,7 @@ void Game::Initialize()
 	isHitCount = 0;
 	isClearFlag = false;
 	isClearCount = 0;
+    score = 0;
 
 	player->Initialize();
 	ui->Initialize();
@@ -243,6 +247,8 @@ void Game::UpdateGame()
 
     // 現在の宝石の数を調べる
     int _gemSize = gem.size();
+    auto _scoreUpFlag = false;
+    auto _gemType = 0;
 
 	// ステートごとに処理を分ける
 	switch (gameState)
@@ -276,10 +282,14 @@ void Game::UpdateGame()
 
             // 宝石と宝箱の当たり判定
             bool isHitGemToChest = collision->IsHit2DGemToTreasureChest(*gem[i], *treasureChest);
-            if (isHitGemToChest)
+            // 当たっているかつ、宝石が最初に宝箱に当たった状態であれば
+            if (isHitGemToChest && gem[i]->GetGemStateWithTreasureChest() == Gem::GEM_STATE::ENTER)
 			{
                 // 当たった時の演出を出す指令をセット
 				ui->SetIsHitGemToChest(true);
+
+                // スコアをアップさせる
+                UpdateScore(*treasureChest);
 			}
 		}
 
@@ -313,7 +323,7 @@ void Game::UpdateGame()
             gemManager->GemWaveUpdate(*gem[i],i, nowTimer); // 宝石更新
 			treasureChest->Update(*gem[i]);			        // 宝箱更新
 		}
-
+         
 		//effekseer1->Update();
 		
 		break;
@@ -449,11 +459,22 @@ void Game::DrawGame()
 	}
 
 	// UI描画
-	ui->Draw(GetGameState(),*player,isClearFlag,*treasureChest,nowTimer,*gemManager);
+	ui->Draw(GetGameState(),*player,isClearFlag,*treasureChest,nowTimer,*gemManager,score);
 
 	// エフェクトの再生
 	//effekseer1->Draw();
 }
 
+/// <summary>
+/// スコアの更新
+/// </summary>
+/// <param name="chest">宝箱</param>
+void Game::UpdateScore(TreasureChest& chest)
+{
+    // 当たった宝石の種類を確認
+    auto _hitGemType = chest.GetHitGemType();
 
+    // スコアを計算
+    score += (_hitGemType + 1) * 100;
+}
 

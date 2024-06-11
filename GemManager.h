@@ -21,10 +21,10 @@ public:
     /// </summary>
     enum GemType
     {
-        DIAMOND,	// ダイアモンド
+        EMERALD,	// エメラルド
         RUBY,		// ルビー
         SAPPHIRE,	// サファイア
-        EMERALD		// エメラルド
+        DIAMOND	    // ダイアモンド
     };
 
     /// <summary>

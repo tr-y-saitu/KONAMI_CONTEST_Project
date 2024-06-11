@@ -5,16 +5,17 @@
 // コンストラクタ
 TreasureChest::TreasureChest()
 	: modelHanlde		(-1)
-	, width				(4)
-	, height			(4)
+	, width				(5)
+	, height			(5)
 	, isHitGem			(false)
 	, radius			(0)
+    , hitGemType      (0)
 {
 	modelHanlde = MV1LoadModel("data/model/TreasureChest/TreasureChest.mv1");
-	pos = VGet(7, 0, 0);
-	scale = VGet(0.005f, 0.005f, 0.005f);
+	pos = VGet(0, 0, 0);
+	scale = VGet(0.007f, 0.007f, 0.007f);
 	// モデルの回転(違和感ない位置に修正)
-	MV1SetRotationXYZ(modelHanlde, VGet(0.0f, -90.0f * DX_PI_F / 180.0f, 0.0f));
+	MV1SetRotationXYZ(modelHanlde, VGet(0.0f, -50.0f * DX_PI_F / 180.0f, 0.0f));
 }
 
 // デストラクタ
@@ -27,7 +28,7 @@ TreasureChest::~TreasureChest()
 // 初期化
 void TreasureChest::Initialize()
 {
-	pos = VGet(7, 0, -5);
+	pos = VGet(5, 0, -5);
 	// スケールの設定
 	MV1SetScale(modelHanlde, scale);
 	radius = 3.0f;
@@ -47,7 +48,7 @@ void TreasureChest::Draw()
 	MV1DrawModel(modelHanlde);
 
 	// 球型の当たり判定の描画
-	DrawSphere3D(pos, radius, 32, GetColor(0, 0, 255), GetColor(255, 255, 255), false);
+	//DrawSphere3D(pos, radius, 32, GetColor(0, 0, 255), GetColor(255, 255, 255), false);
 }
 
 

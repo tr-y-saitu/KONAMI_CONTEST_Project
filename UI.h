@@ -26,7 +26,15 @@ public:
 	/// <param name="clearFlag">クリアしているかどうか</param>
 	/// <param name="chest">宝箱クラス</param>
 	/// <param name="nowTimer">ゲームの現在経過時間</param>
-	void Draw(int state,Player& player,bool& isDrawUIFlag, TreasureChest& chest,float nowTimer, GemManager& gemManager);	// 描画
+	void Draw(int state,Player& player,bool& isDrawUIFlag, TreasureChest& chest,float nowTimer, GemManager& gemManager,int score);	// 描画
+
+    /// <summary>
+    /// スコアの描画
+    /// </summary>
+    /// <param name="pos">スコアを描画する座標</param>
+    /// <param name="fontSize">フォントサイズ</param>
+    /// <param name="score">スコア</param>
+    void DrawScore(VECTOR pos, int fontSize, int score);
 
 	// Getter
 	const bool GetIsHitGemToChest()const { return isHitGemToChest; }

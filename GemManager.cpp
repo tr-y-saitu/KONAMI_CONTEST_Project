@@ -70,9 +70,9 @@ int GemManager::SettingGemModle(int type)
 	// 種類(タイプ)の判定
 	switch (type)
 	{
-	// ダイアモンド
-	case DIAMOND:	
-		reTypeModelHandle = modelHandleDiamond;
+	// エメラルド
+	case EMERALD:	
+		reTypeModelHandle = modelHandleEmerald;
 		break;
 
 	// ルビー
@@ -85,12 +85,12 @@ int GemManager::SettingGemModle(int type)
 		reTypeModelHandle = modelHandleSapphire;
 		break;
 
-	// エメラルド
-	case EMERALD:	
-		reTypeModelHandle = modelHandleEmerald;
+	// ダイアモンド
+	case DIAMOND:	
+		reTypeModelHandle = modelHandleDiamond;
 		break;
 
-	// それ以外
+        // それ以外
 	default:
 		break;
 	}
@@ -118,7 +118,6 @@ void GemManager::CreateEntryData(EntryGemDataBase data[],int size)
         // 登場座標の設定
         data[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
     }
-
 }
 
 /// <summary>

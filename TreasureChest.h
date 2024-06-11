@@ -21,10 +21,12 @@ public:
 	const float GetRadius()const { return radius; }
     const float GetWidth()const { return width; }
     const float GetHeight()const { return height; }
+    const int GetHitGemType()const { return hitGemType; }
 
 	// Setter
 	void SetPos(const VECTOR set) { pos = set; }
 	void SetIsHitGem(const bool set) { isHitGem = set; }
+    void SetHitGemType(const int set) { hitGemType = set; }
 
 private:
 	// 変数
@@ -42,6 +44,7 @@ private:
 
 	// 当たり判定
 	float	radius;			// 球型当たり判定用の半径
+    int     hitGemType;   // 当たった宝石の種類
 };
 
 
