@@ -2,6 +2,7 @@
 #include "Calculation.h"
 #include <iostream>
 #include <map>
+#include <vector>
 using namespace std;
 
 
@@ -48,6 +49,11 @@ public:
     // メソッド
     GemManager();
     virtual ~GemManager();
+
+    /// <summary>
+    /// 宝石の生成
+    /// </summary>
+    void CreateGem();
 
     /// <summary>
     /// 宝石モデルのハンドルをロード
@@ -108,6 +114,7 @@ public:
 	// 実際のデータ
 	EntryGemDataBase entryGemDataBase[100];	// 宝石のエントリー情報を格納するための構造体
     map<WAVE_STATE, WaveConstants*> waveConstantsTable;  // ウェーブごとの定数
+    vector<Gem*> gem;
 
 private:
     int     gemWaveState;       // 現在のウェーブステート

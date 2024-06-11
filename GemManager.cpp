@@ -31,6 +31,16 @@ GemManager::~GemManager()
 	// 処理なし
 }
 
+/// <summary>
+/// 宝石の生成
+/// </summary>
+void GemManager::CreateGem()
+{
+    for (int i = 0; i < GEM_TOTAL_NUM; i++)
+    {
+        gem.push_back(new Gem());
+    }
+}
 
 /// <summary>
 /// 宝石モデルのロード
