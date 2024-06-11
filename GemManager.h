@@ -9,7 +9,10 @@ using namespace std;
 class Gem;
 enum WAVE_STATE;
 class Calculation;
+class Collision;
 class WaveConstants;
+class Player;
+class TreasureChest;
 
 /// <summary>
 /// 宝石マネージャークラス
@@ -56,9 +59,19 @@ public:
     void CreateGem();
 
     /// <summary>
+    /// 宝石の削除
+    /// </summary>
+    void DeleteGem();
+
+    /// <summary>
     /// 宝石モデルのハンドルをロード
     /// </summary>
     void LoadModle();
+
+    /// <summary>
+    /// 宝石の初期化
+    /// </summary>
+    void Initialize();
 
     /// <summary>
     /// 宝石のモデルを設定
@@ -76,11 +89,34 @@ public:
     void CreateEntryData(EntryGemDataBase data[], int size);
 
     /// <summary>
+    /// 宝石のエントリー情報の作成
+    /// </summary>
+    void CreateEntyrInformation();
+
+    /// <summary>
     /// 宝石のエントリー情報を設定
     /// </summary>
     /// <param name="gem">宝石クラス</param>
     /// <param name="size">宝石の総数</param>
     void SettingEntryDataBase(Gem& gem, int index);
+
+    /// <summary>
+    /// 宝石の当たり判定更新
+    /// </summary>
+    /// <param name="player">プレイヤー</param>
+    /// <param name="chest">宝箱</param>
+    /// <returns>スコアアップのタイミングどうか</returns>
+    bool UpdateGemCollision(Player& player, TreasureChest& chest, Collision& collision);
+
+    /// <summary>
+    /// 宝石のデータのリセット
+    /// </summary>
+    void ResetGemData();
+
+    /// <summary>
+    /// 宝石のウェーブ更新
+    /// </summary>
+    void UpdateWaveGem(float nowTimer);
 
     /// <summary>
     /// 宝石のウェーブ更新
@@ -89,6 +125,11 @@ public:
     /// <param name="index">宝石の添え字</param>
     /// <param name="nowTimer">現在の時間</param>
     void GemWaveUpdate(Gem& gem, int index, float nowTimer);
+
+    /// <summary>
+    /// 宝石の描画
+    /// </summary>
+    void DrawGems();
 
     // getter
     const int GetGemWaveState()const { return gemWaveState; }
@@ -114,7 +155,7 @@ public:
 	// 実際のデータ
 	EntryGemDataBase entryGemDataBase[100];	// 宝石のエントリー情報を格納するための構造体
     map<WAVE_STATE, WaveConstants*> waveConstantsTable;  // ウェーブごとの定数
-    vector<Gem*> gem;
+    vector<Gem*> gems;
 
 private:
     int     gemWaveState;       // 現在のウェーブステート

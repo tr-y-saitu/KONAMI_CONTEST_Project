@@ -77,13 +77,9 @@ void Game::Create()
 	skyDome = new SkyDome();
 	room = new Room();
 	treasureChest = new TreasureChest();
-	for (int i = 0; i < GEM_TOTAL_NUM; i++)
-	{
-		gem.push_back(new Gem());
-	}
 	gemManager = new GemManager();
     game = new Game();
-
+    gemManager->CreateGem();
 	//effekseer1 = new Effekseer1();
 }
 
@@ -102,11 +98,8 @@ void Game::DeleteGame()
 	delete(room);
 	delete(treasureChest);
 	delete(gemManager);
-	for (int i = 0; i < GEM_TOTAL_NUM; i++)
-	{
-		delete(gem[i]);
-	}
     delete(game);
+    gemManager->DeleteGem();
 	//delete(effekseer1);
 }
 
@@ -134,20 +127,9 @@ void Game::InitializeGameStart()
 	skyDome->Initialize();
 	room->Initialize();
 	treasureChest->Initialize();
-	for (int i = 0; i < gem.size(); i++)
-	{
-		gem[i]->Initialize(VGet(i , 0, -5),*gemManager);
-	}
-	
-	// 宝石のエントリー情報を作成
-	gemManager->CreateEntryData(gemManager->entryGemDataBase,gem.size());
-	
-	// 宝石のエントリー情報を書き込み
-	for (int i = 0; i < gem.size(); i++)
-	{
-		gemManager->SettingEntryDataBase(*gem[i], i);
-	}
-	
+    // 宝石の初期化
+    gemManager->Initialize();
+
 	// エフェクシアを使用
 	//effekseer1->Initialize();
 
@@ -179,18 +161,7 @@ void Game::Initialize()
 	skyDome->Initialize();
 	room->Initialize();
 	treasureChest->Initialize();
-	for (int i = 0; i < gem.size(); i++)
-	{
-		gem[i]->Initialize(VGet(i - 10, 10, -5),*gemManager);
-	}
-	// 宝石の個数分エントリー情報を設定
-	gemManager->CreateEntryData(gemManager->entryGemDataBase, gem.size());
-	
-	// 宝石の個数分エントリー情報を書き込み
-	for (int i = 0; i < gem.size(); i++)
-	{
-		gemManager->SettingEntryDataBase(*gem[i], i);
-	}
+    gemManager->Initialize();
 	
 	//effekseer1->Initialize();
 }
@@ -261,8 +232,6 @@ void Game::UpdateGame()
 			gameState = STATE_GAME;
 			ChangeGameState();
 		}
-
-
 		break;
 
 		// ゲーム中 //////////////////////////////////////
@@ -275,23 +244,15 @@ void Game::UpdateGame()
 
 		// ゲームアップデート
 		// 当たり判定処理
-		for (int i = 0; i < _gemSize; i++)
-		{
-            // プレイヤーと宝石との当たり判定
-            collision->IsHit2DPlayerToGem(*player, *gem[i]);
+        _scoreUpFlag = gemManager->UpdateGemCollision(*player, *treasureChest, *collision);
+        if (_scoreUpFlag)
+        {
+            // 当たった時の演出を出す指令をセット
+            ui->SetIsHitGemToChest(true);
 
-            // 宝石と宝箱の当たり判定
-            bool isHitGemToChest = collision->IsHit2DGemToTreasureChest(*gem[i], *treasureChest);
-            // 当たっているかつ、宝石が最初に宝箱に当たった状態であれば
-            if (isHitGemToChest && gem[i]->GetGemStateWithTreasureChest() == Gem::GEM_STATE::ENTER)
-			{
-                // 当たった時の演出を出す指令をセット
-				ui->SetIsHitGemToChest(true);
-
-                // スコアをアップさせる
-                UpdateScore(*treasureChest);
-			}
-		}
+            // スコアをアップさせる
+            UpdateScore(*treasureChest);
+        }
 
 		// キャラクター更新
 		player->Update(*enemy);	// プレイヤー
@@ -300,29 +261,14 @@ void Game::UpdateGame()
 		camera->Update(*player);// カメラ
 		
 		// オブジェクト更新
-		skyDome->Update();		// 背景
-		room->Update();			// 部屋
-        // データのリセットフラグがたったら
-        if (gemManager->GetIsResetEntyrData())
-        {
-            // 宝石の個数分エントリー情報を設定
-            gemManager->CreateEntryData(gemManager->entryGemDataBase, _gemSize);
-            
-            // 宝石のエントリー情報を書き込み
-            for (int i = 0; i < _gemSize; i++)
-            {
-                gem[i]->Initialize(VGet(0, 0, 0), *gemManager);
-                gemManager->SettingEntryDataBase(*gem[i], i);
-            }
-            
-            gemManager->SetIsResetEntryData(false);
-        }
+		skyDome->Update();		                // 背景
+		room->Update();			                // 部屋
+        gemManager->UpdateWaveGem(nowTimer);    // 宝石
+		treasureChest->Update();			        // 宝箱更新
 
-		for (int i = 0; i < _gemSize; i++)
-		{
-            gemManager->GemWaveUpdate(*gem[i],i, nowTimer); // 宝石更新
-			treasureChest->Update(*gem[i]);			        // 宝箱更新
-		}
+        // データのリセットフラグがたったら
+        gemManager->ResetGemData();
+
          
 		//effekseer1->Update();
 		
@@ -451,10 +397,7 @@ void Game::DrawGame()
 	{
 		player->Draw(gameFrameCount);	// プレイヤー
 		room->Draw();					// 部屋
-		for (int i = 0; i < gem.size(); i++)
-		{
-			gem[i]->Draw();
-		}
+        gemManager->DrawGems();
 		treasureChest->Draw();			// 宝箱
 	}
 

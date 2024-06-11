@@ -12,7 +12,7 @@ public:
 	virtual ~TreasureChest();
 
 	void Initialize();		// 初期化
-	void Update(Gem& gem);			// 更新
+	void Update();			// 更新
 	void Draw();			// 描画
 
 	// Getter

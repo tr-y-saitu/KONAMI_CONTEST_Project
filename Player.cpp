@@ -180,9 +180,4 @@ void Player::Draw(int gameFrameCount)
 
 	// 2DBOX当たり判定の描画
     Draw2DBOXCollision();
-	if (isHitEnemy)
-	{
-		SetFontSize(200);
-		DrawFormatString(100, 100, GetColor(255, 255, 255), "HIT", true);
-	}
 }

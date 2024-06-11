@@ -4,6 +4,7 @@
 
 class Calculation;
 class GemManager;
+struct EntryGemDataBase;
 
 
 /// <summary>
@@ -48,6 +49,12 @@ public:
     /// <param name="initPos">初期座標</param>
     /// <param name="gemManager">宝石管理クラス</param>
     void Initialize(VECTOR initPos,GemManager gemManager);
+
+    /// <summary>
+    /// 宝石の初期化
+    /// </summary>
+    /// <param name="_modelHandel"></param>
+    void Initialize(int _modelHandel);
 
     /// <summary>
     /// 宝石の更新
@@ -99,7 +106,6 @@ public:
     void SetVisibleFlag(const bool set) { visibleFlag = set; }
     void SetDirection(const VECTOR set) { dir = set; }
 
-private:
 	// 定数
 	const float GRAVITY_POWER = 0.002f;		// 宝石にかかる重力の値
 	const float GRAVITY_POWER_LIMIT = 0.3f;// 宝石にかかる重力の限界値
@@ -141,5 +147,6 @@ private:
 	// エントリー情報
 	float	entryTime;			// 登場する時間
 	VECTOR	entryPosition;		// 登場する位置
+private:
 };
 
