@@ -15,6 +15,17 @@ public:
 	Gem();
 	virtual ~Gem();
 
+    /// <summary>
+    /// 宝石の状態
+    /// </summary>
+    enum GEM_STATE
+    {
+        NORN,   // 接触していない
+        ENTER,  // 接触した瞬間
+        STAY,   // 接触し続けている
+        EXIT    // 接触状態から接触していない状態へ移行した
+    };
+
 	// メソッド
 
     /// <summary>
@@ -50,6 +61,14 @@ public:
     /// </summary>
     void Draw2DBOXCollision();
 
+    /// <summary>
+    /// 状態の移行
+    /// </summary>
+    /// <param name="state">宝石の状態</param>
+    /// <param name="withTarget">対象と当たっているかどうか</param>
+    /// <returns>宝石の対象との接触状態</returns>
+    int ShiftGemState(GEM_STATE state, bool withTarget);
+
 	/// <summary>
 	/// 宝石の描画
 	/// </summary>
@@ -67,6 +86,8 @@ public:
 	const float GetRadius() const { return radius; }
 	const float GetEntyrTime()const { return entryTime; }
     const int GetGemType()const { return gemType; }
+    const GEM_STATE GetGemStateWithPlayer()const { return statusWithPlayer; }
+    const GEM_STATE GetGemStateWithTreasureChest()const { return statusWithTreasureChest; }
 
 	// setter
 	void SetPos(const VECTOR set) { pos = set; }
@@ -105,6 +126,10 @@ private:
 	float	fallSpeed;		// 落下速度
 	float	boundPower;		// バウンドする値
 	float	rotateCount;	// ゲーム中に少しづつ回転させるためのカウント
+
+    // 状態
+    GEM_STATE     statusWithPlayer;           // プレイヤーとの状態
+    GEM_STATE     statusWithTreasureChest;    // 宝箱との状態
 
 	// フラグ
 	bool	visibleFlag;	// 存在しているか

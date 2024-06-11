@@ -9,20 +9,22 @@
 /// コンストラクタ
 /// </summary>
 Gem::Gem()
-	: modelHandle			(-1)
-	, visibleFlag			(false)
-	, width					(0.5f)
-	, height				(0.5f)
-	, speed					(0)
-	, radius				(0.5f)
-	, isHitPlayer			(false)
-	, isHitGround			(false)
-	, previousIsHitPlayer	(false)
-	, boundPower			(0)
-	, fallSpeed				(0)
-	, rotateCount			(0)
-	, gemType				(0)
-	, scaleAdjust			(0.02f)
+	: modelHandle			    (-1)
+	, visibleFlag			    (false)
+	, width					    (0.5f)
+	, height				    (0.5f)
+	, speed					    (0)
+	, radius				    (0.5f)
+	, isHitPlayer			    (false)
+	, isHitGround			    (false)
+	, previousIsHitPlayer	    (false)
+	, boundPower			    (0)
+	, fallSpeed				    (0)
+	, rotateCount			    (0)
+	, gemType				    (0)
+	, scaleAdjust			    (0.02f)
+    , statusWithPlayer          (NORN)
+    , statusWithTreasureChest   (NORN)
 {
     collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Green.png");
 	pos = VGet(0, 0, 0);
@@ -154,6 +156,8 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 	MV1SetScale(modelHandle, scale);		// スケールの設定
 	scaleAdjust = 0.02f;					// スケールの調整用
 	rotateCount = 0;						// 回転率
+    statusWithPlayer = NORN;                   // プレイヤーとの状態
+    statusWithTreasureChest = NORN;            // 宝箱との状態
 
 	// フラグ
 	isHitPlayer = false;		// プレイヤーと接触したか
@@ -221,11 +225,24 @@ void Gem::Update(Calculation& cal, float nowTimer)
 		// プレイヤーと接触したら
 		if (isHitPlayer)
 		{
-			fallSpeed = +JUMP_POWER;
+            // 初めて接触したときしか落下速度は変更しない
+            if (statusWithPlayer == ENTER)
+            {
+			    fallSpeed = +JUMP_POWER;
+            }
 			dir = VAdd(dir, contactDir);	// 宝石ごとに違う方向
 			isHitGround = false;
-			isHitPlayer = false;
 		}
+        else
+        {
+			isHitPlayer = false;
+        }
+
+        // 状態の変化
+        // プレイヤー
+        statusWithPlayer = (GEM_STATE)ShiftGemState((GEM_STATE)statusWithPlayer, isHitPlayer);
+        // 宝箱
+        statusWithTreasureChest = (GEM_STATE)ShiftGemState((GEM_STATE)statusWithTreasureChest, isHitTreasureChest);
 
 		// 移動処理 /////////////////////////////////////////////////////
 
@@ -282,6 +299,41 @@ void Gem::Draw2DBOXCollision()
     DrawBillboard3D(pos, 0.5f, 0.8f, 0.5f, 0, collisionGraph, true);
 }
 
+/// <summary>
+/// 状態の移行
+/// </summary>
+/// <param name="state">宝石の状態</param>
+/// <param name="withTarget">対象と当たっているかどうか</param>
+/// <returns>宝石の対象との接触状態</returns>
+int Gem::ShiftGemState(GEM_STATE state, bool withTarget)
+{
+    // 移行する状態
+    auto _shiftState = state;
+
+    // NORN→ENTER (接触した瞬間の状態)
+    if (state == NORN && withTarget)
+    {
+        _shiftState = ENTER;
+    }
+    // ENTER→STAY (接触し続けている状態)
+    if (state == ENTER && withTarget)
+    {
+        _shiftState = STAY;
+    }
+    // STAY→EXIT (接触状態から接触していない状態へ移行した状態)
+    if (state == STAY && !withTarget)
+    {
+        _shiftState = EXIT;
+    }
+    // EXIT→NORN (接触していない状態)
+    if (state == EXIT && !withTarget)
+    {
+        _shiftState = NORN;
+    }
+
+    // 移行した状態または、そのままの状態を返す
+    return _shiftState;
+}
 
 /// <summary>
 /// 描画

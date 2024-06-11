@@ -2,8 +2,10 @@
 
 #include "DxLib.h"
 #include <vector>
+#include <list>
 #include "Calculation.h"
 
+using namespace std;
 
 // プロトタイプ宣言
 class BG;
@@ -124,7 +126,10 @@ public:
 	TreasureChest* treasureChest;
     Game* game;
 
-	std::vector<Gem*>	gem;
+    vector<Gem*>	gem;
+    list<Gem*>  gemActive;          // 動作させる宝石
+    list<Gem*>  gemInactive;        // 動作させない宝石
+    
 
 private:
 	// 定数
@@ -143,8 +148,6 @@ private:
 
     // スコア
     int     score;          // スコア
-    bool    isUpScore;      // スコアをアップさせる
-    int     isUpScoreCount; // スコアをアップさせるためのカウント
 
     // キー入力
 	bool	keyOn;			// キー入力されているか

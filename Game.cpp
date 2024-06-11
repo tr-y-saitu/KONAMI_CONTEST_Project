@@ -31,8 +31,6 @@ Game::Game()
 	,	nowTimer		(0)
 	,	isDrawGetUi		(false)
     ,   score           (0)
-    ,   isUpScore       (false)
-    ,   isUpScoreCount  (0)
 {
 	// 変数の初期化
 	gameState = STATE_MENU;
@@ -85,6 +83,7 @@ void Game::Create()
 	}
 	gemManager = new GemManager();
     game = new Game();
+
 	//effekseer1 = new Effekseer1();
 }
 
@@ -174,8 +173,6 @@ void Game::Initialize()
 	isClearFlag = false;
 	isClearCount = 0;
     score = 0;
-    isUpScore = false;
-    isUpScoreCount = 0;
 
 	player->Initialize();
 	ui->Initialize();
@@ -285,26 +282,16 @@ void Game::UpdateGame()
 
             // 宝石と宝箱の当たり判定
             bool isHitGemToChest = collision->IsHit2DGemToTreasureChest(*gem[i], *treasureChest);
-            if (isHitGemToChest)
+            // 当たっているかつ、宝石が最初に宝箱に当たった状態であれば
+            if (isHitGemToChest && gem[i]->GetGemStateWithTreasureChest() == Gem::GEM_STATE::ENTER)
 			{
                 // 当たった時の演出を出す指令をセット
 				ui->SetIsHitGemToChest(true);
 
                 // スコアをアップさせる
-                isUpScore = true;
-                isUpScoreCount++;
-
+                UpdateScore(*treasureChest);
 			}
 		}
-
-        // スコアをアップさせる
-        // 18フレームの間、宝石と宝箱が接触し続けるため
-        // 実装が難しかったため強引にやった
-        if (isUpScoreCount == 18)
-        {
-            UpdateScore(*treasureChest);
-            isUpScoreCount = 0;
-        }
 
 		// キャラクター更新
 		player->Update(*enemy);	// プレイヤー
@@ -336,9 +323,6 @@ void Game::UpdateGame()
             gemManager->GemWaveUpdate(*gem[i],i, nowTimer); // 宝石更新
 			treasureChest->Update(*gem[i]);			        // 宝箱更新
 		}
-
-
-
          
 		//effekseer1->Update();
 		
