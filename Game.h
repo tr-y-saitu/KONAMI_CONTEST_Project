@@ -124,7 +124,6 @@ public:
 	Calculation calculation;
 	GemManager*	gemManager;
 	TreasureChest* treasureChest;
-    Game* game;
 
     vector<Gem*>	gem;
 

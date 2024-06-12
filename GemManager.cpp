@@ -211,10 +211,10 @@ void GemManager::SettingEntryDataBase(Gem& gem,int index)
 /// <param name="player">プレイヤー</param>
 /// <param name="chest">宝箱</param>
 /// <returns>スコアアップのタイミングどうか</returns>
-bool GemManager::UpdateGemCollision(Player& player, TreasureChest& chest, Collision& collision)
+bool GemManager::IsCollisionGem(Player& player, TreasureChest& chest, Collision& collision)
 {
     // スコアアップのタイミングかどうか
-    bool _scoreUpFlag = false;
+    bool _result = false;
 
     for (int i = 0; i < 100; i++)
     {
@@ -224,10 +224,10 @@ bool GemManager::UpdateGemCollision(Player& player, TreasureChest& chest, Collis
         bool _isHitGemAndChest = collision.IsHit2DGemToTreasureChest(*gems[i], chest);
         if (_isHitGemAndChest && gems[i]->GetGemStateWithTreasureChest() == Gem::GEM_STATE::ENTER)
         {
-            _scoreUpFlag = true;
+            _result = true;
         }
     }
-    return _scoreUpFlag;
+    return _result;
 }
 
 /// <summary>

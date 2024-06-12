@@ -106,7 +106,7 @@ public:
     /// <param name="player">プレイヤー</param>
     /// <param name="chest">宝箱</param>
     /// <returns>スコアアップのタイミングどうか</returns>
-    bool UpdateGemCollision(Player& player, TreasureChest& chest, Collision& collision);
+    bool IsCollisionGem(Player& player, TreasureChest& chest, Collision& collision);
 
     /// <summary>
     /// 宝石のデータのリセット

@@ -78,7 +78,6 @@ void Game::Create()
 	room = new Room();
 	treasureChest = new TreasureChest();
 	gemManager = new GemManager();
-    game = new Game();
     gemManager->CreateGem();
 	//effekseer1 = new Effekseer1();
 }
@@ -98,7 +97,6 @@ void Game::DeleteGame()
 	delete(room);
 	delete(treasureChest);
 	delete(gemManager);
-    delete(game);
     gemManager->DeleteGem();
 	//delete(effekseer1);
 }
@@ -244,7 +242,7 @@ void Game::UpdateGame()
 
 		// ゲームアップデート
 		// 当たり判定処理
-        _scoreUpFlag = gemManager->UpdateGemCollision(*player, *treasureChest, *collision);
+        _scoreUpFlag = gemManager->IsCollisionGem(*player, *treasureChest, *collision);
         if (_scoreUpFlag)
         {
             // 当たった時の演出を出す指令をセット
@@ -402,7 +400,7 @@ void Game::DrawGame()
 	}
 
 	// UI描画
-	ui->Draw(GetGameState(),*player,isClearFlag,*treasureChest,nowTimer,*gemManager,score);
+    ui->Draw(gameState, score, nowTimer, gemManager->GetGemWaveState());
 
 	// エフェクトの再生
 	//effekseer1->Draw();
