@@ -35,7 +35,7 @@ void TreasureChest::Initialize()
 }
 
 // 更新
-void TreasureChest::Update(Gem& gem)
+void TreasureChest::Update()
 {
 	// 3Dモデルの座標設定
 	MV1SetPosition(modelHanlde, pos);
@@ -46,9 +46,6 @@ void TreasureChest::Draw()
 {
 	// 3Dモデルの描画
 	MV1DrawModel(modelHanlde);
-
-	// 球型の当たり判定の描画
-	//DrawSphere3D(pos, radius, 32, GetColor(0, 0, 255), GetColor(255, 255, 255), false);
 }
 
 

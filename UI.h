@@ -6,6 +6,7 @@
 class Game;
 class Player;
 class TreasureChest;
+class GemManager;
 
 class UI
 {
@@ -18,15 +19,14 @@ public:
 	/// </summary>
 	void Initialize();
 
-	/// <summary>
-	/// UIの更新
-	/// </summary>
-	/// <param name="state">ゲームステート</param>
-	/// <param name="player">プレイヤークラス</param>
-	/// <param name="clearFlag">クリアしているかどうか</param>
-	/// <param name="chest">宝箱クラス</param>
-	/// <param name="nowTimer">ゲームの現在経過時間</param>
-	void Draw(int state,Player& player,bool& isDrawUIFlag, TreasureChest& chest,float nowTimer, GemManager& gemManager,int score);	// 描画
+    /// <summary>
+    /// UIの描画
+    /// </summary>
+    /// <param name="gameState">現在のゲームステート</param>
+    /// <param name="score">ゲームスコア</param>
+    /// <param name="nowTimer">現在の経過時間</param>
+    /// <param name="gemWaveState">現在の宝石のウェーブステート</param>
+    void Draw(int gameState, int gameScore, float nowTimer, int gemWaveState);
 
     /// <summary>
     /// スコアの描画

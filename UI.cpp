@@ -1,6 +1,7 @@
 ﻿#include "Game.h"
 #include "Player.h"
 #include "TreasureChest.h"
+#include "Gem.h"
 #include "GemManager.h"
 #include "UI.h"
 
@@ -41,60 +42,56 @@ void UI::Initialize()
 	}
 }
 
-
-
 /// <summary>
-/// UIの更新
+/// UIの描画
 /// </summary>
-/// <param name="state">ゲームステート</param>
-/// <param name="player">プレイヤークラス</param>
-/// <param name="clearFlag">クリアしているかどうか</param>
-/// <param name="chest">宝箱クラス</param>
-/// <param name="nowTimer">ゲームの現在経過時間</param>
-void UI::Draw(int state, Player& player, bool& isDrawUIFlag,TreasureChest& chest, float nowTimer,GemManager& gemManager, int score)
+/// <param name="gameState">現在のゲームステート</param>
+/// <param name="score">ゲームスコア</param>
+/// <param name="nowTimer">現在の経過時間</param>
+/// <param name="gemWaveState">現在の宝石のウェーブステート</param>
+void UI::Draw(int gameState, int gameScore, float nowTimer, int gemWaveState)
 {
-	char _timeCount[256];					// ゲームの経過時間
-	// ステートごとに描画を変更
-	switch (state)
-	{
-		// タイトル
-	case STATE_MENU:
+    char _timeCount[256];					// ゲームの経過時間
+    // ステートごとに描画を変更
+    switch (gameState)
+    {
+        // タイトル
+    case STATE_MENU:
 
-		// 文字を描画
+        // 文字を描画
 
-		// タイトル背景の描画
-		DrawGraph(0, 0, menuGraph, true);
+        // タイトル背景の描画
+        DrawGraph(0, 0, menuGraph, true);
 
-		break;
+        break;
 
-		// ゲーム中
-	case STATE_GAME:
-		// 現在の経過時間を描画
- 		sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
-		DrawString(250, 400, _timeCount, UI_COLOR, true);
+        // ゲーム中
+    case STATE_GAME:
+        // 現在の経過時間を描画
+        sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
+        DrawString(250, 400, _timeCount, UI_COLOR, true);
 
-		// 「GET!」モデルのポジションを設定
-		MV1SetPosition(getDirectionModelHandle, VGet(1,3,1));
+        // 「GET!」モデルのポジションを設定
+        MV1SetPosition(getDirectionModelHandle, VGet(1, 3, 1));
 
         // 宝石獲得演出(宝石が当たっているかつ演出時間ないである)
-		if (isHitGemToChest && getDirectionCount <= GET_DIRECTION_DRAW_TIME)
-		{
+        if (isHitGemToChest && getDirectionCount <= GET_DIRECTION_DRAW_TIME)
+        {
             // 演出時間を経過
             getDirectionCount++;
 
             // 演出用モデルの描画
-			MV1DrawModel(getDirectionModelHandle);
-		}
+            MV1DrawModel(getDirectionModelHandle);
+        }
         // 描画指定時間を越えたらゼロに戻す
         if (getDirectionCount >= GET_DIRECTION_DRAW_TIME)
         {
-            isDrawUIFlag = false;
             getDirectionCount = 0;
             isHitGemToChest = false;
         }
 
         // 現在のWAVEステートの描画
-        switch (gemManager.GetGemWaveState())
+        switch (gemWaveState)
         {
         case GemManager::WAVE_FIRST:
             DrawFormatString(100, 100, UI_COLOR, "WAVE_FIRST");
@@ -113,29 +110,29 @@ void UI::Draw(int state, Player& player, bool& isDrawUIFlag,TreasureChest& chest
         }
 
         // スコアの描画
-        DrawScore(VGet(0, 0, 0), 20, score);
+        DrawScore(VGet(0, 0, 0), 20, gameScore);
 
 
-		break;
+        break;
 
-		// クリア画面
-	case STATE_CLEAR:
+        // クリア画面
+    case STATE_CLEAR:
 
-		// クリア文字
-		// 表示
+        // クリア文字
+        // 表示
 
-		break;
+        break;
 
-		// ゲームオーバー
-	case STATE_GAMEOVER:
+        // ゲームオーバー
+    case STATE_GAMEOVER:
 
-		// ゲームオーバー文字
-		// 表示
-		break;
+        // ゲームオーバー文字
+        // 表示
+        break;
 
-	default:
-		break;
-	}
+    default:
+        break;
+    }
 }
 
 /// <summary>
