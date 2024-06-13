@@ -264,9 +264,15 @@ void Game::UpdateGame()
         gemManager->UpdateWaveGem(nowTimer);    // 宝石
 		treasureChest->Update();			        // 宝箱更新
 
-        // データのリセットフラグがたったら
+        // データのリセットフラグがたったら宝石のデータをリセットさせる
         gemManager->ResetGemData();
 
+        // STATE_GAMEの終了時間になったらSTATE_CLEARに移行
+        if (nowTimer >= STATE_GAME_TIME_LIMIT)
+        {
+            gameState = STATE_CLEAR;
+            ChangeGameState();
+        }
          
 		//effekseer1->Update();
 		
@@ -275,7 +281,10 @@ void Game::UpdateGame()
 	// クリア /////////////////////////////////////////
 	case STATE_CLEAR:
 
-		// キー入力されたら
+        // 宝石を出してみる
+        gemManager->UpdateWaveGem(nowTimer);
+
+		//　スペースKey入力でSTATE_MENUに移行
 		if (keyRelease)
 		{
 			gameState = STATE_MENU;
@@ -286,7 +295,7 @@ void Game::UpdateGame()
 	// ゲームオーバー ///////////////////////////////
 	case STATE_GAMEOVER:
 
-		// キー入力されたら
+		// スペースKey入力でSTATE_MENUに移行
 		if (keyRelease)
 		{
 			gameState = STATE_MENU;
@@ -395,9 +404,15 @@ void Game::DrawGame()
 	{
 		player->Draw(gameFrameCount);	// プレイヤー
 		room->Draw();					// 部屋
-        gemManager->DrawGems();
+        gemManager->DrawGems();         // 複数の宝石
 		treasureChest->Draw();			// 宝箱
 	}
+    if (gameState == STATE_CLEAR)
+    {
+        room->Draw();					// 部屋
+        gemManager->DrawGems();         // 複数の宝石
+        treasureChest->Draw();			// 宝箱
+    }
 
 	// UI描画
     ui->Draw(gameState, score, nowTimer, gemManager->GetGemWaveState());

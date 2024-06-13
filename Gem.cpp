@@ -154,8 +154,8 @@ void Gem::Initialize(VECTOR initPos, GemManager gemManager)
 	MV1SetScale(modelHandle, scale);		// スケールの設定
 	scaleAdjust = 0.02f;					// スケールの調整用
 	rotateCount = 0;						// 回転率
-    statusWithPlayer = NORN;                   // プレイヤーとの状態
-    statusWithTreasureChest = NORN;            // 宝箱との状態
+    statusWithPlayer = NORN;               // プレイヤーとの状態
+    statusWithTreasureChest = NORN;        // 宝箱との状態
 
 	// フラグ
 	isHitPlayer = false;		// プレイヤーと接触したか

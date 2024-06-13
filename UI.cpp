@@ -56,7 +56,7 @@ void UI::Draw(int gameState, int gameScore, float nowTimer, int gemWaveState)
     switch (gameState)
     {
         // タイトル
-    case STATE_MENU:
+    case Game::STATE_MENU:
 
         // 文字を描画
 
@@ -66,7 +66,7 @@ void UI::Draw(int gameState, int gameScore, float nowTimer, int gemWaveState)
         break;
 
         // ゲーム中
-    case STATE_GAME:
+    case Game::STATE_GAME:
         // 現在の経過時間を描画
         sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
         DrawString(250, 400, _timeCount, UI_COLOR, true);
@@ -116,15 +116,16 @@ void UI::Draw(int gameState, int gameScore, float nowTimer, int gemWaveState)
         break;
 
         // クリア画面
-    case STATE_CLEAR:
+    case Game::STATE_CLEAR:
 
         // クリア文字
+        DrawFormatString(100, 100, UI_COLOR, "CLEAR_STATE");
         // 表示
 
         break;
 
         // ゲームオーバー
-    case STATE_GAMEOVER:
+    case Game::STATE_GAMEOVER:
 
         // ゲームオーバー文字
         // 表示

@@ -35,6 +35,18 @@ class TreasureChest;
 class Game
 {
 public:
+
+    /// <summary>
+    /// ゲームの進行状態
+    /// </summary>
+    enum STATE
+    {
+        STATE_MENU,			// メニュー
+        STATE_GAME,			// ゲーム中
+        STATE_CLEAR,		// クリア
+        STATE_GAMEOVER,		// ゲームオーバー
+    };
+
 	Game();                 // コンストラクタ
 	virtual ~Game();        // デストラクタ
 
@@ -129,7 +141,8 @@ public:
 
 private:
 	// 定数
-	const int GEM_TOTAL_NUM = 100;	// 宝石の総合の数
+	const int GEM_TOTAL_NUM = 100;	                    // 宝石の総合の数
+    static constexpr int STATE_GAME_TIME_LIMIT = 4;    // ゲームステートが終了する時間
 
 	// 変数
 	int		gameState;		// 現在のステート
@@ -150,7 +163,6 @@ private:
 	bool	keyRelease;		// キー入力が離れたか
 	bool	prevKeyOn;		// 前フレームでキー入力があったか
 
-
 	// メニュー
 	int		menuGraph;		// メニュー用画像
 
@@ -161,14 +173,7 @@ private:
 };
 
 
-// ゲーム進行状態
-enum STATE
-{
-	STATE_MENU,			// メニュー
-	STATE_GAME,			// ゲーム中
-	STATE_CLEAR,		// クリア
-	STATE_GAMEOVER,		// ゲームオーバー
-};
+
 
 
 

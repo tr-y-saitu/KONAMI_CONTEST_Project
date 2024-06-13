@@ -4,6 +4,7 @@
 #include "Calculation.h"
 #include "WaveConstants.h"
 #include "Collision.h"
+#include "Game.h"
 
 enum GEM_STATE;
 
@@ -23,6 +24,8 @@ GemManager::GemManager()
     waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, 20, "WAVE_FIRST");
     waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "WAVE_SECOND");
     waveConstantsTable[WAVE_THIRD] = new WaveConstants(1, 40, "WAVE_THIRD");
+    waveConstantsTable[WAVE_END] = new WaveConstants(0, 0, "WAVE_END");
+    // モデルハンドルの取得
     modelHandleDiamond = MV1LoadModel("data/model/Gem/Diamonds.mv1");
     modelHandleRuby = MV1LoadModel("data/model/Gem/Ruby.mv1");
     modelHandleSapphire = MV1LoadModel("data/model/Gem/Sapphire.mv1");
@@ -105,7 +108,6 @@ void GemManager::LoadModle()
 	{	// エメラルド
 		modelHandleEmerald	= MV1LoadModel("data/model/Gem/Emerald.mv1");
 	}
-
 }
 
 /// <summary>
@@ -278,6 +280,7 @@ void GemManager::UpdateWaveGem(float nowTimer)
     else
     {
         // クリアステートに移動させる
+
     }
 }
 
