@@ -172,7 +172,7 @@ void Game::Initialize()
 void Game::ChangeGameState()
 {
 	// 即座に切り替わりすぎるので、ちょっと時間を止める
-	WaitTimer(500);
+	//WaitTimer(500);
 
 	// ステートが切り替わった瞬間、キーを離した判定をリセット
 	keyOn = false;
@@ -414,7 +414,7 @@ void Game::DrawGame()
     }
 
 	// UI描画
-    ui->Draw(gameState, score, nowTimer, gemManager->GetGemWaveState());
+    ui->Draw(gameState, score, nowTimer, gemManager->GetGemWaveState(),isBlackOutFlag);
 
 	// エフェクトの再生
 	//effekseer1->Draw();

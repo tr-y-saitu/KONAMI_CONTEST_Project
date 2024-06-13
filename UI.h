@@ -20,13 +20,27 @@ public:
 	void Initialize();
 
     /// <summary>
+    /// 画像の明るさをだんだんあげる
+    /// </summary>
+    /// <param name="transparency">その画像の色の濃さ</param>
+    void UpSlowlyGraphBrightness(int& graphTransparency);
+
+    /// <summary>
+    /// 画像の明るさをだんだん下げる
+    /// </summary>
+    /// <param name="transparency">その画像の色の濃さ</param>
+    void DownSlowlyGraphBrightness(int graphTransparency);
+
+    /// <summary>
     /// UIの描画
     /// </summary>
     /// <param name="gameState">現在のゲームステート</param>
-    /// <param name="score">ゲームスコア</param>
+    /// <param name="gameScore">ゲームスコア</param>
     /// <param name="nowTimer">現在の経過時間</param>
     /// <param name="gemWaveState">現在の宝石のウェーブステート</param>
-    void Draw(int gameState, int gameScore, float nowTimer, int gemWaveState);
+    /// <param name="isBlackOutFlag">暗転処理するかどうか</param>
+    void Draw(int gameState, int gameScore, float nowTimer
+        , int gemWaveState, bool isBlackOutFlag);
 
     /// <summary>
     /// スコアの描画
@@ -44,8 +58,10 @@ public:
 
 private:
 	// 定数
-	const int UI_COLOR = GetColor(200, 200, 200);	// UIの文字の色
-    const int GET_DIRECTION_DRAW_TIME = 100;        // 獲得演出を描画する時間
+	const int UI_COLOR = GetColor(200, 200, 200);	        // UIの文字の色
+    static constexpr int TRANSPARENCY_LIMIT = 255;          // 透過度の最大上限
+    static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
+    static constexpr int ADD_TRANSPARENCY = 2;              // 画像の濃さを加算する値
 
 	// 変数
     // メニューステート
@@ -57,10 +73,14 @@ private:
 	bool	isHitGemToChest;	            // 宝石と宝箱が接触した
 
     // クリアステート
-    int     clearUIGraph;
-
+    int     clearUIGraph;                   // クリア用UI画像
+    int     clearUIGraphTransparency;       // クリア用UI画像の透過度
+    
     // オーバーステート
 
+    // 切り替え
+    int     blackOutGraph;                  // 暗転明転用画像
+    int     blackOutGraphTransparency;      // 暗転明転用画像の透過度
 
 };
 

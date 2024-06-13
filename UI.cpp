@@ -12,10 +12,17 @@
 /// </summary>
 UI::UI()
 	:	menuGraph			        (-1)
-	,	getDirectionModelHandle	(-1)
+	,	getDirectionModelHandle	    (-1)
 	,	isHitGemToChest             (false)
-    ,   getDirectionCount       (0)
+    ,   getDirectionCount           (0)
+    ,   clearUIGraphTransparency    (0)
+    ,   blackOutGraphTransparency   (0)
 {
+    // 画像のロード
+    clearUIGraph = LoadGraph("data/texture/Clear/ClearUIGraph.png");
+    blackOutGraph = LoadGraph("data/texture/State/BlackGraph.png");
+    SetDrawBlendMode(DX_BLENDMODE_ALPHA, blackOutGraph);
+    // モデルのロード
 	getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
 	MV1SetScale(getDirectionModelHandle, VGet(0.05f, 0.05f, 0.0f));
     MV1SetRotationXYZ(getDirectionModelHandle, VGet(0, 25.0f * DX_PI_F / 180.0f, 0));
@@ -40,18 +47,53 @@ void UI::Initialize()
 	{
 		menuGraph = LoadGraph("data/texture/Menu/GemPiratesMenuGraph.png");
 	}
+    clearUIGraphTransparency = 0;
+    isHitGemToChest = false;
+    getDirectionCount = 0;
+}
+
+/// <summary>
+/// 画像の明るさをだんだんあげる
+/// </summary>
+/// <param name="transparency">その画像の色の濃さ</param>
+void UI::UpSlowlyGraphBrightness(int& graphTransparency)
+{
+    // 画像の濃さをあげる
+    if (graphTransparency < TRANSPARENCY_LIMIT)
+    {
+        graphTransparency += ADD_TRANSPARENCY;
+    }
+    // 画像の濃さを設定
+    SetDrawBlendMode(DX_BLENDMODE_ALPHA, graphTransparency);
+}
+
+/// <summary>
+/// 画像の明るさをだんだん下げる
+/// </summary>
+/// <param name="transparency">その画像の色の濃さ</param>
+void UI::DownSlowlyGraphBrightness(int graphTransparency)
+{
+    // 画像の濃さを下げる
+    if (graphTransparency > 0)
+    {
+        graphTransparency -= ADD_TRANSPARENCY;
+    }
+    // 画像の濃さを設定
+    SetDrawBlendMode(DX_BLENDMODE_ALPHA, graphTransparency);
 }
 
 /// <summary>
 /// UIの描画
 /// </summary>
 /// <param name="gameState">現在のゲームステート</param>
-/// <param name="score">ゲームスコア</param>
+/// <param name="gameScore">ゲームスコア</param>
 /// <param name="nowTimer">現在の経過時間</param>
 /// <param name="gemWaveState">現在の宝石のウェーブステート</param>
-void UI::Draw(int gameState, int gameScore, float nowTimer, int gemWaveState)
+/// <param name="isBlackOutFlag">暗転処理するかどうか</param>
+void UI::Draw(int gameState, int gameScore, float nowTimer,
+    int gemWaveState, bool isBlackOutFlag)
 {
-    char _timeCount[256];					// ゲームの経過時間
+    char _timeCount[256];		// ゲームの経過時間
     // ステートごとに描画を変更
     switch (gameState)
     {
@@ -112,15 +154,24 @@ void UI::Draw(int gameState, int gameScore, float nowTimer, int gemWaveState)
         // スコアの描画
         DrawScore(VGet(0, 0, 0), 20, gameScore);
 
-
         break;
 
         // クリア画面
     case Game::STATE_CLEAR:
 
+        // クリアUIの描画
+        // 画像の明るさをだんだん上げる
+        UpSlowlyGraphBrightness(clearUIGraphTransparency);
+        DrawGraph(0, 0, clearUIGraph, true);
+
         // クリア文字
         DrawFormatString(100, 100, UI_COLOR, "CLEAR_STATE");
-        // 表示
+
+        // 暗転処理するかどうか
+        if (isBlackOutFlag)
+        {
+
+        }
 
         break;
 

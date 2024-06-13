@@ -141,8 +141,8 @@ public:
 
 private:
 	// 定数
-	const int GEM_TOTAL_NUM = 100;	                    // 宝石の総合の数
-    static constexpr int STATE_GAME_TIME_LIMIT = 4;    // ゲームステートが終了する時間
+	const int GEM_TOTAL_NUM = 100;	                // 宝石の総合の数
+    static constexpr int STATE_GAME_TIME_LIMIT = 4; // ゲームステートが終了する時間
 
 	// 変数
 	int		gameState;		// 現在のステート
@@ -169,6 +169,9 @@ private:
 	// モデル元
 	int		modelHandleGemDia;	// 宝石（ダイア）
 	int		modelHandleGemRuby;	// 宝石（ルビー）
+
+    // UI
+    bool    isBlackOutFlag;     // 暗転明転処理の指示
 
 };
 
