@@ -142,7 +142,7 @@ public:
     void SetIsResetEntryData(const bool set) { isResetEntryData = set; }
 
     // 定数
-    const int GEM_TOTAL_NUM = 100;  // 総合の宝石の数
+    static constexpr int GEM_TOTAL_NUM = 100;   // 総合の宝石の数
 
 	// 変数
 	// 宝石のベースモデルハンドル
@@ -153,7 +153,7 @@ public:
     Calculation calculation;    // 計算用
 
 	// 実際のデータ
-	EntryGemDataBase entryGemDataBase[100];	// 宝石のエントリー情報を格納するための構造体
+	EntryGemDataBase entryGemDataBase[GEM_TOTAL_NUM];	// 宝石のエントリー情報を格納するための構造体
     map<WAVE_STATE, WaveConstants*> waveConstantsTable;  // ウェーブごとの定数
     vector<Gem*> gems;
 

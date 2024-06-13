@@ -8,6 +8,7 @@
 
 enum GEM_STATE;
 
+
 /// <summary>
 /// コンストラクタ
 /// </summary>
@@ -37,7 +38,8 @@ GemManager::GemManager()
 /// </summary>
 GemManager::~GemManager()
 {
-	// 処理なし
+    // 宝石の削除
+    DeleteGem();
 }
 
 /// <summary>

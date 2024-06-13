@@ -182,6 +182,7 @@
     <ClInclude Include="Calculation.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="CommonConstant.h" />
     <ClInclude Include="Confetti.h" />
     <ClInclude Include="Effekseer.h" />
     <ClInclude Include="Enemy.h" />

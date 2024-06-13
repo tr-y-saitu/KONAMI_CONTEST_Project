@@ -162,5 +162,8 @@
     <ClInclude Include="WaveConstants.h">
       <Filter>FIRE\GameObject\Object\Gem</Filter>
     </ClInclude>
+    <ClInclude Include="CommonConstant.h">
+      <Filter>FIRE\System\GameManager</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

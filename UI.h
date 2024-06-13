@@ -48,10 +48,20 @@ private:
     const int GET_DIRECTION_DRAW_TIME = 100;        // 獲得演出を描画する時間
 
 	// 変数
-	int		menuGraph;		                // メニュー画像
-	int		getDirectionModelHandle;	    // 宝石獲得演出用モデル
+    // メニューステート
+    int		menuGraph;		                // メニュー画像
+
+    // ゲームステート
+    int		getDirectionModelHandle;	    // 宝石獲得演出用モデル
     int     getDirectionCount;              // 宝石獲得時の演出を管理するカウント
 	bool	isHitGemToChest;	            // 宝石と宝箱が接触した
+
+    // クリアステート
+    int     clearUIGraph;
+
+    // オーバーステート
+
+
 };
 
 

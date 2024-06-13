@@ -97,7 +97,6 @@ void Game::DeleteGame()
 	delete(room);
 	delete(treasureChest);
 	delete(gemManager);
-    gemManager->DeleteGem();
 	//delete(effekseer1);
 }
 
