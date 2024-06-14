@@ -31,6 +31,8 @@ Game::Game()
 	,	nowTimer		(0)
 	,	isDrawGetUi		(false)
     ,   score           (0)
+    ,   isBlackOutFlag  (false)
+    ,   stateSwichStopCount (0)
 {
 	// 変数の初期化
 	gameState = STATE_MENU;
@@ -135,6 +137,7 @@ void Game::InitializeGameStart()
 
 	gameFrameCount = 0;			// フレームカウントの初期化
 	isDrawGetUi = false;		// 宝石をゲットした時のUI演出をするかどうか
+    isBlackOutFlag = false;     // 暗転明転処理の指示
 }
 
 
@@ -152,6 +155,7 @@ void Game::Initialize()
 	isClearFlag = false;
 	isClearCount = 0;
     score = 0;
+    stateSwichStopCount = 0;
 
 	player->Initialize();
 	ui->Initialize();
@@ -171,9 +175,9 @@ void Game::Initialize()
 /// </summary>
 void Game::ChangeGameState()
 {
-	// 即座に切り替わりすぎるので、ちょっと時間を止める
-	//WaitTimer(500);
-
+    isBlackOutFlag = false;
+    stateSwichStopCount = 0;
+    ui->screenBrightness = 0;
 	// ステートが切り替わった瞬間、キーを離した判定をリセット
 	keyOn = false;
 	keyRelease = false;
@@ -226,8 +230,17 @@ void Game::UpdateGame()
 
 		if (keyRelease)
 		{
-			gameState = STATE_GAME;
-			ChangeGameState();
+            // 明暗処理指示を出す
+            isBlackOutFlag = true;
+
+            // ステート切り替えを明暗処理が終わるまで待つ
+            stateSwichStopCount++;
+            if (stateSwichStopCount > 100)
+            {
+                // ステート切り替え
+                gameState = STATE_GAME;
+                ChangeGameState();
+            }
 		}
 		break;
 
@@ -286,8 +299,17 @@ void Game::UpdateGame()
 		//　スペースKey入力でSTATE_MENUに移行
 		if (keyRelease)
 		{
-			gameState = STATE_MENU;
-			ChangeGameState();
+            // 明暗処理指示を出す
+            isBlackOutFlag = true;
+
+            // ステート切り替えを明暗処理が終わるまで待つ
+            stateSwichStopCount++;
+            if (stateSwichStopCount > 100)
+            {
+                // ステート切り替え
+			    gameState = STATE_MENU;
+			    ChangeGameState();
+            }
 		}
 		break;
 
