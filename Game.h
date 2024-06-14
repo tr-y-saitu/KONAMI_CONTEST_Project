@@ -124,15 +124,12 @@ public:
 	Enemy*		enemy;
 	Camera*		camera;
 	Collision*	collision;
-	BGObj*		bgobj[5];
-	BGObj*		bgobj2[4];
 	UI*			ui;
 	SkyDome*	skyDome;
 	BG*			bg[3];
 	Effekseer1* effekseer1;
 	FPSSetting* fpsSetting;
 	Room*		room;
-	Floor*		floor;
 	Calculation calculation;
 	GemManager*	gemManager;
 	TreasureChest* treasureChest;
