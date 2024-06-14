@@ -172,7 +172,6 @@ private:
 
     // UI
     bool    isBlackOutFlag;     // 暗転明転処理の指示
-    int     stateSwichStopCount;// ステート切り替え処理を一旦待つカウント（明暗に時間がかかるため）
 
 };
 

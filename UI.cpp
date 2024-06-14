@@ -15,11 +15,13 @@ UI::UI()
 	,	getDirectionModelHandle	    (-1)
 	,	isHitGemToChest             (false)
     ,   getDirectionCount           (0)
-    ,   screenBrightness            (0)
+    ,   clearUIGraphTransparency    (0)
+    ,   blackOutGraphTransparency   (0)
 {
     // 画像のロード
     clearUIGraph = LoadGraph("data/texture/Clear/ClearUIGraph.png");
-    blackOutGraph = LoadGraph("data/texture/State/BlackOutGraph (2).png");
+    blackOutGraph = LoadGraph("data/texture/State/BlackGraph.png");
+    SetDrawBlendMode(DX_BLENDMODE_ALPHA, blackOutGraph);
     // モデルのロード
 	getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
 	MV1SetScale(getDirectionModelHandle, VGet(0.05f, 0.05f, 0.0f));
@@ -45,49 +47,39 @@ void UI::Initialize()
 	{
 		menuGraph = LoadGraph("data/texture/Menu/GemPiratesMenuGraph.png");
 	}
+    clearUIGraphTransparency = 0;
     isHitGemToChest = false;
     getDirectionCount = 0;
 }
 
 /// <summary>
-/// 画面の明るさをだんだんあげる
+/// 画像の明るさをだんだんあげる
 /// </summary>
-void UI::UpBrightnessScreen()
+/// <param name="transparency">その画像の色の濃さ</param>
+void UI::UpSlowlyGraphBrightness(int& graphTransparency)
 {
     // 画像の濃さをあげる
-    if (screenBrightness < TRANSPARENCY_LIMIT)
+    if (graphTransparency < TRANSPARENCY_LIMIT)
     {
-        screenBrightness += ADD_TRANSPARENCY;
+        graphTransparency += ADD_TRANSPARENCY;
     }
     // 画像の濃さを設定
-    SetDrawBlendMode(DX_BLENDMODE_ALPHA, screenBrightness);
+    SetDrawBlendMode(DX_BLENDMODE_ALPHA, graphTransparency);
 }
 
 /// <summary>
-/// 画面の明るさをだんだん下げる
+/// 画像の明るさをだんだん下げる
 /// </summary>
-/// MEMO:
-void UI::DownBrightnessScreen()
+/// <param name="transparency">その画像の色の濃さ</param>
+void UI::DownSlowlyGraphBrightness(int graphTransparency)
 {
-    // 画面の明るさが最大値であれば初期化する
-    if (screenBrightness == 256)
+    // 画像の濃さを下げる
+    if (graphTransparency > 0)
     {
-        screenBrightness = 0;
-        // 画像の濃さを設定
-        SetDrawBlendMode(DX_BLENDMODE_ALPHA, screenBrightness);
+        graphTransparency -= ADD_TRANSPARENCY;
     }
-
-    // 画像の濃さをあげる
-    if (screenBrightness < TRANSPARENCY_LIMIT)
-    {
-        screenBrightness += ADD_BLACK_OUT_ADD_TRANSPARENCY;
-    }
-
     // 画像の濃さを設定
-    SetDrawBlendMode(DX_BLENDMODE_ALPHA, screenBrightness);
-
-    // 真っ黒の画像を描画
-    DrawGraph(0, 0, blackOutGraph, true);
+    SetDrawBlendMode(DX_BLENDMODE_ALPHA, graphTransparency);
 }
 
 /// <summary>
@@ -108,29 +100,15 @@ void UI::Draw(int gameState, int gameScore, float nowTimer,
         // タイトル
     case Game::STATE_MENU:
 
-        // 明暗処理
-        UpBrightnessScreen();
-        DrawGraph(0, 0, blackOutGraph, true);
-
         // 文字を描画
 
         // タイトル背景の描画
         DrawGraph(0, 0, menuGraph, true);
 
-        // 暗転指示が出たら
-        if (isBlackOutFlag)
-        {
-            // 画面のだんだん暗くする
-            DownBrightnessScreen();
-        }
-
         break;
 
         // ゲーム中
     case Game::STATE_GAME:
-        // 明暗処理
-        UpBrightnessScreen();
-
         // 現在の経過時間を描画
         sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
         DrawString(250, 400, _timeCount, UI_COLOR, true);
@@ -181,23 +159,18 @@ void UI::Draw(int gameState, int gameScore, float nowTimer,
         // クリア画面
     case Game::STATE_CLEAR:
 
-        // 暗転指示が出ていない場合
-        if (!isBlackOutFlag)
-        {
-            // クリアUIの描画
-            // 画面をだんだん明るくする
-            UpBrightnessScreen();
-            DrawGraph(0, 0, clearUIGraph, true);
+        // クリアUIの描画
+        // 画像の明るさをだんだん上げる
+        UpSlowlyGraphBrightness(clearUIGraphTransparency);
+        DrawGraph(0, 0, clearUIGraph, true);
 
-            // クリア文字
-            DrawFormatString(100, 100, UI_COLOR, "CLEAR_STATE");
-        }
+        // クリア文字
+        DrawFormatString(100, 100, UI_COLOR, "CLEAR_STATE");
 
-        // 暗転指示が出たら
+        // 暗転処理するかどうか
         if (isBlackOutFlag)
         {
-            // 画面のだんだん暗くする
-            DownBrightnessScreen();
+
         }
 
         break;
