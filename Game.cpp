@@ -177,7 +177,10 @@ void Game::ChangeGameState()
 {
     isBlackOutFlag = false;
     stateSwichStopCount = 0;
-    ui->screenBrightness = 0;
+
+    // 画面の明るさを初期化
+    ui->SetScreenBrightness(0);
+
 	// ステートが切り替わった瞬間、キーを離した判定をリセット
 	keyOn = false;
 	keyRelease = false;

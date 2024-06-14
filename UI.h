@@ -53,8 +53,7 @@ public:
 
 	// Setter
 	void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }
-
-    int     screenBrightness;               // 画面の明るさ
+    void SetScreenBrightness(const int set) { screenBrightness = set; }
 
 private:
 	// 定数
@@ -80,6 +79,7 @@ private:
 
     // ステート切り替え
     int     blackOutGraph;                  // 明暗転処理用画像
+    int     screenBrightness;               // 画面の明るさ
 };
 
 
