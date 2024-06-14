@@ -20,16 +20,14 @@ public:
 	void Initialize();
 
     /// <summary>
-    /// 画像の明るさをだんだんあげる
+    /// 画面の明るさをだんだんあげる
     /// </summary>
-    /// <param name="transparency">その画像の色の濃さ</param>
-    void UpSlowlyGraphBrightness(int& graphTransparency);
+    void UpBrightnessScreen();
 
     /// <summary>
-    /// 画像の明るさをだんだん下げる
+    /// 画面の明るさをだんだん下げる
     /// </summary>
-    /// <param name="transparency">その画像の色の濃さ</param>
-    void DownSlowlyGraphBrightness(int graphTransparency);
+    void DownBrightnessScreen();
 
     /// <summary>
     /// UIの描画
@@ -56,12 +54,15 @@ public:
 	// Setter
 	void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }
 
+    int     screenBrightness;               // 画面の明るさ
+
 private:
 	// 定数
 	const int UI_COLOR = GetColor(200, 200, 200);	        // UIの文字の色
     static constexpr int TRANSPARENCY_LIMIT = 255;          // 透過度の最大上限
     static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
     static constexpr int ADD_TRANSPARENCY = 2;              // 画像の濃さを加算する値
+    static constexpr int ADD_BLACK_OUT_ADD_TRANSPARENCY = 3;// 暗転する際の画像の濃さを加算する値
 
 	// 変数
     // メニューステート
@@ -74,14 +75,11 @@ private:
 
     // クリアステート
     int     clearUIGraph;                   // クリア用UI画像
-    int     clearUIGraphTransparency;       // クリア用UI画像の透過度
     
     // オーバーステート
 
-    // 切り替え
-    int     blackOutGraph;                  // 暗転明転用画像
-    int     blackOutGraphTransparency;      // 暗転明転用画像の透過度
-
+    // ステート切り替え
+    int     blackOutGraph;                  // 明暗転処理用画像
 };
 
 
