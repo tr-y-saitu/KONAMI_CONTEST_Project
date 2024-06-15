@@ -26,13 +26,12 @@ GameScene::GameScene()
     // newインスタンス
     player = new Player();
     treasureChest = new TreasureChest();
-    gemManager = new GemManager();
-    gemManager->CreateGem();
     collision = new Collision();
     camera = new Camera();
     skyDome = new SkyDome();
     room = new Room();
     gameSceneUI = new GameSceneUI();
+    gemManager = new GemManager();
 }
 
 /// <summary>
@@ -43,12 +42,13 @@ GameScene::~GameScene()
     // newインスタンスの削除
     delete(player);
     delete(treasureChest);
-    delete(gemManager);
     delete(collision);
     delete(camera);
     delete(skyDome);
     delete(room);
     delete(gameSceneUI);
+    gemManager->DeleteGem();
+    delete(gemManager);
 }
 
 /// <summary>

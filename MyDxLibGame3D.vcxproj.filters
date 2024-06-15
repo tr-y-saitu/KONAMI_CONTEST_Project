@@ -65,6 +65,9 @@
     <Filter Include="FIRE\System\SceneUI">
       <UniqueIdentifier>{594872d6-997e-4694-927d-8062af95ec14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FIRE\System\Scene\SceneBase">
+      <UniqueIdentifier>{3cc93957-af15-469a-bd3a-cf509b29304c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -130,9 +133,6 @@
     <ClCompile Include="OverScene.cpp">
       <Filter>FIRE\System\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBase.cpp">
-      <Filter>FIRE\System\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>FIRE\System\SceneManager</Filter>
     </ClCompile>
@@ -147,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="OverSceneUI.cpp">
       <Filter>FIRE\System\SceneUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase.cpp">
+      <Filter>FIRE\System\Scene\SceneBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,9 +219,6 @@
     <ClInclude Include="OverScene.h">
       <Filter>FIRE\System\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBase.h">
-      <Filter>FIRE\System\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>FIRE\System\SceneManager</Filter>
     </ClInclude>
@@ -233,6 +233,9 @@
     </ClInclude>
     <ClInclude Include="OverSceneUI.h">
       <Filter>FIRE\System\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase.h">
+      <Filter>FIRE\System\Scene\SceneBase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

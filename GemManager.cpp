@@ -21,6 +21,10 @@ GemManager::GemManager()
     , resetTimer            (false)
     , isResetEntryData      (false)
 {
+    for (int i = 0; i < GEM_TOTAL_NUM; i++)
+    {
+        gems.push_back(new Gem());
+    }
     // WAVEごとの情報を代入
     waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, 20, "WAVE_FIRST");
     waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "WAVE_SECOND");

@@ -78,7 +78,6 @@ void Game::Create()
 	room = new Room();
 	treasureChest = new TreasureChest();
 	gemManager = new GemManager();
-    gemManager->CreateGem();
 	//effekseer1 = new Effekseer1();
 }
 
