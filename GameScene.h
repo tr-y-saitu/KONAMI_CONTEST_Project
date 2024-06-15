@@ -11,6 +11,7 @@ class Camera;
 class SkyDome;
 class Room;
 class Calculation;
+class GameSceneUI;
 
 /// <summary>
 /// ゲームシーンクラス
@@ -38,6 +39,8 @@ private:
     Camera* camera;
     SkyDome* skyDome;
     Room* room;
+    GameSceneUI* gameSceneUI;
+
 
 
 
