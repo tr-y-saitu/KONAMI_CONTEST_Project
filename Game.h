@@ -139,7 +139,7 @@ public:
 private:
 	// 定数
 	const int GEM_TOTAL_NUM = 100;	                // 宝石の総合の数
-    static constexpr int STATE_GAME_TIME_LIMIT = 4; // ゲームステートが終了する時間
+    static constexpr int STATE_GAME_TIME_LIMIT = 40; // ゲームステートが終了する時間
 
 	// 変数
 	int		gameState;		// 現在のステート

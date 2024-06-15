@@ -1,43 +1,44 @@
 ﻿#pragma once
-#include "DxLib.h"
+
+#include "SceneBase.h"
 
 
 /// <summary>
-/// シーンベース
+/// クリアシーン
 /// </summary>
-class SceneBase
+class ClearScene : public SceneBase
 {
 public:
 
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    SceneBase();
+    ClearScene();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    virtual ~SceneBase();   // 仮想関数
+    ~ClearScene() override;
 
     /// <summary>
     /// 初期化
     /// </summary>
-    virtual void Initialize() abstract; // 純粋仮想関数
+    void Initialize();
 
     /// <summary>
     /// 更新
     /// </summary>
-    virtual void Update() abstract; // 純粋仮想関数
+    void Update() override;
 
     /// <summary>
     /// 描画
     /// </summary>
-    virtual void Draw() abstract;   // 純粋仮想関数
+    void Draw() override;
 
     /// <summary>
     /// UIの描画
     /// </summary>
-    virtual void DrawUI() abstract;
+    void DrawUI() override;
 
 private:
 

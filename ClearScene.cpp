@@ -1,28 +1,24 @@
 ﻿#include "SceneBase.h"
-#include "MenuSceneUI.h"
-#include "MenuScene.h"
-
+#include "ClearScene.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
-MenuScene::MenuScene()
+ClearScene::ClearScene()
 {
-    menuSceneUI = new MenuSceneUI();
 }
 
 /// <summary>
 /// デストラクタ
 /// </summary>
-MenuScene::~MenuScene()
+ClearScene::~ClearScene()
 {
-    delete(menuSceneUI);
 }
 
 /// <summary>
 /// 初期化
 /// </summary>
-void MenuScene::Initialize()
+void ClearScene::Initialize()
 {
 
 }
@@ -30,7 +26,7 @@ void MenuScene::Initialize()
 /// <summary>
 /// 更新
 /// </summary>
-void MenuScene::Update()
+void ClearScene::Update()
 {
 
 }
@@ -38,7 +34,7 @@ void MenuScene::Update()
 /// <summary>
 /// 描画
 /// </summary>
-void MenuScene::Draw()
+void ClearScene::Draw()
 {
 
 }
@@ -46,8 +42,7 @@ void MenuScene::Draw()
 /// <summary>
 /// UIの描画
 /// </summary>
-void MenuScene::DrawUI()
+void ClearScene::DrawUI()
 {
-    // メニューシーンUIの描画
-    menuSceneUI->Draw();
+
 }

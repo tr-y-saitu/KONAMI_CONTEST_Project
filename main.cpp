@@ -25,6 +25,14 @@
 #include "FPSSetting.h"
 #include "Room.h"
 #include "Gem.h"
+// シーン
+#include "SceneBase.h"
+#include "MenuScene.h"
+#include "GameScene.h"
+#include "ClearScene.h"
+#include "OverScene.h"
+#include "SceneManager.h"
+
 // Game.hの上にすべての自作ヘッダーをインクルードする
 #include "Game.h"
 
@@ -94,6 +102,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	// インスタンス化
 	Game* game = new Game();
+    SceneManager* sceneManager = new SceneManager();
 	
 	// 全オブジェクトのnew生成
 	game->Create();
@@ -112,12 +121,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		
 		// ゲームの更新
 		game->UpdateGame();
+        //sceneManager->Update();   // シーン管理
 
 		// 画面を初期化する
 		ClearDrawScreen();
 
 		// ゲームの描画
 		game->DrawGame();
+        //sceneManager->Draw(); // シーン管理
 
 		// 裏画面の内容を表画面に反映させる
 		ScreenFlip();

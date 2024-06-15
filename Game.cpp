@@ -252,7 +252,7 @@ void Game::UpdateGame()
         }
 
 		// キャラクター更新
-		player->Update(*enemy);	// プレイヤー
+		player->Update();	// プレイヤー
 
 		// カメラ更新
 		camera->Update(*player);// カメラ
@@ -401,7 +401,7 @@ void Game::DrawGame()
 	}
 	if (gameState == STATE_GAME)
 	{
-		player->Draw(gameFrameCount);	// プレイヤー
+		player->Draw();	                // プレイヤー
 		room->Draw();					// 部屋
         gemManager->DrawGems();         // 複数の宝石
 		treasureChest->Draw();			// 宝箱

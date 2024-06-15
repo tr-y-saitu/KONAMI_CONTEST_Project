@@ -1,28 +1,24 @@
 ﻿#include "SceneBase.h"
-#include "MenuSceneUI.h"
-#include "MenuScene.h"
-
+#include "OverScene.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
-MenuScene::MenuScene()
+OverScene::OverScene()
 {
-    menuSceneUI = new MenuSceneUI();
 }
 
 /// <summary>
 /// デストラクタ
 /// </summary>
-MenuScene::~MenuScene()
+OverScene::~OverScene()
 {
-    delete(menuSceneUI);
 }
 
 /// <summary>
 /// 初期化
 /// </summary>
-void MenuScene::Initialize()
+void OverScene::Initialize()
 {
 
 }
@@ -30,7 +26,7 @@ void MenuScene::Initialize()
 /// <summary>
 /// 更新
 /// </summary>
-void MenuScene::Update()
+void OverScene::Update()
 {
 
 }
@@ -38,7 +34,7 @@ void MenuScene::Update()
 /// <summary>
 /// 描画
 /// </summary>
-void MenuScene::Draw()
+void OverScene::Draw()
 {
 
 }
@@ -46,8 +42,8 @@ void MenuScene::Draw()
 /// <summary>
 /// UIの描画
 /// </summary>
-void MenuScene::DrawUI()
+void OverScene::DrawUI()
 {
-    // メニューシーンUIの描画
-    menuSceneUI->Draw();
+
 }
+
