@@ -219,28 +219,28 @@ void Game::UpdateGame()
     auto _gemType = 0;
 
 	// ステートごとに処理を分ける
-	switch (gameState)
-	{
-		// メニュー //////////////////////////////////////
-	case STATE_MENU:
+    switch (gameState)
+    {
+        // メニュー //////////////////////////////////////
+    case STATE_MENU:
 
-		if (keyRelease)
-		{
-			gameState = STATE_GAME;
-			ChangeGameState();
-		}
-		break;
+        if (keyRelease)
+        {
+            gameState = STATE_GAME;
+            ChangeGameState();
+        }
+        break;
 
-		// ゲーム中 //////////////////////////////////////
-	case STATE_GAME:
-		// ゲームが開始してからの時間を計測
-		SettingTimer(*gemManager);
+        // ゲーム中 //////////////////////////////////////
+    case STATE_GAME:
+        // ゲームが開始してからの時間を計測
+        SettingTimer(*gemManager);
 
-		// ゲームフレームを数える
-		CountGameFraem();
+        // ゲームフレームを数える
+        CountGameFraem();
 
-		// ゲームアップデート
-		// 当たり判定処理
+        // ゲームアップデート
+        // 当たり判定処理
         _scoreUpFlag = gemManager->IsCollisionGem(*player, *treasureChest, *collision);
         if (_scoreUpFlag)
         {
@@ -251,12 +251,13 @@ void Game::UpdateGame()
             UpdateScore(*treasureChest);
         }
 
-		// キャラクター更新
-		player->Update();	// プレイヤー
+        // キャラクター更新
+        player->Update();	// プレイヤー
 
-		// カメラ更新
-		camera->Update(*player);// カメラ
-		
+        // カメラ更新
+        camera->Update(*player);// カメラ
+
+
 		// オブジェクト更新
 		skyDome->Update();		                // 背景
 		room->Update();			                // 部屋

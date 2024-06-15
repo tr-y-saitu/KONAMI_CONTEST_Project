@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "DxLib.h"
 
 /// <summary>
 /// クリアシーンUI
@@ -23,6 +24,12 @@ public:
 
 
 private:
+    // 定数
+    const int UI_COLOR = GetColor(200, 200, 200);
+
+    // 変数
+    int     clearUIGraph;       // クリアした時のUI画像
+
 };
 
 

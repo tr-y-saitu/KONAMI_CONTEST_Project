@@ -100,12 +100,26 @@ void SceneManager::Update()
     case SCENE_MENU:
         // 更新処理
         menuScene->Update();
+
+        // スペースキーが押されたらシーン切り替え
+        if (keyRelease)
+        {
+            sceneState = SCENE_GAME;
+            ChangeNowScene();
+        }
+
         break;
 
         // ゲームシーン
     case SCENE_GAME:
         // 更新処理
         gameScene->Update();
+
+        if (gameScene->GetIsNextScene())
+        {
+            sceneState = SCENE_CLEAR;
+            ChangeNowScene();
+        }
         break;
 
         // クリアシーン
@@ -142,18 +156,21 @@ void SceneManager::Draw()
 
         // ゲームシーン
     case SCENE_GAME:
+        gameScene->Draw();
         // UIの描画
         gameScene->DrawUI();
         break;
 
         // クリアシーン
     case SCENE_CLEAR:
+        clearScene->Draw();
         // UIの描画
         clearScene->DrawUI();
         break;
 
         // オーバーシーン
     case SCENE_OVER:
+        overScene->Draw();
         // UIの描画
         overScene->DrawUI();
         break;

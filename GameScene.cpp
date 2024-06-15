@@ -21,11 +21,13 @@ GameScene::GameScene()
     , score         (0)
     , scoreUpFlag   (false)
     , isBlackOutFlag(false)
+    , isNextScene   (false)
 {
     // newインスタンス
     player = new Player();
     treasureChest = new TreasureChest();
     gemManager = new GemManager();
+    gemManager->CreateGem();
     collision = new Collision();
     camera = new Camera();
     skyDome = new SkyDome();
@@ -54,6 +56,13 @@ GameScene::~GameScene()
 /// </summary>
 void GameScene::Initialize()
 {
+    // フォント設定
+    ChangeFont("チョークS");
+
+    // ゲームが始まる前のGetNowCountを取得
+    previousTime = GetNowHiPerformanceCount();
+
+    // 各シーン初期関数呼び出し
     player->Initialize();
     treasureChest->Initialize();
     gemManager->Initialize();
@@ -96,7 +105,11 @@ void GameScene::Update()
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
 
-    // STATE_GAMEの終了時間になったらSTATE_CLEARに移行
+    // 終了時間になったらSCENE_CLEARに移行
+    if (nowTimer >= STATE_GAME_TIME_LIMIT)
+    {
+        isNextScene = true;
+    }
 
     //effekseer1->Update();
 }

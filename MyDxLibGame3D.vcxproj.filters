@@ -56,6 +56,15 @@
     <Filter Include="FIRE\GameObject\Object\TreasureChest">
       <UniqueIdentifier>{8328a902-5880-43f1-8256-4b1f0a1ea48f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FIRE\System\Scene">
+      <UniqueIdentifier>{60dd9fdc-7624-44ce-a98a-c907ebb02f67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\System\SceneManager">
+      <UniqueIdentifier>{5e6a8311-7d12-4824-a3f0-5176cdae7266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\System\SceneUI">
+      <UniqueIdentifier>{594872d6-997e-4694-927d-8062af95ec14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -108,6 +117,36 @@
     </ClCompile>
     <ClCompile Include="WaveConstants.cpp">
       <Filter>FIRE\GameObject\Object\Gem</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearScene.cpp">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="OverScene.cpp">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase.cpp">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>FIRE\System\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearSceneUI.cpp">
+      <Filter>FIRE\System\SceneUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSceneUI.cpp">
+      <Filter>FIRE\System\SceneUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSceneUI.cpp">
+      <Filter>FIRE\System\SceneUI</Filter>
+    </ClCompile>
+    <ClCompile Include="OverSceneUI.cpp">
+      <Filter>FIRE\System\SceneUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +203,36 @@
     </ClInclude>
     <ClInclude Include="CommonConstant.h">
       <Filter>FIRE\System\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearScene.h">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="OverScene.h">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase.h">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>FIRE\System\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearSceneUI.h">
+      <Filter>FIRE\System\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSceneUI.h">
+      <Filter>FIRE\System\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSceneUI.h">
+      <Filter>FIRE\System\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="OverSceneUI.h">
+      <Filter>FIRE\System\SceneUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

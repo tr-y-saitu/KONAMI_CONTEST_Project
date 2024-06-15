@@ -1,11 +1,29 @@
-﻿#include "SceneBase.h"
+﻿#include "ClearSceneUI.h"
 #include "ClearScene.h"
+#include "SceneBase.h"
+#include "Room.h"
+#include "TreasureChest.h"
+#include "Camera.h"
+#include "Collision.h"
+#include "SkyDome.h"
+#include "Gem.h"
+#include "GemManager.h"
+#include "Player.h"
+#include "GameScene.h"
+#include "Calculation.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
 ClearScene::ClearScene()
 {
+    clearSceneUI = new ClearSceneUI();
+    treasureChest = new TreasureChest();
+    gemManager = new GemManager();
+    collision = new Collision();
+    camera = new Camera();
+    skyDome = new SkyDome();
+    room = new Room();
 }
 
 /// <summary>
@@ -13,6 +31,13 @@ ClearScene::ClearScene()
 /// </summary>
 ClearScene::~ClearScene()
 {
+    delete(clearSceneUI);
+    delete(treasureChest);
+    delete(gemManager);
+    delete(collision);
+    delete(camera);
+    delete(skyDome);
+    delete(room);
 }
 
 /// <summary>
@@ -20,7 +45,10 @@ ClearScene::~ClearScene()
 /// </summary>
 void ClearScene::Initialize()
 {
-
+    treasureChest->Initialize();
+    gemManager->Initialize();
+    skyDome->Initialize();
+    room->Initialize();
 }
 
 /// <summary>
@@ -28,7 +56,6 @@ void ClearScene::Initialize()
 /// </summary>
 void ClearScene::Update()
 {
-
 }
 
 /// <summary>
@@ -36,7 +63,7 @@ void ClearScene::Update()
 /// </summary>
 void ClearScene::Draw()
 {
-
+    
 }
 
 /// <summary>

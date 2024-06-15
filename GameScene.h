@@ -63,6 +63,9 @@ public:
     /// <param name="resetFlag">計測時間をリセットするかどうかのフラグ</param>
     void SettingTimer(GemManager& gemManager);
 
+    // Getter
+    const bool GetIsNextScene() { return isNextScene; }
+
 private:
     static constexpr int STATE_GAME_TIME_LIMIT = 40; // ゲームステートが終了する時間
 
@@ -86,8 +89,10 @@ private:
     bool    scoreUpFlag;    // スコアアップフラグ
 
     // 暗転処理
-    bool isBlackOutFlag;    // 暗転処理するかどうか
+    bool    isBlackOutFlag;    // 暗転処理するかどうか
 
+    // シーン管理
+    bool    isNextScene;        // 次のシーン移行すかどうか
 
 };
 
