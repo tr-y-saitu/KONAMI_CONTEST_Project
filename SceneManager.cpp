@@ -19,10 +19,14 @@ SceneManager::SceneManager()
     , keyRelease        (false)
     , prevKeyOn         (false)
 {
-    menuScene = new MenuScene();
-    gameScene = new GameScene();
-    clearScene = new ClearScene();
-    overScene = new OverScene();
+    nowScene = SceneBase::InitializeBase();
+    //nowScene = new MenuScene();     // 最初のシーンの設定
+    nextScene = NULL;               // 次のシーンの初期化
+
+    //menuScene = new MenuScene();
+    //gameScene = new GameScene();
+    //clearScene = new ClearScene();
+    //overScene = new OverScene();
 }
 
 /// <summary>
@@ -34,6 +38,41 @@ SceneManager::~SceneManager()
     delete(gameScene);
     delete(clearScene);
     delete(overScene);
+}
+
+/// <summary>
+/// 実際のゲームループ
+/// </summary>
+void SceneManager::GameLoop()
+{
+    ClearDrawScreen();
+
+    nextScene =  nowScene->UpdateScene();
+    nowScene->Draw();
+    nowScene->DrawUI();
+    
+    ScreenFlip();
+    
+    if (nowScene != nextScene)
+    {
+        SceneChange();
+    }
+
+}
+
+/// <summary>
+/// シーンの切り替え
+/// </summary>
+void SceneManager::SceneChange()
+{
+    // 現在のシーンを削除
+    delete(nowScene);
+
+    // 現在のシーンを切り替え
+    nowScene = nextScene;
+
+    // 次のシーンを初期化S
+    nextScene = NULL;
 }
 
 /// <summary>

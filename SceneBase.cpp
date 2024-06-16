@@ -13,6 +13,11 @@ SceneBase::~SceneBase()
 }
 
 
+SceneBase* SceneBase::InitializeBase()
+{
+    return new MenuScene();
+}
+
 void SceneBase::Initialize()
 {
 

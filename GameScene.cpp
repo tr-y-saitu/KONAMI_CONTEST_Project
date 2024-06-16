@@ -1,4 +1,5 @@
 ﻿#include "SceneBase.h"
+#include "ClearScene.h"
 #include "Room.h"
 #include "TreasureChest.h"
 #include "Camera.h"
@@ -120,6 +121,53 @@ void GameScene::Update()
     }
 
     //effekseer1->Update();
+}
+
+/// <summary>
+/// シーンの更新
+/// </summary>
+/// <returns>次のシーンのポインタ</returns>
+SceneBase* GameScene::UpdateScene()
+{
+    // ゲームが開始してからの時間を計測
+    SettingTimer(*gemManager);
+
+    // ゲームアップデート
+    // 当たり判定処理
+    scoreUpFlag = gemManager->IsCollisionGem(*player, *treasureChest, *collision);
+    if (scoreUpFlag)
+    {
+        // 当たった時の演出を出す指令をセット
+        gameSceneUI->SetIsHitGemToChest(true);
+
+        // スコアをアップさせる
+        UpdateScore(*treasureChest);
+    }
+    // キャラクター更新
+    player->Update();	// プレイヤー
+
+    // カメラ更新
+    camera->Update();// カメラ
+
+    // オブジェクト更新
+    skyDome->Update();		                // 背景
+    room->Update();			                // 部屋
+    gemManager->UpdateWaveGem(nowTimer);    // 宝石
+    treasureChest->Update();			    // 宝箱更新
+
+    // データのリセットフラグがたったら宝石のデータをリセットさせる
+    gemManager->ResetGemData();
+
+    // 終了時間になったらSCENE_CLEARに移行
+    if (nowTimer >= STATE_GAME_TIME_LIMIT)
+    {
+        return new ClearScene();
+    }
+
+    //effekseer1->Update();
+
+    // シーン終了判定がなければそのまま
+    return this;
 }
 
 /// <summary>

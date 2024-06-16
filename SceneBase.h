@@ -19,6 +19,8 @@ public:
     /// </summary>
     virtual ~SceneBase();   // 仮想関数
 
+    static SceneBase* InitializeBase();
+
     /// <summary>
     /// 初期化
     /// </summary>
@@ -28,6 +30,8 @@ public:
     /// 更新
     /// </summary>
     virtual void Update() abstract; // 純粋仮想関数
+
+    virtual SceneBase* UpdateScene() abstract;
 
     /// <summary>
     /// 描画

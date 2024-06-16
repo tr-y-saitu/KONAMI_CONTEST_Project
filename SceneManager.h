@@ -35,6 +35,16 @@ public:
     virtual ~SceneManager();
 
     /// <summary>
+    /// 実際のゲームループ
+    /// </summary>
+    void GameLoop();
+
+    /// <summary>
+    /// シーンの切り替え
+    /// </summary>
+    void SceneChange();
+
+    /// <summary>
     /// 初期化
     /// </summary>
     void Initialize();
@@ -70,6 +80,10 @@ public:
     void SettingTimer();
 
 private:
+
+    // シーン
+    SceneBase* nowScene;    // 現在のシーン
+    SceneBase* nextScene;   // 次のシーン
 
     // シーン
     MenuScene* menuScene;

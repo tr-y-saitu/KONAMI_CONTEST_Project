@@ -1,5 +1,6 @@
 ﻿#include "ClearSceneUI.h"
 #include "ClearScene.h"
+#include "MenuScene.h"
 #include "SceneBase.h"
 #include "Room.h"
 #include "TreasureChest.h"
@@ -58,6 +59,22 @@ void ClearScene::Update()
 {
     treasureChest->Update();
     room->Update();
+}
+
+/// <summary>
+/// シーンの更新
+/// </summary>
+/// <returns></returns>
+SceneBase* ClearScene::UpdateScene()
+{
+    treasureChest->Update();
+    room->Update();
+    // スペースキーが押されたらメニューへ
+    if (CheckHitKey(KEY_INPUT_SPACE) == 1)
+    {
+        return new MenuScene();
+    }
+    return this;
 }
 
 /// <summary>

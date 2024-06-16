@@ -110,7 +110,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// ゲームの初期化
 	//game->Initialize();
 	//game->InitializeGameStart();
-    sceneManager->Initialize();
+    //sceneManager->Initialize();
 
 	// エスケープキーが押されるかウインドウが閉じられるまでループ
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
@@ -120,14 +120,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		
 		// ゲームの更新
 		//game->UpdateGame();
-        sceneManager->Update();   // シーン管理
+        //sceneManager->Update();   // シーン管理
 
 		// 画面を初期化する
 		ClearDrawScreen();
 
+        sceneManager->GameLoop();
+        
 		// ゲームの描画
 		//game->DrawGame();
-        sceneManager->Draw(); // シーン管理
+        //sceneManager->Draw(); // シーン管理
 
 		// 裏画面の内容を表画面に反映させる
 		ScreenFlip();

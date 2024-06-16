@@ -32,6 +32,12 @@ public:
     void Update() override;
 
     /// <summary>
+    /// シーンのアップデート
+    /// </summary>
+    /// <returns>次のシーンのポインタ</returns>
+    SceneBase* UpdateScene() override;
+
+    /// <summary>
     /// 描画
     /// </summary>
     void Draw() override;

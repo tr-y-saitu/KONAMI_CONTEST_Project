@@ -1,4 +1,5 @@
 ﻿#include "SceneBase.h"
+#include "GameScene.h"
 #include "MenuSceneUI.h"
 #include "MenuScene.h"
 
@@ -33,6 +34,21 @@ void MenuScene::Initialize()
 void MenuScene::Update()
 {
 
+}
+
+/// <summary>
+/// シーンの更新
+/// </summary>
+/// <returns>次のシーンのポインタ</returns>
+SceneBase* MenuScene::UpdateScene()
+{
+    // スペースキーが押されたらゲームへ
+    if (CheckHitKey(KEY_INPUT_SPACE) == 1)
+    {
+        return new GameScene();
+    }
+
+    return this;
 }
 
 /// <summary>
