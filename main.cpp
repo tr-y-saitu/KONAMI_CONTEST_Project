@@ -45,8 +45,8 @@
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) 
 {
 	// DXライブラリの表示方法をウィンドウモードに変更する。
-	//ChangeWindowMode(true);	// ウィンドウモード
-	ChangeWindowMode(false);// 全画面モード
+	ChangeWindowMode(true);	// ウィンドウモード
+	//ChangeWindowMode(false);// 全画面モード
 
 	//描画先を裏画面に変更する。
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -105,7 +105,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     SceneManager* sceneManager = new SceneManager();
 	
 	// 全オブジェクトのnew生成
-	game->Create();
+	//game->Create();
 
 	// ゲームの初期化
 	//game->Initialize();
@@ -117,7 +117,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	{
 		// FPS処理
 		auto _prevTime = GetNowHiPerformanceCount();
-
 		
 		// ゲームの更新
 		//game->UpdateGame();
@@ -134,7 +133,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		ScreenFlip();
 
 		// FPS処理
-		auto _afterTime = GetNowHiPerformanceCount();
+   		auto _afterTime = GetNowHiPerformanceCount();
 
 		while (_afterTime - _prevTime < 16667)
 		{
@@ -155,7 +154,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	}
 	
 	// 生成したものを削除
-	game->DeleteGame();
+	//game->DeleteGame();
 
 	// Effekseerを終了する。
 	//Effkseer_End();

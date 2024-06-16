@@ -56,6 +56,8 @@ void ClearScene::Initialize()
 /// </summary>
 void ClearScene::Update()
 {
+    treasureChest->Update();
+    room->Update();
 }
 
 /// <summary>
@@ -63,7 +65,8 @@ void ClearScene::Update()
 /// </summary>
 void ClearScene::Draw()
 {
-    
+    treasureChest->Draw();
+    room->Draw();
 }
 
 /// <summary>
@@ -71,5 +74,5 @@ void ClearScene::Draw()
 /// </summary>
 void ClearScene::DrawUI()
 {
-
+    clearSceneUI->Draw();
 }

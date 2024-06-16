@@ -254,14 +254,13 @@ void Game::UpdateGame()
         player->Update();	// プレイヤー
 
         // カメラ更新
-        camera->Update(*player);// カメラ
-
+        camera->Update();// カメラ
 
 		// オブジェクト更新
 		skyDome->Update();		                // 背景
 		room->Update();			                // 部屋
         gemManager->UpdateWaveGem(nowTimer);    // 宝石
-		treasureChest->Update();			        // 宝箱更新
+		treasureChest->Update();			    // 宝箱更新
 
         // データのリセットフラグがたったら宝石のデータをリセットさせる
         gemManager->ResetGemData();

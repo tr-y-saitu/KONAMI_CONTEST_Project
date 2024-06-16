@@ -67,7 +67,7 @@ public:
     const bool GetIsNextScene() { return isNextScene; }
 
 private:
-    static constexpr int STATE_GAME_TIME_LIMIT = 40; // ゲームステートが終了する時間
+    static constexpr int STATE_GAME_TIME_LIMIT = 40; // ゲームステートが終了(する時間)(初期40)
 
     // インスタンス
     Player*         player;

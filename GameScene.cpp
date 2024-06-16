@@ -15,13 +15,13 @@
 /// コンストラクタ
 /// </summary>
 GameScene::GameScene()
-    : previousTime  (0)
-    , timer         (0)
-    , nowTimer      (0)
-    , score         (0)
-    , scoreUpFlag   (false)
-    , isBlackOutFlag(false)
-    , isNextScene   (false)
+    : previousTime      (0)
+    , timer             (0)
+    , nowTimer          (0)
+    , score             (0)
+    , scoreUpFlag       (false)
+    , isBlackOutFlag    (false)
+    , isNextScene       (false)
 {
     // newインスタンス
     player = new Player();
@@ -61,6 +61,14 @@ void GameScene::Initialize()
 
     // ゲームが始まる前のGetNowCountを取得
     previousTime = GetNowHiPerformanceCount();
+    timer = 0;
+    nowTimer = 0;
+    score = 0;
+    scoreUpFlag = false;
+    isBlackOutFlag = false;
+    isNextScene = false;
+    // 宝石のWAVE_STATEをFIRSTにする
+    gemManager->SetGemWaveState(GemManager::WAVE_FIRST);
 
     // 各シーン初期関数呼び出し
     player->Initialize();
@@ -94,13 +102,13 @@ void GameScene::Update()
     player->Update();	// プレイヤー
 
     // カメラ更新
-    camera->Update(*player);// カメラ
+    camera->Update();// カメラ
 
     // オブジェクト更新
     skyDome->Update();		                // 背景
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
-    treasureChest->Update();			        // 宝箱更新
+    treasureChest->Update();			    // 宝箱更新
 
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();

@@ -115,6 +115,7 @@ void SceneManager::Update()
         // 更新処理
         gameScene->Update();
 
+        // 次のシーンに行く指示が出たら
         if (gameScene->GetIsNextScene())
         {
             sceneState = SCENE_CLEAR;
@@ -126,6 +127,13 @@ void SceneManager::Update()
     case SCENE_CLEAR:
         // 更新処理
         clearScene->Update();
+
+        // スペースキーが押されたらシーン切り替え
+        if (keyRelease)
+        {
+            sceneState = SCENE_MENU;
+            ChangeNowScene();
+        }
         break;
 
         // オーバーシーン
