@@ -40,19 +40,18 @@ Game::~Game()
 /// <summary>
 /// 実際のゲームループ
 /// </summary>
-void Game::GameLoop()
+void Game::Update()
 {
     ClearDrawScreen();
 
     nextScene = nowScene->UpdateScene();
     nowScene->Draw();
-    nowScene->DrawUI();
 
     ScreenFlip();
 
     if (nowScene != nextScene)
     {
-        SceneChange();
+        ChangeScene();
     }
 
 }
@@ -60,7 +59,7 @@ void Game::GameLoop()
 /// <summary>
 /// シーンの切り替え
 /// </summary>
-void Game::SceneChange()
+void Game::ChangeScene()
 {
     // 現在のシーンを削除
     delete(nowScene);
@@ -84,153 +83,12 @@ void Game::Initialize()
     previousTime = GetNowHiPerformanceCount();
     nowTimer = 1;
     score = 0;
-
-    menuScene->Initialize();
-    gameScene->Initialize();
-    clearScene->Initialize();
-    overScene->Initialize();
-}
-
-/// <summary>
-/// 現在のシーンの切り替え
-/// </summary>
-void Game::ChangeNowScene()
-{
-    // ステートが切り替わった瞬間、キーを離した判定をリセット
-    keyOn = false;
-    keyRelease = false;
-
-    // ステート切り替え処理
-    switch (sceneState)
-    {
-        // タイトル
-    case SCENE_MENU:
-        break;
-
-        // ゲーム中
-    case SCENE_GAME:
-        Initialize();
-        break;
-
-        // クリア画面
-    case SCENE_CLEAR:
-        break;
-
-        // ゲームオーバー
-    case SCENE_OVER:
-        break;
-
-    default:
-        break;
-    }
-}
-
-/// <summary>
-/// 更新
-/// </summary>
-void Game::Update()
-{
-    // キー入力処理
-    ProcessKey();
-
-    switch (sceneState)
-    {
-        // タイトルシーン
-    case SCENE_MENU:
-        // 更新処理
-        menuScene->Update();
-
-        // スペースキーが押されたらシーン切り替え
-        if (keyRelease)
-        {
-            sceneState = SCENE_GAME;
-            ChangeNowScene();
-        }
-
-        break;
-
-        // ゲームシーン
-    case SCENE_GAME:
-        // 更新処理
-        gameScene->Update();
-
-        // 次のシーンに行く指示が出たら
-        if (gameScene->GetIsNextScene())
-        {
-            sceneState = SCENE_CLEAR;
-            ChangeNowScene();
-        }
-        break;
-
-        // クリアシーン
-    case SCENE_CLEAR:
-        // 更新処理
-        clearScene->Update();
-
-        // スペースキーが押されたらシーン切り替え
-        if (keyRelease)
-        {
-            sceneState = SCENE_MENU;
-            ChangeNowScene();
-        }
-        break;
-
-        // オーバーシーン
-    case SCENE_OVER:
-        // 更新処理
-        overScene->Update();
-        break;
-
-
-
-    default:
-        break;
-    }
-}
-
-/// <summary>
-/// 描画
-/// </summary>
-void Game::Draw()
-{
-    switch (sceneState)
-    {
-        // タイトルシーン
-    case SCENE_MENU:
-        // UIの描画
-        menuScene->DrawUI();
-        break;
-
-        // ゲームシーン
-    case SCENE_GAME:
-        gameScene->Draw();
-        // UIの描画
-        gameScene->DrawUI();
-        break;
-
-        // クリアシーン
-    case SCENE_CLEAR:
-        clearScene->Draw();
-        // UIの描画
-        clearScene->DrawUI();
-        break;
-
-        // オーバーシーン
-    case SCENE_OVER:
-        overScene->Draw();
-        // UIの描画
-        overScene->DrawUI();
-        break;
-
-    default:
-        break;
-    }
 }
 
 /// <summary>
 /// 入力処理
 /// </summary>
-void Game::ProcessKey()
+void Game::UpdateKeyState()
 {
     // キーを離した瞬間をとる
     if (keyOn)

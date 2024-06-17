@@ -52,7 +52,8 @@ SceneBase* OverScene::UpdateScene()
 /// </summary>
 void OverScene::Draw()
 {
-
+    // UIの描画
+    DrawUI();
 }
 
 /// <summary>

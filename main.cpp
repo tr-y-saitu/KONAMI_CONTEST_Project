@@ -20,7 +20,6 @@
 #include "Camera.h"
 #include "Collision.h"
 #include "UI.h"
-#include "Confetti.h"
 #include "Effekseer.h"
 #include "FPSSetting.h"
 #include "Room.h"
@@ -110,7 +109,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		auto _prevTime = GetNowHiPerformanceCount();
 
         // ゲームループ
-        game->GameLoop();
+        game->Update();
 
 		// FPS処理
    		auto _afterTime = GetNowHiPerformanceCount();

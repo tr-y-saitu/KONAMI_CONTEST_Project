@@ -56,7 +56,8 @@ SceneBase* MenuScene::UpdateScene()
 /// </summary>
 void MenuScene::Draw()
 {
-
+    // UIの描画
+    DrawUI();
 }
 
 /// <summary>

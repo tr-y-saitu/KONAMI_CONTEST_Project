@@ -82,9 +82,6 @@
     <ClCompile Include="FPSSetting.cpp">
       <Filter>FIRE\System\FPS</Filter>
     </ClCompile>
-    <ClCompile Include="Confetti.cpp">
-      <Filter>FIRE\GameObject\Object</Filter>
-    </ClCompile>
     <ClCompile Include="SkyDome.cpp">
       <Filter>FIRE\GameObject\SkyDome</Filter>
     </ClCompile>
@@ -159,9 +156,6 @@
     <ClInclude Include="FPSSetting.h">
       <Filter>FIRE\System\FPS</Filter>
     </ClInclude>
-    <ClInclude Include="Confetti.h">
-      <Filter>FIRE\GameObject\Object</Filter>
-    </ClInclude>
     <ClInclude Include="SkyDome.h">
       <Filter>FIRE\GameObject\SkyDome</Filter>
     </ClInclude>
@@ -188,9 +182,6 @@
     </ClInclude>
     <ClInclude Include="WaveConstants.h">
       <Filter>FIRE\GameObject\Object\Gem</Filter>
-    </ClInclude>
-    <ClInclude Include="CommonConstant.h">
-      <Filter>FIRE\System\GameManager</Filter>
     </ClInclude>
     <ClInclude Include="ClearScene.h">
       <Filter>FIRE\System\Scene</Filter>

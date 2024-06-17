@@ -36,12 +36,12 @@ public:
     /// <summary>
     /// 実際のゲームループ
     /// </summary>
-    void GameLoop();
+    void Update();
 
     /// <summary>
     /// シーンの切り替え
     /// </summary>
-    void SceneChange();
+    void ChangeScene();
 
     /// <summary>
     /// 初期化
@@ -49,24 +49,9 @@ public:
     void Initialize();
 
     /// <summary>
-    /// 更新
-    /// </summary>
-    void Update();
-
-    /// <summary>
-    /// 描画
-    /// </summary>
-    void Draw();
-
-    /// <summary>
-    /// 現在のシーンの切り替え
-    /// </summary>
-    void ChangeNowScene();
-
-    /// <summary>
     /// 入力処理
     /// </summary>
-    void ProcessKey();
+    void UpdateKeyState();
 
     /// <summary>
     /// 現在制限時間の描画

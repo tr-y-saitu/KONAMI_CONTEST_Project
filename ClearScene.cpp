@@ -82,8 +82,12 @@ SceneBase* ClearScene::UpdateScene()
 /// </summary>
 void ClearScene::Draw()
 {
+    // オブジェクト描画
     treasureChest->Draw();
     room->Draw();
+
+    // UI描画
+    DrawUI();
 }
 
 /// <summary>

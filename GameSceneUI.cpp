@@ -36,9 +36,9 @@ void GameSceneUI::Initialize()
 /// <param name="gameScore">ゲームスコア</param>
 /// <param name="nowTimer">現在の経過時間</param>
 /// <param name="gemWaveState">現在の宝石のウェーブステート</param>
-/// <param name="isBlackOutFlag">暗転処理するかどうか</param>
+/// <param name="isBlackOut">暗転処理するかどうか</param>
 void GameSceneUI::Draw(int gameScore, float nowTimer,
-    int gemWaveState, bool isBlackOutFlag)
+    int gemWaveState, bool isBlackOut)
 {
     char _timeCount[256];		// ゲームの経過時間
 

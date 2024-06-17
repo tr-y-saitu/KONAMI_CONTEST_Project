@@ -92,10 +92,10 @@ private:
 
     // スコア
     int     score;          // スコア
-    bool    scoreUpFlag;    // スコアアップフラグ
+    bool    isScoreUp;    // スコアアップフラグ
 
     // 暗転処理
-    bool    isBlackOutFlag;    // 暗転処理するかどうか
+    bool    isBlackOut;    // 暗転処理するかどうか
 
     // シーン管理
     bool    isNextScene;        // 次のシーン移行すかどうか

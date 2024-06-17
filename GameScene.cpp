@@ -20,8 +20,8 @@ GameScene::GameScene()
     , timer             (0)
     , nowTimer          (0)
     , score             (0)
-    , scoreUpFlag       (false)
-    , isBlackOutFlag    (false)
+    , isScoreUp       (false)
+    , isBlackOut    (false)
     , isNextScene       (false)
 {
     // newインスタンス
@@ -64,8 +64,8 @@ void GameScene::Initialize()
     timer = 0;
     nowTimer = 0;
     score = 0;
-    scoreUpFlag = false;
-    isBlackOutFlag = false;
+    isScoreUp = false;
+    isBlackOut = false;
     isNextScene = false;
     // 宝石のWAVE_STATEをFIRSTにする
     gemManager->SetGemWaveState(GemManager::WAVE_FIRST);
@@ -89,8 +89,8 @@ void GameScene::Update()
 
     // ゲームアップデート
     // 当たり判定処理
-    scoreUpFlag = gemManager->IsCollisionGem(*player, *treasureChest, *collision);
-    if (scoreUpFlag)
+    isScoreUp = gemManager->IsCollisionGem(*player, *treasureChest, *collision);
+    if (isScoreUp)
     {
         // 当たった時の演出を出す指令をセット
         gameSceneUI->SetIsHitGemToChest(true);
@@ -133,8 +133,8 @@ SceneBase* GameScene::UpdateScene()
 
     // ゲームアップデート
     // 当たり判定処理
-    scoreUpFlag = gemManager->IsCollisionGem(*player, *treasureChest, *collision);
-    if (scoreUpFlag)
+    isScoreUp = gemManager->IsCollisionGem(*player, *treasureChest, *collision);
+    if (isScoreUp)
     {
         // 当たった時の演出を出す指令をセット
         gameSceneUI->SetIsHitGemToChest(true);
@@ -174,10 +174,14 @@ SceneBase* GameScene::UpdateScene()
 /// </summary>
 void GameScene::Draw()
 {
+    // オブジェクト描画
     player->Draw();         // プレイヤー
     room->Draw();           // 部屋
     gemManager->DrawGems(); //　宝石たち
     treasureChest->Draw();  // 宝箱
+
+    // UIの描画
+    DrawUI();
 }
 
 /// <summary>

@@ -164,7 +164,6 @@
     <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="ClearSceneUI.cpp" />
     <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="Confetti.cpp" />
     <ClCompile Include="Effekseer.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FPSSetting.cpp" />
@@ -192,8 +191,6 @@
     <ClInclude Include="ClearScene.h" />
     <ClInclude Include="ClearSceneUI.h" />
     <ClInclude Include="Collision.h" />
-    <ClInclude Include="CommonConstant.h" />
-    <ClInclude Include="Confetti.h" />
     <ClInclude Include="Effekseer.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FPSSetting.h" />
