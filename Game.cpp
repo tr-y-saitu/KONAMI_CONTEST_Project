@@ -5,6 +5,7 @@
 #include "GameScene.h"
 #include "OverScene.h"
 #include "ClearScene.h"
+#include "FPSSetting.h"
 
 /// <summary>
 /// コンストラクタ
@@ -23,6 +24,9 @@ Game::Game()
     nowScene = SceneBase::InitializeBase();
     // 次のシーンの初期化
     nextScene = NULL;
+    // FPS
+    fpsSetting = new FPSSetting();
+
 }
 
 /// <summary>
@@ -30,10 +34,8 @@ Game::Game()
 /// </summary>
 Game::~Game()
 {
-    delete(menuScene);
-    delete(gameScene);
-    delete(clearScene);
-    delete(overScene);
+    delete(nowScene);
+    delete(fpsSetting);
 }
 
 /// <summary>
@@ -41,18 +43,28 @@ Game::~Game()
 /// </summary>
 void Game::Update()
 {
+    // 画面の削除
     ClearDrawScreen();
 
+    // FPS計測処理
+    fpsSetting->Update();
+
+    // 現在シーンの更新・描画
     nextScene = nowScene->UpdateScene();
     nowScene->Draw();
 
+    // FPS待機処理
+    fpsSetting->SleepForFPS();
+
+    // 描画を反映
     ScreenFlip();
 
+    // Update内でnowScene = new 次のScene();された場合
     if (nowScene != nextScene)
     {
+        // シーンを切り替える
         ChangeScene();
     }
-
 }
 
 /// <summary>

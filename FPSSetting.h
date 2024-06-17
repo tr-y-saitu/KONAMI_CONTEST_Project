@@ -1,18 +1,40 @@
 ﻿#pragma once
 
-
+/// <summary>
+/// FPS管理
+/// </summary>
 class FPSSetting
 {
 public:
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
 	FPSSetting();
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~FPSSetting();
-	void SettingPreviousFPS();
-	void Setting60FPS();
+
+    /// <summary>
+    /// 更新
+    /// </summary>
+    void Update();
+
+    /// <summary>
+    /// 待機処理
+    /// </summary>
+    void SleepForFPS();
 
 private:
-	const int FPS_60 = 16667;
+    // 定数
+    static constexpr int SET_FPS = 60;  // 設定したFPS値
 
-	LONGLONG	prevTime;		// ループが始まる前の時間
-	LONGLONG	afterTime;		// ゲーム処理が終わった時間
+    // 変数
+    int     nowFpsCount;                // 現在のフレーム数
+    int     fpsCountStartTime;          // フレームカウントを始めた時間
+    float   deltaTime;                  // １フレームにかかった時間
+
+
 };
 
