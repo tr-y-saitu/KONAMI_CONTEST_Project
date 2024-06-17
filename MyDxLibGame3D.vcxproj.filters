@@ -20,9 +20,6 @@
     <Filter Include="FIRE\System">
       <UniqueIdentifier>{ee35b705-19b4-4ff1-bcff-4e3d1a4bb435}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FIRE\System\UI">
-      <UniqueIdentifier>{50057d77-0f5e-47e6-bf6b-1decf389e163}</UniqueIdentifier>
-    </Filter>
     <Filter Include="FIRE\System\GameManager">
       <UniqueIdentifier>{bb6fb232-91a8-43b3-bf05-8e8d31633021}</UniqueIdentifier>
     </Filter>
@@ -59,9 +56,6 @@
     <Filter Include="FIRE\System\Scene">
       <UniqueIdentifier>{60dd9fdc-7624-44ce-a98a-c907ebb02f67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FIRE\System\SceneManager">
-      <UniqueIdentifier>{5e6a8311-7d12-4824-a3f0-5176cdae7266}</UniqueIdentifier>
-    </Filter>
     <Filter Include="FIRE\System\SceneUI">
       <UniqueIdentifier>{594872d6-997e-4694-927d-8062af95ec14}</UniqueIdentifier>
     </Filter>
@@ -81,9 +75,6 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>FIRE\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>FIRE\System\UI</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>FIRE\System\GameManager</Filter>
@@ -133,9 +124,6 @@
     <ClCompile Include="OverScene.cpp">
       <Filter>FIRE\System\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>FIRE\System\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="ClearSceneUI.cpp">
       <Filter>FIRE\System\SceneUI</Filter>
     </ClCompile>
@@ -161,9 +149,6 @@
     </ClInclude>
     <ClInclude Include="Effekseer.h">
       <Filter>FIRE\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>FIRE\System\UI</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>FIRE\System\GameManager</Filter>
@@ -218,9 +203,6 @@
     </ClInclude>
     <ClInclude Include="OverScene.h">
       <Filter>FIRE\System\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>FIRE\System\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="ClearSceneUI.h">
       <Filter>FIRE\System\SceneUI</Filter>

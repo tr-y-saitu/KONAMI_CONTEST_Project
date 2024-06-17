@@ -48,7 +48,6 @@ GameScene::~GameScene()
     delete(skyDome);
     delete(room);
     delete(gameSceneUI);
-    gemManager->DeleteGem();
     delete(gemManager);
 }
 

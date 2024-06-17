@@ -181,10 +181,8 @@
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SkyDome.cpp" />
     <ClCompile Include="TreasureChest.cpp" />
-    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Calculation.cpp" />
     <ClCompile Include="WaveConstants.cpp" />
   </ItemGroup>
@@ -211,10 +209,8 @@
     <ClInclude Include="Room.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SkyDome.h" />
     <ClInclude Include="TreasureChest.h" />
-    <ClInclude Include="UI.h" />
     <ClInclude Include="WaveConstants.h" />
     <ClInclude Include="ゲーム構造.h" />
   </ItemGroup>
