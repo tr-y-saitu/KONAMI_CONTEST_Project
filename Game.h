@@ -5,6 +5,7 @@ class MenuScene;
 class GameScene;
 class ClearScene;
 class OverScene;
+class FPSSetting;
 
 /// <summary>
 /// シーンマネージャー
@@ -60,15 +61,12 @@ public:
 
 private:
 
-    // シーン
+    // 実行用シーン
     SceneBase* nowScene;    // 現在のシーン
     SceneBase* nextScene;   // 次のシーン
 
-    // シーン
-    MenuScene* menuScene;
-    GameScene* gameScene;
-    ClearScene* clearScene;
-    OverScene* overScene;
+    // FPS処理
+    FPSSetting* fpsSetting; // FPS更新
 
     // ステート
     int     sceneState;     // 現在のシーン
@@ -85,8 +83,6 @@ private:
     bool	keyOn;			// キー入力されているか
     bool	keyRelease;		// キー入力が離れたか
     bool	prevKeyOn;		// 前フレームでキー入力があったか
-
-
 };
 
 

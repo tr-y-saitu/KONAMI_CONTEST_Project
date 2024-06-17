@@ -6,8 +6,6 @@
 /// コンストラクタ
 /// </summary>
 FPSSetting::FPSSetting()
-	:	prevTime		(0)
-	,	afterTime		(0)
 {
 
 }
@@ -21,27 +19,41 @@ FPSSetting::~FPSSetting()
 }
 
 /// <summary>
-/// ゲーム開始前の時間を計測
+/// 更新
 /// </summary>
-void FPSSetting::SettingPreviousFPS()
+void FPSSetting::Update()
 {
-	prevTime = GetNowHiPerformanceCount();
+    // 1フレーム目なら時刻を記憶
+    if (nowFpsCount == 0)
+    {
+        fpsCountStartTime = GetNowCount();	//基準となる時間を決める
+    }
+    // 60フレーム目なら平均を計算する
+    if (nowFpsCount == (float)SET_FPS)
+    {
+        int nowTime = GetNowCount();		//今の時間を設定
+        deltaTime = 1000.f / ((nowTime - fpsCountStartTime) / (float)SET_FPS);	//１フレームにかかった時間を計算
+        nowFpsCount = 0;					//フレームのカウントを初期化
+    }
+    else
+    {
+        nowFpsCount++;
+    }
 }
 
 /// <summary>
-/// 60FPSに合わせる
+/// 待機処理
 /// </summary>
-void FPSSetting::Setting60FPS()
+void FPSSetting::SleepForFPS()
 {
-	// １フレーム終了後の時間を計測
-	afterTime = GetNowHiPerformanceCount();
-	// 60FPSになるように待機する　　60分の一秒　0.01666......
-	while (afterTime - prevTime < FPS_60)
-	{
-		// この時点での時間を計測して次に備える
-		afterTime = GetNowHiPerformanceCount();
-	}
+    //かかった時間
+    int _tookTime = GetNowCount() - fpsCountStartTime;
+    //待つべき時間
+    int _waitTime = nowFpsCount * 1000 / SET_FPS - _tookTime;
 
-
+    //待つべき時間待機する
+    if (_waitTime > 0)
+    {
+        Sleep(_waitTime);
+    }
 }
-

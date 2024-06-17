@@ -103,19 +103,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// エスケープキーが押されるかウインドウが閉じられるまでループ
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
-		// FPS処理
-		auto _prevTime = GetNowHiPerformanceCount();
-
         // ゲームループ
         game->Update();
-
-		// FPS処理
-   		auto _afterTime = GetNowHiPerformanceCount();
-
-		while (_afterTime - _prevTime < 16667)
-		{
-			_afterTime = GetNowHiPerformanceCount();
-		}
 
 		// Windows 特有の面倒な処理をＤＸライブラリにやらせる
 		// マイナスの値（エラー値）が返ってきたらループを抜ける
