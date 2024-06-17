@@ -123,7 +123,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         //sceneManager->Update();   // シーン管理
 
 		// 画面を初期化する
-		ClearDrawScreen();
+		//ClearDrawScreen();
 
         sceneManager->GameLoop();
         
@@ -132,7 +132,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         //sceneManager->Draw(); // シーン管理
 
 		// 裏画面の内容を表画面に反映させる
-		ScreenFlip();
+		//ScreenFlip();
 
 		// FPS処理
    		auto _afterTime = GetNowHiPerformanceCount();
