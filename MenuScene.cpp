@@ -1,4 +1,5 @@
 ﻿#include "SceneBase.h"
+#include "SceneUIBase.h"
 #include "GameScene.h"
 #include "MenuSceneUI.h"
 #include "MenuScene.h"
@@ -44,6 +45,19 @@ SceneBase* MenuScene::UpdateScene()
 {
     // スペースキーが押されたらゲームへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1)
+    {
+        // フェードアウト開始指示
+        menuSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+    }
+
+    // フェードアウト処理
+    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    {
+        menuSceneUI->StartFadeOutScreen();
+    }
+
+    // フェード終了
+    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_END)
     {
         return new GameScene();
     }

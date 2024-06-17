@@ -81,7 +81,7 @@ void Game::ChangeScene()
     // 初期関数を呼ぶ
     nowScene->Initialize();
 
-    // 次のシーンを初期化S
+    // 次のシーンを初期化
     nextScene = NULL;
 }
 

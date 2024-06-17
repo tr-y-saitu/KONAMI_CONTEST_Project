@@ -1,10 +1,11 @@
 ﻿#pragma once
 #include "DxLib.h"
+#include "SceneUIBase.h"
 
 /// <summary>
 /// クリアシーンUI
 /// </summary>
-class ClearSceneUI
+class ClearSceneUI : public SceneUIBase
 {
 public:
     /// <summary>

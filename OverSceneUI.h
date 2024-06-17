@@ -1,9 +1,10 @@
 ﻿#pragma once
+#include "SceneUIBase.h"
 
 /// <summary>
 /// オーバーシーンUI
 /// </summary>
-class OverSceneUI
+class OverSceneUI : public SceneUIBase
 {
 public:
 

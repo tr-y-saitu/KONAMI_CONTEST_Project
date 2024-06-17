@@ -128,6 +128,10 @@ void GameScene::Update()
 /// <returns>次のシーンのポインタ</returns>
 SceneBase* GameScene::UpdateScene()
 {
+    // フェードイン
+    gameSceneUI->StartFadeInUI();
+    gameSceneUI->StartFadeInScreen();
+
     // ゲームが開始してからの時間を計測
     SettingTimer(*gemManager);
 
@@ -174,14 +178,12 @@ SceneBase* GameScene::UpdateScene()
 /// </summary>
 void GameScene::Draw()
 {
-    // オブジェクト描画
+    // オブジェク描画画
     player->Draw();         // プレイヤー
     room->Draw();           // 部屋
-    gemManager->DrawGems(); //　宝石たち
+    gemManager->DrawGems(); // 宝石たち
     treasureChest->Draw();  // 宝箱
-
-    // UIの描画
-    DrawUI();
+    DrawUI();               // UI描画
 }
 
 /// <summary>

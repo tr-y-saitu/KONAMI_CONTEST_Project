@@ -2,11 +2,12 @@
 #include "DxLib.h"
 #include <stdio.h>
 #include <iostream>
+#include "SceneUIBase.h"
 
 /// <summary>
 /// ゲームシーンUI
 /// </summary>
-class GameSceneUI
+class GameSceneUI : public SceneUIBase
 {
 public:
 

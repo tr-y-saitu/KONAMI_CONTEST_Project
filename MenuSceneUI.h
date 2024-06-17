@@ -1,9 +1,10 @@
 ﻿#pragma once
+#include "SceneUIBase.h"
 
 /// <summary>
 /// メニューシーンUI
 /// </summary>
-class MenuSceneUI
+class MenuSceneUI : public SceneUIBase
 {
 public:
 
@@ -24,7 +25,6 @@ public:
 
 private:
     int menuGraph;      // メニューで使用する画像
-
 };
 
 
