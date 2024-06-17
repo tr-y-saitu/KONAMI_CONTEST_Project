@@ -65,7 +65,7 @@ void Player::Initialize()
 	/// プレイヤーの更新
 	/// </summary>
 	/// <param name="enemy"></param>
-void Player::Update(Enemy& enemy)
+void Player::Update()
 {
 	// キー入力取得
 	auto input = GetJoypadInputState(DX_INPUT_KEY_PAD1);
@@ -172,8 +172,7 @@ void Player::Draw2DBOXCollision()
 /// <summary>
 /// プレイヤーの描画
 /// </summary>
-/// <param name="gameFrameCount">現在のフレームカウント</param>
-void Player::Draw(int gameFrameCount)
+void Player::Draw()
 {
 	// ３Ｄモデルの描画
 	MV1DrawModel(modelHandle);

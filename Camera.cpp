@@ -18,6 +18,9 @@ Camera::Camera()
 
 	// カメラのポジション
 	pos = VGet(-7, 5, -22);
+
+    // カメラを設定
+    SetCameraPositionAndTarget_UpVecY(pos, VGet(-7, 5, 20));
 }
 
 //-----------------------------------------------------------------------------
@@ -31,7 +34,7 @@ Camera::~Camera()
 //-----------------------------------------------------------------------------
 // @brief  更新.
 //-----------------------------------------------------------------------------
-void Camera::Update(Player& player)
+void Camera::Update()
 {
 	// カメラを設定
 	SetCameraPositionAndTarget_UpVecY(pos, VGet(-7, 5, 20));

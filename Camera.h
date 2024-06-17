@@ -1,9 +1,4 @@
-﻿//-----------------------------------------------------------------------------
-// @brief  カメラクラス.
-// 2016 Takeru Yui All Rights Reserved.
-//-----------------------------------------------------------------------------
-#ifndef _CAMERA_H_
-#define _CAMERA_H_
+﻿#pragma onecL
 
 #include "DxLib.h"
 
@@ -12,6 +7,9 @@ class Enemy;
 class BGObj;
 class Car;
 
+/// <summary>
+/// カメラクラス
+/// </summary>
 class Camera
 {
 public:
@@ -22,15 +20,22 @@ public:
 	static constexpr float TO_PLAYR_LENGTH = 1600.0f;				// プレイヤーとの距離
 	static constexpr float COLLISION_SIZE = 50.0f;					// カメラの当たり判定のサイズ
 
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
+	Camera();
 
-	Camera();							// コンストラクタ.
-	~Camera();							// デストラクタ.-
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	~Camera();
 
-	void Update(Player& player);		// 更新
+	/// <summary>
+	/// 更新
+	/// </summary>
+	void Update();
 
 private:
 	VECTOR	pos;			// ポジション.
 
 };
-
-#endif // _CAMERA_H_

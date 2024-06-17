@@ -1,182 +1,93 @@
 ﻿#pragma once
+#include "SceneBase.h"
 
-#include "DxLib.h"
-#include <vector>
-#include <list>
-#include "Calculation.h"
-
-using namespace std;
-
-// プロトタイプ宣言
-class BG;
-class Room;
-class Floor;
-class Player;
-class Enemy;
-class Collision;
-class Camera;
-class BGObj;
-class Car;
-class UI;
-class SkyDome;
-class Confetti;
-class Effekseer1;
-class FPSSetting;
-class WorldSprite;
-class Calculation;
-class Gem;
-class GemManager;
-class TreasureChest;
-
+class MenuScene;
+class GameScene;
+class ClearScene;
+class OverScene;
 
 /// <summary>
-/// ゲーム制御クラス
+/// シーンマネージャー
 /// </summary>
 class Game
 {
 public:
-
     /// <summary>
-    /// ゲームの進行状態
+    /// シーンの進行状態
     /// </summary>
-    enum STATE
+    enum SceneState
     {
-        STATE_MENU,			// メニュー
-        STATE_GAME,			// ゲーム中
-        STATE_CLEAR,		// クリア
-        STATE_GAMEOVER,		// ゲームオーバー
+        SCENE_MENU,     // メニュー
+        SCENE_GAME,     // ゲーム
+        SCENE_CLEAR,    // クリア
+        SCENE_OVER      // オーバー
     };
 
-	Game();                 // コンストラクタ
-	virtual ~Game();        // デストラクタ
-
-	/// <summary>
-	/// 現在のゲームフレームを数える
-	/// </summary>
-	void CountGameFraem() ;
-
-	/// <summary>
-	/// ゲームで使用する全オブジェクトをnewインスタンス
-	/// </summary>
-	void Create();
-
-	/// <summary>
-	/// ゲームオブジェクトすべての初期化処理
-	/// </summary>
-	void Initialize();
-
-	/// <summary>
-	/// ゲーム開始前最初の全オブジェクト初期化処理
-	/// </summary>
-	void InitializeGameStart();
-
-	/// <summary>
-	/// newインスタンスしたオブジェクトの削除
-	/// </summary>
-    void DeleteGame();
-
-	/// <summary>
-	/// ゲーム更新
-	/// </summary>
-	void UpdateGame();
-
-	/// <summary>
-	/// ゲーム描画
-	/// </summary>
-	void DrawGame();
-
-	/// <summary>
-	/// ゲームステートの切り替え
-	/// </summary>
-	void ChangeGameState();
-
-	/// <summary>
-	/// ゲーム進行にかかわるキー入力処理
-	/// </summary>
-	void ProcessKey();
-
-	/// <summary>
-	/// 制限時間の描画
-	/// </summary>
-	void DrawTimer();
-
-	/// <summary>
-	/// 現在経過時間の更新
-	/// </summary>
-	/// <param name="resetFlag">計測時間をリセットするかどうかのフラグ</param>
-	void SettingTimer(GemManager& gemManager);
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    Game();
 
     /// <summary>
-    /// スコアの更新
+    /// デストラクタ
     /// </summary>
-    /// <param name="chest">宝箱</param>
-    void UpdateScore(TreasureChest& chest);
-	
+    virtual ~Game();
 
-	const int GetNowTimer() { return nowTimer; }
-	const int GetFrameCount() { return gameFrameCount; }
-	const int GetGameState() { return gameState; }
-	const bool GetIsClearFlag() { return isClearFlag; }
-    const int GetScore() { return score; }
+    /// <summary>
+    /// 実際のゲームループ
+    /// </summary>
+    void Update();
 
-	// 使用クラス
-	Player*		player;
-	Enemy*		enemy;
-	Camera*		camera;
-	Collision*	collision;
-	BGObj*		bgobj[5];
-	BGObj*		bgobj2[4];
-	UI*			ui;
-	SkyDome*	skyDome;
-	BG*			bg[3];
-	Effekseer1* effekseer1;
-	FPSSetting* fpsSetting;
-	Room*		room;
-	Floor*		floor;
-	Calculation calculation;
-	GemManager*	gemManager;
-	TreasureChest* treasureChest;
+    /// <summary>
+    /// シーンの切り替え
+    /// </summary>
+    void ChangeScene();
 
-    vector<Gem*>	gem;
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    void Initialize();
+
+    /// <summary>
+    /// 入力処理
+    /// </summary>
+    void UpdateKeyState();
+
+    /// <summary>
+    /// 現在制限時間の描画
+    /// </summary>
+    void DrawTimer();
 
 private:
-	// 定数
-	const int GEM_TOTAL_NUM = 100;	                // 宝石の総合の数
-    static constexpr int STATE_GAME_TIME_LIMIT = 4; // ゲームステートが終了する時間
 
-	// 変数
-	int		gameState;		// 現在のステート
-	int		gameFrameCount;	// ゲームフレームカウント
-	int		previousTime;	// ゲームループが始まる前の時間
-	int		timer;			// ゲーム時間
-	float	nowTimer;		// 現在の制限時間
-	int		isHitCount;		// ヒットしてから何フレーム経過したか
-	bool	isClearFlag;	// クリアしたかのフラグ
-	double	isClearCount;	// クリアしてからのカウント
-	bool	isDrawGetUi;	// 宝石ゲット時のUI演出をするかどうか
+    // シーン
+    SceneBase* nowScene;    // 現在のシーン
+    SceneBase* nextScene;   // 次のシーン
+
+    // シーン
+    MenuScene* menuScene;
+    GameScene* gameScene;
+    ClearScene* clearScene;
+    OverScene* overScene;
+
+    // ステート
+    int     sceneState;     // 現在のシーン
+
+    // 時間
+    int		previousTime;	// ゲームループが始まる前の時間
+    int		timer;			// ゲーム時間
+    float	nowTimer;		// 現在の制限時間
 
     // スコア
     int     score;          // スコア
 
     // キー入力
-	bool	keyOn;			// キー入力されているか
-	bool	keyRelease;		// キー入力が離れたか
-	bool	prevKeyOn;		// 前フレームでキー入力があったか
+    bool	keyOn;			// キー入力されているか
+    bool	keyRelease;		// キー入力が離れたか
+    bool	prevKeyOn;		// 前フレームでキー入力があったか
 
-	// メニュー
-	int		menuGraph;		// メニュー用画像
-
-	// モデル元
-	int		modelHandleGemDia;	// 宝石（ダイア）
-	int		modelHandleGemRuby;	// 宝石（ルビー）
-
-    // UI
-    bool    isBlackOutFlag;     // 暗転明転処理の指示
 
 };
-
-
-
 
 
 

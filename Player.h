@@ -23,7 +23,7 @@ public:
 	/// プレイヤーの更新
 	/// </summary>
 	/// <param name="enemy"></param>
-	void Update(Enemy& enemy);
+	void Update();
 
     /// <summary>
     /// プレイヤーの当たり判定描画2DBOX
@@ -33,8 +33,7 @@ public:
 	/// <summary>
 	/// プレイヤーの描画
 	/// </summary>
-	/// <param name="gameFrameCount">現在のフレームカウント</param>
-	void Draw(int gameFrameCount);
+	void Draw();
 
 
 	// モデルハンドルの取得.

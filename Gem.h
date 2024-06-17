@@ -46,13 +46,6 @@ public:
     /// <summary>
     /// 宝石の初期化
     /// </summary>
-    /// <param name="initPos">初期座標</param>
-    /// <param name="gemManager">宝石管理クラス</param>
-    void Initialize(VECTOR initPos,GemManager gemManager);
-
-    /// <summary>
-    /// 宝石の初期化
-    /// </summary>
     /// <param name="_modelHandel"></param>
     void Initialize(int _modelHandel);
 

@@ -132,40 +132,6 @@ float Gem::SettingFallSpeedType(int gemType)
 	return reFallSpeed;
 }
 
-/// <summary>
-/// 宝石の初期化
-/// </summary>
-/// <param name="initPos">初期座標</param>
-/// <param name="gemManager">宝石管理クラス</param>
-void Gem::Initialize(VECTOR initPos, GemManager gemManager)
-{
-	// 3Dモデル設定
-	gemType = GetRand(3);					// 宝石の種類を乱数で設定
-	// ベースのモデルの情報をもとにモデルをロード
-	modelHandle = MV1DuplicateModel(gemManager.SettingGemModle(gemType));	
-
-	// ステータス情報
-	pos = entryPosition;					// 宝石マネージャーで設定した初期座標
-	dir = VGet(0, 0, 0);					// 方向の設定
-	contactDir = SettingMoveType(gemType);	// 宝石のタイプのプレイヤーと当たった時の方向を設定
-	radius = 0.1;							// 球型のあたり判定の半径
-	boundPower = 1.5f;						// バウンドする値
-	fallSpeed = SettingFallSpeedType(gemType);	// 落下速度をタイプごとに設定
-	MV1SetScale(modelHandle, scale);		// スケールの設定
-	scaleAdjust = 0.02f;					// スケールの調整用
-	rotateCount = 0;						// 回転率
-    statusWithPlayer = NORN;               // プレイヤーとの状態
-    statusWithTreasureChest = NORN;        // 宝箱との状態
-
-	// フラグ
-	isHitPlayer = false;		// プレイヤーと接触したか
-	visibleFlag = false;		// 存在しているか
-	isHitGround = false;		// 地上と接触したか
-	previousIsHitPlayer = false;// 前のフレームでプレイヤーと接触したか
-	isHitPlayer = false;		// プレイヤーと接触中か
-    gemType = GetRand(3);		// 宝石の種類を乱数で設定
-}
-
 
 void Gem::Initialize(int _modelHandel)
 {

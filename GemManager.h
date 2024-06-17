@@ -81,14 +81,6 @@ public:
     int SettingGemModle(int type);
 
     /// <summary>
-    /// 宝石のエントリー情報を作成
-    /// </summary>
-    /// <param name="data">宝石のエントリー情報を格納する多次元配列</param>
-    /// <param name="size">多次元配列の添え字数</param>
-    /// <param name="waveState">現在のウェーブステート</param>
-    void CreateEntryData(EntryGemDataBase data[], int size);
-
-    /// <summary>
     /// 宝石のエントリー情報の作成
     /// </summary>
     void CreateEntyrInformation();
@@ -117,14 +109,6 @@ public:
     /// 宝石のウェーブ更新
     /// </summary>
     void UpdateWaveGem(float nowTimer);
-
-    /// <summary>
-    /// 宝石のウェーブ更新
-    /// </summary>
-    /// <param name="gem">宝石</param>
-    /// <param name="index">宝石の添え字</param>
-    /// <param name="nowTimer">現在の時間</param>
-    void GemWaveUpdate(Gem& gem, int index, float nowTimer);
 
     /// <summary>
     /// 宝石の描画

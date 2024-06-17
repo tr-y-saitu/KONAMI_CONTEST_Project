@@ -161,40 +161,53 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ClearScene.cpp" />
+    <ClCompile Include="ClearSceneUI.cpp" />
     <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="Confetti.cpp" />
     <ClCompile Include="Effekseer.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FPSSetting.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameSceneUI.cpp" />
     <ClCompile Include="Gem.cpp" />
     <ClCompile Include="GemManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="MenuSceneUI.cpp" />
+    <ClCompile Include="OverScene.cpp" />
+    <ClCompile Include="OverSceneUI.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="SceneBase.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="SkyDome.cpp" />
     <ClCompile Include="TreasureChest.cpp" />
-    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Calculation.cpp" />
     <ClCompile Include="WaveConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculation.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ClearScene.h" />
+    <ClInclude Include="ClearSceneUI.h" />
     <ClInclude Include="Collision.h" />
-    <ClInclude Include="CommonConstant.h" />
-    <ClInclude Include="Confetti.h" />
     <ClInclude Include="Effekseer.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FPSSetting.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameSceneUI.h" />
     <ClInclude Include="Gem.h" />
     <ClInclude Include="GemManager.h" />
+    <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="MenuSceneUI.h" />
+    <ClInclude Include="OverScene.h" />
+    <ClInclude Include="OverSceneUI.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="SceneBase.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="SkyDome.h" />
     <ClInclude Include="TreasureChest.h" />
-    <ClInclude Include="UI.h" />
     <ClInclude Include="WaveConstants.h" />
     <ClInclude Include="ゲーム構造.h" />
   </ItemGroup>

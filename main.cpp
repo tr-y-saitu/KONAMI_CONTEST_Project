@@ -19,12 +19,17 @@
 #include "Player.h"
 #include "Camera.h"
 #include "Collision.h"
-#include "UI.h"
-#include "Confetti.h"
 #include "Effekseer.h"
 #include "FPSSetting.h"
 #include "Room.h"
 #include "Gem.h"
+// シーン
+#include "SceneBase.h"
+#include "MenuScene.h"
+#include "GameScene.h"
+#include "ClearScene.h"
+#include "OverScene.h"
+
 // Game.hの上にすべての自作ヘッダーをインクルードする
 #include "Game.h"
 
@@ -37,8 +42,8 @@
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) 
 {
 	// DXライブラリの表示方法をウィンドウモードに変更する。
-	//ChangeWindowMode(true);	// ウィンドウモード
-	ChangeWindowMode(false);// 全画面モード
+	ChangeWindowMode(true);	// ウィンドウモード
+	//ChangeWindowMode(false);// 全画面モード
 
 	//描画先を裏画面に変更する。
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -94,14 +99,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	// インスタンス化
 	Game* game = new Game();
-	
-	// 全オブジェクトのnew生成
-	game->Create();
-
-	// ゲームの初期化
-	//game->Initialize();
-	game->InitializeGameStart();
-
 
 	// エスケープキーが押されるかウインドウが閉じられるまでループ
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
@@ -109,21 +106,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		// FPS処理
 		auto _prevTime = GetNowHiPerformanceCount();
 
-		
-		// ゲームの更新
-		game->UpdateGame();
-
-		// 画面を初期化する
-		ClearDrawScreen();
-
-		// ゲームの描画
-		game->DrawGame();
-
-		// 裏画面の内容を表画面に反映させる
-		ScreenFlip();
+        // ゲームループ
+        game->Update();
 
 		// FPS処理
-		auto _afterTime = GetNowHiPerformanceCount();
+   		auto _afterTime = GetNowHiPerformanceCount();
 
 		while (_afterTime - _prevTime < 16667)
 		{
@@ -142,9 +129,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			break;
 		}
 	}
-	
-	// 生成したものを削除
-	game->DeleteGame();
 
 	// Effekseerを終了する。
 	//Effkseer_End();
