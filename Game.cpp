@@ -5,7 +5,6 @@
 #include "GameScene.h"
 #include "OverScene.h"
 #include "ClearScene.h"
-#include "SceneManager.h"
 
 /// <summary>
 /// コンストラクタ

@@ -19,7 +19,6 @@
 #include "Player.h"
 #include "Camera.h"
 #include "Collision.h"
-#include "UI.h"
 #include "Effekseer.h"
 #include "FPSSetting.h"
 #include "Room.h"
@@ -30,7 +29,6 @@
 #include "GameScene.h"
 #include "ClearScene.h"
 #include "OverScene.h"
-#include "SceneManager.h"
 
 // Game.hの上にすべての自作ヘッダーをインクルードする
 #include "Game.h"
