@@ -71,7 +71,10 @@ void SceneManager::SceneChange()
     // 現在のシーンを切り替え
     nowScene = nextScene;
 
-    // 次のシーンを初期化S
+    // シーンの初期化
+    nowScene->Initialize();
+
+    // 次のシーンを初期化
     nextScene = NULL;
 }
 
