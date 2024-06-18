@@ -116,10 +116,16 @@ void GameSceneUI::DrawScore(VECTOR pos, int fontSize, int score)
 void GameSceneUI::DrawTimerBar(int nowTimer)
 {
     // フレーム
-    DrawExtendGraph(200, 800, 1400, 950, timerBarFrameGraph, true);
+    DrawExtendGraph(TIMER_FRAME_TOP_LEFT_X, TIMER_FRAME_TOP_LEFT_Y,
+        TIMER_FRAME_BOTTOM_RIGHT_X, TIMER_FRAME_BOTTOM_RIGHT_Y, timerBarFrameGraph, true);
 
     // 時間バー
-    DrawExtendGraph(375, 840, (1350 - ((int)(1350) * ((float)nowTimer/20))) + ((int)(375) * ((float)nowTimer / 20)), 910, timerBarGraph, true);
-    //DrawExtendGraph(375,840,1350,910, timerBarGraph, true);
+    int _leftBuf = ((int)(TIMER_BAR_BOTTOM_RIGHT_X) * ((float)nowTimer / 20));
+    int _rightBuf = ((int)(TIMER_BAR_TOP_LEFT_X) * ((float)nowTimer / 20));
+
+    DrawExtendGraph(TIMER_BAR_TOP_LEFT_X,
+        TIMER_BAR_TOP_LEFT_Y,
+        (TIMER_BAR_BOTTOM_RIGHT_X - _leftBuf + _rightBuf),
+        TIMER_BAR_BOTTOM_RIGHT_Y, timerBarGraph, true);
 
 }
