@@ -10,7 +10,7 @@ GameSceneUI::GameSceneUI()
 {
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
-    timerBarGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
+    timerBarGraph = LoadGraph("data/texture/time/TimerBar.png");
     MV1SetScale(getDirectionModelHandle, VGet(0.05f, 0.05f, 0.0f));
     MV1SetRotationXYZ(getDirectionModelHandle, VGet(0, 25.0f * DX_PI_F / 180.0f, 0));
 }
@@ -48,8 +48,8 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
     DrawString(250, 400, _timeCount, UI_COLOR, true);
 
-    // 時間表示バーフレーム
-    DrawRotaGraph(800, 100, 1, 0, timerBarFrameGraph, true);
+    // タイマーバーの描画
+    DrawTimerBar(nowTimer);
 
     // 「GET!」モデルのポジションを設定
     MV1SetPosition(getDirectionModelHandle, VGet(1, 3, 1));
@@ -107,4 +107,17 @@ void GameSceneUI::DrawScore(VECTOR pos, int fontSize, int score)
 
     // スコアの描画
     DrawFormatString(pos.x, pos.y, UI_COLOR, "SCORE : %d", score);
+}
+
+/// <summary>
+/// タイマーバーの描画
+/// </summary>
+/// <param name="nowTimer">現在時間</param>
+void GameSceneUI::DrawTimerBar(int nowTimer)
+{
+    // フレーム
+    DrawExtendGraph(200, 10, 1300, 200, timerBarFrameGraph, true);
+
+    // 時間バー
+    DrawExtendGraph(200, 10, 1300, 200, timerBarGraph, true);
 }

@@ -44,6 +44,12 @@ public:
     /// <param name="score">スコア</param>
     void DrawScore(VECTOR pos, int fontSize, int score);
 
+    /// <summary>
+    /// タイマーバーの描画
+    /// </summary>
+    /// <param name="nowTimer">現在時間</param>
+    void DrawTimerBar(int nowTimer);
+
     // Setter
     void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }
 
