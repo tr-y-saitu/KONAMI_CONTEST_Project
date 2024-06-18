@@ -10,7 +10,7 @@ GameSceneUI::GameSceneUI()
 {
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
-    timerBarGraph = LoadGraph("data/texture/time/TimerBar.png");
+    timerBarGraph = LoadGraph("data/texture/time/TimerBar_2.png");
     MV1SetScale(getDirectionModelHandle, VGet(0.05f, 0.05f, 0.0f));
     MV1SetRotationXYZ(getDirectionModelHandle, VGet(0, 25.0f * DX_PI_F / 180.0f, 0));
 }
@@ -116,8 +116,10 @@ void GameSceneUI::DrawScore(VECTOR pos, int fontSize, int score)
 void GameSceneUI::DrawTimerBar(int nowTimer)
 {
     // フレーム
-    DrawExtendGraph(200, 10, 1300, 200, timerBarFrameGraph, true);
+    DrawExtendGraph(200, 800, 1400, 950, timerBarFrameGraph, true);
 
     // 時間バー
-    DrawExtendGraph(200, 10, 1300, 200, timerBarGraph, true);
+    DrawExtendGraph(375, 840, (1350 - ((int)(1350) * ((float)nowTimer/20))) + ((int)(375) * ((float)nowTimer / 20)), 910, timerBarGraph, true);
+    //DrawExtendGraph(375,840,1350,910, timerBarGraph, true);
+
 }

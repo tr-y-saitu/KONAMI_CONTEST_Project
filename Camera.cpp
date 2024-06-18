@@ -17,7 +17,7 @@ Camera::Camera()
     SetCameraNearFar(0.1f, 1500.0f);
 
 	// カメラのポジション
-	pos = VGet(-7, 5, -22);
+	pos = VGet(-7, 5, -23);
 
     // カメラを設定
     SetCameraPositionAndTarget_UpVecY(pos, VGet(-7, 5, 20));
@@ -37,5 +37,5 @@ Camera::~Camera()
 void Camera::Update()
 {
 	// カメラを設定
-	SetCameraPositionAndTarget_UpVecY(pos, VGet(-7, 5, 20));
+	//SetCameraPositionAndTarget_UpVecY(pos, VGet(-7, 5, 20));
 }
