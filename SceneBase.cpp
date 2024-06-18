@@ -7,6 +7,7 @@
 /// コンストラクタ
 /// </summary>
 SceneBase::SceneBase()
+    : isFadeOutStart    (false)
 {
 }
 
