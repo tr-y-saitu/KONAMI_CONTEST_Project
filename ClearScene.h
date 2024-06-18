@@ -61,6 +61,8 @@ private:
     SkyDome*        skyDome;
     Room*           room;
 
+    bool    isFadeOutStart;     // フェードアウトを開始したかどうか
+
 };
 
 

@@ -17,6 +17,7 @@
 /// コンストラクタ
 /// </summary>
 ClearScene::ClearScene()
+    : isFadeOutStart    (false)
 {
     clearSceneUI = new ClearSceneUI();
     treasureChest = new TreasureChest();
@@ -67,13 +68,36 @@ void ClearScene::Update()
 /// <returns></returns>
 SceneBase* ClearScene::UpdateScene()
 {
+    // フェードイン指示
+    if (clearSceneUI->GetFadeState() == SceneUIBase::FADE_NONE)
+    {
+        clearSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+    }
+    if (clearSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    {
+        clearSceneUI->StartFadeInUI();
+    }
+
+    // 更新処理
     treasureChest->Update();
     room->Update();
-    // スペースキーが押されたらメニューへ
+
+    // スペースキーが押されたらフェードアウトしてメニューへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1)
     {
+        isFadeOutStart = true;
+        clearSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+    }
+    if (isFadeOutStart && clearSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    {
+        clearSceneUI->StartFadeOutScreen();
+    }
+    if (isFadeOutStart && clearSceneUI->GetFadeState() == SceneUIBase::FADE_END)
+    {
+        // メニューシーンへ移行
         return new MenuScene();
     }
+
     return this;
 }
 

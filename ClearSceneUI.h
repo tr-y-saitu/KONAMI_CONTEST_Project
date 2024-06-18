@@ -30,7 +30,6 @@ private:
 
     // 変数
     int     clearUIGraph;       // クリアした時のUI画像
-
 };
 
 

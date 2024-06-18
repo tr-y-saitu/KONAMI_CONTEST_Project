@@ -51,7 +51,10 @@ void Game::Update()
 
     // 現在シーンの更新・描画
     nextScene = nowScene->UpdateScene();
-    nowScene->Draw();
+    if (nowScene == nextScene)
+    {
+        nowScene->Draw();
+    }
 
     // FPS待機処理
     fpsSetting->SleepForFPS();
@@ -59,7 +62,7 @@ void Game::Update()
     // 描画を反映
     ScreenFlip();
 
-    // Update内でnowScene = new 次のScene();された場合
+    // Update内で return new 次のScene();された場合
     if (nowScene != nextScene)
     {
         // シーンを切り替える

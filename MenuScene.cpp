@@ -9,6 +9,7 @@
 /// コンストラクタ
 /// </summary>
 MenuScene::MenuScene()
+    : isFadeOutStart    (false)
 {
     menuSceneUI = new MenuSceneUI();
 }
@@ -43,21 +44,32 @@ void MenuScene::Update()
 /// <returns>次のシーンのポインタ</returns>
 SceneBase* MenuScene::UpdateScene()
 {
+    // フェードイン
+    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_NONE)
+    {
+        menuSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+    }
+    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    {
+        menuSceneUI->StartFadeInUI();
+    }
+
     // スペースキーが押されたらゲームへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1)
     {
         // フェードアウト開始指示
+        isFadeOutStart = true;
         menuSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
     }
 
     // フェードアウト処理
-    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
     {
         menuSceneUI->StartFadeOutScreen();
     }
 
     // フェード終了
-    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_END)
+    if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_END)
     {
         return new GameScene();
     }

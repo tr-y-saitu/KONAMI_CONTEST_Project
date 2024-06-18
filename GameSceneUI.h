@@ -54,6 +54,8 @@ private:
 
     // 変数
     int		getDirectionModelHandle;	    // 宝石獲得演出用モデル
+    int     timerBarFrameGraph;             // 時間表示バーのフレーム画像
+    int     timerBarGraph;                  // 時間表示バーの画像
     int     getDirectionCount;              // 宝石獲得時の演出を管理するカウント
     bool	isHitGemToChest;	            // 宝石と宝箱が接触した
 

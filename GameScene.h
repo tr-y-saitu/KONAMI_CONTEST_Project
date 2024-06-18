@@ -73,7 +73,8 @@ public:
     const bool GetIsNextScene() { return isNextScene; }
 
 private:
-    static constexpr int STATE_GAME_TIME_LIMIT = 40; // ゲームステートが終了(する時間)(初期40)
+    //static constexpr int STATE_GAME_TIME_LIMIT = 40; // ゲームステートが終了(する時間)(初期40)
+    static constexpr int STATE_GAME_TIME_LIMIT = 4; // ゲームステートが終了(する時間)(初期40)
 
     // インスタンス
     Player*         player;
@@ -92,10 +93,10 @@ private:
 
     // スコア
     int     score;          // スコア
-    bool    isScoreUp;    // スコアアップフラグ
+    bool    isScoreUp;      // スコアアップフラグ
 
-    // 暗転処理
-    bool    isBlackOut;    // 暗転処理するかどうか
+    // フェードアウト処理
+    bool    isFadeOutStart; // フェードアウトするかどうか
 
     // シーン管理
     bool    isNextScene;        // 次のシーン移行すかどうか

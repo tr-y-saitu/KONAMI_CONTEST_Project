@@ -50,7 +50,7 @@ public:
 private:
     
     MenuSceneUI* menuSceneUI;   // メニューシーンで使用するUI
-
+    bool isFadeOutStart;        // フェードアウトするかどうか
 };
 
 

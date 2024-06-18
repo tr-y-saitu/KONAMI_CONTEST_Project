@@ -11,9 +11,9 @@ public:
     /// </summary>
     enum FadeState
     {
-        FADE_NONE,      // フェード中ではない
-        FADE_PLAYING,   // フェード中
-        FADE_END        // フェード終了
+        FADE_NONE,          // フェード中ではない
+        FADE_PLAYING,       // フェード中
+        FADE_END,           // フェード終了
     };
 
     /// <summary>
@@ -55,13 +55,16 @@ public:
     const FadeState GetFadeState()const { return fadeState; }
 
     void SetFadeState(const int set) { fadeState = (FadeState)set; }
+    void SetScreenBrightness(const int set) { screenBrightness = set; }
 
 
 private:
-    static constexpr int TRANSPARENCY_LIMIT = 255;          // 透過度の最大上限
-    static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
-    static constexpr int ADD_TRANSPARENCY = 2;              // 画像の濃さを加算する値
-    static constexpr int ADD_BLACK_OUT_ADD_TRANSPARENCY = 3;// 暗転する際の画像の濃さを加算する値
+    static constexpr int TRANSPARENCY_LIMIT = 255;              // 透過度の最大上限
+    static constexpr int GET_DIRECTION_DRAW_TIME = 100;         // 獲得演出を描画する時間
+    static constexpr int ADD_TRANSPARENCY = 2;                  // 画像の濃さを加算する値
+    static constexpr int ADD_BLACK_OUT_ADD_TRANSPARENCY = 3;    // 暗転する際の画像の濃さを加算する値
+    static constexpr int FADE_OUT_SCREEN_SPEED = 5;             // スクリーンをフェードアウトさせる速度
+    static constexpr float FADE_IN_SCREEN_SCALE_RATE = 80.0f;   // 明るさの比率から画像サイズを計算するための値
 
     int blackOutGraph;      // 画面の明るさを調整する画像
     int screenBrightness;   // 画面の明るさの値

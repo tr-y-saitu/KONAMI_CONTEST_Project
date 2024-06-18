@@ -20,8 +20,8 @@ GameScene::GameScene()
     , timer             (0)
     , nowTimer          (0)
     , score             (0)
-    , isScoreUp       (false)
-    , isBlackOut    (false)
+    , isScoreUp         (false)
+    , isFadeOutStart    (false)
     , isNextScene       (false)
 {
     // newインスタンス
@@ -51,6 +51,7 @@ GameScene::~GameScene()
     delete(gemManager);
 }
 
+
 /// <summary>
 /// 初期化
 /// </summary>
@@ -65,7 +66,6 @@ void GameScene::Initialize()
     nowTimer = 0;
     score = 0;
     isScoreUp = false;
-    isBlackOut = false;
     isNextScene = false;
     // 宝石のWAVE_STATEをFIRSTにする
     gemManager->SetGemWaveState(GemManager::WAVE_FIRST);
@@ -129,8 +129,19 @@ void GameScene::Update()
 SceneBase* GameScene::UpdateScene()
 {
     // フェードイン
-    gameSceneUI->StartFadeInUI();
-    gameSceneUI->StartFadeInScreen();
+    // スクリーンをフェードインした後UIをフェードイン
+    if (gameSceneUI->GetFadeState() == SceneUIBase::FADE_NONE)
+    {
+        gameSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+    }
+    if (gameSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    {
+        gameSceneUI->StartFadeInScreen();
+    }
+    if (gameSceneUI->GetFadeState() == GameSceneUI::FadeState::FADE_END)
+    {
+        gameSceneUI->StartFadeInUI();
+    }
 
     // ゲームが開始してからの時間を計測
     SettingTimer(*gemManager);
@@ -162,7 +173,17 @@ SceneBase* GameScene::UpdateScene()
     gemManager->ResetGemData();
 
     // 終了時間になったらSCENE_CLEARに移行
-    if (nowTimer >= STATE_GAME_TIME_LIMIT)
+    if (nowTimer >= STATE_GAME_TIME_LIMIT && !isFadeOutStart)
+    {
+        gameSceneUI->SetScreenBrightness(255);
+        isFadeOutStart = true;
+        gameSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+    }
+    if (isFadeOutStart && gameSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    {
+        gameSceneUI->StartFadeOutScreen();
+    }
+    if (isFadeOutStart && gameSceneUI->GetFadeState() == SceneUIBase::FADE_END)
     {
         return new ClearScene();
     }
@@ -183,7 +204,10 @@ void GameScene::Draw()
     room->Draw();           // 部屋
     gemManager->DrawGems(); // 宝石たち
     treasureChest->Draw();  // 宝箱
-    DrawUI();               // UI描画
+    if (gameSceneUI->GetFadeState() == GameSceneUI::FadeState::FADE_END)
+    {
+        DrawUI();               // UI描画
+    }
 }
 
 /// <summary>
