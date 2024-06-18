@@ -11,6 +11,7 @@
 #include "GameScene.h"
 #include "Calculation.h"
 #include "GameSceneUI.h"
+#include "WaveConstants.h"
 
 /// <summary>
 /// コンストラクタ
@@ -168,7 +169,6 @@ SceneBase* GameScene::UpdateScene()
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
-
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
 
@@ -197,6 +197,7 @@ void GameScene::Draw()
     room->Draw();           // 部屋
     gemManager->DrawGems(); // 宝石たち
     treasureChest->Draw();  // 宝箱
+    // フェード処理中は描画しない
     if (_fadeInScreen && _fadeOutScreen)
     {
         DrawUI();               // UI描画
@@ -208,7 +209,8 @@ void GameScene::Draw()
 /// </summary>
 void GameScene::DrawUI()
 {
-    gameSceneUI->Draw(score,nowTimer,gemManager->GetGemWaveState(),false);
+    auto _waveEndTime = gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime;
+    gameSceneUI->Draw(score,nowTimer,gemManager->GetGemWaveState(),false, _waveEndTime);
 }
 
 /// <summary>

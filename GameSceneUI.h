@@ -4,6 +4,8 @@
 #include <iostream>
 #include "SceneUIBase.h"
 
+class WaveConstants;
+
 /// <summary>
 /// ゲームシーンUI
 /// </summary>
@@ -26,6 +28,8 @@ public:
     /// </summary>
     void Initialize();
 
+
+
     /// <summary>
     /// 描画
     /// </summary>
@@ -33,8 +37,9 @@ public:
     /// <param name="nowTimer">現在の経過時間</param>
     /// <param name="gemWaveState">現在の宝石のウェーブステート</param>
     /// <param name="isBlackOut">暗転処理するかどうか</param>
+    /// <param name="waveEndTime">現在のウェーブの終了時間</param>
     void Draw(int gameScore, float nowTimer,
-        int gemWaveState, bool isBlackOut);
+        int gemWaveState, bool isBlackOut,int waveEndTime);
 
     /// <summary>
     /// スコアの描画
@@ -48,7 +53,8 @@ public:
     /// タイマーバーの描画
     /// </summary>
     /// <param name="nowTimer">現在時間</param>
-    void DrawTimerBar(int nowTimer);
+    /// <param name="waveEndTime">現在のウェーブが終了する時間</param>
+    void DrawTimerBar(int nowTimer,int waveEndTime);
 
     // Setter
     void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }

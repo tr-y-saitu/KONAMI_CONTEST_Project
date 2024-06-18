@@ -1,5 +1,6 @@
 ﻿#include "GameSceneUI.h"
 #include "GemManager.h"
+#include "WaveConstants.h"
 
 /// <summary>
 /// コンストラクタ
@@ -39,8 +40,9 @@ void GameSceneUI::Initialize()
 /// <param name="nowTimer">現在の経過時間</param>
 /// <param name="gemWaveState">現在の宝石のウェーブステート</param>
 /// <param name="isBlackOut">暗転処理するかどうか</param>
+/// <param name="waveEndTime">現在のウェーブの終了時間</param>
 void GameSceneUI::Draw(int gameScore, float nowTimer,
-    int gemWaveState, bool isBlackOut)
+    int gemWaveState, bool isBlackOut,int waveEndTime)
 {
     char _timeCount[256];		// ゲームの経過時間
 
@@ -49,7 +51,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     DrawString(250, 400, _timeCount, UI_COLOR, true);
 
     // タイマーバーの描画
-    DrawTimerBar(nowTimer);
+    DrawTimerBar(nowTimer,waveEndTime);
 
     // 「GET!」モデルのポジションを設定
     MV1SetPosition(getDirectionModelHandle, VGet(1, 3, 1));
@@ -113,15 +115,16 @@ void GameSceneUI::DrawScore(VECTOR pos, int fontSize, int score)
 /// タイマーバーの描画
 /// </summary>
 /// <param name="nowTimer">現在時間</param>
-void GameSceneUI::DrawTimerBar(int nowTimer)
+/// <param name="waveEndTime">現在のウェーブが終了する時間</param>
+void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
 {
     // フレーム
     DrawExtendGraph(TIMER_FRAME_TOP_LEFT_X, TIMER_FRAME_TOP_LEFT_Y,
         TIMER_FRAME_BOTTOM_RIGHT_X, TIMER_FRAME_BOTTOM_RIGHT_Y, timerBarFrameGraph, true);
 
     // 時間バー
-    int _leftBuf = ((int)(TIMER_BAR_BOTTOM_RIGHT_X) * ((float)nowTimer / 20));
-    int _rightBuf = ((int)(TIMER_BAR_TOP_LEFT_X) * ((float)nowTimer / 20));
+    int _leftBuf = ((int)(TIMER_BAR_BOTTOM_RIGHT_X) * ((float)nowTimer / waveEndTime));
+    int _rightBuf = ((int)(TIMER_BAR_TOP_LEFT_X) * ((float)nowTimer / waveEndTime));
 
     DrawExtendGraph(TIMER_BAR_TOP_LEFT_X,
         TIMER_BAR_TOP_LEFT_Y,

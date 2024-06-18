@@ -45,6 +45,10 @@ GemManager::~GemManager()
 {
     // 宝石の削除
     DeleteGem();
+    delete(waveConstantsTable[WAVE_FIRST]);
+    delete(waveConstantsTable[WAVE_SECOND]);
+    delete(waveConstantsTable[WAVE_THIRD]);
+    delete(waveConstantsTable[WAVE_END]);
 }
 
 /// <summary>
@@ -67,6 +71,8 @@ void GemManager::DeleteGem()
     {
         delete(gems[i]);
     }
+
+    
 }
 
 /// <summary>
