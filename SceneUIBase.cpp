@@ -40,7 +40,7 @@ void SceneUIBase::StartFadeInUI()
     // フェードが終了したことを伝える
     if (screenBrightness >= TRANSPARENCY_LIMIT)
     {
-        fadeState = FADE_END;
+        fadeState = FADE_IN_UI_END;
     }
     else
     {
@@ -73,11 +73,11 @@ void SceneUIBase::StartFadeOutUI()
     // フェードが終了したことを伝える
     if (screenBrightness >= TRANSPARENCY_LIMIT)
     {
-        fadeState = FADE_END;
+        fadeState = FADE_OUT_UI_END;
     }
     else
     {
-        fadeState = FADE_PLAYING;
+        fadeState = FADE_OUT_UI_PLAYING;
     }
 }
 
@@ -114,11 +114,11 @@ void SceneUIBase::StartFadeInScreen()
     // フェードが終了したことを伝える
     if (screenBrightness <= 0)
     {
-        fadeState = FADE_END;
+        fadeState = FADE_IN_SCREEN_END;
     }
     else
     {
-        fadeState = FADE_PLAYING;
+        fadeState = FADE_IN_SCREEN_PLAYING;
     }
 }
 
@@ -127,6 +127,37 @@ void SceneUIBase::StartFadeInScreen()
 /// </summary>
 void SceneUIBase::StartFadeOutScreen()
 {
+    //// 真っ黒の画像を描画
+    //DrawGraph(0, 0, blackOutGraph, true);
+
+    //// 画面の明るさが最大値であれば初期化する
+    //if (screenBrightness == 255)
+    //{
+    //    screenBrightness = 0;
+    //    // 画像の濃さを設定
+    //    SetDrawBlendMode(DX_BLENDMODE_ALPHA, screenBrightness);
+    //}
+
+    //// 画像の濃さをあげる
+    //if (screenBrightness < TRANSPARENCY_LIMIT)
+    //{
+    //    screenBrightness += ADD_BLACK_OUT_ADD_TRANSPARENCY;
+    //}
+
+    //// 画像の濃さを設定
+    //SetDrawBlendMode(DX_BLENDMODE_ALPHA, -screenBrightness + TRANSPARENCY_LIMIT);
+
+
+    //// フェードが終了したことを伝える
+    //if (screenBrightness >= TRANSPARENCY_LIMIT)
+    //{
+    //    fadeState = FADE_OUT_SCREEN_END;
+    //}
+    //else
+    //{
+    //    fadeState = FADE_OUT_SCREEN_PLAYING;
+    //}
+
     // 真っ黒の画像を描画
     DrawGraph(0, 0, blackOutGraph, true);
 
@@ -151,10 +182,11 @@ void SceneUIBase::StartFadeOutScreen()
     // フェードが終了したことを伝える
     if (screenBrightness >= TRANSPARENCY_LIMIT)
     {
-        fadeState = FADE_END;
+        fadeState = FADE_OUT_SCREEN_END;
     }
     else
     {
-        fadeState = FADE_PLAYING;
+        fadeState = FADE_OUT_SCREEN_PLAYING;
     }
+
 }

@@ -11,9 +11,18 @@ public:
     /// </summary>
     enum FadeState
     {
-        FADE_NONE,          // フェード中ではない
-        FADE_PLAYING,       // フェード中
-        FADE_END,           // フェード終了
+        FADE_NONE,              // フェード中ではない
+        FADE_PLAYING,           // フェード中
+        FADE_END,               // フェード終了
+        FADE_IN_UI_PLAYING,     // フェードイン中     UI
+        FADE_IN_UI_END,         // フェードイン終了   UI
+        FADE_OUT_UI_PLAYING,    // フェードアウト中   UI
+        FADE_OUT_UI_END,        // フェードアウト終了 UI
+        FADE_IN_SCREEN_PLAYING, // フェードイン中     画面
+        FADE_IN_SCREEN_END,     // フェードイン終了   画面
+        FADE_OUT_SCREEN_PLAYING,// フェードアウト中   画面
+        FADE_OUT_SCREEN_END     // フェードアウト終了 画面
+
     };
 
     /// <summary>

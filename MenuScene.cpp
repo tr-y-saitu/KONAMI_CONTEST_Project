@@ -47,9 +47,9 @@ SceneBase* MenuScene::UpdateScene()
     // フェードイン
     if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_NONE)
     {
-        menuSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+        menuSceneUI->SetFadeState(SceneUIBase::FADE_IN_UI_PLAYING);
     }
-    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_IN_UI_PLAYING)
     {
         menuSceneUI->StartFadeInUI();
     }
@@ -59,17 +59,17 @@ SceneBase* MenuScene::UpdateScene()
     {
         // フェードアウト開始指示
         isFadeOutStart = true;
-        menuSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+        menuSceneUI->SetFadeState(SceneUIBase::FADE_OUT_SCREEN_PLAYING);
     }
 
     // フェードアウト処理
-    if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_PLAYING)
     {
         menuSceneUI->StartFadeOutScreen();
     }
 
     // フェード終了
-    if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_END)
+    if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_END)
     {
         return new GameScene();
     }
