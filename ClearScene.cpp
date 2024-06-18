@@ -82,7 +82,7 @@ SceneBase* ClearScene::UpdateScene()
     room->Update();
 
     // スペースキーが押されたらフェードアウトしてメニューへ
-    if (CheckHitKey(KEY_INPUT_SPACE) == 1)
+    if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
     {
         isFadeOutStart = true;
         clearSceneUI->SetFadeState(SceneUIBase::FADE_OUT_SCREEN_PLAYING);

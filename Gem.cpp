@@ -339,6 +339,6 @@ void Gem::Draw()
 	if (visibleFlag)
 	{
         // 2D四角形当たり判定描画
-        Draw2DBOXCollision();
+        //Draw2DBOXCollision();
     }
 }

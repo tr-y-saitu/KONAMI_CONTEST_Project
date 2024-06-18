@@ -48,7 +48,7 @@ Player::~Player()
 /// </summary>
 void Player::Initialize()
 {
-	pos = VGet(-10, 0, -5);	// 座標のセット
+	pos = VGet(-10, 1, -5);	// 座標のセット
 	dir = VGet(0, 0, 0);	// 方向のセット
 	fallSpeed = 0.0f;		// 落下速度
 	isGround = false;		// 地面にいるか
@@ -84,12 +84,12 @@ void Player::Update()
 		dir = VAdd(dir, VGet(0, -1, 0));
 		speed = SPEED;
 	}
-	if (CheckHitKey(KEY_INPUT_LEFT) == 1)
+	if (CheckHitKey(KEY_INPUT_LEFT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT) != 0)
 	{
 		dir = VAdd(dir, VGet(-1, 0, 0));
 		speed = SPEED;
 	}
-	else if (CheckHitKey(KEY_INPUT_RIGHT) == 1)
+	else if (CheckHitKey(KEY_INPUT_RIGHT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_RIGHT) != 0)
 	{
 		dir = VAdd(dir, VGet(1, 0, 0));
 		speed = SPEED;
@@ -178,5 +178,5 @@ void Player::Draw()
 	MV1DrawModel(modelHandle);
 
 	// 2DBOX当たり判定の描画
-    Draw2DBOXCollision();
+    //Draw2DBOXCollision();
 }
