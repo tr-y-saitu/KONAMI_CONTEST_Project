@@ -9,6 +9,8 @@ GameSceneUI::GameSceneUI()
     , getDirectionCount     (0)
 {
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
+    timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
+    timerBarGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
     MV1SetScale(getDirectionModelHandle, VGet(0.05f, 0.05f, 0.0f));
     MV1SetRotationXYZ(getDirectionModelHandle, VGet(0, 25.0f * DX_PI_F / 180.0f, 0));
 }
@@ -45,6 +47,9 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     // 現在の経過時間を描画
     sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
     DrawString(250, 400, _timeCount, UI_COLOR, true);
+
+    // 時間表示バーフレーム
+    DrawRotaGraph(800, 100, 1, 0, timerBarFrameGraph, true);
 
     // 「GET!」モデルのポジションを設定
     MV1SetPosition(getDirectionModelHandle, VGet(1, 3, 1));

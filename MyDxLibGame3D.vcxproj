@@ -180,6 +180,7 @@
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="SceneUIBase.cpp" />
     <ClCompile Include="SkyDome.cpp" />
     <ClCompile Include="TreasureChest.cpp" />
     <ClCompile Include="Calculation.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="Room.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="SceneUIBase.h" />
     <ClInclude Include="SkyDome.h" />
     <ClInclude Include="TreasureChest.h" />
     <ClInclude Include="WaveConstants.h" />

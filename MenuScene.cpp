@@ -1,4 +1,5 @@
 ﻿#include "SceneBase.h"
+#include "SceneUIBase.h"
 #include "GameScene.h"
 #include "MenuSceneUI.h"
 #include "MenuScene.h"
@@ -42,8 +43,32 @@ void MenuScene::Update()
 /// <returns>次のシーンのポインタ</returns>
 SceneBase* MenuScene::UpdateScene()
 {
+    // フェードイン
+    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_NONE)
+    {
+        menuSceneUI->SetFadeState(SceneUIBase::FADE_IN_UI_PLAYING);
+    }
+    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_IN_UI_PLAYING)
+    {
+        menuSceneUI->StartFadeInUI();
+    }
+
     // スペースキーが押されたらゲームへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1)
+    {
+        // フェードアウト開始指示
+        isFadeOutStart = true;
+        menuSceneUI->SetFadeState(SceneUIBase::FADE_OUT_SCREEN_PLAYING);
+    }
+
+    // フェードアウト処理
+    if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_PLAYING)
+    {
+        menuSceneUI->StartFadeOutScreen();
+    }
+
+    // フェード終了
+    if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_END)
     {
         return new GameScene();
     }

@@ -1,10 +1,11 @@
 ﻿#pragma once
 #include "DxLib.h"
+#include "SceneUIBase.h"
 
 /// <summary>
 /// クリアシーンUI
 /// </summary>
-class ClearSceneUI
+class ClearSceneUI : public SceneUIBase
 {
 public:
     /// <summary>
@@ -29,7 +30,6 @@ private:
 
     // 変数
     int     clearUIGraph;       // クリアした時のUI画像
-
 };
 
 

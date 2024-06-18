@@ -1,6 +1,7 @@
 ﻿#include "DxLib.h"
 #include "MenuSceneUI.h"
 
+
 /// <summary>
 /// コンストラクタ
 /// </summary>
