@@ -24,7 +24,6 @@ GameScene::GameScene()
     , isScoreUp         (false)
     , isNextScene       (false)
 {
-    isFadeOutStart = false;
     // newインスタンス
     player = new Player();
     treasureChest = new TreasureChest();

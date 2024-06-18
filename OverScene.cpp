@@ -7,7 +7,6 @@
 /// </summary>
 OverScene::OverScene()
 {
-    isFadeOutStart = false;
 }
 
 /// <summary>

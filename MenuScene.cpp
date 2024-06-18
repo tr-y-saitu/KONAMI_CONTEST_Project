@@ -10,7 +10,6 @@
 /// </summary>
 MenuScene::MenuScene()
 {
-    isFadeOutStart = false;
     menuSceneUI = new MenuSceneUI();
 }
 
