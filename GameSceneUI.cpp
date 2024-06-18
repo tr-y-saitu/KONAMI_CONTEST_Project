@@ -47,6 +47,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     char _timeCount[256];		// ゲームの経過時間
 
     // 現在の経過時間を描画
+    SetFontSize(20);
     sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
     DrawString(250, 400, _timeCount, UI_COLOR, true);
 
@@ -92,7 +93,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     }
 
     // スコアの描画
-    DrawScore(VGet(0, 0, 0), 20, gameScore);
+    DrawScore(VGet(1200, 0, 0), FONT_SIZE_SCORE, gameScore);
 }
 
 
@@ -123,6 +124,8 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
         TIMER_FRAME_BOTTOM_RIGHT_X, TIMER_FRAME_BOTTOM_RIGHT_Y, timerBarFrameGraph, true);
 
     // 時間バー
+    // _leftBufでバー左を縮め、_rightBufでバー右をずらす
+    // _rightBufがないと少しづつ右に移動する
     int _leftBuf = ((int)(TIMER_BAR_BOTTOM_RIGHT_X) * ((float)nowTimer / waveEndTime));
     int _rightBuf = ((int)(TIMER_BAR_TOP_LEFT_X) * ((float)nowTimer / waveEndTime));
 
@@ -131,4 +134,11 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
         (TIMER_BAR_BOTTOM_RIGHT_X - _leftBuf + _rightBuf),
         TIMER_BAR_BOTTOM_RIGHT_Y, timerBarGraph, true);
 
+}
+
+
+void GameSceneUI::DrawTextAtSize(char* text, int textSize, VECTOR textPos, int color)
+{
+    SetFontSize(textSize);
+    DrawFormatString(textPos.x, textPos.y, color, text);
 }

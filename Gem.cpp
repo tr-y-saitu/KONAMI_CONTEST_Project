@@ -341,10 +341,4 @@ void Gem::Draw()
         // 2D四角形当たり判定描画
         Draw2DBOXCollision();
     }
-
-	// プレイヤーと接触したら
-	if (isHitPlayer)
-	{
-		DrawFormatString(100, 100, GetColor(255, 255, 255), "Gem Hit", true);
-	}
 }

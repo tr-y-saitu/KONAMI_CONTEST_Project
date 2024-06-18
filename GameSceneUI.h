@@ -56,12 +56,16 @@ public:
     /// <param name="waveEndTime">現在のウェーブが終了する時間</param>
     void DrawTimerBar(int nowTimer,int waveEndTime);
 
+
+    void DrawTextAtSize(char* text,int textSize,VECTOR textPos,int color);
+
     // Setter
     void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }
 
 private:
     // 定数
     const int UI_COLOR = GetColor(200, 200, 200);	        // UIの文字の色
+    static constexpr int FONT_SIZE_SCORE = 50;              // スコアのフォントサイズ
     static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
     static constexpr int TIMER_FRAME_TOP_LEFT_X = 200;      // タイマーフレームを描画する左上頂点X座標
     static constexpr int TIMER_FRAME_TOP_LEFT_Y = 800;      // タイマーフレームを描画する左上頂点Y座標

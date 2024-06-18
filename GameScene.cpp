@@ -207,8 +207,11 @@ void GameScene::Draw()
 /// <summary>
 /// UIの描画
 /// </summary>
+/// OPTIMIZE:_waveEndTimeが長いのでGetGemWaveState()を説明変数で置き換えたが、
+///          キャストが上手く行かず、意図していない値が入るためそのままにしてます。
 void GameScene::DrawUI()
 {
+    // WAVEごとの終了時間を渡す
     auto _waveEndTime = gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime;
     gameSceneUI->Draw(score,nowTimer,gemManager->GetGemWaveState(),false, _waveEndTime);
 }
