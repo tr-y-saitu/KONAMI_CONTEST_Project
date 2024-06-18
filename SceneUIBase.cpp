@@ -127,37 +127,6 @@ void SceneUIBase::StartFadeInScreen()
 /// </summary>
 void SceneUIBase::StartFadeOutScreen()
 {
-    //// 真っ黒の画像を描画
-    //DrawGraph(0, 0, blackOutGraph, true);
-
-    //// 画面の明るさが最大値であれば初期化する
-    //if (screenBrightness == 255)
-    //{
-    //    screenBrightness = 0;
-    //    // 画像の濃さを設定
-    //    SetDrawBlendMode(DX_BLENDMODE_ALPHA, screenBrightness);
-    //}
-
-    //// 画像の濃さをあげる
-    //if (screenBrightness < TRANSPARENCY_LIMIT)
-    //{
-    //    screenBrightness += ADD_BLACK_OUT_ADD_TRANSPARENCY;
-    //}
-
-    //// 画像の濃さを設定
-    //SetDrawBlendMode(DX_BLENDMODE_ALPHA, -screenBrightness + TRANSPARENCY_LIMIT);
-
-
-    //// フェードが終了したことを伝える
-    //if (screenBrightness >= TRANSPARENCY_LIMIT)
-    //{
-    //    fadeState = FADE_OUT_SCREEN_END;
-    //}
-    //else
-    //{
-    //    fadeState = FADE_OUT_SCREEN_PLAYING;
-    //}
-
     // 真っ黒の画像を描画
     DrawGraph(0, 0, blackOutGraph, true);
 
