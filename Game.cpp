@@ -51,10 +51,7 @@ void Game::Update()
 
     // 現在シーンの更新・描画
     nextScene = nowScene->UpdateScene();
-    if (nowScene == nextScene)
-    {
-        nowScene->Draw();
-    }
+    nowScene->Draw();
 
     // FPS待機処理
     fpsSetting->SleepForFPS();

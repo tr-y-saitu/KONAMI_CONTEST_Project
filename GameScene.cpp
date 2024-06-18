@@ -21,9 +21,9 @@ GameScene::GameScene()
     , nowTimer          (0)
     , score             (0)
     , isScoreUp         (false)
-    , isFadeOutStart    (false)
     , isNextScene       (false)
 {
+    isFadeOutStart = false;
     // newインスタンス
     player = new Player();
     treasureChest = new TreasureChest();
@@ -132,13 +132,13 @@ SceneBase* GameScene::UpdateScene()
     // スクリーンをフェードインした後UIをフェードイン
     if (gameSceneUI->GetFadeState() == SceneUIBase::FADE_NONE)
     {
-        gameSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+        gameSceneUI->SetFadeState(SceneUIBase::FADE_IN_SCREEN_PLAYING);
     }
-    if (gameSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    if (gameSceneUI->GetFadeState() == SceneUIBase::FADE_IN_SCREEN_PLAYING)
     {
         gameSceneUI->StartFadeInScreen();
     }
-    if (gameSceneUI->GetFadeState() == GameSceneUI::FadeState::FADE_END)
+    if (gameSceneUI->GetFadeState() == GameSceneUI::FadeState::FADE_IN_SCREEN_END)
     {
         gameSceneUI->StartFadeInUI();
     }
@@ -175,16 +175,6 @@ SceneBase* GameScene::UpdateScene()
     // 終了時間になったらSCENE_CLEARに移行
     if (nowTimer >= STATE_GAME_TIME_LIMIT && !isFadeOutStart)
     {
-        gameSceneUI->SetScreenBrightness(255);
-        isFadeOutStart = true;
-        gameSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
-    }
-    if (isFadeOutStart && gameSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
-    {
-        gameSceneUI->StartFadeOutScreen();
-    }
-    if (isFadeOutStart && gameSceneUI->GetFadeState() == SceneUIBase::FADE_END)
-    {
         return new ClearScene();
     }
 
@@ -199,12 +189,15 @@ SceneBase* GameScene::UpdateScene()
 /// </summary>
 void GameScene::Draw()
 {
+    bool _fadeInScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_IN_SCREEN_PLAYING;
+    bool _fadeOutScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_OUT_SCREEN_PLAYING;
+
     // オブジェク描画画
     player->Draw();         // プレイヤー
     room->Draw();           // 部屋
     gemManager->DrawGems(); // 宝石たち
     treasureChest->Draw();  // 宝箱
-    if (gameSceneUI->GetFadeState() == GameSceneUI::FadeState::FADE_END)
+    if (_fadeInScreen && _fadeOutScreen)
     {
         DrawUI();               // UI描画
     }

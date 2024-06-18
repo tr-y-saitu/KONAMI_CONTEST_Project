@@ -17,8 +17,8 @@
 /// コンストラクタ
 /// </summary>
 ClearScene::ClearScene()
-    : isFadeOutStart    (false)
 {
+    isFadeOutStart = false;
     clearSceneUI = new ClearSceneUI();
     treasureChest = new TreasureChest();
     gemManager = new GemManager();
@@ -71,9 +71,9 @@ SceneBase* ClearScene::UpdateScene()
     // フェードイン指示
     if (clearSceneUI->GetFadeState() == SceneUIBase::FADE_NONE)
     {
-        clearSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+        clearSceneUI->SetFadeState(SceneUIBase::FADE_IN_UI_PLAYING);
     }
-    if (clearSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    if (clearSceneUI->GetFadeState() == SceneUIBase::FADE_IN_UI_PLAYING)
     {
         clearSceneUI->StartFadeInUI();
     }
@@ -86,13 +86,13 @@ SceneBase* ClearScene::UpdateScene()
     if (CheckHitKey(KEY_INPUT_SPACE) == 1)
     {
         isFadeOutStart = true;
-        clearSceneUI->SetFadeState(SceneUIBase::FADE_PLAYING);
+        clearSceneUI->SetFadeState(SceneUIBase::FADE_OUT_SCREEN_PLAYING);
     }
-    if (isFadeOutStart && clearSceneUI->GetFadeState() == SceneUIBase::FADE_PLAYING)
+    if (isFadeOutStart && clearSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_PLAYING)
     {
         clearSceneUI->StartFadeOutScreen();
     }
-    if (isFadeOutStart && clearSceneUI->GetFadeState() == SceneUIBase::FADE_END)
+    if (isFadeOutStart && clearSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_END)
     {
         // メニューシーンへ移行
         return new MenuScene();

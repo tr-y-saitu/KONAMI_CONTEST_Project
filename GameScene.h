@@ -95,9 +95,6 @@ private:
     int     score;          // スコア
     bool    isScoreUp;      // スコアアップフラグ
 
-    // フェードアウト処理
-    bool    isFadeOutStart; // フェードアウトするかどうか
-
     // シーン管理
     bool    isNextScene;        // 次のシーン移行すかどうか
 

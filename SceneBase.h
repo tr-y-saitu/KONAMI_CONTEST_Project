@@ -43,7 +43,8 @@ public:
     /// </summary>
     virtual void DrawUI() abstract;
 
-private:
+protected:
+    bool    isFadeOutStart;     // フェードアウトを開始したかどうか
 
 };
 
