@@ -9,8 +9,8 @@
 /// コンストラクタ
 /// </summary>
 MenuScene::MenuScene()
-    : isFadeOutStart    (false)
 {
+    isFadeOutStart = false;
     menuSceneUI = new MenuSceneUI();
 }
 

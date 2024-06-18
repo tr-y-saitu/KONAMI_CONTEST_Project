@@ -17,8 +17,8 @@
 /// コンストラクタ
 /// </summary>
 ClearScene::ClearScene()
-    : isFadeOutStart    (false)
 {
+    isFadeOutStart = false;
     clearSceneUI = new ClearSceneUI();
     treasureChest = new TreasureChest();
     gemManager = new GemManager();
