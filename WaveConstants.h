@@ -30,6 +30,7 @@ public:
     int entryTime;      // 登場時間
     int waveEndTime;    // そのWAVEが終了する時間
     string uiWaveState;   // そのWAVEの状態を表す文字列
+    char* uiWaveStateText;// そのWAVEの状態を表す文字列
 
 
 private:

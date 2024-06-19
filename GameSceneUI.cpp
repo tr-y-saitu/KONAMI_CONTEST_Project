@@ -50,7 +50,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     DrawTimerBar(nowTimer,waveEndTime);
 
     // 「GET!」モデルのポジションを設定
-    MV1SetPosition(getDirectionModelHandle, VGet(1, 3, 1));
+    MV1SetPosition(getDirectionModelHandle, VGet(1, 3, -3));
 
     // 宝石獲得演出(宝石が当たっているかつ演出時間ないである)
     if (isHitGemToChest && getDirectionCount <= GET_DIRECTION_DRAW_TIME)
