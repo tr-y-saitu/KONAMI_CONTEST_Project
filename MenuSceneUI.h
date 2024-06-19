@@ -24,7 +24,7 @@ public:
     void Draw();
 
 private:
-    int menuGraph;      // メニューで使用する画像
+    int titileGraph;            // タイトル画像
 };
 
 

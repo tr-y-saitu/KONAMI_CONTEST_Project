@@ -74,6 +74,7 @@ private:
     const int UI_COLOR_RED = GetColor(200, 0, 0);           // UIの文字の色(赤)
     static constexpr int FONT_SIZE_SCORE = 50;              // スコアのフォントサイズ
     static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
+    // タイマー画像
     static constexpr int TIMER_FRAME_TOP_LEFT_X = 200;      // タイマーフレームを描画する左上頂点X座標
     static constexpr int TIMER_FRAME_TOP_LEFT_Y = 800;      // タイマーフレームを描画する左上頂点Y座標
     static constexpr int TIMER_FRAME_BOTTOM_RIGHT_X = 1400; // タイマーフレームを描画する右下頂点X座標
@@ -82,7 +83,8 @@ private:
     static constexpr int TIMER_BAR_TOP_LEFT_Y = TIMER_FRAME_TOP_LEFT_Y + 40;            // タイマーバーを描画する左上頂点Ｙ座標
     static constexpr int TIMER_BAR_BOTTOM_RIGHT_X = TIMER_FRAME_BOTTOM_RIGHT_X - 50;    // タイマーバーを描画する右下頂点Ｘ座標
     static constexpr int TIMER_BAR_BOTTOM_RIGHT_Y = TIMER_FRAME_BOTTOM_RIGHT_Y - 40;    // タイマーバーを描画する右下頂点Ｙ座標
-    static constexpr int TIME_LIMIT_WARNING_TIME = 5;       // 残り制限時間を警告するための時間
+    static constexpr int TIME_LIMIT_WARNING_TIME = 8;       // 残り制限時間を警告するための時間
+    static constexpr int UI_MOVE_ADDITION = 5;              // UIの移動量
 
     // 変数
     int		getDirectionModelHandle;	    // 宝石獲得演出用モデル

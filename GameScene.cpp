@@ -57,9 +57,6 @@ GameScene::~GameScene()
 /// </summary>
 void GameScene::Initialize()
 {
-    // フォント設定
-    ChangeFont("チョークS");
-
     // ゲームが始まる前のGetNowCountを取得
     previousTime = GetNowHiPerformanceCount();
     timer = 0;

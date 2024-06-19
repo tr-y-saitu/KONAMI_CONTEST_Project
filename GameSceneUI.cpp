@@ -1,4 +1,5 @@
-﻿#include "GameSceneUI.h"
+﻿#include "Common.h"
+#include "GameSceneUI.h"
 #include "GemManager.h"
 #include "WaveConstants.h"
 #include "UIGraph.h"
@@ -51,7 +52,6 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 
     // タイマーバーの描画
     DrawTimerBar(nowTimer,waveEndTime);
-
     DrawTimeWarning(nowTimer, waveEndTime);
 
     // 「GET!」モデルのポジションを設定
@@ -106,10 +106,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 /// <param name="score">スコア</param>
 void GameSceneUI::DrawScore(VECTOR pos, int fontSize, int score)
 {
-    // フォントサイズの変更
     SetFontSize(fontSize);
-
-    // スコアの描画
     DrawFormatString(pos.x, pos.y, UI_COLOR, "SCORE : %d", score);
 }
 
@@ -154,12 +151,12 @@ void GameSceneUI::DrawTimeWarning(int nowTimer, int waveEndTime)
     VECTOR _uiPos = timeLimitsWarningUI->GetPosition();
     int _uiGraph = timeLimitsWarningUI->GetGraphHandle();
     bool _uiResetPos = timeLimitsWarningUI->GetIsResetPosition();
-    // 制限時間残り5秒になったら描画
-    if (_timeLimit <= 8)
+    // 制限時間残り5秒になったら移動
+    if (_timeLimit <= TIME_LIMIT_WARNING_TIME)
     {
         if (_uiPos.x >= 1200)
         {
-            _uiPos.x -= 5;
+            _uiPos.x -= UI_MOVE_ADDITION;
         }
     }
     // 次のウェーブに移行したら画面外に出す
@@ -167,16 +164,16 @@ void GameSceneUI::DrawTimeWarning(int nowTimer, int waveEndTime)
     {
         _uiResetPos = true;
     }
-    if (_uiResetPos && _uiPos.x <= 1600)
+    if (_uiResetPos && _uiPos.x <= SCREEN_SIZE_X)
     {
-        _uiPos.x += 5;
-        if (_uiPos.x >= 1600)
+        _uiPos.x += UI_MOVE_ADDITION;
+        if (_uiPos.x >= SCREEN_SIZE_X)
         {
             _uiResetPos = false;
         }
     }
 
-
+    // 情報更新
     timeLimitsWarningUI->SetIsResetPosition(_uiResetPos);
     timeLimitsWarningUI->SetPosition(_uiPos);
     // 描画

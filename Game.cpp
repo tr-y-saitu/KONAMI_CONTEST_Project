@@ -20,6 +20,9 @@ Game::Game()
     , keyRelease(false)
     , prevKeyOn(false)
 {
+    // フォント設定
+    ChangeFont("チョークS");
+
     // 最初のシーンの設定
     nowScene = SceneBase::InitializeBase();
     // 次のシーンの初期化

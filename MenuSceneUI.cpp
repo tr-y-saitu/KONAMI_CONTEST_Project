@@ -1,4 +1,4 @@
-﻿#include "DxLib.h"
+﻿#include "Common.h"
 #include "MenuSceneUI.h"
 
 
@@ -7,7 +7,7 @@
 /// </summary>
 MenuSceneUI::MenuSceneUI()
 {
-    menuGraph = LoadGraph("data/texture/Menu/GemPiratesMenuGraph.png");
+    titileGraph = LoadGraph("data/texture/Menu/GemPiratesMenuGraph.png");
 }
 
 /// <summary>
@@ -15,7 +15,7 @@ MenuSceneUI::MenuSceneUI()
 /// </summary>
 MenuSceneUI::~MenuSceneUI()
 {
-    DeleteGraph(menuGraph);
+    DeleteGraph(titileGraph);
 }
 
 /// <summary>
@@ -24,7 +24,11 @@ MenuSceneUI::~MenuSceneUI()
 void MenuSceneUI::Draw()
 {
     // メニュー画像（タイトル画像の描画）
-    DrawGraph(0, 0, menuGraph, true);
+    DrawGraph(0, 0, titileGraph, true);
+
+    // キー入力指示
+    SetFontSize(90);
+    DrawFormatString(200, SCREEN_SIZE_Y - 300, GetColor(255, 255, 255), "Press Any Button to Start");
 }
 
 
