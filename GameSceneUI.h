@@ -65,6 +65,8 @@ public:
 private:
     // 定数
     const int UI_COLOR = GetColor(200, 200, 200);	        // UIの文字の色
+    const int UI_COLOR_BLACK = GetColor(0, 0, 0);           // UIの文字の色(黒)
+    const int UI_COLOR_RED = GetColor(200, 0, 0);           // UIの文字の色(赤)
     static constexpr int FONT_SIZE_SCORE = 50;              // スコアのフォントサイズ
     static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
     static constexpr int TIMER_FRAME_TOP_LEFT_X = 200;      // タイマーフレームを描画する左上頂点X座標

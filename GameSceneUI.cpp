@@ -46,11 +46,6 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 {
     char _timeCount[256];		// ゲームの経過時間
 
-    // 現在の経過時間を描画
-    SetFontSize(20);
-    sprintf_s(_timeCount, "～～～%f秒経過～～～", nowTimer);
-    DrawString(250, 400, _timeCount, UI_COLOR, true);
-
     // タイマーバーの描画
     DrawTimerBar(nowTimer,waveEndTime);
 
@@ -77,15 +72,15 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     switch (gemWaveState)
     {
     case GemManager::WAVE_FIRST:
-        DrawFormatString(100, 100, UI_COLOR, "WAVE_FIRST");
+        DrawFormatString(100, 100, UI_COLOR, "ウェーブ１：宝石との出会い");
         break;
 
     case GemManager::WAVE_SECOND:
-        DrawFormatString(100, 100, UI_COLOR, "WAVE_SECOND");
+        DrawFormatString(100, 100, UI_COLOR, "ウェーブ２：失う焦り");
         break;
 
     case GemManager::WAVE_THIRD:
-        DrawFormatString(100, 100, UI_COLOR, "WAVE_THIRD");
+        DrawFormatString(100, 100, UI_COLOR, "ウェーブ３：手放す勇気");
         break;
 
     default:
@@ -93,7 +88,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     }
 
     // スコアの描画
-    DrawScore(VGet(1200, 0, 0), FONT_SIZE_SCORE, gameScore);
+    DrawScore(VGet(1200, 100, 0), FONT_SIZE_SCORE, gameScore);
 }
 
 
@@ -133,6 +128,12 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
         TIMER_BAR_TOP_LEFT_Y,
         (TIMER_BAR_BOTTOM_RIGHT_X - _leftBuf + _rightBuf),
         TIMER_BAR_BOTTOM_RIGHT_Y, timerBarGraph, true);
+
+    // 現在の経過時間を描画
+    char _timeCount[256];		// ゲームの経過時間
+    SetFontSize(40);
+    sprintf_s(_timeCount, "あと%d秒", waveEndTime - nowTimer);
+    DrawString(450, 850, _timeCount, UI_COLOR_BLACK, true);
 
 }
 

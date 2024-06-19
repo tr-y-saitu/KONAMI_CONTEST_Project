@@ -28,7 +28,7 @@ Gem::Gem()
 	pos = VGet(0, 0, 0);
 	dir = VGet(0, 0, 0);
 	contactDir = VGet(0, 0, 0);
-	scale = VGet(0.02f, 0.02f, 0.02f);
+	scale = VGet(0.03f, 0.03f, 0.03f);
 }
 
 /// <summary>
