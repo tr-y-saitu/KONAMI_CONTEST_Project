@@ -1,6 +1,7 @@
 ﻿#include "GameSceneUI.h"
 #include "GemManager.h"
 #include "WaveConstants.h"
+#include "UIGraph.h"
 
 /// <summary>
 /// コンストラクタ
@@ -9,6 +10,7 @@ GameSceneUI::GameSceneUI()
     : isHitGemToChest       (false)
     , getDirectionCount     (0)
 {
+    timeLimitsWarningUI = new UIGraph("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,0,0));
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
     timerBarGraph = LoadGraph("data/texture/time/TimerBar_2.png");
@@ -22,6 +24,7 @@ GameSceneUI::GameSceneUI()
 GameSceneUI::~GameSceneUI()
 {
     MV1DeleteModel(getDirectionModelHandle);
+    delete(timeLimitsWarningUI);
 }
 
 /// <summary>
@@ -49,6 +52,8 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     // タイマーバーの描画
     DrawTimerBar(nowTimer,waveEndTime);
 
+    DrawTimeWarning(nowTimer, waveEndTime);
+
     // 「GET!」モデルのポジションを設定
     MV1SetPosition(getDirectionModelHandle, VGet(1, 3, -3));
 
@@ -69,18 +74,19 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     }
 
     // 現在のWAVEステートの描画
+    SetFontSize(50);
     switch (gemWaveState)
     {
     case GemManager::WAVE_FIRST:
-        DrawFormatString(100, 100, UI_COLOR, "ウェーブ１：宝石との出会い");
+        DrawFormatString(50, 150, UI_COLOR, "ウェーブ１：宝石との出会い");
         break;
 
     case GemManager::WAVE_SECOND:
-        DrawFormatString(100, 100, UI_COLOR, "ウェーブ２：失う焦り");
+        DrawFormatString(50, 150, UI_COLOR, "ウェーブ２：失う焦り");
         break;
 
     case GemManager::WAVE_THIRD:
-        DrawFormatString(100, 100, UI_COLOR, "ウェーブ３：手放す勇気");
+        DrawFormatString(50, 150, UI_COLOR, "ウェーブ３：手放す勇気");
         break;
 
     default:
@@ -88,7 +94,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     }
 
     // スコアの描画
-    DrawScore(VGet(1200, 100, 0), FONT_SIZE_SCORE, gameScore);
+    DrawScore(VGet(1200, 150, 0), FONT_SIZE_SCORE, gameScore);
 }
 
 
@@ -137,9 +143,44 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
 
 }
 
-
-void GameSceneUI::DrawTextAtSize(char* text, int textSize, VECTOR textPos, int color)
+/// <summary>
+/// 残り時間が少ないことを知らせる描画をする
+/// </summary>
+/// <param name="nowTimer">現在時間</param>
+/// <param name="waveEndTime">現在のウェーブが終了する時間</param>
+void GameSceneUI::DrawTimeWarning(int nowTimer, int waveEndTime)
 {
-    SetFontSize(textSize);
-    DrawFormatString(textPos.x, textPos.y, color, text);
+    int _timeLimit = waveEndTime - nowTimer;
+    VECTOR _uiPos = timeLimitsWarningUI->GetPosition();
+    int _uiGraph = timeLimitsWarningUI->GetGraphHandle();
+    bool _uiResetPos = timeLimitsWarningUI->GetIsResetPosition();
+    // 制限時間残り5秒になったら描画
+    if (_timeLimit <= 8)
+    {
+        if (_uiPos.x >= 1200)
+        {
+            _uiPos.x -= 5;
+        }
+    }
+    // 次のウェーブに移行したら画面外に出す
+    if (_timeLimit == waveEndTime)
+    {
+        _uiResetPos = true;
+    }
+    if (_uiResetPos && _uiPos.x <= 1600)
+    {
+        _uiPos.x += 5;
+        if (_uiPos.x >= 1600)
+        {
+            _uiResetPos = false;
+        }
+    }
+
+
+    timeLimitsWarningUI->SetIsResetPosition(_uiResetPos);
+    timeLimitsWarningUI->SetPosition(_uiPos);
+    // 描画
+    DrawGraph(_uiPos.x, _uiPos.y, _uiGraph, true);
+    SetFontSize(30);
+    DrawFormatString(_uiPos.x + 120, _uiPos.y + 30, UI_COLOR_BLACK, "残り時間わずか！", true);
 }

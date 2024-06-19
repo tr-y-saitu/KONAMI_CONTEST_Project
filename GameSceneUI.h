@@ -5,6 +5,7 @@
 #include "SceneUIBase.h"
 
 class WaveConstants;
+class UIGraph;
 
 /// <summary>
 /// ゲームシーンUI
@@ -56,8 +57,12 @@ public:
     /// <param name="waveEndTime">現在のウェーブが終了する時間</param>
     void DrawTimerBar(int nowTimer,int waveEndTime);
 
-
-    void DrawTextAtSize(char* text,int textSize,VECTOR textPos,int color);
+    /// <summary>
+    /// 残り時間が少ないことを知らせる描画をする
+    /// </summary>
+    /// <param name="nowTimer">現在時間</param>
+    /// <param name="waveEndTime">現在のウェーブが終了する時間</param>
+    void DrawTimeWarning(int nowTimer, int waveEndTime);
 
     // Setter
     void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }
@@ -73,13 +78,15 @@ private:
     static constexpr int TIMER_FRAME_TOP_LEFT_Y = 800;      // タイマーフレームを描画する左上頂点Y座標
     static constexpr int TIMER_FRAME_BOTTOM_RIGHT_X = 1400; // タイマーフレームを描画する右下頂点X座標
     static constexpr int TIMER_FRAME_BOTTOM_RIGHT_Y = 950;  // タイマーフレームを描画する右下頂点Y座標
-    static constexpr int TIMER_BAR_TOP_LEFT_X = 375;        // タイマーバーを描画する左上頂点X座標
-    static constexpr int TIMER_BAR_TOP_LEFT_Y = 840;        // タイマーバーを描画する左上頂点Ｙ座標
-    static constexpr int TIMER_BAR_BOTTOM_RIGHT_X = 1350;   // タイマーバーを描画する右下頂点Ｘ座標
-    static constexpr int TIMER_BAR_BOTTOM_RIGHT_Y = 910;    // タイマーバーを描画する右下頂点Ｙ座標
+    static constexpr int TIMER_BAR_TOP_LEFT_X = TIMER_FRAME_TOP_LEFT_X + 175;           // タイマーバーを描画する左上頂点X座標
+    static constexpr int TIMER_BAR_TOP_LEFT_Y = TIMER_FRAME_TOP_LEFT_Y + 40;            // タイマーバーを描画する左上頂点Ｙ座標
+    static constexpr int TIMER_BAR_BOTTOM_RIGHT_X = TIMER_FRAME_BOTTOM_RIGHT_X - 50;    // タイマーバーを描画する右下頂点Ｘ座標
+    static constexpr int TIMER_BAR_BOTTOM_RIGHT_Y = TIMER_FRAME_BOTTOM_RIGHT_Y - 40;    // タイマーバーを描画する右下頂点Ｙ座標
+    static constexpr int TIME_LIMIT_WARNING_TIME = 5;       // 残り制限時間を警告するための時間
 
     // 変数
     int		getDirectionModelHandle;	    // 宝石獲得演出用モデル
+    UIGraph* timeLimitsWarningUI;
     int     timerBarFrameGraph;             // 時間表示バーのフレーム画像
     int     timerBarGraph;                  // 時間表示バーの画像
     int     getDirectionCount;              // 宝石獲得時の演出を管理するカウント
