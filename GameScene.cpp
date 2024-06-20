@@ -168,6 +168,7 @@ SceneBase* GameScene::UpdateScene()
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
+    //effekseer1->Update();
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
 
@@ -177,7 +178,6 @@ SceneBase* GameScene::UpdateScene()
         return new ClearScene();
     }
 
-    //effekseer1->Update();
 
     // シーン終了判定がなければそのまま
     return this;
@@ -210,9 +210,12 @@ void GameScene::Draw()
 ///          キャストが上手く行かず、意図していない値が入るためそのままにしてます。
 void GameScene::DrawUI()
 {
-    // WAVEごとの終了時間を渡す
+    // WAVEごとの終了時間,説明文を渡す
+    auto _waveText = gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->uiWaveStateText;
     auto _waveEndTime = gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime;
-    gameSceneUI->Draw(score,nowTimer,gemManager->GetGemWaveState(),false, _waveEndTime);
+    gameSceneUI->Draw(score,nowTimer,
+                      gemManager->GetGemWaveState(),false,
+                      _waveEndTime, _waveText);
 }
 
 /// <summary>

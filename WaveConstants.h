@@ -23,13 +23,12 @@ public:
     /// <param name="_entryTime">登場時間</param>
     /// <param name="_waveEndTime">そのWAVEが終了する時間</param>
     /// <param name="_uiWaveState">そのWAVEの状態を表す文字列</param>
-    WaveConstants(int _entryTime,int _waveEndTime,string _uiWaveState);
+    WaveConstants(int _entryTime,int _waveEndTime,char* _uiWaveStateText);
     ~WaveConstants();
 
     // メンバー変数
     int entryTime;      // 登場時間
     int waveEndTime;    // そのWAVEが終了する時間
-    string uiWaveState;   // そのWAVEの状態を表す文字列
     char* uiWaveStateText;// そのWAVEの状態を表す文字列
 
 
