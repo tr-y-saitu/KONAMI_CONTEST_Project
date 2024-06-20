@@ -24,7 +24,7 @@ SceneBase::~SceneBase()
 /// <returns>初期化するSceneBase*型のnewインスタンス</returns>
 SceneBase* SceneBase::InitializeBase()
 {
-    return new MenuScene(0,0);
+    return new MenuScene(0);
 }
 
 /// <summary>

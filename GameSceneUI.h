@@ -5,7 +5,7 @@
 #include "SceneUIBase.h"
 
 class WaveConstants;
-class UIGraph;
+class UIObject;
 
 /// <summary>
 /// ゲームシーンUI
@@ -96,7 +96,7 @@ private:
 
     // 変数
     int		getDirectionModelHandle;	    // 宝石獲得演出用モデル
-    UIGraph* timeLimitsWarningUI;
+    UIObject* timeLimitsWarningUI;
     int     timerBarFrameGraph;             // 時間表示バーのフレーム画像
     int     timerBarGraph;                  // 時間表示バーの画像
     int     getDirectionCount;              // 宝石獲得時の演出を管理するカウント

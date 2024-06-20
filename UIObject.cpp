@@ -1,9 +1,9 @@
-﻿#include "UIGraph.h"
+﻿#include "UIObject.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
-UIGraph::UIGraph(char* _graphHandle, VECTOR initPos)
+UIObject::UIObject(char* _graphHandle, VECTOR initPos)
     : isResetPosition   (false)
 {
     graphHandle = LoadGraph(_graphHandle);
@@ -13,7 +13,7 @@ UIGraph::UIGraph(char* _graphHandle, VECTOR initPos)
 /// <summary>
 /// デストラクタ
 /// </summary>
-UIGraph::~UIGraph()
+UIObject::~UIObject()
 {
     DeleteGraph(graphHandle);
 }

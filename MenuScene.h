@@ -14,7 +14,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    MenuScene(int _score,int _highScore);
+    MenuScene(int _highScore);
 
     /// <summary>
     /// デストラクタ

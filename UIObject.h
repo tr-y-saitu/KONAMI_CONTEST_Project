@@ -2,9 +2,9 @@
 #include "DxLib.h"
 
 /// <summary>
-/// UIで使用する画像
+/// UIで使用するオブジェクト
 /// </summary>
-class UIGraph
+class UIObject
 {
 public:
     /// <summary>
@@ -12,12 +12,12 @@ public:
     /// </summary>
     /// <param name="_graphHandle">画像ファイルパス</param>
     /// <param name="initPos">初期化座標</param>
-    UIGraph(char* _graphHandle,VECTOR initPos);
+    UIObject(char* _graphHandle,VECTOR initPos);
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~UIGraph();
+    ~UIObject();
 
     // Getter/Setter
     const VECTOR GetPosition()const { return position; }

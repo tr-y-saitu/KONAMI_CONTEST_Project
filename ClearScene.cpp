@@ -96,7 +96,7 @@ SceneBase* ClearScene::UpdateScene()
     if (isFadeOutStart && clearSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_END)
     {
         // メニューシーンへ移行
-        return new MenuScene(score,highScore);
+        return new MenuScene(highScore);
     }
 
     return this;

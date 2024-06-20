@@ -8,9 +8,8 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-MenuScene::MenuScene(int _score, int _highScore)
+MenuScene::MenuScene(int _highScore)
 {
-    score = _score;
     highScore = _highScore;
     menuSceneUI = new MenuSceneUI();
 }
