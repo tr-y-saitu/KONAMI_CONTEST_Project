@@ -8,8 +8,10 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-MenuScene::MenuScene()
+MenuScene::MenuScene(int _score, int _highScore)
 {
+    score = _score;
+    highScore = _highScore;
     menuSceneUI = new MenuSceneUI();
 }
 
@@ -70,7 +72,7 @@ SceneBase* MenuScene::UpdateScene()
     // フェード終了
     if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_END)
     {
-        return new GameScene();
+        return new GameScene(highScore);
     }
 
     return this;
@@ -91,5 +93,5 @@ void MenuScene::Draw()
 void MenuScene::DrawUI()
 {
     // メニューシーンUIの描画
-    menuSceneUI->Draw();
+    menuSceneUI->Draw(highScore);
 }

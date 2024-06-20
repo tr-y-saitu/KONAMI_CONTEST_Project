@@ -21,9 +21,11 @@ public:
     /// <summary>
     /// 描画
     /// </summary>
-    void Draw();
-
+    void Draw(int highScore);
+        
 private:
+    const int UI_COLOR_WHITE = GetColor(255, 255, 255);
+
     int titileGraph;            // タイトル画像
 };
 

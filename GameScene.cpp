@@ -16,14 +16,15 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-GameScene::GameScene()
+GameScene::GameScene(int _highScore)
     : previousTime      (0)
     , timer             (0)
     , nowTimer          (0)
-    , score             (0)
     , isScoreUp         (false)
     , isNextScene       (false)
 {
+    highScore = _highScore;
+    score = 0;
     // newインスタンス
     player = new Player();
     treasureChest = new TreasureChest();
@@ -171,7 +172,7 @@ SceneBase* GameScene::UpdateScene()
     // 終了時間になったらSCENE_CLEARに移行
     if (nowTimer >= STATE_GAME_TIME_LIMIT && !isFadeOutStart)
     {
-        return new ClearScene();
+        return new ClearScene(score,highScore);
     }
 
     //effekseer1->Update();
@@ -223,6 +224,11 @@ void GameScene::UpdateScore(TreasureChest& chest)
 
     // スコアを計算
     score += (_hitGemType + 1) * 100;
+
+    if (highScore <= score)
+    {
+        highScore = score;
+    }
 }
 
 /// <summary>

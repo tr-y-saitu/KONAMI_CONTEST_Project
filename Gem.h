@@ -75,7 +75,7 @@ public:
 	void Draw();
 
 	// ポジションのgetter/setter.
-	int GetModelHandle() const { return modelHandle; }
+	const int GetModelHandle() const { return modelHandle; }
 	const VECTOR& GetPos() const { return pos; }
 	const float GetWidth() const{ return width; }
 	const float GetHeight() const { return height; }

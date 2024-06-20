@@ -1,4 +1,5 @@
 ﻿#include "Common.h"
+#include "SceneUIBase.h"
 #include "GameSceneUI.h"
 #include "GemManager.h"
 #include "WaveConstants.h"
