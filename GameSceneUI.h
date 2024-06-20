@@ -68,13 +68,13 @@ public:
     void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }
 
 private:
-    // 定数
+    // 共通
     const int UI_COLOR = GetColor(200, 200, 200);	        // UIの文字の色
     const int UI_COLOR_BLACK = GetColor(0, 0, 0);           // UIの文字の色(黒)
     const int UI_COLOR_RED = GetColor(200, 0, 0);           // UIの文字の色(赤)
     static constexpr int FONT_SIZE_SCORE = 50;              // スコアのフォントサイズ
     static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
-    // タイマー画像
+    // タイマーUI
     static constexpr int TIMER_FRAME_TOP_LEFT_X = 200;      // タイマーフレームを描画する左上頂点X座標
     static constexpr int TIMER_FRAME_TOP_LEFT_Y = 800;      // タイマーフレームを描画する左上頂点Y座標
     static constexpr int TIMER_FRAME_BOTTOM_RIGHT_X = 1400; // タイマーフレームを描画する右下頂点X座標
@@ -83,8 +83,16 @@ private:
     static constexpr int TIMER_BAR_TOP_LEFT_Y = TIMER_FRAME_TOP_LEFT_Y + 40;            // タイマーバーを描画する左上頂点Ｙ座標
     static constexpr int TIMER_BAR_BOTTOM_RIGHT_X = TIMER_FRAME_BOTTOM_RIGHT_X - 50;    // タイマーバーを描画する右下頂点Ｘ座標
     static constexpr int TIMER_BAR_BOTTOM_RIGHT_Y = TIMER_FRAME_BOTTOM_RIGHT_Y - 40;    // タイマーバーを描画する右下頂点Ｙ座標
-    static constexpr int TIME_LIMIT_WARNING_TIME = 8;       // 残り制限時間を警告するための時間
+    static constexpr int FONT_SIZE_NOW_TIME = 40;           // 現在時間のフォントサイズ
+    // 制限時間警告UI
+    static constexpr int WARNING_TIME_LIMIT = 8;            // 残り制限時間を警告するための時間
+    static constexpr int WARNING_GRAPH_STOP_POSITION = 1200;// 残り制限時間を警告する画像の停止位置
     static constexpr int UI_MOVE_ADDITION = 5;              // UIの移動量
+    static constexpr int FONT_SIZE_WARNING_UI = 30;         // 制限時間UIのフォントサイズ
+    // WAVEステート
+    static constexpr int FONT_SIAE_WAVE_STATE_UI = 50;      // WAVEステートのフォントサイズ
+    static constexpr int WAVE_TITLE_MESSAGE_X = 50;         // WAVEごとのタイトルを描画するX座標
+    static constexpr int WAVE_TITLE_MESSAGE_Y = 150;        // WAVEごとのタイトルを描画するY座標
 
     // 変数
     int		getDirectionModelHandle;	    // 宝石獲得演出用モデル

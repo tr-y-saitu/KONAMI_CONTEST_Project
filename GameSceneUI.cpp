@@ -74,19 +74,19 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     }
 
     // 現在のWAVEステートの描画
-    SetFontSize(50);
+    SetFontSize(FONT_SIAE_WAVE_STATE_UI);
     switch (gemWaveState)
     {
     case GemManager::WAVE_FIRST:
-        DrawFormatString(50, 150, UI_COLOR, "ウェーブ１：宝石との出会い");
+        DrawFormatString(WAVE_TITLE_MESSAGE_X, WAVE_TITLE_MESSAGE_Y, UI_COLOR, "ウェーブ１：宝石との出会い");
         break;
 
     case GemManager::WAVE_SECOND:
-        DrawFormatString(50, 150, UI_COLOR, "ウェーブ２：失う焦り");
+        DrawFormatString(WAVE_TITLE_MESSAGE_X, WAVE_TITLE_MESSAGE_Y, UI_COLOR, "ウェーブ２：失う焦り");
         break;
 
     case GemManager::WAVE_THIRD:
-        DrawFormatString(50, 150, UI_COLOR, "ウェーブ３：手放す勇気");
+        DrawFormatString(WAVE_TITLE_MESSAGE_X, WAVE_TITLE_MESSAGE_Y, UI_COLOR, "ウェーブ３：手放す勇気");
         break;
 
     default:
@@ -134,7 +134,7 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
 
     // 現在の経過時間を描画
     char _timeCount[256];		// ゲームの経過時間
-    SetFontSize(40);
+    SetFontSize(FONT_SIZE_NOW_TIME);
     sprintf_s(_timeCount, "あと%d秒", waveEndTime - nowTimer);
     DrawString(450, 850, _timeCount, UI_COLOR_BLACK, true);
 
@@ -152,9 +152,9 @@ void GameSceneUI::DrawTimeWarning(int nowTimer, int waveEndTime)
     int _uiGraph = timeLimitsWarningUI->GetGraphHandle();
     bool _uiResetPos = timeLimitsWarningUI->GetIsResetPosition();
     // 制限時間残り5秒になったら移動
-    if (_timeLimit <= TIME_LIMIT_WARNING_TIME)
+    if (_timeLimit <= WARNING_TIME_LIMIT)
     {
-        if (_uiPos.x >= 1200)
+        if (_uiPos.x >= WARNING_GRAPH_STOP_POSITION)
         {
             _uiPos.x -= UI_MOVE_ADDITION;
         }
@@ -178,6 +178,6 @@ void GameSceneUI::DrawTimeWarning(int nowTimer, int waveEndTime)
     timeLimitsWarningUI->SetPosition(_uiPos);
     // 描画
     DrawGraph(_uiPos.x, _uiPos.y, _uiGraph, true);
-    SetFontSize(30);
+    SetFontSize(FONT_SIZE_WARNING_UI);
     DrawFormatString(_uiPos.x + 120, _uiPos.y + 30, UI_COLOR_BLACK, "残り時間わずか！", true);
 }

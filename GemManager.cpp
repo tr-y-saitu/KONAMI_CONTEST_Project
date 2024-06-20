@@ -27,7 +27,7 @@ GemManager::GemManager()
     }
     // WAVEごとの情報を代入
     // 1:20,2:30,3:40
-    waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, 30, "ウェーブ１：宝石との出会い");
+    waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, 20, "ウェーブ１：宝石との出会い");
     waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "ウェーブ２：失う焦り");
     waveConstantsTable[WAVE_THIRD] = new WaveConstants(1, 40, "ウェーブ３：手放す勇気");
     waveConstantsTable[WAVE_END] = new WaveConstants(0, 0, "終了");
@@ -181,7 +181,7 @@ void GemManager::CreateEntyrInformation()
         // 登場時間を設定
         entryGemDataBase[i].entryTime = i * constant->entryTime;
         // 登場座標の設定
-        entryGemDataBase[i].entryPosition = VGet(-18, 16, -5); // カメラ左上
+        entryGemDataBase[i].entryPosition = GEM_ENTRYR_POSITION; // カメラ左上
     }
 }
 
