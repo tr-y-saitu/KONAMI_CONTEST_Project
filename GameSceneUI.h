@@ -5,7 +5,7 @@
 #include "SceneUIBase.h"
 
 class WaveConstants;
-class UIObject;
+class TimeLimitUIAnimation ;
 
 /// <summary>
 /// ゲームシーンUI
@@ -87,7 +87,7 @@ private:
     static constexpr int FONT_SIZE_NOW_TIME = 40;           // 現在時間のフォントサイズ
     // 制限時間警告UI
     static constexpr int WARNING_TIME_LIMIT = 8;            // 残り制限時間を警告するための時間
-    static constexpr int WARNING_GRAPH_STOP_POSITION = 1200;// 残り制限時間を警告する画像の停止位置
+    static constexpr int TIME_LIMITS_WARNING_STOP_POSITION = 1200;// 残り制限時間を警告する画像の停止位置
     static constexpr int UI_MOVE_ADDITION = 5;              // UIの移動量
     static constexpr int FONT_SIZE_WARNING_UI = 30;         // 制限時間UIのフォントサイズ
     // WAVEステート
@@ -97,7 +97,7 @@ private:
 
     // 変数
     int		getDirectionModelHandle;	    // 宝石獲得演出用モデル
-    UIObject* timeLimitsWarningUI;
+    TimeLimitUIAnimation * timeLimitsWarningUI;
     int     timerBarFrameGraph;             // 時間表示バーのフレーム画像
     int     timerBarGraph;                  // 時間表示バーの画像
     int     getDirectionCount;              // 宝石獲得時の演出を管理するカウント

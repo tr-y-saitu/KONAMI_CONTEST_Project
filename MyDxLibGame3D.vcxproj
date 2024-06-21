@@ -184,7 +184,7 @@
     <ClCompile Include="SkyDome.cpp" />
     <ClCompile Include="TreasureChest.cpp" />
     <ClCompile Include="Calculation.cpp" />
-    <ClCompile Include="UIObject.cpp" />
+    <ClCompile Include="TimeLimitUIAnimation .cpp" />
     <ClCompile Include="WaveConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -212,7 +212,7 @@
     <ClInclude Include="SceneUIBase.h" />
     <ClInclude Include="SkyDome.h" />
     <ClInclude Include="TreasureChest.h" />
-    <ClInclude Include="UIObject.h" />
+    <ClInclude Include="TimeLimitUIAnimation .h" />
     <ClInclude Include="WaveConstants.h" />
     <ClInclude Include="ゲーム構造.h" />
   </ItemGroup>

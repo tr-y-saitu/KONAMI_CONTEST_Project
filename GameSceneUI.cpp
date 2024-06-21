@@ -3,7 +3,7 @@
 #include "GameSceneUI.h"
 #include "GemManager.h"
 #include "WaveConstants.h"
-#include "UIObject.h"
+#include "TimeLimitUIAnimation .h"
 
 /// <summary>
 /// コンストラクタ
@@ -12,7 +12,7 @@ GameSceneUI::GameSceneUI()
     : isHitGemToChest       (false)
     , getDirectionCount     (0)
 {
-    timeLimitsWarningUI = new UIObject("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,825,0));
+    timeLimitsWarningUI = new TimeLimitUIAnimation ("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,825,0));
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
     timerBarGraph = LoadGraph("data/texture/time/TimerBar_2.png");
@@ -76,7 +76,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     }
 
     // 現在のWAVEステートの描画
-    DrawFormatString(100, 100, UI_COLOR, "%s", waveText);
+    DrawFormatString(100, 750, UI_COLOR, "%s", waveText);
 
     // スコアの描画
     DrawScore(VGet(1200, 750, 0), FONT_SIZE_SCORE, gameScore);
@@ -132,35 +132,18 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
 /// <param name="waveEndTime">現在のウェーブが終了する時間</param>
 void GameSceneUI::DrawTimeWarning(int nowTimer, int waveEndTime)
 {
-    int _timeLimit = waveEndTime - nowTimer;
-    VECTOR _uiPos = timeLimitsWarningUI->GetPosition();
-    int _uiGraph = timeLimitsWarningUI->GetGraphHandle();
-    bool _uiResetPos = timeLimitsWarningUI->GetIsResetPosition();
-    // 制限時間残り5秒になったら移動
-    if (_timeLimit <= WARNING_TIME_LIMIT)
-    {
-        if (_uiPos.x >= WARNING_GRAPH_STOP_POSITION)
-        {
-            _uiPos.x -= UI_MOVE_ADDITION;
-        }
-    }
-    // 次のウェーブに移行したら画面外に出す
-    if (_timeLimit == waveEndTime)
-    {
-        _uiResetPos = true;
-    }
-    if (_uiResetPos && _uiPos.x <= SCREEN_SIZE_X)
-    {
-        _uiPos.x += UI_MOVE_ADDITION;
-        if (_uiPos.x >= SCREEN_SIZE_X)
-        {
-            _uiResetPos = false;
-        }
-    }
+    // 説明変数
+    int _timeLimit = waveEndTime - nowTimer;                        // 制限時間
+    VECTOR _uiPos = timeLimitsWarningUI->GetPosition();             // 座標
+    int _uiGraph = timeLimitsWarningUI->GetGraphHandle();           // イメージハンドル
+    bool _uiResetPos = timeLimitsWarningUI->GetIsStartPosition();   // 座標をリセットするか
 
-    // 情報更新
-    timeLimitsWarningUI->SetIsResetPosition(_uiResetPos);
-    timeLimitsWarningUI->SetPosition(_uiPos);
+    // 制限時間が残り少なくなったら移動
+    timeLimitsWarningUI->TranslationTargetPosition(TIME_LIMITS_WARNING_STOP_POSITION, _timeLimit);
+
+    // 次のウェーブに移行したら画面外に出す
+    timeLimitsWarningUI->TranslationlStartPosition(SCREEN_SIZE_X, _timeLimit, waveEndTime);
+
     // 描画
     DrawGraph(_uiPos.x, _uiPos.y, _uiGraph, true);
     SetFontSize(FONT_SIZE_WARNING_UI);
