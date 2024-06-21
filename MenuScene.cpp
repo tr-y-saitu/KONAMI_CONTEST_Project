@@ -54,7 +54,7 @@ SceneBase* MenuScene::UpdateScene()
     }
 
     // スペースキーが押されたらゲームへ
-    if (CheckHitKey(KEY_INPUT_SPACE) == 1)
+    if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
     {
         // フェードアウト開始指示
         isFadeOutStart = true;

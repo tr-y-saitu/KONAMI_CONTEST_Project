@@ -27,10 +27,10 @@ GemManager::GemManager()
     }
     // WAVEごとの情報を代入
     // 1:20,2:30,3:40
-    waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, 20, "WAVE_FIRST");
-    waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "WAVE_SECOND");
-    waveConstantsTable[WAVE_THIRD] = new WaveConstants(1, 40, "WAVE_THIRD");
-    waveConstantsTable[WAVE_END] = new WaveConstants(0, 0, "WAVE_END");
+    waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, 20, "ウェーブ１：宝石との出会い");
+    waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "ウェーブ２：失う焦り");
+    waveConstantsTable[WAVE_THIRD] = new WaveConstants(1, 40, "ウェーブ３：手放す勇気");
+    waveConstantsTable[WAVE_END] = new WaveConstants(0, 0, "終了");
     // モデルハンドルの取得
     modelHandleDiamond = MV1LoadModel("data/model/Gem/Diamonds.mv1");
     modelHandleRuby = MV1LoadModel("data/model/Gem/Ruby.mv1");
@@ -45,6 +45,10 @@ GemManager::~GemManager()
 {
     // 宝石の削除
     DeleteGem();
+    delete(waveConstantsTable[WAVE_FIRST]);
+    delete(waveConstantsTable[WAVE_SECOND]);
+    delete(waveConstantsTable[WAVE_THIRD]);
+    delete(waveConstantsTable[WAVE_END]);
 }
 
 /// <summary>
@@ -67,6 +71,8 @@ void GemManager::DeleteGem()
     {
         delete(gems[i]);
     }
+
+    
 }
 
 /// <summary>
@@ -175,7 +181,7 @@ void GemManager::CreateEntyrInformation()
         // 登場時間を設定
         entryGemDataBase[i].entryTime = i * constant->entryTime;
         // 登場座標の設定
-        entryGemDataBase[i].entryPosition = VGet(-18, 15, -5); // カメラ左上
+        entryGemDataBase[i].entryPosition = VGet(-18, 16, -5); // カメラ左上
     }
 }
 

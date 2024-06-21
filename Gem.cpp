@@ -28,7 +28,7 @@ Gem::Gem()
 	pos = VGet(0, 0, 0);
 	dir = VGet(0, 0, 0);
 	contactDir = VGet(0, 0, 0);
-	scale = VGet(0.02f, 0.02f, 0.02f);
+	scale = VGet(0.03f, 0.03f, 0.03f);
 }
 
 /// <summary>
@@ -339,12 +339,6 @@ void Gem::Draw()
 	if (visibleFlag)
 	{
         // 2D四角形当たり判定描画
-        Draw2DBOXCollision();
+        //Draw2DBOXCollision();
     }
-
-	// プレイヤーと接触したら
-	if (isHitPlayer)
-	{
-		DrawFormatString(100, 100, GetColor(255, 255, 255), "Gem Hit", true);
-	}
 }
