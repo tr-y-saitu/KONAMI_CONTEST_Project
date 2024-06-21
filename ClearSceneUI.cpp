@@ -17,6 +17,13 @@ ClearSceneUI::~ClearSceneUI()
 {
 }
 
+/// <summary>
+/// 更新
+/// </summary>
+void ClearSceneUI::Update()
+{
+
+}
 
 /// <summary>
 /// 描画

@@ -96,17 +96,15 @@ void GameScene::Update()
         // スコアをアップさせる
         UpdateScore(*treasureChest);
     }
-    // キャラクター更新
-    player->Update();	// プレイヤー
-
-    // カメラ更新
-    camera->Update();// カメラ
-
-    // オブジェクト更新
+    // 更新
+    player->Update();	                    // プレイヤー
+    camera->Update();                       // カメラ
     skyDome->Update();		                // 背景
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
+    gameSceneUI->Update(nowTimer,           // UI
+        gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
 
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
@@ -166,6 +164,9 @@ SceneBase* GameScene::UpdateScene()
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
+    gameSceneUI->Update(nowTimer,           // UI
+        gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
+
     //effekseer1->Update();
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();

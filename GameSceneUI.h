@@ -29,7 +29,12 @@ public:
     /// </summary>
     void Initialize();
 
-
+    /// <summary>
+    /// 更新
+    /// </summary>
+    /// <param name="nowTimer">現在時間</param>
+    /// <param name="waveEndTime">ウェーブ終了時間</param>
+    void Update(int nowTimer,int waveEndTime);
 
     /// <summary>
     /// 描画
@@ -57,13 +62,6 @@ public:
     /// <param name="nowTimer">現在時間</param>
     /// <param name="waveEndTime">現在のウェーブが終了する時間</param>
     void DrawTimerBar(int nowTimer,int waveEndTime);
-
-    /// <summary>
-    /// 残り時間が少ないことを知らせる描画をする
-    /// </summary>
-    /// <param name="nowTimer">現在時間</param>
-    /// <param name="waveEndTime">現在のウェーブが終了する時間</param>
-    void DrawTimeWarning(int nowTimer, int waveEndTime);
 
     // Setter
     void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }

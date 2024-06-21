@@ -36,6 +36,11 @@ public:
     ~SceneUIBase();
 
     /// <summary>
+    /// 更新
+    /// </summary>
+    virtual void Update();
+
+    /// <summary>
     /// 描画
     /// </summary>
     void Draw();

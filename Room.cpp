@@ -11,7 +11,7 @@ Room::Room()
 	,	speed			(0)
 	,	r				(0)
 {
-	modelHandle = MV1LoadModel("data/model/Room/RoomFloorModel.mv1");
+	modelHandle = MV1LoadModel("data/model/Room/RoomFloorModelBright.mv1");
 	scale = VGet(0.02f ,0.02f, 0.02f);
 	// スケールの設定
 	MV1SetScale(modelHandle, scale);

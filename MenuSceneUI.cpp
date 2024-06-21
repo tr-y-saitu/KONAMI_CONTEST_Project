@@ -19,6 +19,14 @@ MenuSceneUI::~MenuSceneUI()
 }
 
 /// <summary>
+/// 更新
+/// </summary>
+void MenuSceneUI::Update()
+{
+
+}
+
+/// <summary>
 /// 描画
 /// </summary>
 void MenuSceneUI::Draw(int highScore)

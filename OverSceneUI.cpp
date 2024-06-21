@@ -17,6 +17,14 @@ OverSceneUI::~OverSceneUI()
 }
 
 /// <summary>
+/// 更新
+/// </summary>
+void OverSceneUI::Update()
+{
+
+}
+
+/// <summary>
 /// 描画
 /// </summary>
 void OverSceneUI::Draw()

@@ -39,6 +39,15 @@ void GameSceneUI::Initialize()
 }
 
 /// <summary>
+/// 更新
+/// </summary>
+void GameSceneUI::Update(int nowTimer, int waveEndTime)
+{
+    int _timeLimit = waveEndTime - nowTimer;
+    timeLimitsWarningUI->Update(_timeLimit, waveEndTime);
+}
+
+/// <summary>
 /// 描画
 /// </summary>
 /// <param name="gameScore">ゲームスコア</param>
@@ -54,7 +63,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 
     // タイマーバーの描画
     DrawTimerBar(nowTimer,waveEndTime);
-    DrawTimeWarning(nowTimer, waveEndTime);
+    timeLimitsWarningUI->Draw();
 
     // 「GET!」モデルのポジションを設定
     MV1SetPosition(getDirectionModelHandle, VGet(1, 3, -3));
@@ -125,27 +134,3 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
 
 }
 
-/// <summary>
-/// 残り時間が少ないことを知らせる描画をする
-/// </summary>
-/// <param name="nowTimer">現在時間</param>
-/// <param name="waveEndTime">現在のウェーブが終了する時間</param>
-void GameSceneUI::DrawTimeWarning(int nowTimer, int waveEndTime)
-{
-    // 説明変数
-    int _timeLimit = waveEndTime - nowTimer;                        // 制限時間
-    VECTOR _uiPos = timeLimitsWarningUI->GetPosition();             // 座標
-    int _uiGraph = timeLimitsWarningUI->GetGraphHandle();           // イメージハンドル
-    bool _uiResetPos = timeLimitsWarningUI->GetIsStartPosition();   // 座標をリセットするか
-
-    // 制限時間が残り少なくなったら移動
-    timeLimitsWarningUI->TranslationTargetPosition(TIME_LIMITS_WARNING_STOP_POSITION, _timeLimit);
-
-    // 次のウェーブに移行したら画面外に出す
-    timeLimitsWarningUI->TranslationlStartPosition(SCREEN_SIZE_X, _timeLimit, waveEndTime);
-
-    // 描画
-    DrawGraph(_uiPos.x, _uiPos.y, _uiGraph, true);
-    SetFontSize(FONT_SIZE_WARNING_UI);
-    DrawFormatString(_uiPos.x + 120, _uiPos.y + 30, UI_COLOR_BLACK, "残り時間わずか！", true);
-}

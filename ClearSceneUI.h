@@ -18,6 +18,8 @@ public:
     /// </summary>
     ~ClearSceneUI();
 
+    void Update() override;
+
     /// <summary>
     /// 描画
     /// </summary>

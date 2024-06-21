@@ -24,13 +24,28 @@ public:
     /// 指定位置まで平行移動させる
     /// </summary>
     /// <param name="targetXPosition">指定位置のX座標</param>
-    void TranslationTargetPosition(int targetXPosition,int timerLimit);
+    void TranslationTargetPosition(int timerLimit);
 
     /// <summary>
     /// スタート位置まで平行移動させる
     /// </summary>
     /// <param name="startXPosition">スタート位置のX座標</param>
-    void TranslationlStartPosition(int startXPosition, int timerLimit, int waveEndTime);
+    void TranslationlStartPosition();
+
+    /// <summary>
+    /// 更新
+    /// </summary>
+    void Update(int timeLimit,int waveEndTime);
+
+    /// <summary>
+    /// 再生
+    /// </summary>
+    void PlayTranslation();
+
+    /// <summary>
+    /// 描画
+    /// </summary>
+    void Draw();
 
     // Getter/Setter
     const VECTOR GetPosition()const { return position; }
