@@ -12,7 +12,7 @@ GameSceneUI::GameSceneUI()
     : isHitGemToChest       (false)
     , getDirectionCount     (0)
 {
-    timeLimitsWarningUI = new UIObject("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,0,0));
+    timeLimitsWarningUI = new UIObject("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,825,0));
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
     timerBarGraph = LoadGraph("data/texture/time/TimerBar_2.png");
@@ -95,7 +95,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     }
 
     // スコアの描画
-    DrawScore(VGet(1200, 150, 0), FONT_SIZE_SCORE, gameScore);
+    DrawScore(VGet(1200, 750, 0), FONT_SIZE_SCORE, gameScore);
 }
 
 

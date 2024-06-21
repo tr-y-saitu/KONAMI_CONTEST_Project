@@ -75,9 +75,9 @@ private:
     static constexpr int FONT_SIZE_SCORE = 50;              // スコアのフォントサイズ
     static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
     // タイマーUI
-    static constexpr int TIMER_FRAME_TOP_LEFT_X = 200;      // タイマーフレームを描画する左上頂点X座標
+    static constexpr int TIMER_FRAME_TOP_LEFT_X = 0;      // タイマーフレームを描画する左上頂点X座標
     static constexpr int TIMER_FRAME_TOP_LEFT_Y = 800;      // タイマーフレームを描画する左上頂点Y座標
-    static constexpr int TIMER_FRAME_BOTTOM_RIGHT_X = 1400; // タイマーフレームを描画する右下頂点X座標
+    static constexpr int TIMER_FRAME_BOTTOM_RIGHT_X = 1200; // タイマーフレームを描画する右下頂点X座標
     static constexpr int TIMER_FRAME_BOTTOM_RIGHT_Y = 950;  // タイマーフレームを描画する右下頂点Y座標
     static constexpr int TIMER_BAR_TOP_LEFT_X = TIMER_FRAME_TOP_LEFT_X + 175;           // タイマーバーを描画する左上頂点X座標
     static constexpr int TIMER_BAR_TOP_LEFT_Y = TIMER_FRAME_TOP_LEFT_Y + 40;            // タイマーバーを描画する左上頂点Ｙ座標
@@ -92,7 +92,7 @@ private:
     // WAVEステート
     static constexpr int FONT_SIAE_WAVE_STATE_UI = 50;      // WAVEステートのフォントサイズ
     static constexpr int WAVE_TITLE_MESSAGE_X = 50;         // WAVEごとのタイトルを描画するX座標
-    static constexpr int WAVE_TITLE_MESSAGE_Y = 150;        // WAVEごとのタイトルを描画するY座標
+    static constexpr int WAVE_TITLE_MESSAGE_Y = 750;        // WAVEごとのタイトルを描画するY座標
 
     // 変数
     int		getDirectionModelHandle;	    // 宝石獲得演出用モデル
