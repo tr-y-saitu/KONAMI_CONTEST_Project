@@ -9,10 +9,10 @@ WaveConstants::WaveConstants()
 }
 
 
-WaveConstants::WaveConstants(int _entryTime, int _waveEndTime, string _uiWaveState)
+WaveConstants::WaveConstants(int _entryTime, int _waveEndTime, char* _uiWaveStateText)
     : entryTime     (_entryTime)
     , waveEndTime   (_waveEndTime)
-    , uiWaveState   (_uiWaveState)
+    , uiWaveStateText(_uiWaveStateText)
 {
 }
 

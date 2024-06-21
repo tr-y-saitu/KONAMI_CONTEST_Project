@@ -40,7 +40,8 @@ public:
     /// <param name="isBlackOut">暗転処理するかどうか</param>
     /// <param name="waveEndTime">現在のウェーブの終了時間</param>
     void Draw(int gameScore, float nowTimer,
-        int gemWaveState, bool isBlackOut,int waveEndTime);
+        int gemWaveState, bool isBlackOut,int waveEndTime,
+        char* waveText);
 
     /// <summary>
     /// スコアの描画

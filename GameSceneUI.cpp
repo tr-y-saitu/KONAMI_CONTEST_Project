@@ -47,7 +47,8 @@ void GameSceneUI::Initialize()
 /// <param name="isBlackOut">暗転処理するかどうか</param>
 /// <param name="waveEndTime">現在のウェーブの終了時間</param>
 void GameSceneUI::Draw(int gameScore, float nowTimer,
-    int gemWaveState, bool isBlackOut,int waveEndTime)
+    int gemWaveState, bool isBlackOut,int waveEndTime,
+    char* waveText)
 {
     char _timeCount[256];		// ゲームの経過時間
 
@@ -75,24 +76,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     }
 
     // 現在のWAVEステートの描画
-    SetFontSize(FONT_SIAE_WAVE_STATE_UI);
-    switch (gemWaveState)
-    {
-    case GemManager::WAVE_FIRST:
-        DrawFormatString(WAVE_TITLE_MESSAGE_X, WAVE_TITLE_MESSAGE_Y, UI_COLOR, "ウェーブ１：宝石との出会い");
-        break;
-
-    case GemManager::WAVE_SECOND:
-        DrawFormatString(WAVE_TITLE_MESSAGE_X, WAVE_TITLE_MESSAGE_Y, UI_COLOR, "ウェーブ２：失う焦り");
-        break;
-
-    case GemManager::WAVE_THIRD:
-        DrawFormatString(WAVE_TITLE_MESSAGE_X, WAVE_TITLE_MESSAGE_Y, UI_COLOR, "ウェーブ３：手放す勇気");
-        break;
-
-    default:
-        break;
-    }
+    DrawFormatString(100, 100, UI_COLOR, "%s", waveText);
 
     // スコアの描画
     DrawScore(VGet(1200, 750, 0), FONT_SIZE_SCORE, gameScore);
