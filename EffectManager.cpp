@@ -9,16 +9,10 @@ EffectManager* EffectManager::effectManager = NULL;
 /// コンストラクタ
 /// </summary>
 EffectManager::EffectManager()
-	:	effectResourceHandle	(0)
-	,	graphBackGroundHandle	(0)
-	,	graphFrontHandle		(0)
-	,	time					(0)
-	,	isFullScreen			(false)
-	,	playingEffectHandle		(0)
+	:	playingEffectHandle		(0)
     ,   gemGetEffect            (-1)
     ,   playerHitEffect         (-1)
 {
-	pos = VGet(0, 0, 0);
     // DirectX11を使用するようにする。(DirectX9も可、一部機能不可)
     // Effekseerを使用するには必ず設定する。
     //DirectX11のバージョンを指定
@@ -48,6 +42,9 @@ EffectManager::EffectManager()
     LoadEffect();
 }
 
+/// <summary>
+/// デストラクタ
+/// </summary>
 EffectManager::~EffectManager()
 {
 	// エフェクトリソースを削除する。(Effekseer終了時に破棄されるので削除しなくてもいい)
@@ -122,6 +119,17 @@ void EffectManager::PlayGemGetEffect(VECTOR playPosition)
 void EffectManager::PlayPlayerHitEffect(VECTOR playPosition)
 {
     playingEffectHandle = PlayEffekseer3DEffect(playerHitEffect);
+    playingList.push_back(playingEffectHandle);
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
+}
+
+/// <summary>
+/// 宝石が地面に落ちてしまった時のエフェクト
+/// </summary>
+/// <param name="playPosition">再生する座標</param>
+void EffectManager::PlayGemFallEffect(VECTOR playPosition)
+{
+    playingEffectHandle = PlayEffekseer3DEffect(gemFallEffect);
     playingList.push_back(playingEffectHandle);
     SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
 }

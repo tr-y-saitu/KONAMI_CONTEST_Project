@@ -161,8 +161,5 @@ void Player::Draw2DBOXCollision()
 /// </summary>
 void Player::Draw()
 {
-    // プレイヤー座標の描画
-    DrawFormatString(100,100, GetColor(255, 255, 255), "Position x:%f  y:%f  z:%f", pos.x, pos.y, pos.z);
-
 	MV1DrawModel(modelHandle);
 }
