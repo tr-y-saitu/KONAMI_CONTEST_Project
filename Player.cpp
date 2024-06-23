@@ -136,6 +136,12 @@ void Player::Update()
 	//	pos.x = 0;
 	//}
 
+    // 宝石と接触したらエフェクト
+    if (isHitGem)
+    {
+        effectManager->PlayPlayerHitEffect(pos);
+    }
+
 	// ３Dモデルのポジション設定
 	MV1SetPosition(modelHandle, pos);
 }
@@ -145,7 +151,6 @@ void Player::Update()
  /// </summary>
 void Player::Draw2DBOXCollision()
 {
-    // 2D四角形当たり判定描画
     DrawBillboard3D(pos, 0.5f, 0.9f, 4.0f, 0, collisionGraph, true);
 }
 
@@ -156,9 +161,8 @@ void Player::Draw2DBOXCollision()
 /// </summary>
 void Player::Draw()
 {
-	// ３Ｄモデルの描画
-	MV1DrawModel(modelHandle);
+    // プレイヤー座標の描画
+    DrawFormatString(100,100, GetColor(255, 255, 255), "Position x:%f  y:%f  z:%f", pos.x, pos.y, pos.z);
 
-	// 2DBOX当たり判定の描画
-    //Draw2DBOXCollision();
+	MV1DrawModel(modelHandle);
 }

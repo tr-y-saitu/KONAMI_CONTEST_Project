@@ -57,6 +57,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// 画面モードのセット
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DEPTH);
 
+    SetFullSceneAntiAliasingMode(4, 0);  // 4x アンチエイリアシングを設定
+
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	// インスタンス化

@@ -46,7 +46,7 @@ public:
     /// </summary>
     /// <param name="player">プレイヤークラス</param>
     /// <param name="gem">宝石クラス</param>
-    void IsHit2DPlayerToGem(Player& player, Gem& gem);
+    bool IsHit2DPlayerToGem(Player& player, Gem& gem);
 
     /// <summary>
     /// 宝石と宝箱の2D当たり判定

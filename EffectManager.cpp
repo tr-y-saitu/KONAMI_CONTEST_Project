@@ -15,6 +15,8 @@ EffectManager::EffectManager()
 	,	time					(0)
 	,	isFullScreen			(false)
 	,	playingEffectHandle		(0)
+    ,   gemGetEffect            (-1)
+    ,   playerHitEffect         (-1)
 {
 	pos = VGet(0, 0, 0);
     // DirectX11を使用するようにする。(DirectX9も可、一部機能不可)
@@ -49,7 +51,8 @@ EffectManager::EffectManager()
 EffectManager::~EffectManager()
 {
 	// エフェクトリソースを削除する。(Effekseer終了時に破棄されるので削除しなくてもいい)
-	//DeleteEffekseerEffect(effectResourceHandle);
+	DeleteEffekseerEffect(gemGetEffect);
+	DeleteEffekseerEffect(playerHitEffect);
 }
 
 /// <summary>
@@ -57,8 +60,8 @@ EffectManager::~EffectManager()
 /// </summary>
 void EffectManager::LoadEffect()
 {
-    gemGetEffect = LoadEffekseerEffect("data/effect/gemGetEffect.efk", 2.0f);
-    playerHitEffect = LoadEffekseerEffect("data/effect/playerHitEffect.efk", 1.0f);
+    gemGetEffect = LoadEffekseerEffect("data/effect/getEffectLight.efk", 0.3f);
+    playerHitEffect = LoadEffekseerEffect("data/effect/playerHitEffect波紋.efk", 2.0f);
 }
 
 /// <summary>
@@ -105,5 +108,5 @@ void EffectManager::PlayPlayerHitEffect(VECTOR playPosition)
 {
     playingEffectHandle = PlayEffekseer3DEffect(playerHitEffect);
     playingList.push_back(playingEffectHandle);
-    SetPosPlayingEffekseer3DEffect(playerHitEffect, playPosition.x, playPosition.y, playPosition.z);
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
 }

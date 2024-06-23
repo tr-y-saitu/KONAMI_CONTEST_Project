@@ -205,7 +205,7 @@ bool Collision::IsHitGemToTreasureChestBool(Gem& gem, TreasureChest& chest)
 /// </summary>
 /// <param name="player">プレイヤークラス</param>
 /// <param name="gem">宝石クラス</param>
-void Collision::IsHit2DPlayerToGem(Player& player, Gem& gem)
+bool Collision::IsHit2DPlayerToGem(Player& player, Gem& gem)
 {
     // 当たったか、当たっていないか
     bool isHit = false;
@@ -228,6 +228,7 @@ void Collision::IsHit2DPlayerToGem(Player& player, Gem& gem)
     player.SetIsHitGem(isHit);
     gem.SetIsHitPlayer(isHit);
 
+    return isHit;
 }
 
 

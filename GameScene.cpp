@@ -99,13 +99,13 @@ void GameScene::Update()
     }
     // 更新
     player->Update();	                    // プレイヤー
-    camera->Update();                       // カメラ
     skyDome->Update();		                // 背景
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
+    camera->Update();                       // カメラ
 
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
@@ -156,7 +156,6 @@ SceneBase* GameScene::UpdateScene()
     }
 
     // オブジェクト更新
-    camera->Update();                       // カメラ
     player->Update();	                    // プレイヤー
     skyDome->Update();		                // 背景
     room->Update();			                // 部屋
@@ -164,6 +163,7 @@ SceneBase* GameScene::UpdateScene()
     treasureChest->Update();			    // 宝箱更新
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
+    camera->Update();                       // カメラ
     UpdateEffekseer3D();                    // エフェクト更新
 
     // データのリセットフラグがたったら宝石のデータをリセットさせる
@@ -190,8 +190,8 @@ void GameScene::Draw()
     bool _fadeOutScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_OUT_SCREEN_PLAYING;
 
     // オブジェク描画画
-    player->Draw();         // プレイヤー
     room->Draw();           // 部屋
+    player->Draw();         // プレイヤー
     gemManager->DrawGems(); // 宝石たち
     treasureChest->Draw();  // 宝箱
     DrawEffekseer3D();      // 3Dエフェクト描画
