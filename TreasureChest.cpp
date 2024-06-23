@@ -39,7 +39,7 @@ void TreasureChest::Initialize()
 // 更新
 void TreasureChest::Update()
 {
-    // 宝石と接触したら
+    // 宝石と接触したらエフェクト再生
     if (isHitGem)
     {
         effectManager->PlayGemGetEffect(pos);

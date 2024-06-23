@@ -13,6 +13,7 @@
 #include "GameSceneUI.h"
 #include "WaveConstants.h"
 #include "EffekseerForDXLib.h"
+#include "EffectManager.h"
 
 /// <summary>
 /// コンストラクタ
@@ -26,6 +27,7 @@ GameScene::GameScene(int _highScore)
 {
     highScore = _highScore;
     score = 0;
+    effectManager = EffectManager::GetInstance();
     // newインスタンス
     player = new Player();
     treasureChest = new TreasureChest();
@@ -66,6 +68,7 @@ void GameScene::Initialize()
     score = 0;
     isScoreUp = false;
     isNextScene = false;
+
     // 宝石のWAVE_STATEをFIRSTにする
     gemManager->SetGemWaveState(GemManager::WAVE_FIRST);
 
@@ -106,7 +109,7 @@ void GameScene::Update()
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
     camera->Update();                       // カメラ
-
+    effectManager->Update();                // エフェクト
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
 

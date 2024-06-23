@@ -41,6 +41,11 @@ public:
     void LoadEffect();
 
     /// <summary>
+    /// 更新
+    /// </summary>
+    void Update();
+
+    /// <summary>
     /// 宝石獲得エフェクト
     /// </summary>
     /// <param name="playPosition">再生する座標</param>

@@ -90,6 +90,21 @@ void EffectManager::DeleteInstance()
 }
 
 /// <summary>
+/// 更新
+/// </summary>
+void EffectManager::Update()
+{
+    // エフェクトが終了したら、再生中から削除する
+    for (int i = 0; i < playingList.size(); i++)
+    {
+        if (playingList[i] == -1)
+        {
+            playingList.erase(playingList.begin());
+        }
+    }
+}
+
+/// <summary>
 /// 宝石獲得エフェクト
 /// </summary>
 /// <param name="playPosition">再生する座標</param>
