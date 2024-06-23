@@ -57,7 +57,7 @@ EffectManager::~EffectManager()
 /// </summary>
 void EffectManager::LoadEffect()
 {
-    gemGetEffect = LoadEffekseerEffect("data/effect/gemGetEffect.efk", 3.0f);
+    gemGetEffect = LoadEffekseerEffect("data/effect/gemGetEffect.efk", 2.0f);
     playerHitEffect = LoadEffekseerEffect("data/effect/playerHitEffect.efk", 1.0f);
 }
 
@@ -92,8 +92,9 @@ void EffectManager::DeleteInstance()
 /// <param name="playPosition">再生する座標</param>
 void EffectManager::PlayGemGetEffect(VECTOR playPosition)
 {
-    PlayEffekseer3DEffect(gemGetEffect);
-    SetPosPlayingEffekseer3DEffect(gemGetEffect, playPosition.x,playPosition.y,playPosition.z);
+    playingEffectHandle = PlayEffekseer3DEffect(gemGetEffect);
+    playingList.push_back(playingEffectHandle);
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x,playPosition.y,playPosition.z);
 }
 
 /// <summary>
@@ -102,6 +103,7 @@ void EffectManager::PlayGemGetEffect(VECTOR playPosition)
 /// <param name="playPosition">再生する座標</param>
 void EffectManager::PlayPlayerHitEffect(VECTOR playPosition)
 {
-    PlayEffekseer3DEffect(playerHitEffect);
+    playingEffectHandle = PlayEffekseer3DEffect(playerHitEffect);
+    playingList.push_back(playingEffectHandle);
     SetPosPlayingEffekseer3DEffect(playerHitEffect, playPosition.x, playPosition.y, playPosition.z);
 }

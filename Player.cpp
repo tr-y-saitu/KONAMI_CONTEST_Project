@@ -114,15 +114,6 @@ void Player::Update()
 		dir = VNorm(velocity);
 	}
 
-	// 重力判定
-	//fallSpeed += GRAVITY;
-	
-	// 落下速度を移動量に加える
-	//auto fallVelocity = VGet(0, fallSpeed, 0);	// 落下をベクトルにする
-	//velocity = VAdd(velocity, fallVelocity);
-
-
-
 	// 移動制限
 	//if (pos.y >= MOVE_LIMIT_Y)
 	//{
@@ -145,19 +136,8 @@ void Player::Update()
 	//	pos.x = 0;
 	//}
 
-	//// ジャンプが成功した
-	//VECTOR _enemyPos = enemy.GetPos();
-	//if (pos.x > _enemyPos.x)
-	//{
-	//	isGreatJump = true;
-	//}
-
-
-
 	// ３Dモデルのポジション設定
 	MV1SetPosition(modelHandle, pos);
-
-
 }
 
 /// <summary>

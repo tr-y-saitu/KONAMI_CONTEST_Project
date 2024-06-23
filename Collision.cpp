@@ -6,14 +6,13 @@
 #include "Enemy.h"
 #include "Gem.h"
 #include "collision.h"
-// Check
+#include "EffectManager.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
 Collision::Collision()
 {
-
 }
 
 

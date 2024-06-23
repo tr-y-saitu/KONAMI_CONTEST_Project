@@ -5,6 +5,8 @@
 #include "WaveConstants.h"
 #include "Collision.h"
 #include "Game.h"
+#include "TreasureChest.h"
+#include "Player.h"
 
 enum GEM_STATE;
 
@@ -71,8 +73,6 @@ void GemManager::DeleteGem()
     {
         delete(gems[i]);
     }
-
-    
 }
 
 /// <summary>
@@ -223,6 +223,11 @@ bool GemManager::IsCollisionGem(Player& player, TreasureChest& chest, Collision&
             _result = true;
         }
     }
+
+    // 当たったかどうか
+    chest.SetIsHitGem(_result);
+    player.SetIsHitGem(_result);
+
     return _result;
 }
 

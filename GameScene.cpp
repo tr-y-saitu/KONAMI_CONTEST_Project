@@ -12,6 +12,7 @@
 #include "Calculation.h"
 #include "GameSceneUI.h"
 #include "WaveConstants.h"
+#include "EffekseerForDXLib.h"
 
 /// <summary>
 /// コンストラクタ
@@ -153,23 +154,21 @@ SceneBase* GameScene::UpdateScene()
         // スコアをアップさせる
         UpdateScore(*treasureChest);
     }
-    // キャラクター更新
-    player->Update();	// プレイヤー
-
-    // カメラ更新
-    camera->Update();// カメラ
 
     // オブジェクト更新
+    camera->Update();                       // カメラ
+    player->Update();	                    // プレイヤー
     skyDome->Update();		                // 背景
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
+    UpdateEffekseer3D();                    // エフェクト更新
 
-    //EffectManager->Update();
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
+
 
     // 終了時間になったらSCENE_CLEARに移行
     if (nowTimer >= STATE_GAME_TIME_LIMIT && !isFadeOutStart)
@@ -195,6 +194,7 @@ void GameScene::Draw()
     room->Draw();           // 部屋
     gemManager->DrawGems(); // 宝石たち
     treasureChest->Draw();  // 宝箱
+    DrawEffekseer3D();      // 3Dエフェクト描画
     // フェード処理中は描画しない
     if (_fadeInScreen && _fadeOutScreen)
     {

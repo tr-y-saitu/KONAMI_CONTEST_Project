@@ -67,13 +67,13 @@ public:
     /// <returns>当たっているかどうか</returns>
     bool IsHitObject2DBOX(VECTOR pos1, VECTOR pos2, float width1,float height1,float width2,float height2);
 
+
+private:
     // 定数
 	const float OBJECT_HIT_BUF = 0.5f;  // オブジェクトの当たり判定バフ値
 
-private:
 
 
-    //bool bb = collision->IsHit2DGemToTreasureChest(*gem[i], *treasureChest;
 };
 
 

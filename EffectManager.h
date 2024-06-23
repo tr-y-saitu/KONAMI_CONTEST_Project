@@ -1,4 +1,7 @@
 ﻿#pragma once
+#include <iostream>
+#include <vector>
+
 
 /// <summary>
 /// エフェクトマネージャー
@@ -56,13 +59,13 @@ private:
 	int		time;						// 定期的にエフェクトを再生する時間
 	bool	isFullScreen;				// フルスクリーン切り替えようフラグ
 	VECTOR	pos;						// エフェクトを描画する位置
-	int		playingEffectHandle;		// 再生中のエフェクトハンドル
 
     // エフェクト
     int     gemGetEffect;       // 宝石ゲット時
     int     playerHitEffect;    // プレイヤーと宝石のヒット時
 
-    static EffectManager* effectManager;       // エフェクトマネージャーのインスタンス
-
+    static EffectManager* effectManager;    // エフェクトマネージャーのインスタンス
+    int playingEffectHandle;                // 現在再生中のエフェクトのハンドル
+    std::vector<int> playingList;           // 現在再生中のリスト
 };
 

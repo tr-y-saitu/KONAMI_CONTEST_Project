@@ -28,7 +28,7 @@ public:
 
 private:
     // 定数
-    static constexpr int SET_FPS = 60;  // 設定したFPS値
+    static constexpr int SET_FPS = 30;  // 設定したFPS値
 
     // 変数
     int     nowFpsCount;                // 現在のフレーム数
