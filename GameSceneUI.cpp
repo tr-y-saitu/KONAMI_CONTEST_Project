@@ -3,7 +3,7 @@
 #include "GameSceneUI.h"
 #include "GemManager.h"
 #include "WaveConstants.h"
-#include "TimeLimitUIAnimation .h"
+#include "TimeLimitsWarningUI.h"
 
 /// <summary>
 /// コンストラクタ
@@ -12,7 +12,7 @@ GameSceneUI::GameSceneUI()
     : isHitGemToChest       (false)
     , getDirectionCount     (0)
 {
-    timeLimitsWarningUI = new TimeLimitUIAnimation ("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,825,0));
+    timeLimitsWarningUI = new TimeLimitsWarningUI("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,825,0));
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
     timerBarGraph = LoadGraph("data/texture/time/TimerBar_2.png");

@@ -1,10 +1,10 @@
-﻿#include "TimeLimitUIAnimation .h"
+﻿#include "TimeLimitsWarningUI.h"
 #include "GameSceneUI.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
-TimeLimitUIAnimation ::TimeLimitUIAnimation (char* _graphHandle, VECTOR initPos)
+TimeLimitsWarningUI::TimeLimitsWarningUI(char* _graphHandle, VECTOR initPos)
     : isStartPosition   (false)
 {
     graphHandle = LoadGraph(_graphHandle);
@@ -14,7 +14,7 @@ TimeLimitUIAnimation ::TimeLimitUIAnimation (char* _graphHandle, VECTOR initPos)
 /// <summary>
 /// デストラクタ
 /// </summary>
-TimeLimitUIAnimation ::~TimeLimitUIAnimation ()
+TimeLimitsWarningUI::~TimeLimitsWarningUI()
 {
     DeleteGraph(graphHandle);
 }
@@ -22,7 +22,7 @@ TimeLimitUIAnimation ::~TimeLimitUIAnimation ()
 /// <summary>
 /// 更新
 /// </summary>
-void TimeLimitUIAnimation::Update(int timeLimit, int waveEndTime)
+void TimeLimitsWarningUI::Update(int timeLimit, int waveEndTime)
 {
     // 制限時間わずかになったら表示を画面内へ
     if (timeLimit <= WARNING_TIME_LIMIT)
@@ -43,7 +43,7 @@ void TimeLimitUIAnimation::Update(int timeLimit, int waveEndTime)
 /// <summary>
 /// 再生
 /// </summary>
-void TimeLimitUIAnimation::PlayTranslation()
+void TimeLimitsWarningUI::PlayTranslation()
 {
 
 }
@@ -51,23 +51,23 @@ void TimeLimitUIAnimation::PlayTranslation()
 /// <summary>
 /// 描画
 /// </summary>
-void TimeLimitUIAnimation::Draw()
+void TimeLimitsWarningUI::Draw()
 {
     DrawGraph(position.x, position.y, graphHandle, true);
-    SetFontSize(30);
-    DrawFormatString(position.x + 120, position.y + 30, GetColor(0,0,0), "残り時間わずか！", true);
+    SetFontSize(TIME_LIMITS_WARNING_TEXT_SIZE);
+    DrawFormatString(position.x + OFF_SET_POSITION_X, position.y + OFF_SET_POSITION_Y, TEXT_COLOR_BLACK, "残り時間わずか！", true);
 }
 
 /// <summary>
 /// 指定位置まで平行移動させる
 /// </summary>
 /// <param name="targetXPosition">指定位置のX座標</param>
-void TimeLimitUIAnimation::TranslationTargetPosition(int timerLimit)
+void TimeLimitsWarningUI::TranslationTargetPosition(int timerLimit)
 {
     // 制限時間が残り少なくなったら
     if (timerLimit <= WARNING_TIME_LIMIT)
     {
-        if (position.x >= 1200)
+        if (position.x >= TIME_LIMITS_WARNING_STOP_POSITION)
         {
             position.x -= UI_MOVE_AMOUNT;
         }
@@ -79,7 +79,7 @@ void TimeLimitUIAnimation::TranslationTargetPosition(int timerLimit)
 /// </summary>
 /// <param name="startXPosition">スタート位置のX座標</param>
 /// <returns>移動が終了したか</returns>
-void TimeLimitUIAnimation::TranslationlStartPosition()
+void TimeLimitsWarningUI::TranslationlStartPosition()
 {
     // スタート座標に戻す
     if (isStartPosition && position.x <= SCREEN_SIZE_X)
