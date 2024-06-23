@@ -4,6 +4,7 @@
 //-----------------------------------------------------------------------------
 #include "Player.h"
 #include "Enemy.h"
+#include "EffectManager.h"
 #include "Game.h"
 
 //-----------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Player::Player()
     ,   height          (1.0f)
     ,   collisionGraph  (-1)
 {
+    effectManager = EffectManager::GetInstance();
 	// ３Ｄモデルの読み込み
 	modelHandle = MV1LoadModel("data/model/player/trampoline.mv1");
     collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Red.png");
@@ -61,10 +63,10 @@ void Player::Initialize()
 }
 
 
-	/// <summary>
-	/// プレイヤーの更新
-	/// </summary>
-	/// <param name="enemy"></param>
+/// <summary>
+/// プレイヤーの更新
+/// </summary>
+/// <param name="enemy"></param>
 void Player::Update()
 {
 	// キー入力取得

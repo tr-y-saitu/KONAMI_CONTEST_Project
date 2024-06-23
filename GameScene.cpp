@@ -115,7 +115,7 @@ void GameScene::Update()
         isNextScene = true;
     }
 
-    //effekseer1->Update();
+    //EffectManager->Update();
 }
 
 /// <summary>
@@ -167,7 +167,7 @@ SceneBase* GameScene::UpdateScene()
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
 
-    //effekseer1->Update();
+    //EffectManager->Update();
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
 

@@ -70,7 +70,7 @@
     <ClCompile Include="Collision.cpp">
       <Filter>FIRE\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Effekseer.cpp">
+    <ClCompile Include="EffectManager.cpp">
       <Filter>FIRE\Effect</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -150,7 +150,7 @@
     <ClInclude Include="Collision.h">
       <Filter>FIRE\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Effekseer.h">
+    <ClInclude Include="EffectManager.h">
       <Filter>FIRE\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
