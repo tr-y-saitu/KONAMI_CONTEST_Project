@@ -59,6 +59,7 @@ void EffectManager::LoadEffect()
 {
     gemGetEffect = LoadEffekseerEffect("data/effect/getEffectLight.efk", 0.3f);
     playerHitEffect = LoadEffekseerEffect("data/effect/playerHitEffect波紋.efk", 2.0f);
+    gemFallEffect = LoadEffekseerEffect("data/effect/gemFallEffect.efk", 2.0f);
 }
 
 /// <summary>

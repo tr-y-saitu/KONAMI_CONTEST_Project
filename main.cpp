@@ -1,8 +1,4 @@
-﻿//-----------------------------------------------------------------------------
-// @brief  メイン処理.
-// 2016 Takeru Yui All Rights Reserved.
-//-----------------------------------------------------------------------------
-// 標準ライブラリ
+﻿// 標準ライブラリ
 #include <stdio.h>
 #include <iostream>
 #include <vector>
@@ -34,19 +30,17 @@
 #include "Game.h"
 
 
-
-
-//-----------------------------------------------------------------------------
-// @brief  メイン関数.
-//-----------------------------------------------------------------------------
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) 
 {
 	// DXライブラリの表示方法をウィンドウモードに変更する。
-	//ChangeWindowMode(true);	// ウィンドウモード
-	ChangeWindowMode(false);// 全画面モード
+	ChangeWindowMode(true);	// ウィンドウモード
+	//ChangeWindowMode(false);// 全画面モード
 
 	//描画先を裏画面に変更する。
 	SetDrawScreen(DX_SCREEN_BACK);
+
+    // 降るシーンアンチエイリアスを設定する
+    SetFullSceneAntiAliasingMode(4, 2);  // 4x アンチエイリアシングを設定
 
 	// ＤＸライブラリ初期化処理
 	if (DxLib_Init() == -1)		
@@ -57,8 +51,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// 画面モードのセット
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DEPTH);
 
-    SetFullSceneAntiAliasingMode(4, 0);  // 4x アンチエイリアシングを設定
-
+    // 描画先グラフィック領域の指定
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	// インスタンス化

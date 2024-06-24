@@ -6,6 +6,9 @@
 /// コンストラクタ
 /// </summary>
 FPSSetting::FPSSetting()
+    : fpsCountStartTime (0)
+    , nowFpsCount       (0)
+    , deltaTime         (0)
 {
 
 }

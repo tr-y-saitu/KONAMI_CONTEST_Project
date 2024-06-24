@@ -214,7 +214,7 @@ bool GemManager::IsCollisionGem(Player& player, TreasureChest& chest, Collision&
     bool _resultPlayer = false;
     bool _flag = false;
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < GEM_TOTAL_NUM; i++)
     {
         // プレイヤーと宝石との当たり判定
         _resultPlayer = collision.IsHit2DPlayerToGem(player, *gems[i]);
@@ -234,7 +234,6 @@ bool GemManager::IsCollisionGem(Player& player, TreasureChest& chest, Collision&
     // 当たったかどうか
     chest.SetIsHitGem(_result);
     player.SetIsHitGem(_flag);
-    
 
     return _result;
 }

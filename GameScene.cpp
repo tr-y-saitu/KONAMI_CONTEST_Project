@@ -157,6 +157,8 @@ SceneBase* GameScene::UpdateScene()
         // スコアをアップさせる
         UpdateScore(*treasureChest);
     }
+    // データのリセットフラグがたったら宝石のデータをリセットさせる
+    gemManager->ResetGemData();     // treasureChest->Updateyよりも上に書かないと、ウェーブ切り替え時１フレームだけ原点に宝石が描画される
 
     // オブジェクト更新
     player->Update();	                    // プレイヤー
@@ -168,10 +170,6 @@ SceneBase* GameScene::UpdateScene()
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
     camera->Update();                       // カメラ
     UpdateEffekseer3D();                    // エフェクト更新
-
-    // データのリセットフラグがたったら宝石のデータをリセットさせる
-    gemManager->ResetGemData();
-
 
     // 終了時間になったらSCENE_CLEARに移行
     if (nowTimer >= STATE_GAME_TIME_LIMIT && !isFadeOutStart)
