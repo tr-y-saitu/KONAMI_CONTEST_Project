@@ -1,6 +1,9 @@
-﻿#include "GameSceneUI.h"
+﻿#include "Common.h"
+#include "SceneUIBase.h"
+#include "GameSceneUI.h"
 #include "GemManager.h"
 #include "WaveConstants.h"
+#include "TimeLimitsWarningUI.h"
 
 /// <summary>
 /// コンストラクタ
@@ -9,6 +12,7 @@ GameSceneUI::GameSceneUI()
     : isHitGemToChest       (false)
     , getDirectionCount     (0)
 {
+    timeLimitsWarningUI = new TimeLimitsWarningUI("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,825,0));
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
     timerBarGraph = LoadGraph("data/texture/time/TimerBar_2.png");
@@ -22,6 +26,7 @@ GameSceneUI::GameSceneUI()
 GameSceneUI::~GameSceneUI()
 {
     MV1DeleteModel(getDirectionModelHandle);
+    delete(timeLimitsWarningUI);
 }
 
 /// <summary>
@@ -31,6 +36,15 @@ void GameSceneUI::Initialize()
 {
     isHitGemToChest = false;
     getDirectionCount = 0;
+}
+
+/// <summary>
+/// 更新
+/// </summary>
+void GameSceneUI::Update(int nowTimer, int waveEndTime)
+{
+    int _timeLimit = waveEndTime - nowTimer;
+    timeLimitsWarningUI->Update(_timeLimit, waveEndTime);
 }
 
 /// <summary>
@@ -49,6 +63,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 
     // タイマーバーの描画
     DrawTimerBar(nowTimer,waveEndTime);
+    timeLimitsWarningUI->Draw();
 
     // 「GET!」モデルのポジションを設定
     MV1SetPosition(getDirectionModelHandle, VGet(1, 3, -3));
@@ -70,10 +85,10 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     }
 
     // 現在のWAVEステートの描画
-    DrawFormatString(100, 100, UI_COLOR, "%s", waveText);
+    DrawFormatString(100, 750, UI_COLOR, "%s", waveText);
 
     // スコアの描画
-    DrawScore(VGet(1200, 100, 0), FONT_SIZE_SCORE, gameScore);
+    DrawScore(VGet(1200, 750, 0), FONT_SIZE_SCORE, gameScore);
 }
 
 
@@ -85,10 +100,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 /// <param name="score">スコア</param>
 void GameSceneUI::DrawScore(VECTOR pos, int fontSize, int score)
 {
-    // フォントサイズの変更
     SetFontSize(fontSize);
-
-    // スコアの描画
     DrawFormatString(pos.x, pos.y, UI_COLOR, "SCORE : %d", score);
 }
 
@@ -116,15 +128,9 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
 
     // 現在の経過時間を描画
     char _timeCount[256];		// ゲームの経過時間
-    SetFontSize(40);
+    SetFontSize(FONT_SIZE_NOW_TIME);
     sprintf_s(_timeCount, "あと%d秒", waveEndTime - nowTimer);
     DrawString(450, 850, _timeCount, UI_COLOR_BLACK, true);
 
 }
 
-
-void GameSceneUI::DrawTextAtSize(char* text, int textSize, VECTOR textPos, int color)
-{
-    SetFontSize(textSize);
-    DrawFormatString(textPos.x, textPos.y, color, text);
-}

@@ -18,13 +18,17 @@ public:
     /// </summary>
     ~MenuSceneUI();
 
+    void Update() override;
+
     /// <summary>
     /// 描画
     /// </summary>
-    void Draw();
-
+    void Draw(int highScore);
+        
 private:
-    int menuGraph;      // メニューで使用する画像
+    const int UI_COLOR_WHITE = GetColor(255, 255, 255);
+
+    int titileGraph;            // タイトル画像
 };
 
 

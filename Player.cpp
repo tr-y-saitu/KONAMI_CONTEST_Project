@@ -48,7 +48,7 @@ Player::~Player()
 /// </summary>
 void Player::Initialize()
 {
-	pos = VGet(-10, 1, -5);	// 座標のセット
+	pos = VGet(-18, 1, -5);	// 座標のセット
 	dir = VGet(0, 0, 0);	// 方向のセット
 	fallSpeed = 0.0f;		// 落下速度
 	isGround = false;		// 地面にいるか

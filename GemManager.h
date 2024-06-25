@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Common.h"
 #include "Calculation.h"
 #include <iostream>
 #include <map>
@@ -142,6 +143,8 @@ public:
     vector<Gem*> gems;
 
 private:
+    const VECTOR GEM_ENTRYR_POSITION = VGet(-18, 16, -5);
+
     int     gemWaveState;       // 現在のウェーブステート
     bool    resetTimer;         // 時間をリセットするフラグ
     bool    isResetEntryData;     // エントリーデータをリセットする

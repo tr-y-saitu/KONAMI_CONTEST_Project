@@ -184,6 +184,7 @@
     <ClCompile Include="SkyDome.cpp" />
     <ClCompile Include="TreasureChest.cpp" />
     <ClCompile Include="Calculation.cpp" />
+    <ClCompile Include="TimeLimitsWarningUI.cpp" />
     <ClCompile Include="WaveConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +193,7 @@
     <ClInclude Include="ClearScene.h" />
     <ClInclude Include="ClearSceneUI.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="Common.h" />
     <ClInclude Include="Effekseer.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FPSSetting.h" />
@@ -210,6 +212,7 @@
     <ClInclude Include="SceneUIBase.h" />
     <ClInclude Include="SkyDome.h" />
     <ClInclude Include="TreasureChest.h" />
+    <ClInclude Include="TimeLimitsWarningUI.h" />
     <ClInclude Include="WaveConstants.h" />
     <ClInclude Include="ゲーム構造.h" />
   </ItemGroup>

@@ -45,7 +45,8 @@ public:
 
 protected:
     bool    isFadeOutStart;     // フェードアウトを開始したかどうか
-
+    int     score;              // スコア
+    int     highScore;          // ハイスコア
 };
 
 

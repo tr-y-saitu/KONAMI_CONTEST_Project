@@ -41,7 +41,7 @@ SceneBase* OverScene::UpdateScene()
     // スペースキーが押されたらメニューへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
     {
-        return new MenuScene();
+        return new MenuScene(highScore);
     }
 
     return this;

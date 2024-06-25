@@ -19,7 +19,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    ClearScene();
+    ClearScene(int _score,int _highScore);
 
     /// <summary>
     /// デストラクタ

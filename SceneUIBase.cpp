@@ -22,6 +22,10 @@ SceneUIBase::~SceneUIBase()
     DeleteGraph(blackOutGraph);
 }
 
+void SceneUIBase::Update()
+{
+
+}
 
 /// <summary>
 /// フェードインUIのみ（UIの明るさを徐々にあげる）

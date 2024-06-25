@@ -16,14 +16,15 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-GameScene::GameScene()
+GameScene::GameScene(int _highScore)
     : previousTime      (0)
     , timer             (0)
     , nowTimer          (0)
-    , score             (0)
     , isScoreUp         (false)
     , isNextScene       (false)
 {
+    highScore = _highScore;
+    score = 0;
     // newインスタンス
     player = new Player();
     treasureChest = new TreasureChest();
@@ -57,9 +58,6 @@ GameScene::~GameScene()
 /// </summary>
 void GameScene::Initialize()
 {
-    // フォント設定
-    ChangeFont("チョークS");
-
     // ゲームが始まる前のGetNowCountを取得
     previousTime = GetNowHiPerformanceCount();
     timer = 0;
@@ -98,17 +96,15 @@ void GameScene::Update()
         // スコアをアップさせる
         UpdateScore(*treasureChest);
     }
-    // キャラクター更新
-    player->Update();	// プレイヤー
-
-    // カメラ更新
-    camera->Update();// カメラ
-
-    // オブジェクト更新
+    // 更新
+    player->Update();	                    // プレイヤー
+    camera->Update();                       // カメラ
     skyDome->Update();		                // 背景
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
+    gameSceneUI->Update(nowTimer,           // UI
+        gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
 
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
@@ -168,6 +164,9 @@ SceneBase* GameScene::UpdateScene()
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
+    gameSceneUI->Update(nowTimer,           // UI
+        gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
+
     //effekseer1->Update();
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
@@ -175,7 +174,7 @@ SceneBase* GameScene::UpdateScene()
     // 終了時間になったらSCENE_CLEARに移行
     if (nowTimer >= STATE_GAME_TIME_LIMIT && !isFadeOutStart)
     {
-        return new ClearScene();
+        return new ClearScene(score,highScore);
     }
 
 
@@ -229,6 +228,11 @@ void GameScene::UpdateScore(TreasureChest& chest)
 
     // スコアを計算
     score += (_hitGemType + 1) * 100;
+
+    if (highScore <= score)
+    {
+        highScore = score;
+    }
 }
 
 /// <summary>

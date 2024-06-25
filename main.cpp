@@ -12,6 +12,7 @@
 #include "DxLib.h"
 //#include "EffekseerForDXLib.h"
 // 自作ヘッダー
+#include "Common.h"
 #include "GemManager.h"
 #include "TreasureChest.h"
 #include "Calculation.h"
@@ -67,8 +68,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	}*/
 
 	// 画面モードのセット
-	SetGraphMode(1600, 960, 32);
-	//SetGraphMode(160, 60, 32);
+	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DEPTH);
 
 	// フルスクリーンウインドウの切り替えでリソースが消えるのを防ぐ。
 	// Effekseerを使用する場合は必ず設定する。

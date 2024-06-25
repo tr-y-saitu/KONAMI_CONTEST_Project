@@ -24,7 +24,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    GameScene();
+    GameScene(int _highScore);
 
     /// <summary>
     /// デストラクタ
@@ -74,7 +74,6 @@ public:
 
 private:
     static constexpr int STATE_GAME_TIME_LIMIT = 40; // ゲームステートが終了(する時間)(初期40)
-    //static constexpr int STATE_GAME_TIME_LIMIT = 4; // ゲームステートが終了(する時間)(初期40)
 
     // インスタンス
     Player*         player;
@@ -92,7 +91,6 @@ private:
     float	nowTimer;		// 現在の制限時間
 
     // スコア
-    int     score;          // スコア
     bool    isScoreUp;      // スコアアップフラグ
 
     // シーン管理

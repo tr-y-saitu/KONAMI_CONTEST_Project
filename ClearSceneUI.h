@@ -18,10 +18,12 @@ public:
     /// </summary>
     ~ClearSceneUI();
 
+    void Update() override;
+
     /// <summary>
     /// 描画
     /// </summary>
-    void Draw();
+    void Draw(int score,int highScore);
 
 
 private:

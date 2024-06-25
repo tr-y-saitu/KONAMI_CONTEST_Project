@@ -136,6 +136,12 @@
     <ClCompile Include="SceneBase.cpp">
       <Filter>FIRE\System\Scene\SceneBase</Filter>
     </ClCompile>
+    <ClCompile Include="SceneUIBase.cpp">
+      <Filter>FIRE</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeLimitsWarningUI.cpp">
+      <Filter>FIRE</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -210,5 +216,8 @@
     <ClInclude Include="SceneBase.h">
       <Filter>FIRE\System\Scene\SceneBase</Filter>
     </ClInclude>
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="SceneUIBase.h" />
+    <ClInclude Include="TimeLimitsWarningUI.h" />
   </ItemGroup>
 </Project>

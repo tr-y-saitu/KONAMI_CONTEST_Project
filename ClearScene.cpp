@@ -16,8 +16,10 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-ClearScene::ClearScene()
+ClearScene::ClearScene(int _score, int _highScore)
 {
+    score = _score;
+    highScore = _highScore;
     clearSceneUI = new ClearSceneUI();
     treasureChest = new TreasureChest();
     gemManager = new GemManager();
@@ -94,7 +96,7 @@ SceneBase* ClearScene::UpdateScene()
     if (isFadeOutStart && clearSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_END)
     {
         // メニューシーンへ移行
-        return new MenuScene();
+        return new MenuScene(highScore);
     }
 
     return this;
@@ -118,5 +120,5 @@ void ClearScene::Draw()
 /// </summary>
 void ClearScene::DrawUI()
 {
-    clearSceneUI->Draw();
+    clearSceneUI->Draw(score, highScore);
 }
