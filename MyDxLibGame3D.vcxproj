@@ -160,10 +160,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BoatWithChest.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="ClearSceneUI.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Cushion.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FPSSetting.cpp" />
@@ -177,7 +179,9 @@
     <ClCompile Include="MenuSceneUI.cpp" />
     <ClCompile Include="OverScene.cpp" />
     <ClCompile Include="OverSceneUI.cpp" />
+    <ClCompile Include="PirateShip.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerBoat.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -189,12 +193,14 @@
     <ClCompile Include="WaveConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoatWithChest.h" />
     <ClInclude Include="Calculation.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearScene.h" />
     <ClInclude Include="ClearSceneUI.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Cushion.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FPSSetting.h" />
@@ -208,6 +214,7 @@
     <ClInclude Include="OverScene.h" />
     <ClInclude Include="OverSceneUI.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerBoat.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="GameScene.h" />
@@ -217,6 +224,7 @@
     <ClInclude Include="TimeLimitsWarningUI.h" />
     <ClInclude Include="WaveConstants.h" />
     <ClInclude Include="ゲーム構造.h" />
+    <ClInclude Include="PirateShip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
