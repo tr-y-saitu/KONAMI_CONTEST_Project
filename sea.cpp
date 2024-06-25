@@ -1,31 +1,29 @@
-﻿#include "BoatWithChest.h"
+﻿#include "sea.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
-BoatWithChest::BoatWithChest()
+Sea::Sea()
 {
 }
 
 /// <summary>
 /// デストラクタ
 /// </summary>
-BoatWithChest::~BoatWithChest()
+Sea::~Sea()
 {
 }
 
 /// <summary>
 /// 更新
 /// </summary>
-void BoatWithChest::Update()
+void Sea::Update()
 {
-
 }
 
 /// <summary>
 /// 描画
 /// </summary>
-void BoatWithChest::Draw()
+void Sea::Draw()
 {
-
 }

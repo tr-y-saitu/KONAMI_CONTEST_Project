@@ -1,15 +1,15 @@
-﻿#include "Cushion.h"
+﻿#include "StageObjectBase.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
-Cushion::Cushion()
+StageObjectBase::StageObjectBase()
 {
 }
 
 /// <summary>
 /// デストラクタ
 /// </summary>
-Cushion::~Cushion()
+StageObjectBase::~StageObjectBase()
 {
 }

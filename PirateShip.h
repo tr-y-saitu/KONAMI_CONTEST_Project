@@ -1,9 +1,10 @@
 ﻿#pragma once
+#include "StageObjectBase.h"
 
 /// <summary>
 /// 海賊船
 /// </summary>
-class PirateShip
+class PirateShip : public StageObjectBase
 {
 public:
     /// <summary>
@@ -15,6 +16,14 @@ public:
     /// デストラクタ
     /// </summary>
     ~PirateShip();
+
+    /// <summary>
+    /// 更新
+    /// </summary>
+    void Update() override;
+
+    // 描画
+    void Draw() override;
 
 private:
 

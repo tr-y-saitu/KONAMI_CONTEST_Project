@@ -13,3 +13,19 @@ PirateShip::PirateShip()
 PirateShip::~PirateShip()
 {
 }
+
+/// <summary>
+/// 更新
+/// </summary>
+void PirateShip::Update()
+{
+
+}
+
+/// <summary>
+/// 描画
+/// </summary>
+void PirateShip::Draw()
+{
+
+}

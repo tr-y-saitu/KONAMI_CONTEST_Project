@@ -1,22 +1,23 @@
 ﻿#pragma once
 
 /// <summary>
-/// クッション
+/// プレイヤーの持つオール
 /// </summary>
-class Cushion
+class PlayerOar
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    Cushion();
+    PlayerOar();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~Cushion();
+    ~PlayerOar();
 
 private:
 
 };
+
 

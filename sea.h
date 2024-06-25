@@ -1,35 +1,34 @@
 ﻿#pragma once
 #include "Common.h"
+#include "StageObjectBase.h"
 
 /// <summary>
-/// 島
+/// 海
 /// </summary>
-class Island
+class Sea : public StageObjectBase
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    Island();
+    Sea();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~Island();
+    ~Sea();
 
     /// <summary>
     /// 更新
     /// </summary>
-    void Update();
+    void Update() override;
 
     /// <summary>
     /// 描画
     /// </summary>
-    void Draw();
+    void Draw() override;
 
 private:
-    int     modelHandle;        // モデルハンドル
-    VECTOR  position;           // 座標
-    VECTOR  scale;              // スケール
+
 };
 
