@@ -6,6 +6,7 @@
 #include "OverScene.h"
 #include "ClearScene.h"
 #include "FPSSetting.h"
+#include "EffectManager.h"
 
 /// <summary>
 /// コンストラクタ
@@ -23,6 +24,9 @@ Game::Game()
     // フォント設定
     ChangeFont("チョークS");
 
+    // エフェクトマネージャー
+    EffectManager::CreateInstance();
+
     // 最初のシーンの設定
     nowScene = SceneBase::InitializeBase();
     // 次のシーンの初期化
@@ -37,6 +41,7 @@ Game::Game()
 /// </summary>
 Game::~Game()
 {
+    EffectManager::DeleteInstance();
     delete(nowScene);
     delete(fpsSetting);
 }

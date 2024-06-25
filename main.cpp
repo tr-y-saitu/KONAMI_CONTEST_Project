@@ -1,8 +1,4 @@
-﻿//-----------------------------------------------------------------------------
-// @brief  メイン処理.
-// 2016 Takeru Yui All Rights Reserved.
-//-----------------------------------------------------------------------------
-// 標準ライブラリ
+﻿// 標準ライブラリ
 #include <stdio.h>
 #include <iostream>
 #include <vector>
@@ -10,7 +6,7 @@
 #include "math.h"
 // 追加外部ライブラリ
 #include "DxLib.h"
-//#include "EffekseerForDXLib.h"
+#include "EffekseerForDXLib.h"
 // 自作ヘッダー
 #include "Common.h"
 #include "GemManager.h"
@@ -20,7 +16,7 @@
 #include "Player.h"
 #include "Camera.h"
 #include "Collision.h"
-#include "Effekseer.h"
+#include "EffectManager.h"
 #include "FPSSetting.h"
 #include "Room.h"
 #include "Gem.h"
@@ -30,28 +26,21 @@
 #include "GameScene.h"
 #include "ClearScene.h"
 #include "OverScene.h"
-
 // Game.hの上にすべての自作ヘッダーをインクルードする
 #include "Game.h"
 
 
-
-
-//-----------------------------------------------------------------------------
-// @brief  メイン関数.
-//-----------------------------------------------------------------------------
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) 
 {
 	// DXライブラリの表示方法をウィンドウモードに変更する。
-	//ChangeWindowMode(true);	// ウィンドウモード
-	ChangeWindowMode(false);// 全画面モード
+	ChangeWindowMode(true);	// ウィンドウモード
+	//ChangeWindowMode(false);// 全画面モード
 
 	//描画先を裏画面に変更する。
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	// DirectX11を使用するようにする。(DirectX9も可、一部機能不可)
-	// Effekseerを使用するには必ず設定する。
-	//SetUseDirect3DVersion(DX_DIRECT3D_11);
+    // 降るシーンアンチエイリアスを設定する
+    SetFullSceneAntiAliasingMode(4, 2);  // 4x アンチエイリアシングを設定
 
 	// ＤＸライブラリ初期化処理
 	if (DxLib_Init() == -1)		
@@ -59,43 +48,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		return -1;	// エラーが起きたら直ちに終了
 	}
 
-	// Effekseerを初期化する。
-	// 引数には画面に表示する最大パーティクル数を設定する。
-	/*if (Effekseer_Init(8000) == -1)
-	{
-		DxLib_End();
-		return -1;
-	}*/
-
 	// 画面モードのセット
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DEPTH);
 
-	// フルスクリーンウインドウの切り替えでリソースが消えるのを防ぐ。
-	// Effekseerを使用する場合は必ず設定する。
-	//SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
-
-	// DXライブラリのデバイスロストした時のコールバックを設定する。
-	// ウインドウとフルスクリーンの切り替えが発生する場合は必ず実行する。
-	// ただし、DirectX11を使用する場合は実行する必要はない。
-	//Effekseer_SetGraphicsDeviceLostCallbackFunctions();
-
-	// Effekseerに2D描画の設定をする。
-	//Effekseer_Set2DSetting(1600, 960);
-
-
-	// Zバッファを有効にする。
-	// Effekseerを使用する場合、2DゲームでもZバッファを使用する。
-	//SetUseZBuffer3D(TRUE);
-
-	// Zバッファへの書き込みを有効にする。
-	// Effekseerを使用する場合、2DゲームでもZバッファを使用する。
-	//SetWriteZBuffer3D(TRUE);
-
-	// 2.5Dに対応するための処理
+    // 描画先グラフィック領域の指定
 	SetDrawScreen(DX_SCREEN_BACK);
-	SetUseZBufferFlag(TRUE);
-	SetWriteZBufferFlag(TRUE);
-	SetUseBackCulling(TRUE);
 
 	// インスタンス化
 	Game* game = new Game();
@@ -120,7 +77,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	}
 
 	// Effekseerを終了する。
-	//Effkseer_End();
+	Effkseer_End();
 
 	// ＤＸライブラリの後始末
  	DxLib_End();

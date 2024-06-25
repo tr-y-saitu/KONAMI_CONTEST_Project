@@ -12,6 +12,7 @@ class SkyDome;
 class Room;
 class Calculation;
 class GameSceneUI;
+class EffectManager;
 
 /// <summary>
 /// ゲームシーンクラス
@@ -84,6 +85,7 @@ private:
     SkyDome*        skyDome;
     Room*           room;
     GameSceneUI*    gameSceneUI;
+    EffectManager*  effectManager;
 
     // 時間
     int		previousTime;	// ゲームループが始まる前の時間

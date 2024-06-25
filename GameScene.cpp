@@ -12,6 +12,8 @@
 #include "Calculation.h"
 #include "GameSceneUI.h"
 #include "WaveConstants.h"
+#include "EffekseerForDXLib.h"
+#include "EffectManager.h"
 
 /// <summary>
 /// コンストラクタ
@@ -25,6 +27,7 @@ GameScene::GameScene(int _highScore)
 {
     highScore = _highScore;
     score = 0;
+    effectManager = EffectManager::GetInstance();
     // newインスタンス
     player = new Player();
     treasureChest = new TreasureChest();
@@ -65,6 +68,7 @@ void GameScene::Initialize()
     score = 0;
     isScoreUp = false;
     isNextScene = false;
+
     // 宝石のWAVE_STATEをFIRSTにする
     gemManager->SetGemWaveState(GemManager::WAVE_FIRST);
 
@@ -98,14 +102,14 @@ void GameScene::Update()
     }
     // 更新
     player->Update();	                    // プレイヤー
-    camera->Update();                       // カメラ
     skyDome->Update();		                // 背景
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
-
+    camera->Update();                       // カメラ
+    effectManager->Update();                // エフェクト
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();
 
@@ -115,7 +119,7 @@ void GameScene::Update()
         isNextScene = true;
     }
 
-    //effekseer1->Update();
+    //EffectManager->Update();
 }
 
 /// <summary>
@@ -153,23 +157,19 @@ SceneBase* GameScene::UpdateScene()
         // スコアをアップさせる
         UpdateScore(*treasureChest);
     }
-    // キャラクター更新
-    player->Update();	// プレイヤー
-
-    // カメラ更新
-    camera->Update();// カメラ
+    // データのリセットフラグがたったら宝石のデータをリセットさせる
+    gemManager->ResetGemData();     // treasureChest->Updateyよりも上に書かないと、ウェーブ切り替え時１フレームだけ原点に宝石が描画される
 
     // オブジェクト更新
+    player->Update();	                    // プレイヤー
     skyDome->Update();		                // 背景
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
-
-    //effekseer1->Update();
-    // データのリセットフラグがたったら宝石のデータをリセットさせる
-    gemManager->ResetGemData();
+    camera->Update();                       // カメラ
+    UpdateEffekseer3D();                    // エフェクト更新
 
     // 終了時間になったらSCENE_CLEARに移行
     if (nowTimer >= STATE_GAME_TIME_LIMIT && !isFadeOutStart)
@@ -191,10 +191,11 @@ void GameScene::Draw()
     bool _fadeOutScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_OUT_SCREEN_PLAYING;
 
     // オブジェク描画画
-    player->Draw();         // プレイヤー
     room->Draw();           // 部屋
+    player->Draw();         // プレイヤー
     gemManager->DrawGems(); // 宝石たち
     treasureChest->Draw();  // 宝箱
+    DrawEffekseer3D();      // 3Dエフェクト描画
     // フェード処理中は描画しない
     if (_fadeInScreen && _fadeOutScreen)
     {

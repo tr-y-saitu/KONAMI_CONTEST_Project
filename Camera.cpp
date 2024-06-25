@@ -2,7 +2,7 @@
 // @brief  カメラクラス.
 // 2016 Takeru Yui All Rights Reserved.
 //-----------------------------------------------------------------------------
-//#include "EffekseerForDXLib.h"
+#include "EffekseerForDXLib.h"
 #include "Player.h"
 #include "Camera.h"
 #include "Enemy.h"
@@ -36,5 +36,6 @@ Camera::~Camera()
 //-----------------------------------------------------------------------------
 void Camera::Update()
 {
-    // 処理なし
+    // DXライブラリのカメラとEffekseerのカメラを同期する。
+    Effekseer_Sync3DSetting();
 }

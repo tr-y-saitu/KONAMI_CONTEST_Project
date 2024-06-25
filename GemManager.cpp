@@ -5,6 +5,8 @@
 #include "WaveConstants.h"
 #include "Collision.h"
 #include "Game.h"
+#include "TreasureChest.h"
+#include "Player.h"
 
 enum GEM_STATE;
 
@@ -71,8 +73,6 @@ void GemManager::DeleteGem()
     {
         delete(gems[i]);
     }
-
-    
 }
 
 /// <summary>
@@ -211,11 +211,18 @@ bool GemManager::IsCollisionGem(Player& player, TreasureChest& chest, Collision&
 {
     // スコアアップのタイミングかどうか
     bool _result = false;
+    bool _resultPlayer = false;
+    bool _flag = false;
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < GEM_TOTAL_NUM; i++)
     {
         // プレイヤーと宝石との当たり判定
-        collision.IsHit2DPlayerToGem(player, *gems[i]);
+        _resultPlayer = collision.IsHit2DPlayerToGem(player, *gems[i]);
+        if (!_flag && _resultPlayer)
+        {
+            _flag = true;
+        }
+
         // 宝石と宝箱の当たり判定
         bool _isHitGemAndChest = collision.IsHit2DGemToTreasureChest(*gems[i], chest);
         if (_isHitGemAndChest && gems[i]->GetGemStateWithTreasureChest() == Gem::GEM_STATE::ENTER)
@@ -223,6 +230,11 @@ bool GemManager::IsCollisionGem(Player& player, TreasureChest& chest, Collision&
             _result = true;
         }
     }
+
+    // 当たったかどうか
+    chest.SetIsHitGem(_result);
+    player.SetIsHitGem(_flag);
+
     return _result;
 }
 

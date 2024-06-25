@@ -1,6 +1,7 @@
 ﻿#include "DxLib.h"
 #include "Gem.h"
 #include "TreasureChest.h"
+#include "EffectManager.h"
 
 // コンストラクタ
 TreasureChest::TreasureChest()
@@ -11,6 +12,7 @@ TreasureChest::TreasureChest()
 	, radius			(0)
     , hitGemType      (0)
 {
+    effectManager = EffectManager::GetInstance();
 	modelHanlde = MV1LoadModel("data/model/TreasureChest/TreasureChest.mv1");
 	pos = VGet(0, 0, 0);
 	scale = VGet(0.007f, 0.007f, 0.007f);
@@ -37,6 +39,12 @@ void TreasureChest::Initialize()
 // 更新
 void TreasureChest::Update()
 {
+    // 宝石と接触したらエフェクト再生
+    if (isHitGem)
+    {
+        effectManager->PlayGemGetEffect(pos);
+    }
+
 	// 3Dモデルの座標設定
 	MV1SetPosition(modelHanlde, pos);
 }

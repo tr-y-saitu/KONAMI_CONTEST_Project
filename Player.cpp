@@ -4,6 +4,7 @@
 //-----------------------------------------------------------------------------
 #include "Player.h"
 #include "Enemy.h"
+#include "EffectManager.h"
 #include "Game.h"
 
 //-----------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Player::Player()
     ,   height          (1.0f)
     ,   collisionGraph  (-1)
 {
+    effectManager = EffectManager::GetInstance();
 	// ３Ｄモデルの読み込み
 	modelHandle = MV1LoadModel("data/model/player/trampoline.mv1");
     collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Red.png");
@@ -61,10 +63,10 @@ void Player::Initialize()
 }
 
 
-	/// <summary>
-	/// プレイヤーの更新
-	/// </summary>
-	/// <param name="enemy"></param>
+/// <summary>
+/// プレイヤーの更新
+/// </summary>
+/// <param name="enemy"></param>
 void Player::Update()
 {
 	// キー入力取得
@@ -112,15 +114,6 @@ void Player::Update()
 		dir = VNorm(velocity);
 	}
 
-	// 重力判定
-	//fallSpeed += GRAVITY;
-	
-	// 落下速度を移動量に加える
-	//auto fallVelocity = VGet(0, fallSpeed, 0);	// 落下をベクトルにする
-	//velocity = VAdd(velocity, fallVelocity);
-
-
-
 	// 移動制限
 	//if (pos.y >= MOVE_LIMIT_Y)
 	//{
@@ -143,19 +136,14 @@ void Player::Update()
 	//	pos.x = 0;
 	//}
 
-	//// ジャンプが成功した
-	//VECTOR _enemyPos = enemy.GetPos();
-	//if (pos.x > _enemyPos.x)
-	//{
-	//	isGreatJump = true;
-	//}
-
-
+    // 宝石と接触したらエフェクト
+    if (isHitGem)
+    {
+        effectManager->PlayPlayerHitEffect(pos);
+    }
 
 	// ３Dモデルのポジション設定
 	MV1SetPosition(modelHandle, pos);
-
-
 }
 
 /// <summary>
@@ -163,7 +151,6 @@ void Player::Update()
  /// </summary>
 void Player::Draw2DBOXCollision()
 {
-    // 2D四角形当たり判定描画
     DrawBillboard3D(pos, 0.5f, 0.9f, 4.0f, 0, collisionGraph, true);
 }
 
@@ -174,9 +161,5 @@ void Player::Draw2DBOXCollision()
 /// </summary>
 void Player::Draw()
 {
-	// ３Ｄモデルの描画
 	MV1DrawModel(modelHandle);
-
-	// 2DBOX当たり判定の描画
-    //Draw2DBOXCollision();
 }

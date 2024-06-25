@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "DxLib.h"
-#include "Effekseer.h"
+#include "EffectManager.h"
 #include <iostream>
 #include <vector>
 #include <map>

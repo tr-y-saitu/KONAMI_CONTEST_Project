@@ -46,7 +46,7 @@ public:
     /// </summary>
     /// <param name="player">プレイヤークラス</param>
     /// <param name="gem">宝石クラス</param>
-    void IsHit2DPlayerToGem(Player& player, Gem& gem);
+    bool IsHit2DPlayerToGem(Player& player, Gem& gem);
 
     /// <summary>
     /// 宝石と宝箱の2D当たり判定
@@ -67,13 +67,13 @@ public:
     /// <returns>当たっているかどうか</returns>
     bool IsHitObject2DBOX(VECTOR pos1, VECTOR pos2, float width1,float height1,float width2,float height2);
 
+
+private:
     // 定数
 	const float OBJECT_HIT_BUF = 0.5f;  // オブジェクトの当たり判定バフ値
 
-private:
 
 
-    //bool bb = collision->IsHit2DGemToTreasureChest(*gem[i], *treasureChest;
 };
 
 
