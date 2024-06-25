@@ -20,27 +20,11 @@ public:
     /// </summary>
     ~TimeLimitsWarningUI ();
 
-    /// <summary>
-    /// 指定位置まで平行移動させる
-    /// </summary>
-    /// <param name="targetXPosition">指定位置のX座標</param>
-    void TranslationTargetPosition(int timerLimit);
-
-    /// <summary>
-    /// スタート位置まで平行移動させる
-    /// </summary>
-    /// <param name="startXPosition">スタート位置のX座標</param>
-    void TranslationlStartPosition();
 
     /// <summary>
     /// 更新
     /// </summary>
     void Update(int timeLimit,int waveEndTime);
-
-    /// <summary>
-    /// 再生
-    /// </summary>
-    void PlayTranslation();
 
     /// <summary>
     /// 描画
@@ -53,6 +37,18 @@ public:
     const bool GetIsStartPosition()const { return isStartPosition; }
 
 private:
+    /// <summary>
+    /// 指定位置まで平行移動させる
+    /// </summary>
+    /// <param name="targetXPosition">指定位置のX座標</param>
+    void TranslationTargetPosition(int timerLimit);
+
+    /// <summary>
+    /// スタート位置まで平行移動させる
+    /// </summary>
+    /// <param name="startXPosition">スタート位置のX座標</param>
+    void TranslationlStartPosition();
+
     const int TEXT_COLOR_BLACK = GetColor(0, 0, 0);                 // 黒色文字
     static constexpr int TIME_LIMITS_WARNING_TEXT_SIZE = 30;        // 残り制限時間を警告するテキストの文字サイズ
     static constexpr int OFF_SET_POSITION_X = 120;      // 残り制限時間を警告するテキストのX軸のずらし量
