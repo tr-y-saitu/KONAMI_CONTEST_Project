@@ -62,6 +62,12 @@
     <Filter Include="FIRE\System\Scene\SceneBase">
       <UniqueIdentifier>{3cc93957-af15-469a-bd3a-cf509b29304c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FIRE\System\SceneUI\SceneUIBase">
+      <UniqueIdentifier>{7d8111ab-9a25-41da-8b61-883d920c2601}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\System\SceneUI\TimeLimitsWarningUI">
+      <UniqueIdentifier>{e598c92a-85ef-4865-aab0-5936bf670068}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -136,11 +142,32 @@
     <ClCompile Include="SceneBase.cpp">
       <Filter>FIRE\System\Scene\SceneBase</Filter>
     </ClCompile>
-    <ClCompile Include="SceneUIBase.cpp">
+    <ClCompile Include="BoatWithChest.cpp">
       <Filter>FIRE</Filter>
     </ClCompile>
-    <ClCompile Include="TimeLimitsWarningUI.cpp">
+    <ClCompile Include="PlayerCushion.cpp">
       <Filter>FIRE</Filter>
+    </ClCompile>
+    <ClCompile Include="sea.cpp">
+      <Filter>FIRE</Filter>
+    </ClCompile>
+    <ClCompile Include="PirateShip.cpp">
+      <Filter>FIRE</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBoat.cpp">
+      <Filter>FIRE</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerOar.cpp">
+      <Filter>FIRE</Filter>
+    </ClCompile>
+    <ClCompile Include="StageObjectBase.cpp">
+      <Filter>FIRE</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneUIBase.cpp">
+      <Filter>FIRE\System\SceneUI\SceneUIBase</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeLimitsWarningUI.cpp">
+      <Filter>FIRE\System\SceneUI\TimeLimitsWarningUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,8 +243,21 @@
     <ClInclude Include="SceneBase.h">
       <Filter>FIRE\System\Scene\SceneBase</Filter>
     </ClInclude>
-    <ClInclude Include="Common.h" />
-    <ClInclude Include="SceneUIBase.h" />
-    <ClInclude Include="TimeLimitsWarningUI.h" />
+    <ClInclude Include="BoatWithChest.h" />
+    <ClInclude Include="PlayerCushion.h" />
+    <ClInclude Include="sea.h" />
+    <ClInclude Include="PlayerBoat.h" />
+    <ClInclude Include="PlayerOar.h" />
+    <ClInclude Include="StageObjectBase.h" />
+    <ClInclude Include="PirateShip.h" />
+    <ClInclude Include="Common.h">
+      <Filter>FIRE\System\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneUIBase.h">
+      <Filter>FIRE\System\SceneUI\SceneUIBase</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeLimitsWarningUI.h">
+      <Filter>FIRE\System\SceneUI\TimeLimitsWarningUI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
