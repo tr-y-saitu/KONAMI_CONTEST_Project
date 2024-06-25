@@ -41,14 +41,6 @@ void TimeLimitsWarningUI::Update(int timeLimit, int waveEndTime)
 }
 
 /// <summary>
-/// 再生
-/// </summary>
-void TimeLimitsWarningUI::PlayTranslation()
-{
-
-}
-
-/// <summary>
 /// 描画
 /// </summary>
 void TimeLimitsWarningUI::Draw()
