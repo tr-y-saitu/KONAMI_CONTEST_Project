@@ -9,16 +9,6 @@
 class EffectManager
 {
 public:
-	/// <summary>
-	/// コンストラクタ
-	/// </summary>
-	EffectManager();
-
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
-	~EffectManager();
-
     /// <summary>
     /// インスタス作成
     /// </summary>
@@ -64,6 +54,16 @@ public:
     void PlayGemFallEffect(VECTOR playPosition);
 
 private:
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
+	EffectManager();
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	~EffectManager();
+
     // 管理用
     static EffectManager* effectManager;    // エフェクトマネージャーのインスタンス
     int playingEffectHandle;                // 現在再生中のエフェクトのハンドル
