@@ -9,12 +9,30 @@ class EffectManager;
 class TreasureChest final
 {
 public:
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
     TreasureChest();
+
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
     virtual ~TreasureChest();
 
-    void Initialize();		// 初期化
-    void Update();			// 更新
-    void Draw();			// 描画
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    void Initialize();
+
+    /// <summary>
+    /// 更新
+    /// </summary>
+    void Update();
+
+    /// <summary>
+    /// 描画
+    /// </summary>
+    void Draw();
 
     // Getter
     const VECTOR& GetPos()const { return pos; }
@@ -25,7 +43,6 @@ public:
     const int GetHitGemType()const { return hitGemType; }
 
     // Setter
-    void SetPos(const VECTOR set) { pos = set; }
     void SetIsHitGem(const bool set) { isHitGem = set; }
     void SetHitGemType(const int set) { hitGemType = set; }
 

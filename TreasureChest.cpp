@@ -3,7 +3,9 @@
 #include "TreasureChest.h"
 #include "EffectManager.h"
 
-// コンストラクタ
+/// <summary>
+/// コンストラクタ
+/// </summary>
 TreasureChest::TreasureChest()
 	: modelHanlde		(-1)
 	, width				(5)
@@ -13,30 +15,35 @@ TreasureChest::TreasureChest()
     , hitGemType      (0)
 {
     effectManager = EffectManager::GetInstance();
-	modelHanlde = MV1LoadModel("data/model/TreasureChest/TreasureChest.mv1");
-	pos = VGet(0, 0, 0);
-	scale = VGet(0.007f, 0.007f, 0.007f);
+	modelHanlde = MV1LoadModel("data/model/TreasureChest/treasureChestOld.mv1");
+    pos = VGet(5, 1, -5);
+	scale = VGet(0.012f, 0.012f, 0.012f);
+    radius = 3.0f;
 	// モデルの回転(違和感ない位置に修正)
-	MV1SetRotationXYZ(modelHanlde, VGet(0.0f, -50.0f * DX_PI_F / 180.0f, 0.0f));
+	MV1SetRotationXYZ(modelHanlde, VGet(0.0f, 50.0f * DX_PI_F / 180.0f, 0.0f));
 }
 
-// デストラクタ
+/// <summary>
+/// デストラクタ
+/// </summary>
 TreasureChest::~TreasureChest()
 {
 	// モデルハンドルの削除
 	MV1DeleteModel(modelHanlde);
 }
 
-// 初期化
+/// <summary>
+/// 初期化
+/// </summary>
 void TreasureChest::Initialize()
 {
-	pos = VGet(5, 0, -5);
 	// スケールの設定
 	MV1SetScale(modelHanlde, scale);
-	radius = 3.0f;
 }
 
-// 更新
+/// <summary>
+/// 更新
+/// </summary>
 void TreasureChest::Update()
 {
     // 宝石と接触したらエフェクト再生
@@ -49,7 +56,9 @@ void TreasureChest::Update()
 	MV1SetPosition(modelHanlde, pos);
 }
 
-// 描画
+/// <summary>
+/// 描画
+/// </summary>
 void TreasureChest::Draw()
 {
 	// 3Dモデルの描画
