@@ -13,6 +13,7 @@ class Room;
 class Calculation;
 class GameSceneUI;
 class EffectManager;
+class StageManager;
 
 /// <summary>
 /// ゲームシーンクラス
@@ -86,6 +87,7 @@ private:
     Room*           room;
     GameSceneUI*    gameSceneUI;
     EffectManager*  effectManager;
+    StageManager*   stageManager;
 
     // 時間
     int		previousTime;	// ゲームループが始まる前の時間

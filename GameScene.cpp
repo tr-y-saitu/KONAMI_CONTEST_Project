@@ -14,6 +14,7 @@
 #include "WaveConstants.h"
 #include "EffekseerForDXLib.h"
 #include "EffectManager.h"
+#include "StageManager.h"
 
 /// <summary>
 /// コンストラクタ
@@ -37,6 +38,7 @@ GameScene::GameScene(int _highScore)
     room = new Room();
     gameSceneUI = new GameSceneUI();
     gemManager = new GemManager();
+    stageManager = new StageManager();
 }
 
 /// <summary>
@@ -53,6 +55,7 @@ GameScene::~GameScene()
     delete(room);
     delete(gameSceneUI);
     delete(gemManager);
+    delete(stageManager);
 }
 
 
@@ -105,7 +108,8 @@ void GameScene::Update()
     skyDome->Update();		                // 背景
     room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
-    treasureChest->Update();			    // 宝箱更新
+    treasureChest->Update();			    // 宝箱
+    stageManager->Update();                 // ステージ
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
     camera->Update();                       // カメラ
@@ -195,6 +199,7 @@ void GameScene::Draw()
     player->Draw();         // プレイヤー
     gemManager->DrawGems(); // 宝石たち
     treasureChest->Draw();  // 宝箱
+    stageManager->Draw();   // ステージ
     DrawEffekseer3D();      // 3Dエフェクト描画
     // フェード処理中は描画しない
     if (_fadeInScreen && _fadeOutScreen)

@@ -74,6 +74,9 @@
     <Filter Include="FIRE\GameObject\PlayerAsset">
       <UniqueIdentifier>{2e56c623-4d4a-4f52-b62e-7d89703c1c49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FIRE\GameObject\Stage\StageManager">
+      <UniqueIdentifier>{aaca295e-92ff-4e36-8393-c909375a6778}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -174,6 +177,9 @@
     </ClCompile>
     <ClCompile Include="PlayerOar.cpp">
       <Filter>FIRE\GameObject\PlayerAsset</Filter>
+    </ClCompile>
+    <ClCompile Include="StageManager.cpp">
+      <Filter>FIRE\GameObject\Stage\StageManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +284,9 @@
     </ClInclude>
     <ClInclude Include="PlayerOar.h">
       <Filter>FIRE\GameObject\PlayerAsset</Filter>
+    </ClInclude>
+    <ClInclude Include="StageManager.h">
+      <Filter>FIRE\GameObject\Stage\StageManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
