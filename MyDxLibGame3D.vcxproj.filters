@@ -68,6 +68,12 @@
     <Filter Include="FIRE\System\SceneUI\TimeLimitsWarningUI">
       <UniqueIdentifier>{e598c92a-85ef-4865-aab0-5936bf670068}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FIRE\GameObject\Stage">
+      <UniqueIdentifier>{3bf8e8c0-281d-4597-87d9-b36a99b3a8fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\GameObject\PlayerAsset">
+      <UniqueIdentifier>{2e56c623-4d4a-4f52-b62e-7d89703c1c49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -142,32 +148,32 @@
     <ClCompile Include="SceneBase.cpp">
       <Filter>FIRE\System\Scene\SceneBase</Filter>
     </ClCompile>
-    <ClCompile Include="BoatWithChest.cpp">
-      <Filter>FIRE</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerCushion.cpp">
-      <Filter>FIRE</Filter>
-    </ClCompile>
-    <ClCompile Include="sea.cpp">
-      <Filter>FIRE</Filter>
-    </ClCompile>
-    <ClCompile Include="PirateShip.cpp">
-      <Filter>FIRE</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerBoat.cpp">
-      <Filter>FIRE</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerOar.cpp">
-      <Filter>FIRE</Filter>
-    </ClCompile>
-    <ClCompile Include="StageObjectBase.cpp">
-      <Filter>FIRE</Filter>
-    </ClCompile>
     <ClCompile Include="SceneUIBase.cpp">
       <Filter>FIRE\System\SceneUI\SceneUIBase</Filter>
     </ClCompile>
     <ClCompile Include="TimeLimitsWarningUI.cpp">
       <Filter>FIRE\System\SceneUI\TimeLimitsWarningUI</Filter>
+    </ClCompile>
+    <ClCompile Include="StageObjectBase.cpp">
+      <Filter>FIRE\GameObject\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="BoatWithChest.cpp">
+      <Filter>FIRE\GameObject\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="PirateShip.cpp">
+      <Filter>FIRE\GameObject\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="sea.cpp">
+      <Filter>FIRE\GameObject\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBoat.cpp">
+      <Filter>FIRE\GameObject\PlayerAsset</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCushion.cpp">
+      <Filter>FIRE\GameObject\PlayerAsset</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerOar.cpp">
+      <Filter>FIRE\GameObject\PlayerAsset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,13 +249,6 @@
     <ClInclude Include="SceneBase.h">
       <Filter>FIRE\System\Scene\SceneBase</Filter>
     </ClInclude>
-    <ClInclude Include="BoatWithChest.h" />
-    <ClInclude Include="PlayerCushion.h" />
-    <ClInclude Include="sea.h" />
-    <ClInclude Include="PlayerBoat.h" />
-    <ClInclude Include="PlayerOar.h" />
-    <ClInclude Include="StageObjectBase.h" />
-    <ClInclude Include="PirateShip.h" />
     <ClInclude Include="Common.h">
       <Filter>FIRE\System\GameManager</Filter>
     </ClInclude>
@@ -258,6 +257,27 @@
     </ClInclude>
     <ClInclude Include="TimeLimitsWarningUI.h">
       <Filter>FIRE\System\SceneUI\TimeLimitsWarningUI</Filter>
+    </ClInclude>
+    <ClInclude Include="StageObjectBase.h">
+      <Filter>FIRE\GameObject\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="sea.h">
+      <Filter>FIRE\GameObject\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="PirateShip.h">
+      <Filter>FIRE\GameObject\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="BoatWithChest.h">
+      <Filter>FIRE\GameObject\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBoat.h">
+      <Filter>FIRE\GameObject\PlayerAsset</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCushion.h">
+      <Filter>FIRE\GameObject\PlayerAsset</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerOar.h">
+      <Filter>FIRE\GameObject\PlayerAsset</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
