@@ -5,6 +5,10 @@
 /// </summary>
 Sea::Sea()
 {
+    modelHandle = MV1LoadModel("data/model/sea/seaIsland.mv1");
+    position = VGet(0, 0, 0);
+    scale = VGet(1, 1, 1);
+    MV1SetScale(modelHandle, scale);
 }
 
 /// <summary>
@@ -12,6 +16,7 @@ Sea::Sea()
 /// </summary>
 Sea::~Sea()
 {
+    MV1DeleteModel(modelHandle);
 }
 
 /// <summary>
@@ -19,6 +24,8 @@ Sea::~Sea()
 /// </summary>
 void Sea::Update()
 {
+    // モデルの座標設定
+    MV1SetPosition(modelHandle, position);
 }
 
 /// <summary>
@@ -26,4 +33,5 @@ void Sea::Update()
 /// </summary>
 void Sea::Draw()
 {
+    MV1DrawModel(modelHandle);
 }

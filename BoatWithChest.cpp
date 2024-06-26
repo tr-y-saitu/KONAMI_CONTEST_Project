@@ -5,6 +5,10 @@
 /// </summary>
 BoatWithChest::BoatWithChest()
 {
+    modelHandle = MV1LoadModel("data/model/boatWithChest/boatWithChest.mv1");
+    position = VGet(5, 1, -5);
+    scale = VGet(0.1, 0.1, 0.1);
+    MV1SetScale(modelHandle, scale);
 }
 
 /// <summary>
@@ -12,6 +16,7 @@ BoatWithChest::BoatWithChest()
 /// </summary>
 BoatWithChest::~BoatWithChest()
 {
+    MV1DeleteModel(modelHandle);
 }
 
 /// <summary>
@@ -19,7 +24,8 @@ BoatWithChest::~BoatWithChest()
 /// </summary>
 void BoatWithChest::Update()
 {
-
+    // モデルの座標設定
+    MV1SetPosition(modelHandle, position);
 }
 
 /// <summary>
@@ -27,5 +33,5 @@ void BoatWithChest::Update()
 /// </summary>
 void BoatWithChest::Draw()
 {
-
+    MV1DrawModel(modelHandle);
 }

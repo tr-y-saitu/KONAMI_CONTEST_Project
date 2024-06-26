@@ -5,6 +5,10 @@
 /// </summary>
 PirateShip::PirateShip()
 {
+    modelHandle = MV1LoadModel("data/model/pirateShip/pirateShip.mv1");
+    position = VGet(2, 0, 0);
+    scale = VGet(0.1, 0.1, 0.1);
+    MV1SetScale(modelHandle, scale);
 }
 
 /// <summary>
@@ -12,6 +16,7 @@ PirateShip::PirateShip()
 /// </summary>
 PirateShip::~PirateShip()
 {
+    MV1DeleteModel(modelHandle);
 }
 
 /// <summary>
@@ -19,7 +24,8 @@ PirateShip::~PirateShip()
 /// </summary>
 void PirateShip::Update()
 {
-
+    // モデルの座標設定
+    MV1SetPosition(modelHandle, position);
 }
 
 /// <summary>
@@ -27,5 +33,5 @@ void PirateShip::Update()
 /// </summary>
 void PirateShip::Draw()
 {
-
+    MV1DeleteModel(modelHandle);
 }
