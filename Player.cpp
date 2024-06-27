@@ -7,6 +7,8 @@
 #include "EffectManager.h"
 #include "Game.h"
 #include "PlayerOar.h"
+#include "PlayerBoat.h"
+#include "PlayerCuhion.h"
 
 //-----------------------------------------------------------------------------
 // @brief  コンストラクタ.
@@ -36,14 +38,8 @@ Player::Player()
 	MV1SetScale(modelHandle, scale);
     // プレイヤー装備品
     playerOar = new PlayerOar();
-    rideBoatModelHandle = MV1LoadModel("data/model/player/playerAsset/playerBoat/playerBoat.mv1");
-    rideBoatPosition = pos;
-    rideBoatScale = VGet(0.02, 0.02, 0.02);
-    MV1SetScale(rideBoatModelHandle, rideBoatScale);
-    withCushionModelHandle = MV1LoadModel("data/model/player/playerAsset/playerCushion/cushion.mv1");
-    withCushionPosition = pos;
-    withCushionScale = VGet(0.1, 0.1, 0.1);
-    MV1SetScale(withCushionModelHandle, withCushionScale);
+    playerBoat = new PlayerBoat();
+    playerCushion = new PlayerCushion();
 }
 
 //-----------------------------------------------------------------------------
@@ -51,11 +47,10 @@ Player::Player()
 //-----------------------------------------------------------------------------
 Player::~Player()
 {
-	// モデルのアンロード.
 	MV1DeleteModel(modelHandle);
-    MV1DeleteModel(rideBoatModelHandle);
-    MV1DeleteModel(withCushionModelHandle);
     delete(playerOar);
+    delete(playerBoat);
+    delete(playerCushion);
 }
 
 /// <summary>
@@ -167,14 +162,9 @@ void Player::Update()
 /// </summary>
 void Player::SetPositionAssetModle()
 {
-    // プレイヤーの乗るボート
-    rideBoatPosition = pos;
-    MV1SetPosition(rideBoatModelHandle, rideBoatPosition);
-    // プレイヤーの持つクッション
-    withCushionPosition = pos;
-    MV1SetPosition(withCushionModelHandle, withCushionPosition);
-    // プレイヤーの持つオール
-    playerOar->Update(pos);
+    playerOar->Update(pos);     // オール
+    playerBoat->Update(pos);    // ボート
+    playerCushion->Update(pos); // クッション
 }
 
 /// <summary>
@@ -191,7 +181,9 @@ void Player::Draw2DBOXCollision()
 /// </summary>
 void Player::Draw()
 {
+    // プレイヤー
 	MV1DrawModel(modelHandle);
+    // プレイヤー装備品
     DrawPlayerAssetModel();
 }
 
@@ -200,7 +192,7 @@ void Player::Draw()
 /// </summary>
 void Player::DrawPlayerAssetModel()
 {
-    MV1DrawModel(rideBoatModelHandle);
-    MV1DrawModel(withCushionModelHandle);
-    playerOar->Draw();
+    playerOar->Draw();      // オール
+    playerBoat->Draw();     // ボート
+    playerCushion->Draw();  // クッション
 }

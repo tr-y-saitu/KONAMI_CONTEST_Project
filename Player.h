@@ -6,6 +6,8 @@ class Game;
 class Enemy;
 class EffectManager;
 class PlayerOar;
+class PlayerBoat;
+class PlayerCushion;
 
 /// <summary>
 /// プレイヤークラス
@@ -108,9 +110,8 @@ private:
 
     // 装備品
     PlayerOar* playerOar;
-    int     rideBoatModelHandle;    // プレイヤーの乗るボートのモデル
-    VECTOR  rideBoatPosition;       // プレイヤーの乗るボートの座標
-    VECTOR  rideBoatScale;          // プレイヤーの乗るボートの拡大率
+    PlayerBoat* playerBoat;
+    PlayerCushion* playerCushion;
     int     withCushionModelHandle; // プレイヤーの持つクッションのモデルハンドル
     VECTOR  withCushionPosition;     // プレイヤーの持つクッションの座標
     VECTOR  withCushionScale;        // プレイヤーの持つクッションの拡大率
