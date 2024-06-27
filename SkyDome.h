@@ -31,8 +31,8 @@ private:
 	int		modelHandle;	// モデルハンドル
 	int		textureHandle;	// テクスチャハンドル
 	VECTOR	pos;			// ポジション
-	VECTOR	pos2;			// 回転する前のポジション
 	VECTOR	dir;			// 方向
+    VECTOR  scale;          // 拡大率
 	int		w;				// 幅
 	int		h;				// 高さ
 

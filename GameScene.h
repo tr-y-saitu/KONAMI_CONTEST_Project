@@ -14,6 +14,7 @@ class Calculation;
 class GameSceneUI;
 class EffectManager;
 class StageManager;
+class SkyDome;
 
 /// <summary>
 /// ゲームシーンクラス
@@ -83,11 +84,11 @@ private:
     GemManager*     gemManager;
     Collision*      collision;
     Camera*         camera;
-    SkyDome*        skyDome;
     Room*           room;
     GameSceneUI*    gameSceneUI;
     EffectManager*  effectManager;
     StageManager*   stageManager;
+    SkyDome*        skyDome;
 
     // 時間
     int		previousTime;	// ゲームループが始まる前の時間

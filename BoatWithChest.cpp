@@ -6,9 +6,10 @@
 BoatWithChest::BoatWithChest()
 {
     modelHandle = MV1LoadModel("data/model/boatWithChest/boatWithChest.mv1");
-    position = VGet(5, 1, -5);
-    scale = VGet(0.1, 0.1, 0.1);
+    position = VGet(5, 0, -5);
+    scale = VGet(0.06, 0.06, 0.06);
     MV1SetScale(modelHandle, scale);
+    MV1SetRotationXYZ(modelHandle, VGet(0.0f, 100.0f * DX_PI_F / 180.0f, 0.0f));
 }
 
 /// <summary>

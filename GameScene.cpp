@@ -28,17 +28,18 @@ GameScene::GameScene(int _highScore)
 {
     highScore = _highScore;
     score = 0;
-    effectManager = EffectManager::GetInstance();
+    effectManager   = EffectManager::GetInstance();
     // newインスタンス
-    player = new Player();
-    treasureChest = new TreasureChest();
-    collision = new Collision();
-    camera = new Camera();
-    skyDome = new SkyDome();
-    room = new Room();
-    gameSceneUI = new GameSceneUI();
-    gemManager = new GemManager();
-    stageManager = new StageManager();
+    player          = new Player();
+    treasureChest   = new TreasureChest();
+    collision       = new Collision();
+    camera          = new Camera();
+    skyDome         = new SkyDome();
+    room            = new Room();
+    gameSceneUI     = new GameSceneUI();
+    gemManager      = new GemManager();
+    stageManager    = new StageManager();
+    skyDome         = new SkyDome();
 }
 
 /// <summary>
@@ -56,6 +57,7 @@ GameScene::~GameScene()
     delete(gameSceneUI);
     delete(gemManager);
     delete(stageManager);
+    delete(skyDome);
 }
 
 
@@ -79,7 +81,6 @@ void GameScene::Initialize()
     player->Initialize();
     treasureChest->Initialize();
     gemManager->Initialize();
-    skyDome->Initialize();
     room->Initialize();
     gameSceneUI->Initialize();
 }
@@ -110,6 +111,7 @@ void GameScene::Update()
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱
     stageManager->Update();                 // ステージ
+    skyDome->Update();                      // スカイドーム
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
     camera->Update();                       // カメラ
@@ -173,6 +175,7 @@ SceneBase* GameScene::UpdateScene()
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
     camera->Update();                       // カメラ
+    stageManager->Update();                 // ステージ
     UpdateEffekseer3D();                    // エフェクト更新
 
     // 終了時間になったらSCENE_CLEARに移行
@@ -195,11 +198,12 @@ void GameScene::Draw()
     bool _fadeOutScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_OUT_SCREEN_PLAYING;
 
     // オブジェク描画画
-    room->Draw();           // 部屋
+    //room->Draw();         // 部屋
     player->Draw();         // プレイヤー
     gemManager->DrawGems(); // 宝石たち
     treasureChest->Draw();  // 宝箱
     stageManager->Draw();   // ステージ
+    skyDome->Draw();        // スカイドーム
     DrawEffekseer3D();      // 3Dエフェクト描画
     // フェード処理中は描画しない
     if (_fadeInScreen && _fadeOutScreen)

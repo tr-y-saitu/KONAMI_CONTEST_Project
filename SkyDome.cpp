@@ -5,15 +5,15 @@
 /// コンストラクタ
 /// </summary>
 SkyDome::SkyDome()
-	:modelHandle	(-1)
-	,textureHandle	(-1)
-	,pos			(VGet(0,0,0))
-	,pos2			(VGet(0,0,0))
-	,dir			(VGet(0,0,0))
-	,w				(0)
-	,h				(0)
+	: modelHandle	    (-1)
+	, textureHandle	    (-1)
+	, w				    (0)
+	, h				    (0)
+    , scale             (VGet(0.1,0.1,0.1))
 {
-	// 処理なし
+    modelHandle = MV1LoadModel("data/model/skyDome/skyDome.mv1");
+    MV1SetScale(modelHandle, VGet(0.4f, 0.4f, 0.4f));
+    pos = VGet(0, 0, 0);
 }
 
 /// <summary>
