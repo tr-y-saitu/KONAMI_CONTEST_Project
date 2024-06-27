@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "EffectManager.h"
 #include "Game.h"
+#include "PlayerOar.h"
 
 //-----------------------------------------------------------------------------
 // @brief  コンストラクタ.
@@ -27,13 +28,22 @@ Player::Player()
 	// ３Ｄモデルの読み込み
 	modelHandle = MV1LoadModel("data/model/player/trampoline.mv1");
     collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Red.png");
-    pos = VGet(0, 50, 0);	// 座標のセット
-	dir = VGet(0,0,0);		// 方向のセット
-	fallSpeed = 0.0f;		// 落下速度
+    pos = VGet(0, 50, 0);
+	dir = VGet(0,0,0);
+	fallSpeed = 0.0f;
 	animeIndex = 8;
-	// スケールのセット
 	scale = VGet(0.02f, 0.02f, 0.02f);
 	MV1SetScale(modelHandle, scale);
+    // プレイヤー装備品
+    playerOar = new PlayerOar();
+    rideBoatModelHandle = MV1LoadModel("data/model/player/playerAsset/playerBoat/playerBoat.mv1");
+    rideBoatPosition = pos;
+    rideBoatScale = VGet(0.02, 0.02, 0.02);
+    MV1SetScale(rideBoatModelHandle, rideBoatScale);
+    withCushionModelHandle = MV1LoadModel("data/model/player/playerAsset/playerCushion/cushion.mv1");
+    withCushionPosition = pos;
+    withCushionScale = VGet(0.1, 0.1, 0.1);
+    MV1SetScale(withCushionModelHandle, withCushionScale);
 }
 
 //-----------------------------------------------------------------------------
@@ -43,6 +53,9 @@ Player::~Player()
 {
 	// モデルのアンロード.
 	MV1DeleteModel(modelHandle);
+    MV1DeleteModel(rideBoatModelHandle);
+    MV1DeleteModel(withCushionModelHandle);
+    delete(playerOar);
 }
 
 /// <summary>
@@ -144,6 +157,24 @@ void Player::Update()
 
 	// ３Dモデルのポジション設定
 	MV1SetPosition(modelHandle, pos);
+
+    // プレイヤー装備品のポジション設定
+    SetPositionAssetModle();
+}
+
+/// <summary>
+/// 装備品モデルの座標設定
+/// </summary>
+void Player::SetPositionAssetModle()
+{
+    // プレイヤーの乗るボート
+    rideBoatPosition = pos;
+    MV1SetPosition(rideBoatModelHandle, rideBoatPosition);
+    // プレイヤーの持つクッション
+    withCushionPosition = pos;
+    MV1SetPosition(withCushionModelHandle, withCushionPosition);
+    // プレイヤーの持つオール
+    playerOar->Update(pos);
 }
 
 /// <summary>
@@ -155,11 +186,21 @@ void Player::Draw2DBOXCollision()
 }
 
 
-
 /// <summary>
 /// プレイヤーの描画
 /// </summary>
 void Player::Draw()
 {
 	MV1DrawModel(modelHandle);
+    DrawPlayerAssetModel();
+}
+
+/// <summary>
+/// プレイヤー装備品描画
+/// </summary>
+void Player::DrawPlayerAssetModel()
+{
+    MV1DrawModel(rideBoatModelHandle);
+    MV1DrawModel(withCushionModelHandle);
+    playerOar->Draw();
 }
