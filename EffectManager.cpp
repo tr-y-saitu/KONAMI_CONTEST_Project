@@ -9,7 +9,7 @@ EffectManager* EffectManager::effectManager = NULL;
 /// コンストラクタ
 /// </summary>
 EffectManager::EffectManager()
-	:	playingEffectHandle		(0)
+    :   playingEffectHandle     (0)
     ,   gemGetEffect            (-1)
     ,   playerHitEffect         (-1)
 {

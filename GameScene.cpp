@@ -105,11 +105,11 @@ void GameScene::Update()
         UpdateScore(*treasureChest);
     }
     // 更新
-    player->Update();	                    // プレイヤー
-    skyDome->Update();		                // 背景
-    room->Update();			                // 部屋
+    player->Update();                       // プレイヤー
+    skyDome->Update();                      // 背景
+    room->Update();                         // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
-    treasureChest->Update();			    // 宝箱
+    treasureChest->Update();                // 宝箱
     stageManager->Update();                 // ステージ
     skyDome->Update();                      // スカイドーム
     gameSceneUI->Update(nowTimer,           // UI
@@ -167,11 +167,11 @@ SceneBase* GameScene::UpdateScene()
     gemManager->ResetGemData();     // treasureChest->Updateyよりも上に書かないと、ウェーブ切り替え時１フレームだけ原点に宝石が描画される
 
     // オブジェクト更新
-    player->Update();	                    // プレイヤー
-    skyDome->Update();		                // 背景
-    room->Update();			                // 部屋
+    player->Update();                       // プレイヤー
+    skyDome->Update();                      // 背景
+    room->Update();                         // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
-    treasureChest->Update();			    // 宝箱更新
+    treasureChest->Update();                // 宝箱更新
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
     camera->Update();                       // カメラ

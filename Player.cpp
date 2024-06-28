@@ -10,13 +10,13 @@
 /// コンストラクタ
 /// </summary>
 Player::Player()
-	:	isGreatJump		        (false)
-	,	isGround		        (false)
-	,	isHitEnemy		        (false)
-	,	isHitTop		        (false)
-	,	isHitGem		        (false)
-	,	speed			        (5)
-	,	r				        (1)
+	:   isGreatJump             (false)
+	,   isGround                (false)
+	,   isHitEnemy              (false)
+	,   isHitTop                (false)
+	,   isHitGem                (false)
+	,   speed                   (5)
+	,   r                       (1)
     ,   width                   (HIT_BOX_WIDTH)
     ,   height                  (HIT_BOX_HEIGHT)
     ,   collisionGraph          (-1)
@@ -57,15 +57,15 @@ Player::~Player()
 /// </summary>
 void Player::Initialize()
 {
-	pos = VGet(-18, 0, -5);	// 座標のセット
-	dir = VGet(0, 0, 0);	// 方向のセット
-	fallSpeed = 0.0f;		// 落下速度
-	isGround = false;		// 地面にいるか
-	isHitTop = false;		// 頭が当たっているか
-	isHitEnemy = false;		// エネミーと接触したか
-	isHitGem = false;		// ジェムとの当たり判定
-	isGreatJump = false;	// よいジャンプ判定
-	speed = 1;				// 移動スピード
+    pos = VGet(-18, 0, -5); // 座標のセット
+    dir = VGet(0, 0, 0);    // 方向のセット
+    fallSpeed = 0.0f;       // 落下速度
+    isGround = false;       // 地面にいるか
+    isHitTop = false;       // 頭が当たっているか
+    isHitEnemy = false;     // エネミーと接触したか
+    isHitGem = false;       // ジェムとの当たり判定
+    isGreatJump = false;    // よいジャンプ判定
+    speed = 1;              // 移動スピード
 }
 
 /// <summary>

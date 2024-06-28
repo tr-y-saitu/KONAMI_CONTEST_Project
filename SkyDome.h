@@ -2,39 +2,57 @@
 
 #include "DxLib.h"
 
-
+/// <summary>
+/// スカイドーム
+/// </summary>
 class SkyDome
 {
 public:
-	SkyDome();
-	~SkyDome();
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    SkyDome();
 
-	void Initialize();	// 初期化
-	void Update();		// 更新
-	void Draw();		// 描画
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
+    ~SkyDome();
 
-	// モデルハンドルの取得
-	int GetModelHandle() { return modelHandle; }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    void Initialize();
 
-	// ポジションのgetter/setter.
-	const VECTOR& GetPos() const { return pos; }
-	const int GetWidth() { return w; }
-	const int GetHeight() { return h; }
-	void SetPos(const VECTOR set) { pos = set; }
+    /// <summary>
+    /// 更新
+    /// </summary>
+    void Update();
 
+    /// <summary>
+    /// 描画
+    /// </summary>
+    void Draw();
 
+    // モデルハンドルの取得
+    int GetModelHandle() { return modelHandle; }
+
+    // ポジションのgetter/setter.
+    const VECTOR& GetPos() const { return pos; }
+    const int GetWidth() { return w; }
+    const int GetHeight() { return h; }
+    void SetPos(const VECTOR set) { pos = set; }
 
 private:
-	// 定数
-	const float SPEED = 5.0f;
+    // 定数
+    const float SPEED = 5.0f;
 
-	int		modelHandle;	// モデルハンドル
-	int		textureHandle;	// テクスチャハンドル
-	VECTOR	pos;			// ポジション
-	VECTOR	dir;			// 方向
+    int     modelHandle;    // モデルハンドル
+    int     textureHandle;  // テクスチャハンドル
+    VECTOR  pos;            // ポジション
+    VECTOR  dir;            // 方向
     VECTOR  scale;          // 拡大率
-	int		w;				// 幅
-	int		h;				// 高さ
+    int     w;              // 幅
+    int     h;              // 高さ
 
 };
 

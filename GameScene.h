@@ -91,9 +91,9 @@ private:
     SkyDome*        skyDome;
 
     // 時間
-    int		previousTime;	// ゲームループが始まる前の時間
-    int		timer;			// ゲーム時間
-    float	nowTimer;		// 現在の制限時間
+    int     previousTime;   // ゲームループが始まる前の時間
+    int     timer;          // ゲーム時間
+    float   nowTimer;       // 現在の制限時間
 
     // スコア
     bool    isScoreUp;      // スコアアップフラグ
