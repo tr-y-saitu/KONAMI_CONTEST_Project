@@ -236,7 +236,7 @@ void GameScene::UpdateScore(TreasureChest& chest)
     auto _hitGemType = chest.GetHitGemType();
 
     // スコアを計算
-    score += (_hitGemType + 1) * 100;
+    score += (_hitGemType + 1) * SCORE_MULTIPLE_RATE;
 
     if (highScore <= score)
     {

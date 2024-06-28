@@ -7,20 +7,20 @@
 /// コンストラクタ
 /// </summary>
 TreasureChest::TreasureChest()
-	: modelHanlde		(-1)
-	, width				(5)
-	, height			(5)
-	, isHitGem			(false)
-	, radius			(0)
-    , hitGemType      (0)
+    : modelHanlde       (-1)
+    , width             (5)
+    , height            (5)
+    , isHitGem          (false)
+    , radius            (0)
+    , hitGemType        (0)
 {
     effectManager = EffectManager::GetInstance();
-	modelHanlde = MV1LoadModel("data/model/TreasureChest/treasureChestOld.mv1");
+    modelHanlde = MV1LoadModel("data/model/TreasureChest/treasureChestOld.mv1");
     pos = VGet(5, 1, -5);
-	scale = VGet(0.012f, 0.012f, 0.012f);
+    scale = VGet(0.012f, 0.012f, 0.012f);
     radius = 3.0f;
-	// モデルの回転(違和感ない位置に修正)
-	MV1SetRotationXYZ(modelHanlde, VGet(0.0f, 50.0f * DX_PI_F / 180.0f, 0.0f));
+// モデルの回転(違和感ない位置に修正)
+    MV1SetRotationXYZ(modelHanlde, VGet(0.0f, 50.0f * DX_PI_F / 180.0f, 0.0f));
 }
 
 /// <summary>
@@ -28,8 +28,8 @@ TreasureChest::TreasureChest()
 /// </summary>
 TreasureChest::~TreasureChest()
 {
-	// モデルハンドルの削除
-	MV1DeleteModel(modelHanlde);
+    // モデルハンドルの削除
+    MV1DeleteModel(modelHanlde);
 }
 
 /// <summary>
@@ -37,8 +37,8 @@ TreasureChest::~TreasureChest()
 /// </summary>
 void TreasureChest::Initialize()
 {
-	// スケールの設定
-	MV1SetScale(modelHanlde, scale);
+    // スケールの設定
+    MV1SetScale(modelHanlde, scale);
 }
 
 /// <summary>

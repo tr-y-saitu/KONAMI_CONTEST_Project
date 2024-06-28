@@ -63,9 +63,6 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 {
     char _timeCount[256];		// ゲームの経過時間
 
-    // 「GET!」モデルのポジションを設定
-    MV1SetPosition(getDirectionModelHandle, VGet(1, 3, -3));
-
     // スコアの描画
     DrawScore(gameScore);
 }
@@ -76,7 +73,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 /// <param name="score">スコア</param>
 void GameSceneUI::DrawScore(int score)
 {
-    DrawGraph(SCORE_POSITION_X - 100, SCORE_POSITION_Y - 25, scoreFrameGrpah, true);
+    DrawGraph(SCORE_POSITION_X - SCORE_FRAME_OFFSET_X, SCORE_POSITION_Y - SCORE_FRAME_OFFSET_Y, scoreFrameGrpah, true);
     DrawFormatString(SCORE_POSITION_X, SCORE_POSITION_Y, UI_COLOR, "%d", score);
 }
 

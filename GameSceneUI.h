@@ -74,6 +74,8 @@ private:
     static constexpr int FONT_SIZE_SCORE = 50;              // スコアのフォントサイズ
     static constexpr int SCORE_POSITION_X = 1200;           // スコアを描画するX座標
     static constexpr int SCORE_POSITION_Y = 100;            // スコアを描画するY座標
+    static constexpr int SCORE_FRAME_OFFSET_X = 125;        // スコア装飾用のフレームのX軸ずらし量
+    static constexpr int SCORE_FRAME_OFFSET_Y = 25;         // スコア装飾用のフレームのY軸ずらし量
     // タイマーUI
     static constexpr int TIMER_FRAME_TOP_LEFT_X = 0;        // タイマーフレームを描画する左上頂点X座標
     static constexpr int TIMER_FRAME_TOP_LEFT_Y = 800;      // タイマーフレームを描画する左上頂点Y座標
