@@ -165,7 +165,6 @@
     <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="ClearSceneUI.cpp" />
     <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="PlayerCushion.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FPSSetting.cpp" />
@@ -173,6 +172,8 @@
     <ClCompile Include="GameSceneUI.cpp" />
     <ClCompile Include="Gem.cpp" />
     <ClCompile Include="GemManager.cpp" />
+    <ClCompile Include="PlayerBoat.cpp" />
+    <ClCompile Include="PlayerCuhion.cpp" />
     <ClCompile Include="sea.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
@@ -181,7 +182,6 @@
     <ClCompile Include="OverSceneUI.cpp" />
     <ClCompile Include="PirateShip.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerBoat.cpp" />
     <ClCompile Include="PlayerOar.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="SceneBase.cpp" />
@@ -203,7 +203,6 @@
     <ClInclude Include="ClearSceneUI.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Common.h" />
-    <ClInclude Include="PlayerCushion.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FPSSetting.h" />
@@ -211,13 +210,14 @@
     <ClInclude Include="GameSceneUI.h" />
     <ClInclude Include="Gem.h" />
     <ClInclude Include="GemManager.h" />
+    <ClInclude Include="PlayerBoat.h" />
+    <ClInclude Include="PlayerCuhion.h" />
     <ClInclude Include="sea.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="MenuSceneUI.h" />
     <ClInclude Include="OverScene.h" />
     <ClInclude Include="OverSceneUI.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerBoat.h" />
     <ClInclude Include="PlayerOar.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="SceneBase.h" />

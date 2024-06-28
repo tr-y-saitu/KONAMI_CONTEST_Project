@@ -2,20 +2,20 @@
 #include "Common.h"
 
 /// <summary>
-/// プレイヤーの乗るボート
+/// プレイヤーの持つクッション
 /// </summary>
-class PlayerBoat
+class PlayerCushion
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    PlayerBoat();
+    PlayerCushion();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~PlayerBoat();
+    ~PlayerCushion();
 
     /// <summary>
     /// 更新

@@ -5,6 +5,9 @@
 class Game;
 class Enemy;
 class EffectManager;
+class PlayerOar;
+class PlayerBoat;
+class PlayerCushion;
 
 /// <summary>
 /// プレイヤークラス
@@ -47,6 +50,10 @@ public:
     /// </summary>
     void UpdateAnimation();
 
+    /// 装備品モデルの座標設定
+    /// </summary>
+    void SetPositionAssetModle();
+
     /// <summary>
     /// プレイヤーの当たり判定描画2DBOX
     /// </summary>
@@ -57,7 +64,13 @@ public:
     /// </summary>
     void Draw();
 
-    // ポジションのgetter/setter.
+    /// <summary>
+    /// プレイヤー装備品描画
+    /// </summary>
+    void DrawPlayerAssetModel();
+
+
+    // getter/setter
     const VECTOR& GetPos() const { return pos; }
     const float GetWidth() { return width; }
     const float GetHeight() { return height; }
@@ -92,17 +105,25 @@ private:
     float   height;         // 高さ
 	float	fallSpeed;		// 落下速度
 	float	speed;			// 移動スピード
+
 	// フラグ
 	bool	isGround;		// プレイヤーが接地中か
 	bool	isHitTop;		// プレイヤーの頭が天井に当たっているか
 	bool	isGreatJump;	// ジャンプが成功したか
-	// 当たり判定
+
+    // 当たり判定
 	float		r;			// 球型当たり判定の半径
 	bool	isHitEnemy;		// エネミーと接触したか
 	bool	isHitGem;		// ジェムと接触したか
+
     // アニメーション関係
     int     animationPlayTime;      // アニメーションの再生管理時間(これをインクリメントして再生する)
     int     animationAttachIndex;   // 再生したいアニメーション番号(アタッチする用)
     int     animationPlayTotalTime; // 再生したいアニメーションの総再生時間
+
+    // 装備品
+    PlayerOar* playerOar;
+    PlayerBoat* playerBoat;
+    PlayerCushion* playerCushion;
 };
 
