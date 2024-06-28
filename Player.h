@@ -90,7 +90,7 @@ private:
     static constexpr int	MOVE_LIMIT_Y = 820;		    // キャラのY座標の移動制限
     static constexpr float SPEED = 0.35f;			    // キャラの移動スピード
     static constexpr int MOVE_SIDE_LIMIT_MIN = -20;     // 横の移動制限(カメラから見て左)
-    static constexpr int MOVE_SIDE_LIMIT_MAX = 2;       // 横の移動制限(カメラから見て右)
+    static constexpr float MOVE_SIDE_LIMIT_MAX = -4.5f; // 横の移動制限(カメラから見て右)
     static constexpr int ANIMATION_PLAYBUCK_SPEED = 2;  // アニメーションの再生時間
 
     // 変数

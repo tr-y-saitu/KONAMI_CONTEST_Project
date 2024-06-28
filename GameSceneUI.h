@@ -66,7 +66,7 @@ public:
 
 private:
     // 共通
-    const int UI_COLOR = GetColor(0, 0, 0);	        // UIの文字の色
+    const int UI_COLOR = GetColor(0, 0, 0);	                // UIの文字の色
     const int UI_COLOR_BLACK = GetColor(0, 0, 0);           // UIの文字の色(黒)
     const int UI_COLOR_RED = GetColor(200, 0, 0);           // UIの文字の色(赤)
     static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
@@ -75,7 +75,7 @@ private:
     static constexpr int SCORE_POSITION_X = 1200;           // スコアを描画するX座標
     static constexpr int SCORE_POSITION_Y = 100;            // スコアを描画するY座標
     // タイマーUI
-    static constexpr int TIMER_FRAME_TOP_LEFT_X = 0;      // タイマーフレームを描画する左上頂点X座標
+    static constexpr int TIMER_FRAME_TOP_LEFT_X = 0;        // タイマーフレームを描画する左上頂点X座標
     static constexpr int TIMER_FRAME_TOP_LEFT_Y = 800;      // タイマーフレームを描画する左上頂点Y座標
     static constexpr int TIMER_FRAME_BOTTOM_RIGHT_X = 1200; // タイマーフレームを描画する右下頂点X座標
     static constexpr int TIMER_FRAME_BOTTOM_RIGHT_Y = 950;  // タイマーフレームを描画する右下頂点Y座標

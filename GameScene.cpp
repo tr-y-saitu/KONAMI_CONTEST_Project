@@ -52,7 +52,6 @@ GameScene::~GameScene()
     delete(treasureChest);
     delete(collision);
     delete(camera);
-    delete(skyDome);
     delete(room);
     delete(gameSceneUI);
     delete(gemManager);
