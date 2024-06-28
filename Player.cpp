@@ -17,8 +17,8 @@ Player::Player()
 	,	isHitGem		        (false)
 	,	speed			        (5)
 	,	r				        (1)
-    ,   width                   (4.5f)
-    ,   height                  (1.0f)
+    ,   width                   (HIT_BOX_WIDTH)
+    ,   height                  (HIT_BOX_HEIGHT)
     ,   collisionGraph          (-1)
     ,   animationPlayTime       (0)
 {
@@ -38,6 +38,7 @@ Player::Player()
     playerOar = new PlayerOar();
     playerBoat = new PlayerBoat();
     playerCushion = new PlayerCushion();
+    playerCushionOffsetPosition = playerCushion->GetOffSetPosition();
 }
 
 /// <summary>
@@ -75,10 +76,13 @@ void Player::Update()
     // 移動
     UpdateMovement();
 
-    // 宝石と接触したらエフェクト
+    // 宝石と接触したらエフェクト再生
     if (isHitGem)
     {
-        effectManager->PlayPlayerHitEffect(pos);
+        // 再生位置はクッションの座標
+        VECTOR _playPos = VAdd(pos, playerCushionOffsetPosition);
+        _playPos = VAdd(_playPos, VGet(0.0f, 1.3f, 0.0f));  // 少し上
+        effectManager->PlayPlayerHitEffect(_playPos);
     }
 
     // アニメーションの更新

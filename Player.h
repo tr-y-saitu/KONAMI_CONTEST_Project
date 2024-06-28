@@ -75,19 +75,22 @@ public:
     const float GetWidth() { return width; }
     const float GetHeight() { return height; }
     const float GetRadius() { return r; }
+    const VECTOR GetPlayerCushionOffSetPosition()const { return playerCushionOffsetPosition; }
 
     void SetIsHitEnemy(const bool set) { isHitEnemy = set; }
     void SetIsHitGem(const bool set) { isHitGem = set; }
 
 private:
     // 定数
+    static constexpr float HIT_BOX_WIDTH = 4.5f;        // 当たり判定の幅
+    static constexpr float HIT_BOX_HEIGHT = 4.0f;       // 当たり判定の高さ
     static constexpr float GRAVITY = 0.5f;			    // キャラに掛かる重力加速度
     static constexpr float JUMP_POWER = 25.0f;		    // キャラのジャンプ力
     static constexpr float SMALL_JUMP_POWER = 17.0f;	// 小ジャンプ力
     static constexpr int	MOVE_LIMIT_Y = 820;		    // キャラのY座標の移動制限
     static constexpr float SPEED = 0.35f;			    // キャラの移動スピード
-    static constexpr int MOVE_SIDE_LIMIT_MIN = -18;     // 横の移動制限(カメラから見て左)
-    static constexpr int MOVE_SIDE_LIMIT_MAX = 0;       // 横の移動制限(カメラから見て右)
+    static constexpr int MOVE_SIDE_LIMIT_MIN = -20;     // 横の移動制限(カメラから見て左)
+    static constexpr int MOVE_SIDE_LIMIT_MAX = 2;       // 横の移動制限(カメラから見て右)
     static constexpr int ANIMATION_PLAYBUCK_SPEED = 2;  // アニメーションの再生時間
 
     // 変数
@@ -123,8 +126,9 @@ private:
     int     animationPlayTotalTime; // 再生したいアニメーションの総再生時間
 
     // 装備品
-    PlayerOar* playerOar;
-    PlayerBoat* playerBoat;
-    PlayerCushion* playerCushion;
+    PlayerOar*      playerOar;
+    PlayerBoat*     playerBoat;
+    PlayerCushion*  playerCushion;
+    VECTOR          playerCushionOffsetPosition;
 };
 
