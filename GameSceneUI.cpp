@@ -13,6 +13,7 @@ GameSceneUI::GameSceneUI()
     , getDirectionCount     (0)
 {
     SetFontSize(FONT_SIZE_SCORE);
+    scoreFrameGrpah = LoadGraph("data/texture/UI/scoreFrameImg.png");
     timeLimitsWarningUI = new TimeLimitsWarningUI("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,825,0));
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
@@ -65,22 +66,6 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     // 「GET!」モデルのポジションを設定
     MV1SetPosition(getDirectionModelHandle, VGet(1, 3, -3));
 
-    // 宝石獲得演出(宝石が当たっているかつ演出時間ないである)
-    if (isHitGemToChest && getDirectionCount <= GET_DIRECTION_DRAW_TIME)
-    {
-        // 演出時間を経過
-        getDirectionCount++;
-
-        // 演出用モデルの描画
-        MV1DrawModel(getDirectionModelHandle);
-    }
-    // 描画指定時間を越えたらゼロに戻す
-    if (getDirectionCount >= GET_DIRECTION_DRAW_TIME)
-    {
-        getDirectionCount = 0;
-        isHitGemToChest = false;
-    }
-
     // スコアの描画
     DrawScore(gameScore);
 }
@@ -91,7 +76,8 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 /// <param name="score">スコア</param>
 void GameSceneUI::DrawScore(int score)
 {
-    DrawFormatString(SCORE_POSITION_X, SCORE_POSITION_Y, UI_COLOR, "$ %d", score);
+    DrawGraph(SCORE_POSITION_X - 100, SCORE_POSITION_Y - 25, scoreFrameGrpah, true);
+    DrawFormatString(SCORE_POSITION_X, SCORE_POSITION_Y, UI_COLOR, "%d", score);
 }
 
 /// <summary>

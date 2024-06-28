@@ -94,12 +94,13 @@ private:
     static constexpr int WAVE_TITLE_MESSAGE_Y = 750;        // WAVEごとのタイトルを描画するY座標
 
     // 変数
-    int		getDirectionModelHandle;	    // 宝石獲得演出用モデル
+    int     getDirectionModelHandle;	    // 宝石獲得演出用モデル
     TimeLimitsWarningUI * timeLimitsWarningUI;
     int     timerBarFrameGraph;             // 時間表示バーのフレーム画像
     int     timerBarGraph;                  // 時間表示バーの画像
     int     getDirectionCount;              // 宝石獲得時の演出を管理するカウント
-    bool	isHitGemToChest;	            // 宝石と宝箱が接触した
+    bool    isHitGemToChest;                // 宝石と宝箱が接触した
+    int     scoreFrameGrpah;                // スコア装飾用フレーム
 };
 
 
