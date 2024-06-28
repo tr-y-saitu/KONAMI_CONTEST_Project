@@ -98,9 +98,10 @@ private:
     int     collisionGraph; // 当たり判定用画像
 
     // 情報
-	VECTOR	pos;			// ポジション.
+	VECTOR	pos;			// ポジション
 	VECTOR	dir;			// 方向
 	VECTOR	scale;			// スケール
+    VECTOR  rotationRate;   // 回転率
     float   width;          // 幅
     float   height;         // 高さ
 	float	fallSpeed;		// 落下速度

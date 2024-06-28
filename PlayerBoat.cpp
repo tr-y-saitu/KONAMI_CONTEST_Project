@@ -8,8 +8,11 @@ PlayerBoat::PlayerBoat()
 {
     modelHandle = MV1LoadModel("data/model/player/playerAsset/playerBoat/playerBoat.mv1");
     position = VGet(0, 0, 0);
+    offSetPosition = VGet(2, -1, 0);
     scale = VGet(0.02f, 0.02f, 0.02f);
     MV1SetScale(modelHandle, scale);
+    rotationRate = VGet(0.0f, -90.0f * DX_PI_F / 180.0f, 0.0f);
+    MV1SetRotationXYZ(modelHandle, rotationRate);
 }
 
 /// <summary>
@@ -27,7 +30,7 @@ PlayerBoat::~PlayerBoat()
 void PlayerBoat::Update(VECTOR playerPosition)
 {
     // 座標の更新
-    position = playerPosition;
+    position = VAdd(playerPosition, offSetPosition);
     MV1SetPosition(modelHandle, position);
 }
 

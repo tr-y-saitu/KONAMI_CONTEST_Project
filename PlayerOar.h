@@ -22,6 +22,9 @@ public:
     /// </summary>
     void Update(VECTOR playerPosition);
 
+    // オールを漕ぐ
+    void PlayRowingAnimation();
+
     /// <summary>
     /// 描画
     /// </summary>
@@ -33,10 +36,17 @@ public:
     void SetPosition(const VECTOR set) { position = set; }
 
 private:
-    int modelHandle;
-    VECTOR position;
-    VECTOR scale;
+    static constexpr int ANIMATION_SPEED = 2;   // アニメーション再生速度
+    static constexpr int LIMIT_ANGLE_MAX = 120; // 漕いでいい最大角度
+    static constexpr int LIMIT_ANGLE_MIN = 0;   // 漕いでよい最小角度
 
+    int     modelHandle;
+    VECTOR  position;
+    VECTOR  scale;
+    VECTOR  offSetPosition;
+    VECTOR  rotationRate;
+    int     turnOverRate;       // プレイヤー移動に合わせてオールが回転する角度の値
+    bool    isBuckReverse;      // 逆回転するフラグ
 };
 
 

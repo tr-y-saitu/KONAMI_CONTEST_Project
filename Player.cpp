@@ -27,10 +27,12 @@ Player::Player()
     animationAttachIndex = MV1AttachAnim(modelHandle, 0, -1, false);
     animationPlayTotalTime = MV1GetAttachAnimTotalTime(modelHandle, animationAttachIndex);
     collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Red.png");
-    pos = VGet(0, 50, 0);
+    pos = VGet(-18, 1, -5);
 	dir = VGet(0,0,0);
-	fallSpeed = 0.0f;
-	scale = VGet(0.02f, 0.02f, 0.02f);
+    fallSpeed = 0.0f;
+    rotationRate = VGet(0.0f, -90.0f * DX_PI_F / 180.0f, 0.0f);
+    MV1SetRotationXYZ(modelHandle, rotationRate);
+    scale = VGet(0.02f, 0.02f, 0.02f);
 	MV1SetScale(modelHandle, scale);
     // プレイヤー装備品
     playerOar = new PlayerOar();
@@ -54,7 +56,7 @@ Player::~Player()
 /// </summary>
 void Player::Initialize()
 {
-	pos = VGet(-18, 1, -5);	// 座標のセット
+	pos = VGet(-18, 0, -5);	// 座標のセット
 	dir = VGet(0, 0, 0);	// 方向のセット
 	fallSpeed = 0.0f;		// 落下速度
 	isGround = false;		// 地面にいるか
