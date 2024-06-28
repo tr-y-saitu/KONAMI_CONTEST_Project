@@ -114,16 +114,16 @@ void Player::UpdateMovement()
     auto input = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 
     // 無限に移動しないように停止
-    dir = VGet(0, 0, 0);
+    dir = NO_DIRECTION;
 
     if (CheckHitKey(KEY_INPUT_LEFT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT) != 0)
     {
-        dir = VAdd(dir, VGet(-1, 0, 0));
+        dir = VAdd(dir, LEFT_DIRECTION);
         speed = SPEED;
     }
     else if (CheckHitKey(KEY_INPUT_RIGHT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_RIGHT) != 0)
     {
-        dir = VAdd(dir, VGet(1, 0, 0));
+        dir = VAdd(dir, RIGHT_DIRECTION);
         speed = SPEED;
     }
 
