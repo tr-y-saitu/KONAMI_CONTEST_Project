@@ -5,6 +5,9 @@
 class Game;
 class Enemy;
 class EffectManager;
+class PlayerOar;
+class PlayerBoat;
+class PlayerCushion;
 
 /// <summary>
 /// プレイヤークラス
@@ -27,6 +30,11 @@ public:
     void Update();
 
     /// <summary>
+    /// 装備品モデルの座標設定
+    /// </summary>
+    void SetPositionAssetModle();
+
+    /// <summary>
     /// プレイヤーの当たり判定描画2DBOX
     /// </summary>
     void Draw2DBOXCollision();
@@ -35,6 +43,11 @@ public:
     /// プレイヤーの描画
     /// </summary>
     void Draw();
+
+    /// <summary>
+    /// プレイヤー装備品描画
+    /// </summary>
+    void DrawPlayerAssetModel();
 
 
     // モデルハンドルの取得.
@@ -75,6 +88,7 @@ private:
 	int		animeIndex;		// 画像の添え字
 	int		moveFrameCount;	// 添え字を変更するためにカウントする
     int     collisionGraph; // 当たり判定用画像
+
     // 情報
 	VECTOR	pos;			// ポジション.
 	VECTOR	dir;			// 方向
@@ -83,13 +97,23 @@ private:
     float   height;         // 高さ
 	float	fallSpeed;		// 落下速度
 	float	speed;			// 移動スピード
+
 	// フラグ
 	bool	isGround;		// プレイヤーが接地中か
 	bool	isHitTop;		// プレイヤーの頭が天井に当たっているか
 	bool	isGreatJump;	// ジャンプが成功したか
-	// 当たり判定
+
+    // 当たり判定
 	float		r;			// 球型当たり判定の半径
 	bool	isHitEnemy;		// エネミーと接触したか
 	bool	isHitGem;		// ジェムと接触したか
+
+    // 装備品
+    PlayerOar* playerOar;
+    PlayerBoat* playerBoat;
+    PlayerCushion* playerCushion;
+    int     withCushionModelHandle; // プレイヤーの持つクッションのモデルハンドル
+    VECTOR  withCushionPosition;     // プレイヤーの持つクッションの座標
+    VECTOR  withCushionScale;        // プレイヤーの持つクッションの拡大率
 };
 

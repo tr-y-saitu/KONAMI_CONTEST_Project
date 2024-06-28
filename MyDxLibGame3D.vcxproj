@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BoatWithChest.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="ClearSceneUI.cpp" />
@@ -171,23 +172,30 @@
     <ClCompile Include="GameSceneUI.cpp" />
     <ClCompile Include="Gem.cpp" />
     <ClCompile Include="GemManager.cpp" />
+    <ClCompile Include="PlayerBoat.cpp" />
+    <ClCompile Include="PlayerCuhion.cpp" />
+    <ClCompile Include="sea.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="MenuSceneUI.cpp" />
     <ClCompile Include="OverScene.cpp" />
     <ClCompile Include="OverSceneUI.cpp" />
+    <ClCompile Include="PirateShip.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerOar.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="SceneUIBase.cpp" />
     <ClCompile Include="SkyDome.cpp" />
+    <ClCompile Include="StageObjectBase.cpp" />
     <ClCompile Include="TreasureChest.cpp" />
     <ClCompile Include="Calculation.cpp" />
     <ClCompile Include="TimeLimitsWarningUI.cpp" />
     <ClCompile Include="WaveConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoatWithChest.h" />
     <ClInclude Include="Calculation.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearScene.h" />
@@ -201,20 +209,26 @@
     <ClInclude Include="GameSceneUI.h" />
     <ClInclude Include="Gem.h" />
     <ClInclude Include="GemManager.h" />
+    <ClInclude Include="PlayerBoat.h" />
+    <ClInclude Include="PlayerCuhion.h" />
+    <ClInclude Include="sea.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="MenuSceneUI.h" />
     <ClInclude Include="OverScene.h" />
     <ClInclude Include="OverSceneUI.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerOar.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="SceneUIBase.h" />
     <ClInclude Include="SkyDome.h" />
+    <ClInclude Include="StageObjectBase.h" />
     <ClInclude Include="TreasureChest.h" />
     <ClInclude Include="TimeLimitsWarningUI.h" />
     <ClInclude Include="WaveConstants.h" />
     <ClInclude Include="ゲーム構造.h" />
+    <ClInclude Include="PirateShip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

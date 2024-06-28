@@ -6,6 +6,9 @@
 #include "Enemy.h"
 #include "EffectManager.h"
 #include "Game.h"
+#include "PlayerOar.h"
+#include "PlayerBoat.h"
+#include "PlayerCuhion.h"
 
 //-----------------------------------------------------------------------------
 // @brief  コンストラクタ.
@@ -27,13 +30,16 @@ Player::Player()
 	// ３Ｄモデルの読み込み
 	modelHandle = MV1LoadModel("data/model/player/trampoline.mv1");
     collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Red.png");
-    pos = VGet(0, 50, 0);	// 座標のセット
-	dir = VGet(0,0,0);		// 方向のセット
-	fallSpeed = 0.0f;		// 落下速度
+    pos = VGet(0, 50, 0);
+	dir = VGet(0,0,0);
+	fallSpeed = 0.0f;
 	animeIndex = 8;
-	// スケールのセット
 	scale = VGet(0.02f, 0.02f, 0.02f);
 	MV1SetScale(modelHandle, scale);
+    // プレイヤー装備品
+    playerOar = new PlayerOar();
+    playerBoat = new PlayerBoat();
+    playerCushion = new PlayerCushion();
 }
 
 //-----------------------------------------------------------------------------
@@ -41,8 +47,10 @@ Player::Player()
 //-----------------------------------------------------------------------------
 Player::~Player()
 {
-	// モデルのアンロード.
 	MV1DeleteModel(modelHandle);
+    delete(playerOar);
+    delete(playerBoat);
+    delete(playerCushion);
 }
 
 /// <summary>
@@ -144,6 +152,19 @@ void Player::Update()
 
 	// ３Dモデルのポジション設定
 	MV1SetPosition(modelHandle, pos);
+
+    // プレイヤー装備品のポジション設定
+    SetPositionAssetModle();
+}
+
+/// <summary>
+/// 装備品モデルの座標設定
+/// </summary>
+void Player::SetPositionAssetModle()
+{
+    playerOar->Update(pos);     // オール
+    playerBoat->Update(pos);    // ボート
+    playerCushion->Update(pos); // クッション
 }
 
 /// <summary>
@@ -155,11 +176,23 @@ void Player::Draw2DBOXCollision()
 }
 
 
-
 /// <summary>
 /// プレイヤーの描画
 /// </summary>
 void Player::Draw()
 {
+    // プレイヤー
 	MV1DrawModel(modelHandle);
+    // プレイヤー装備品
+    DrawPlayerAssetModel();
+}
+
+/// <summary>
+/// プレイヤー装備品描画
+/// </summary>
+void Player::DrawPlayerAssetModel()
+{
+    playerOar->Draw();      // オール
+    playerBoat->Draw();     // ボート
+    playerCushion->Draw();  // クッション
 }
