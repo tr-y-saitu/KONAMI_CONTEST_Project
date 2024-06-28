@@ -67,7 +67,10 @@ void EffectManager::LoadEffect()
 /// </summary>
 void EffectManager::CreateInstance()
 {
-    effectManager = new EffectManager();
+    if (effectManager == NULL)
+    {
+        effectManager = new EffectManager();
+    }
 }
 
 /// <summary>
