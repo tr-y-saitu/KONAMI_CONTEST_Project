@@ -51,10 +51,8 @@ public:
     /// <summary>
     /// スコアの描画
     /// </summary>
-    /// <param name="pos">スコアを描画する座標</param>
-    /// <param name="fontSize">フォントサイズ</param>
     /// <param name="score">スコア</param>
-    void DrawScore(VECTOR pos, int fontSize, int score);
+    void DrawScore(int score);
 
     /// <summary>
     /// タイマーバーの描画
@@ -68,11 +66,14 @@ public:
 
 private:
     // 共通
-    const int UI_COLOR = GetColor(200, 200, 200);	        // UIの文字の色
+    const int UI_COLOR = GetColor(0, 0, 0);	        // UIの文字の色
     const int UI_COLOR_BLACK = GetColor(0, 0, 0);           // UIの文字の色(黒)
     const int UI_COLOR_RED = GetColor(200, 0, 0);           // UIの文字の色(赤)
-    static constexpr int FONT_SIZE_SCORE = 50;              // スコアのフォントサイズ
     static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
+    // スコア
+    static constexpr int FONT_SIZE_SCORE = 50;              // スコアのフォントサイズ
+    static constexpr int SCORE_POSITION_X = 1200;           // スコアを描画するX座標
+    static constexpr int SCORE_POSITION_Y = 100;            // スコアを描画するY座標
     // タイマーUI
     static constexpr int TIMER_FRAME_TOP_LEFT_X = 0;      // タイマーフレームを描画する左上頂点X座標
     static constexpr int TIMER_FRAME_TOP_LEFT_Y = 800;      // タイマーフレームを描画する左上頂点Y座標
@@ -99,8 +100,6 @@ private:
     int     timerBarGraph;                  // 時間表示バーの画像
     int     getDirectionCount;              // 宝石獲得時の演出を管理するカウント
     bool	isHitGemToChest;	            // 宝石と宝箱が接触した
-
-
 };
 
 

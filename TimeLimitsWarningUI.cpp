@@ -46,7 +46,6 @@ void TimeLimitsWarningUI::Update(int timeLimit, int waveEndTime)
 void TimeLimitsWarningUI::Draw()
 {
     DrawGraph(position.x, position.y, graphHandle, true);
-    SetFontSize(TIME_LIMITS_WARNING_TEXT_SIZE);
     DrawFormatString(position.x + OFF_SET_POSITION_X, position.y + OFF_SET_POSITION_Y, TEXT_COLOR_BLACK, "残り時間わずか！", true);
 }
 

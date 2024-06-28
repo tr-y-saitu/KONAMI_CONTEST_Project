@@ -26,7 +26,8 @@ public:
     void Draw(int highScore);
         
 private:
-    const int UI_COLOR_WHITE = GetColor(255, 255, 255);
+    const int UI_COLOR_WHITE = GetColor(255, 255, 255); // UIの色
+    static const int UI_FONT_SIZE = 80;                 // UIのフォントサイズ
 
     int titileGraph;            // タイトル画像
 };
