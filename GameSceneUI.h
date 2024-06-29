@@ -55,6 +55,11 @@ public:
     void DrawScore(int score);
 
     /// <summary>
+    /// 宝石のスコア表を描画
+    /// </summary>
+    void DrawGemScoreTable();
+
+    /// <summary>
     /// タイマーバーの描画
     /// </summary>
     /// <param name="nowTimer">現在時間</param>
@@ -66,16 +71,19 @@ public:
 
 private:
     // 共通
-    const int UI_COLOR = GetColor(0, 0, 0);	                // UIの文字の色
+    const int UI_COLOR = GetColor(0, 0, 0);                 // UIの文字の色
     const int UI_COLOR_BLACK = GetColor(0, 0, 0);           // UIの文字の色(黒)
     const int UI_COLOR_RED = GetColor(200, 0, 0);           // UIの文字の色(赤)
+    const int UI_COLOR_WHITE = GetColor(255, 255, 255);     // UIの文字の色(白)
     static constexpr int GET_DIRECTION_DRAW_TIME = 100;     // 獲得演出を描画する時間
     // スコア
     static constexpr int FONT_SIZE_SCORE = 50;              // スコアのフォントサイズ
-    static constexpr int SCORE_POSITION_X = 1200;           // スコアを描画するX座標
-    static constexpr int SCORE_POSITION_Y = 100;            // スコアを描画するY座標
+    static constexpr int SCORE_POSITION_X = 1250;           // スコアを描画するX座標
+    static constexpr int SCORE_POSITION_Y = 25;             // スコアを描画するY座標
     static constexpr int SCORE_FRAME_OFFSET_X = 125;        // スコア装飾用のフレームのX軸ずらし量
     static constexpr int SCORE_FRAME_OFFSET_Y = 25;         // スコア装飾用のフレームのY軸ずらし量
+    // 宝石スコア表
+    static constexpr int GEM_SCORE_TABLE_OFFSET_Y = 100;    // 宝石スコア表を描画するY軸のずらし量
     // タイマーUI
     static constexpr int TIMER_FRAME_TOP_LEFT_X = 0;        // タイマーフレームを描画する左上頂点X座標
     static constexpr int TIMER_FRAME_TOP_LEFT_Y = 800;      // タイマーフレームを描画する左上頂点Y座標
@@ -96,13 +104,14 @@ private:
     static constexpr int WAVE_TITLE_MESSAGE_Y = 750;        // WAVEごとのタイトルを描画するY座標
 
     // 変数
-    int     getDirectionModelHandle;	    // 宝石獲得演出用モデル
+    int     getDirectionModelHandle;        // 宝石獲得演出用モデル
     TimeLimitsWarningUI * timeLimitsWarningUI;
     int     timerBarFrameGraph;             // 時間表示バーのフレーム画像
     int     timerBarGraph;                  // 時間表示バーの画像
     int     getDirectionCount;              // 宝石獲得時の演出を管理するカウント
     bool    isHitGemToChest;                // 宝石と宝箱が接触した
     int     scoreFrameGrpah;                // スコア装飾用フレーム
+    int     gemScoreTableGraph;             // 宝石スコア表画像
 };
 
 

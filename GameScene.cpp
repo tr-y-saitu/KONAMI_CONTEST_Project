@@ -162,6 +162,7 @@ SceneBase* GameScene::UpdateScene()
         // スコアをアップさせる
         UpdateScore(*treasureChest);
     }
+
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();     // treasureChest->Updateyよりも上に書かないと、ウェーブ切り替え時１フレームだけ原点に宝石が描画される
 
@@ -191,24 +192,25 @@ SceneBase* GameScene::UpdateScene()
 /// <summary>
 /// 描画
 /// </summary>
+/// MEMO:UIで宝石が見えなくなるためgemManagerはUIより下に書く
 void GameScene::Draw()
 {
     bool _fadeInScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_IN_SCREEN_PLAYING;
     bool _fadeOutScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_OUT_SCREEN_PLAYING;
 
     // オブジェク描画画
-    //room->Draw();         // 部屋
-    player->Draw();         // プレイヤー
-    gemManager->DrawGems(); // 宝石たち
-    treasureChest->Draw();  // 宝箱
-    stageManager->Draw();   // ステージ
-    skyDome->Draw();        // スカイドーム
-    DrawEffekseer3D();      // 3Dエフェクト描画
+    //room->Draw();             // 部屋
+    player->Draw();             // プレイヤー
+    treasureChest->Draw();      // 宝箱
+    stageManager->Draw();       // ステージ
+    skyDome->Draw();            // スカイドーム
+    DrawEffekseer3D();          // 3Dエフェクト描画
     // フェード処理中は描画しない
     if (_fadeInScreen && _fadeOutScreen)
     {
         DrawUI();               // UI描画
     }
+    gemManager->DrawGems();     // 宝石たち
 }
 
 /// <summary>

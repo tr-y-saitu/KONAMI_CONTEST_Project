@@ -13,6 +13,7 @@ GameSceneUI::GameSceneUI()
     , getDirectionCount     (0)
 {
     SetFontSize(FONT_SIZE_SCORE);
+    gemScoreTableGraph = LoadGraph("data/texture/UI/gemScoreImg.png");
     scoreFrameGrpah = LoadGraph("data/texture/UI/scoreFrameImg.png");
     timeLimitsWarningUI = new TimeLimitsWarningUI("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,825,0));
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
@@ -28,6 +29,10 @@ GameSceneUI::GameSceneUI()
 GameSceneUI::~GameSceneUI()
 {
     MV1DeleteModel(getDirectionModelHandle);
+    DeleteGraph(gemScoreTableGraph);
+    DeleteGraph(scoreFrameGrpah);
+    DeleteGraph(timerBarFrameGraph);
+    DeleteGraph(timerBarGraph);
     delete(timeLimitsWarningUI);
 }
 
@@ -65,6 +70,9 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 
     // スコアの描画
     DrawScore(gameScore);
+
+    // 宝石のスコア表を描画
+    DrawGemScoreTable();
 }
 
 /// <summary>
@@ -73,8 +81,24 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 /// <param name="score">スコア</param>
 void GameSceneUI::DrawScore(int score)
 {
-    DrawGraph(SCORE_POSITION_X - SCORE_FRAME_OFFSET_X, SCORE_POSITION_Y - SCORE_FRAME_OFFSET_Y, scoreFrameGrpah, true);
+    // フレーム描画
+    DrawGraph(SCORE_POSITION_X - SCORE_FRAME_OFFSET_X,
+        SCORE_POSITION_Y - SCORE_FRAME_OFFSET_Y,
+        scoreFrameGrpah, true);
+
+    // スコア描画
     DrawFormatString(SCORE_POSITION_X, SCORE_POSITION_Y, UI_COLOR, "%d", score);
+}
+
+/// <summary>
+/// 宝石のスコア表を描画
+/// </summary>
+void GameSceneUI::DrawGemScoreTable()
+{
+    // スコアを描画している位置から少し下
+    DrawGraph(SCORE_POSITION_X - SCORE_FRAME_OFFSET_X,
+        SCORE_POSITION_Y - SCORE_FRAME_OFFSET_Y + GEM_SCORE_TABLE_OFFSET_Y,
+        gemScoreTableGraph, true);
 }
 
 /// <summary>
