@@ -87,7 +87,7 @@ void GameSceneUI::DrawScore(int score)
         scoreFrameGrpah, true);
 
     // スコア描画
-    DrawFormatString(SCORE_POSITION_X, SCORE_POSITION_Y, UI_COLOR, "%d", score);
+    DrawFormatString(SCORE_POSITION_X, SCORE_POSITION_Y, UI_COLOR_WHITE, "%d", score);
 }
 
 /// <summary>

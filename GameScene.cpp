@@ -1,6 +1,5 @@
 ﻿#include "SceneBase.h"
 #include "ClearScene.h"
-#include "Room.h"
 #include "TreasureChest.h"
 #include "Camera.h"
 #include "Collision.h"
@@ -35,7 +34,6 @@ GameScene::GameScene(int _highScore)
     collision       = new Collision();
     camera          = new Camera();
     skyDome         = new SkyDome();
-    room            = new Room();
     gameSceneUI     = new GameSceneUI();
     gemManager      = new GemManager();
     stageManager    = new StageManager();
@@ -52,7 +50,6 @@ GameScene::~GameScene()
     delete(treasureChest);
     delete(collision);
     delete(camera);
-    delete(room);
     delete(gameSceneUI);
     delete(gemManager);
     delete(stageManager);
@@ -80,7 +77,6 @@ void GameScene::Initialize()
     player->Initialize();
     treasureChest->Initialize();
     gemManager->Initialize();
-    room->Initialize();
     gameSceneUI->Initialize();
 }
 
@@ -106,7 +102,6 @@ void GameScene::Update()
     // 更新
     player->Update();	                    // プレイヤー
     skyDome->Update();		                // 背景
-    room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱
     stageManager->Update();                 // ステージ
@@ -169,7 +164,6 @@ SceneBase* GameScene::UpdateScene()
     // オブジェクト更新
     player->Update();	                    // プレイヤー
     skyDome->Update();		                // 背景
-    room->Update();			                // 部屋
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();			    // 宝箱更新
     gameSceneUI->Update(nowTimer,           // UI
@@ -199,7 +193,6 @@ void GameScene::Draw()
     bool _fadeOutScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_OUT_SCREEN_PLAYING;
 
     // オブジェク描画画
-    //room->Draw();             // 部屋
     player->Draw();             // プレイヤー
     treasureChest->Draw();      // 宝箱
     stageManager->Draw();       // ステージ
