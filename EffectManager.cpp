@@ -28,6 +28,11 @@ EffectManager::EffectManager()
     // Effekseerを使用する場合は必ず設定する。
     SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
 
+    // DXライブラリのデバイスロストした時のコールバックを設定する。
+    // ウインドウとフルスクリーンの切り替えが発生する場合は必ず実行する。
+    // ただし、DirectX11を使用する場合は実行する必要はない。
+    Effekseer_SetGraphicsDeviceLostCallbackFunctions();
+
     // Zバッファを有効にする。
     // Effekseerを使用する場合、2DゲームでもZバッファを使用する。
     SetUseZBuffer3D(TRUE);
@@ -60,7 +65,7 @@ void EffectManager::LoadEffect()
     gemGetEffect = LoadEffekseerEffect("data/effect/getEffectLight.efk", 0.3f);
     playerHitEffect = LoadEffekseerEffect("data/effect/playerHitWaveEffect.efk", 2.0f);
     //gemFallEffect = LoadEffekseerEffect("data/effect/gemFallEffect.efk", 2.0f);
-    pirateShipBurnsSmallEffect = LoadEffekseerEffect("data/effect/GameScene/Fire1.efk",1.0f);
+    pirateShipBurnsSmallEffect = LoadEffekseerEffect("data/effect/GameScene/FireLOD10.efk",1.0f);
     pirateShipBurnsMediumEffect = LoadEffekseerEffect("data/effect/GameScene/Fire2.efk", 0.3f);
     pirateShipExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/Explosion.efk", 1.0f);
     pirateShipBigExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/BigExplosion.efk", 0.3f);

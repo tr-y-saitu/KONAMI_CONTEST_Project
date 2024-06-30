@@ -14,7 +14,7 @@
 Camera::Camera()
 {
     // 描画範囲の設定
-    SetCameraNearFar(0.1f, 1500.0f);
+    SetCameraNearFar(0.1f, 600.0f);
 
 	// カメラのポジション
 	pos = VGet(-7, 5, -23);
