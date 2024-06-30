@@ -29,16 +29,28 @@ PirateShip::~PirateShip()
 void PirateShip::Update()
 {
     // 海賊船が燃えているエフェクトを再生
-    if (effectCount % 60 == 0)
+    if (effectCount % PIRATE_SHIP_BURNS_SMALL_EFFECT_CYCLE == 0)
     {
-        VECTOR _playPos = VAdd(position, VGet(20, -25, -5));
-        effectManager->PlayPirateShipBurnsSmallEffect(_playPos);
-        //effectManager->PlayPirateShipBurnsMediumEffect(_playPos);
+        // 座標設定
+        VECTOR _playPosition1 = VAdd(position, PIRATE_SHIP_BURNS_SMALL_EFFECT_POSITION_1);
+        VECTOR _playPosition2 = VAdd(position, PIRATE_SHIP_BURNS_SMALL_EFFECT_POSITION_2);
+        VECTOR _playPosition3 = VAdd(position, PIRATE_SHIP_BURNS_SMALL_EFFECT_POSITION_3);
+        // 再生
+        effectManager->PlayPirateShipBurnsSmallEffect(_playPosition1);
+        effectManager->PlayPirateShipBurnsSmallEffect(_playPosition2);
+        effectManager->PlayPirateShipBurnsSmallEffect(_playPosition3);
     }
-    if (effectCount % 120 == 0)
+
+    // 雷のエフェクトを再生
+    if (effectCount % THUNDER_EFFECT_CYCLE == 0)
     {
-        VECTOR _playPos = VAdd(position, VGet(30, -25, 0));
-        effectManager->PlayPirateShipExplosionEffect(_playPos);
+        // X軸だけランダムで設定
+        int _positionX = GetRand(THUNDER_EFFECT_RANDOM_RANGE) + THUNDER_EFFECT_POSITION_X_OFFSET;
+        VECTOR _randX = VGet(_positionX, 0, 0);
+        VECTOR _offSet = VAdd(_randX, THUNDER_EFFECT_POSITION);
+        VECTOR _playPos = VAdd(position, _offSet);
+        // 再生
+        effectManager->PlayThunderEffect(_playPos);
     }
 
     // エフェクトカウント更新

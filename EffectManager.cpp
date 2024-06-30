@@ -62,14 +62,14 @@ EffectManager::~EffectManager()
 /// </summary>
 void EffectManager::LoadEffect()
 {
-    gemGetEffect = LoadEffekseerEffect("data/effect/getEffectLight.efk", 0.3f);
+    gemGetEffect = LoadEffekseerEffect("data/effect/GemGetUpEffect.efk", 2.3f);
     playerHitEffect = LoadEffekseerEffect("data/effect/playerHitWaveEffect.efk", 2.0f);
     //gemFallEffect = LoadEffekseerEffect("data/effect/gemFallEffect.efk", 2.0f);
     pirateShipBurnsSmallEffect = LoadEffekseerEffect("data/effect/GameScene/FireLOD10.efk",1.0f);
-    pirateShipBurnsMediumEffect = LoadEffekseerEffect("data/effect/GameScene/Fire2.efk", 0.3f);
+    pirateShipBurnsMediumEffect = LoadEffekseerEffect("data/effect/GameScene/Fire2.efk", 1.0f);
     pirateShipExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/Explosion.efk", 1.0f);
     pirateShipBigExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/BigExplosion.efk", 0.3f);
-    thunderEffect = LoadEffekseerEffect("data/effect/GameScene/Thunder.efk", 0.3f);
+    thunderEffect = LoadEffekseerEffect("data/effect/GameScene/ThunderLOD50.efk", 1.0f);
 }
 
 /// <summary>

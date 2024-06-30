@@ -9,6 +9,11 @@
 class EffectManager
 {
 public:
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	~EffectManager();
+
     /// <summary>
     /// インスタス作成
     /// </summary>
@@ -88,11 +93,6 @@ private:
 	/// コンストラクタ
 	/// </summary>
 	EffectManager();
-
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
-	~EffectManager();
 
     // 管理用
     static EffectManager* effectManager;    // エフェクトマネージャーのインスタンス
