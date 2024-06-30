@@ -33,8 +33,8 @@
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) 
 {
 	// DXライブラリの表示方法をウィンドウモードに変更する。
-	ChangeWindowMode(true);	// ウィンドウモード
-	//ChangeWindowMode(false);// 全画面モード
+	//ChangeWindowMode(true);	// ウィンドウモード
+	ChangeWindowMode(false);// 全画面モード
 
 	//描画先を裏画面に変更する。
 	SetDrawScreen(DX_SCREEN_BACK);
