@@ -31,9 +31,10 @@ public:
     void Draw();
 
 private:
-    BoatWithChest* boatWithChest;
-    PirateShip* pirateShip;
-    Sea* sea;
+
+    BoatWithChest* boatWithChest;       // 宝箱を乗せる船
+    PirateShip* pirateShip;             // 海賊船
+    Sea* sea;                           // 海
 };
 
 

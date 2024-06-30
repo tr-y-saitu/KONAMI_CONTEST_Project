@@ -76,7 +76,7 @@ public:
     const bool GetIsNextScene() { return isNextScene; }
 
 private:
-    static constexpr int STATE_GAME_TIME_LIMIT = 4;     // ゲームステートが終了(する時間)(初期40)
+    static constexpr int STATE_GAME_TIME_LIMIT = 40;    // ゲームステートが終了(する時間)(初期40)
     static constexpr int SCORE_MULTIPLE_RATE = 1500;    // スコア倍率
 
     // インスタンス

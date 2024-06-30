@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "StageObjectBase.h"
 
+class EffectManager;
+
 /// <summary>
 /// 海賊船
 /// </summary>
@@ -26,7 +28,8 @@ public:
     void Draw() override;
 
 private:
-
+    int effectCount;                    // エフェクトをループ再生するためのカウント
+    EffectManager* effectManager;       // エフェクトマネージャー
 };
 
 

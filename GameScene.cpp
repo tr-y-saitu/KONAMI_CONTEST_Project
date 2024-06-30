@@ -170,6 +170,7 @@ SceneBase* GameScene::UpdateScene()
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
     camera->Update();                       // カメラ
     stageManager->Update();                 // ステージ
+    effectManager->Update();                // エフェクトマネージャー更新
     UpdateEffekseer3D();                    // エフェクト更新
 
     // 終了時間になったらSCENE_CLEARに移行
