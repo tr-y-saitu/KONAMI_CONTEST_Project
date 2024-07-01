@@ -81,7 +81,7 @@ private:
     static constexpr int SCORE_POSITION_X = 1250;           // スコアを描画するX座標
     static constexpr int SCORE_POSITION_Y = 25;             // スコアを描画するY座標
     static constexpr int SCORE_FRAME_OFFSET_X = 125;        // スコア装飾用のフレームのX軸ずらし量
-    static constexpr int SCORE_FRAME_OFFSET_Y = 25;         // スコア装飾用のフレームのY軸ずらし量
+    static constexpr int SCORE_FRAME_OFFSET_Y = 28;         // スコア装飾用のフレームのY軸ずらし量
     // 宝石スコア表
     static constexpr int GEM_SCORE_TABLE_OFFSET_Y = 100;    // 宝石スコア表を描画するY軸のずらし量
     // タイマーUI
