@@ -77,7 +77,7 @@ public:
 
 private:
     // 定数
-    static constexpr int STATE_GAME_TIME_LIMIT = 40;    // ゲームステートが終了(する時間)(初期40)
+    static constexpr int STATE_GAME_TIME_LIMIT = 4;    // ゲームステートが終了(する時間)(初期40)
     static constexpr int SCORE_MULTIPLE_RATE = 1500;    // スコア倍率
     // ゲームシーンでの宝箱の初期化座標
     static constexpr VECTOR TREASURE_CHEST_INITIALIZE_POSITION = { 5.0f,1.0f,-5.0f};

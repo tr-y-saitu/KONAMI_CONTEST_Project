@@ -64,9 +64,11 @@ private:
     // クリアシーンでの宝石の乗るボートの初期化座標
     static constexpr VECTOR BOAT_WITH_CHEST_INITIALIZE_POSITION = { -7.0f,-0.5f,-5.0f };
     // クリアシーンでのプレイヤーの初期座標
-    static constexpr VECTOR PLAYER_INITILIZE_POSITION = { -5.5f, -0.5f, -5.0f };
+    static constexpr VECTOR PLAYER_INITILIZE_POSITION = { -9.0f, 1.0f, -5.0f };
     // クリアシーンでのプレイヤーの回転率
     static constexpr VECTOR PLAYER_INITILIZE_ROTATION_RATE = { 0.0f, 0.0f, 0.0f };
+    // クリアシーンでのプレイヤーのスケール
+    static constexpr VECTOR PLAYER_INITILIZE_SCALE = { 0.03f, 0.03f, 0.03f };
 
     // 変数
     ClearSceneUI*   clearSceneUI;       // クリアシーンで使用するUI

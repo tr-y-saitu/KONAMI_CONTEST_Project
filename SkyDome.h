@@ -49,7 +49,7 @@ public:
 
 private:
     // 定数
-    static constexpr int ROTATION_SPEED = 100;          // 回転速度
+    static constexpr int ROTATION_SPEED = 100;      // 回転速度
 
     // 変数
     int     modelHandle;        // モデルハンドル

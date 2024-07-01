@@ -24,8 +24,8 @@ Player::Player()
     ,   rotationRate            (VGet(0.0f, -90.0f * DX_PI_F / 180.0f, 0.0f))
 {
     effectManager = EffectManager::GetInstance();
-    modelHandle = MV1LoadModel("data/model/player/SittingPlayer.mv1");
-    animationAttachIndex = MV1AttachAnim(modelHandle, 0, -1, false);
+    modelHandle = MV1LoadModel("data/model/player/PlayerModle.mv1");
+    animationAttachIndex = MV1AttachAnim(modelHandle, SITTEING, -1, false);
     animationPlayTotalTime = MV1GetAttachAnimTotalTime(modelHandle, animationAttachIndex);
     collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Red.png");
     MV1SetRotationXYZ(modelHandle, rotationRate);
@@ -52,11 +52,17 @@ Player::~Player()
 /// <summary>
 /// 初期化
 /// </summary>
-void Player::Initialize(VECTOR initializePosition, VECTOR rotationRate)
+void Player::Initialize(VECTOR initializePosition, VECTOR rotationRate,
+    int attachIndex, VECTOR initializeScale)
 {
+    // 座標設定
     pos = initializePosition;
     // モデルの回転(違和感ない位置に修正)
     MV1SetRotationXYZ(modelHandle, rotationRate);
+    // アニメーションのアタッチ
+    animationAttachIndex = MV1AttachAnim(modelHandle, DELIGHTED, -1, false);
+    // スケールの設定
+    MV1SetScale(modelHandle, initializeScale);
 }
 
 /// <summary>
@@ -208,6 +214,10 @@ void Player::DrawPlayerAssetModel()
 /// </summary>
 void Player::UpdateClearScene()
 {
+    // アニメーション更新
+    UpdateAnimation();
+
+    // 座標の更新
     MV1SetPosition(modelHandle, pos);
 }
 

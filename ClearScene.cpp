@@ -57,7 +57,9 @@ void ClearScene::Initialize()
     gemManager->Initialize();
     boatWithChest->Initialize(BOAT_WITH_CHEST_INITIALIZE_POSITION);
     player->Initialize(PLAYER_INITILIZE_POSITION,
-                       PLAYER_INITILIZE_ROTATION_RATE);
+                       PLAYER_INITILIZE_ROTATION_RATE,
+                       Player::ANIMATION_TYPE::DELIGHTED,
+                       PLAYER_INITILIZE_SCALE);
 }
 
 /// <summary>
