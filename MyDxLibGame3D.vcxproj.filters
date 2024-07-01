@@ -181,9 +181,6 @@
     <ClCompile Include="PlayerCuhion.cpp">
       <Filter>FIRE\GameObject\PlayerAsset</Filter>
     </ClCompile>
-    <ClCompile Include="stage.cpp">
-      <Filter>FIRE\GameObject\Stage\StageManager</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -290,9 +287,6 @@
     </ClInclude>
     <ClInclude Include="PlayerCuhion.h">
       <Filter>FIRE\GameObject\PlayerAsset</Filter>
-    </ClInclude>
-    <ClInclude Include="stage.h">
-      <Filter>FIRE\GameObject\Stage\StageManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

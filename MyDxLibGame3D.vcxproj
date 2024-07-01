@@ -190,7 +190,6 @@
     <ClCompile Include="SkyDome.cpp" />
     <ClCompile Include="StageObjectSet.cpp" />
     <ClCompile Include="StageObjectBase.cpp" />
-    <ClCompile Include="stage.cpp" />
     <ClCompile Include="TreasureChest.cpp" />
     <ClCompile Include="Calculation.cpp" />
     <ClCompile Include="TimeLimitsWarningUI.cpp" />
@@ -227,7 +226,6 @@
     <ClInclude Include="SkyDome.h" />
     <ClInclude Include="StageObjectSet.h" />
     <ClInclude Include="StageObjectBase.h" />
-    <ClInclude Include="stage.h" />
     <ClInclude Include="TreasureChest.h" />
     <ClInclude Include="TimeLimitsWarningUI.h" />
     <ClInclude Include="WaveConstants.h" />
