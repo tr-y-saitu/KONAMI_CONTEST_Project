@@ -29,9 +29,12 @@ public:
     void Draw();
 
 private:
-    int modelHandle;
-    VECTOR position;
-    VECTOR scale;
+
+    int     modelHandle;
+    VECTOR  position;
+    VECTOR  scale;
+    VECTOR  offSetPosition;
+    VECTOR  rotationRate;
 };
 
 

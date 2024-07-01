@@ -1,8 +1,4 @@
-﻿//-----------------------------------------------------------------------------
-// @brief  プレイヤークラス.
-// 2016 Takeru Yui All Rights Reserved.
-//-----------------------------------------------------------------------------
-#include "Player.h"
+﻿#include "Player.h"
 #include "Enemy.h"
 #include "EffectManager.h"
 #include "Game.h"
@@ -10,44 +6,47 @@
 #include "PlayerBoat.h"
 #include "PlayerCuhion.h"
 
-//-----------------------------------------------------------------------------
-// @brief  コンストラクタ.
-//-----------------------------------------------------------------------------
+/// <summary>
+/// コンストラクタ
+/// </summary>
 Player::Player()
-	:	isGreatJump		(false)
-	,	greatJumpCount	(0)
-	,	isGround		(false)
-	,	isHitEnemy		(false)
-	,	isHitTop		(false)
-	,	isHitGem		(false)
-	,	speed			(5)
-	,	r				(1)
-    ,   width           (4.5f)
-    ,   height          (1.0f)
-    ,   collisionGraph  (-1)
+    :   isGreatJump             (false)
+    ,   isGround                (false)
+    ,   isHitEnemy              (false)
+    ,   isHitTop                (false)
+    ,   isHitGem                (false)
+    ,   speed                   (5)
+    ,   r                       (1)
+    ,   width                   (HIT_BOX_WIDTH)
+    ,   height                  (HIT_BOX_HEIGHT)
+    ,   collisionGraph          (-1)
+    ,   animationPlayTime       (0)
 {
     effectManager = EffectManager::GetInstance();
-	// ３Ｄモデルの読み込み
-	modelHandle = MV1LoadModel("data/model/player/trampoline.mv1");
+    modelHandle = MV1LoadModel("data/model/player/SittingPlayer.mv1");
+    animationAttachIndex = MV1AttachAnim(modelHandle, 0, -1, false);
+    animationPlayTotalTime = MV1GetAttachAnimTotalTime(modelHandle, animationAttachIndex);
     collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Red.png");
-    pos = VGet(0, 50, 0);
-	dir = VGet(0,0,0);
-	fallSpeed = 0.0f;
-	animeIndex = 8;
-	scale = VGet(0.02f, 0.02f, 0.02f);
-	MV1SetScale(modelHandle, scale);
+    pos = VGet(-18, 1, -5);
+    dir = VGet(0,0,0);
+    fallSpeed = 0.0f;
+    rotationRate = VGet(0.0f, -90.0f * DX_PI_F / 180.0f, 0.0f);
+    MV1SetRotationXYZ(modelHandle, rotationRate);
+    scale = VGet(0.02f, 0.02f, 0.02f);
+    MV1SetScale(modelHandle, scale);
     // プレイヤー装備品
     playerOar = new PlayerOar();
     playerBoat = new PlayerBoat();
     playerCushion = new PlayerCushion();
+    playerCushionOffsetPosition = playerCushion->GetOffSetPosition();
 }
 
-//-----------------------------------------------------------------------------
-// @brief  デストラクタ.
-//-----------------------------------------------------------------------------
+/// <summary>
+/// デストラクタ
+/// </summary>
 Player::~Player()
 {
-	MV1DeleteModel(modelHandle);
+    MV1DeleteModel(modelHandle);
     delete(playerOar);
     delete(playerBoat);
     delete(playerCushion);
@@ -58,100 +57,39 @@ Player::~Player()
 /// </summary>
 void Player::Initialize()
 {
-	pos = VGet(-18, 1, -5);	// 座標のセット
-	dir = VGet(0, 0, 0);	// 方向のセット
-	fallSpeed = 0.0f;		// 落下速度
-	isGround = false;		// 地面にいるか
-	isHitTop = false;		// 頭が当たっているか
-	isHitEnemy = false;		// エネミーと接触したか
-	isHitGem = false;		// ジェムとの当たり判定
-	isGreatJump = false;	// よいジャンプ判定
-	greatJumpCount = 0;		// よいジャンプ判定されてからのカウント
-	speed = 1;				// 移動スピード
+    pos = VGet(-18, 0, -5); // 座標のセット
+    dir = VGet(0, 0, 0);    // 方向のセット
+    fallSpeed = 0.0f;       // 落下速度
+    isGround = false;       // 地面にいるか
+    isHitTop = false;       // 頭が当たっているか
+    isHitEnemy = false;     // エネミーと接触したか
+    isHitGem = false;       // ジェムとの当たり判定
+    isGreatJump = false;    // よいジャンプ判定
+    speed = 1;              // 移動スピード
 }
-
 
 /// <summary>
 /// プレイヤーの更新
 /// </summary>
-/// <param name="enemy"></param>
 void Player::Update()
 {
-	// キー入力取得
-	auto input = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+    // 移動
+    UpdateMovement();
 
-	// 無限に移動しないように停止
-	dir = VGet(0, 0, 0);
-
-	// 方向キー入力
-	if (CheckHitKey(KEY_INPUT_UP) == 1)
-	{
-		dir = VAdd(dir, VGet(0, 1, 0));
-		speed = SPEED;
-	}
-	else if (CheckHitKey(KEY_INPUT_DOWN) == 1)
-	{
-		dir = VAdd(dir, VGet(0, -1, 0));
-		speed = SPEED;
-	}
-	if (CheckHitKey(KEY_INPUT_LEFT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT) != 0)
-	{
-		dir = VAdd(dir, VGet(-1, 0, 0));
-		speed = SPEED;
-	}
-	else if (CheckHitKey(KEY_INPUT_RIGHT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_RIGHT) != 0)
-	{
-		dir = VAdd(dir, VGet(1, 0, 0));
-		speed = SPEED;
-	}
-
-	// 正規化
-	if (VSquareSize(dir) > 0)
-	{
-		dir = VNorm(dir);
-	}
-
-	// 移動量を出す
-	auto velocity = VScale(dir, speed);
-	// 移動
-	pos = VAdd(pos, velocity);
-
-	// 方向調整
-	if (VSize(velocity) != 0)
-	{
-		dir = VNorm(velocity);
-	}
-
-	// 移動制限
-	//if (pos.y >= MOVE_LIMIT_Y)
-	//{
-	//	pos.y = MOVE_LIMIT_Y;
-	//}
-	//if (pos.y == MOVE_LIMIT_Y)
-	//{
-	//	isGround = true;
-	//}
-	//else
-	//{
-	//	isGround = false;
-	//}
-	//if (pos.x >= MOVE_LIMIT_X)
-	//{
-	//	pos.x = MOVE_LIMIT_X;
-	//}
-	//if (pos.x <= 0)
-	//{
-	//	pos.x = 0;
-	//}
-
-    // 宝石と接触したらエフェクト
+    // 宝石と接触したらエフェクト再生
     if (isHitGem)
     {
-        effectManager->PlayPlayerHitEffect(pos);
+        // 再生位置はクッションの座標
+        VECTOR _playPos = VAdd(pos, playerCushionOffsetPosition);
+        _playPos = VAdd(_playPos, VGet(0.0f, 1.3f, 0.0f));  // 少し上
+        effectManager->PlayPlayerHitEffect(_playPos);
     }
 
-	// ３Dモデルのポジション設定
-	MV1SetPosition(modelHandle, pos);
+    // アニメーションの更新
+    UpdateAnimation();
+
+    // ３Dモデルのポジション設定
+    MV1SetPosition(modelHandle, pos);
 
     // プレイヤー装備品のポジション設定
     SetPositionAssetModle();
@@ -168,13 +106,90 @@ void Player::SetPositionAssetModle()
 }
 
 /// <summary>
- /// プレイヤーの当たり判定描画2DBOX
- /// </summary>
+/// 移動更新
+/// </summary>
+void Player::UpdateMovement()
+{
+    // キー入力取得
+    auto input = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+
+    // 無限に移動しないように停止
+    dir = NO_DIRECTION;
+
+    if (CheckHitKey(KEY_INPUT_LEFT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT) != 0)
+    {
+        dir = VAdd(dir, LEFT_DIRECTION);
+        speed = SPEED;
+    }
+    else if (CheckHitKey(KEY_INPUT_RIGHT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_RIGHT) != 0)
+    {
+        dir = VAdd(dir, RIGHT_DIRECTION);
+        speed = SPEED;
+    }
+
+    // 正規化
+    if (VSquareSize(dir) > 0)
+    {
+        dir = VNorm(dir);
+    }
+
+    // 移動量を出す
+    auto velocity = VScale(dir, speed);
+
+    // 移動
+    pos = VAdd(pos, velocity);
+
+    // 方向調整
+    if (VSize(velocity) != 0)
+    {
+        dir = VNorm(velocity);
+    }
+
+    // 移動制限
+    LimitingMovement();
+
+}
+
+/// <summary>
+/// 移動制限
+/// </summary>
+void Player::LimitingMovement()
+{
+    if (pos.x >= MOVE_SIDE_LIMIT_MAX)
+    {
+        pos.x = MOVE_SIDE_LIMIT_MAX;
+    }
+    if (pos.x <= MOVE_SIDE_LIMIT_MIN)
+    {
+        pos.x = MOVE_SIDE_LIMIT_MIN;
+    }
+}
+
+/// <summary>
+/// アニメーションの更新
+/// </summary>
+void Player::UpdateAnimation()
+{
+    // 再生時間を進める
+    animationPlayTime += ANIMATION_PLAYBUCK_SPEED;
+
+    // 現在の再生時間が総再生時間に達したらゼロに戻す
+    if (animationPlayTime >= animationPlayTotalTime)
+    {
+        animationPlayTime = 0;
+    }
+
+    // 再生時間のセット
+    MV1SetAttachAnimTime(modelHandle, animationAttachIndex, animationPlayTime);
+}
+
+/// <summary>
+/// プレイヤーの当たり判定描画2DBOX
+/// </summary>
 void Player::Draw2DBOXCollision()
 {
     DrawBillboard3D(pos, 0.5f, 0.9f, 4.0f, 0, collisionGraph, true);
 }
-
 
 /// <summary>
 /// プレイヤーの描画
@@ -182,7 +197,7 @@ void Player::Draw2DBOXCollision()
 void Player::Draw()
 {
     // プレイヤー
-	MV1DrawModel(modelHandle);
+    MV1DrawModel(modelHandle);
     // プレイヤー装備品
     DrawPlayerAssetModel();
 }

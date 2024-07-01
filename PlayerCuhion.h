@@ -28,10 +28,15 @@ public:
     /// </summary>
     void Draw();
 
+    // Getter/Setter
+    VECTOR GetOffSetPosition() const { return offSetPosition; } // 当たり判定調整用
+
 private:
-    int modelHandle;
-    VECTOR position;
-    VECTOR scale;
+    int     modelHandle;
+    VECTOR  position;
+    VECTOR  scale;
+    VECTOR  offSetPosition;
+    VECTOR  rotationRate;
 };
 
 

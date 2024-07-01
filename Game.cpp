@@ -24,9 +24,6 @@ Game::Game()
     // フォント設定
     ChangeFont("チョークS");
 
-    // エフェクトマネージャー
-    EffectManager::CreateInstance();
-
     // 最初のシーンの設定
     nowScene = SceneBase::InitializeBase();
     // 次のシーンの初期化

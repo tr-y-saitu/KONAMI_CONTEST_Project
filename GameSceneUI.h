@@ -68,7 +68,7 @@ public:
 
 private:
     // 共通
-    const int UI_COLOR = GetColor(200, 200, 200);	        // UIの文字の色
+    const int UI_COLOR = GetColor(200, 200, 200);           // UIの文字の色
     const int UI_COLOR_BLACK = GetColor(0, 0, 0);           // UIの文字の色(黒)
     const int UI_COLOR_RED = GetColor(200, 0, 0);           // UIの文字の色(赤)
     static constexpr int FONT_SIZE_SCORE = 50;              // スコアのフォントサイズ

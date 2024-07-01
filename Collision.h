@@ -6,40 +6,21 @@ class Enemy;
 class Gem;
 class TreasureChest;
 
+/// <summary>
+/// 当たり判定処理
+/// </summary>
 class Collision
 {
 public:
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
 	Collision();
-	~Collision();
 
 	/// <summary>
-	/// プレイヤーとエネミーの当たり判定
+	/// デストラクタ
 	/// </summary>
-	/// <param name="player">プレイヤークラス</param>
-	/// <param name="enemy">エネミークラス</param>
-	void HitPlayerToEnemy(Player& player, Enemy& enemy);
-
-    /// <summary>
-    /// プレイヤーと宝石との当たり判定
-    /// </summary>
-    /// <param name="player">プレイヤー</param>
-    /// <param name="gem">宝石</param>
-	void IsHitPlayerToGem(Player& player, Gem& gem);
-
-    /// <summary>
-    /// 宝石と宝箱の当たり判定
-    /// </summary>
-    /// <param name="gem">宝石</param>
-    /// <param name="chest">宝箱</param>
-	void IsHitGemToTreasureChest(Gem& gem, TreasureChest& chest);
-
-    /// <summary>
-    /// 宝石のいずれかと宝箱が当たったか
-    /// </summary>
-    /// <param name="gem">宝石</param>
-    /// <param name="chest">宝箱</param>
-    /// <returns>宝石と宝箱が接触したか</returns>
-    bool IsHitGemToTreasureChestBool(Gem& gem, TreasureChest& chest);
+	~Collision();
 
     /// <summary>
     /// プレイヤーと宝石の2D当たり判定
