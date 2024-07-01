@@ -11,22 +11,23 @@
 #include "GemManager.h"
 #include "Player.h"
 #include "GameScene.h"
-#include "Calculation.h"
+#include "BoatWithChest.h"
+#include "sea.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
 ClearScene::ClearScene(int _score, int _highScore)
 {
-    score = _score;
-    highScore = _highScore;
-    clearSceneUI = new ClearSceneUI();
-    treasureChest = new TreasureChest();
-    gemManager = new GemManager();
-    collision = new Collision();
-    camera = new Camera();
-    skyDome = new SkyDome();
-    room = new Room();
+    score           = _score;
+    highScore       = _highScore;
+    clearSceneUI    = new ClearSceneUI();
+    treasureChest   = new TreasureChest();
+    gemManager      = new GemManager();
+    camera          = new Camera();
+    skyDome         = new SkyDome();
+    boatWithChest   = new BoatWithChest();
+    sea             = new Sea();
 }
 
 /// <summary>
@@ -37,10 +38,10 @@ ClearScene::~ClearScene()
     delete(clearSceneUI);
     delete(treasureChest);
     delete(gemManager);
-    delete(collision);
     delete(camera);
     delete(skyDome);
-    delete(room);
+    delete(boatWithChest);
+    delete(sea);
 }
 
 /// <summary>
@@ -50,8 +51,7 @@ void ClearScene::Initialize()
 {
     treasureChest->Initialize();
     gemManager->Initialize();
-    skyDome->Initialize();
-    room->Initialize();
+    boatWithChest->Initialize(VGet(0, 0, 0));
 }
 
 /// <summary>
@@ -59,8 +59,7 @@ void ClearScene::Initialize()
 /// </summary>
 void ClearScene::Update()
 {
-    treasureChest->Update();
-    room->Update();
+    treasureChest->Update();    // 宝箱
 }
 
 /// <summary>
@@ -80,8 +79,10 @@ SceneBase* ClearScene::UpdateScene()
     }
 
     // 更新処理
-    treasureChest->Update();
-    room->Update();
+    treasureChest->Update();    // 宝箱
+    skyDome->Update();          // スカイドーム
+    boatWithChest->Update();    // 宝箱を乗せる船
+    sea->Update();              // 海
 
     // スペースキーが押されたらフェードアウトしてメニューへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
@@ -108,8 +109,10 @@ SceneBase* ClearScene::UpdateScene()
 void ClearScene::Draw()
 {
     // オブジェクト描画
-    treasureChest->Draw();
-    room->Draw();
+    treasureChest->Draw();      // 宝箱
+    skyDome->Draw();            // スカイドーム
+    boatWithChest->Draw();      // 宝石を乗せる船
+    sea->Draw();                // 海
 
     // UI描画
     DrawUI();

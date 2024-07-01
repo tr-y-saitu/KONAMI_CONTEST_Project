@@ -7,7 +7,9 @@ class GemManager;
 class Collision;
 class Camera;
 class SkyDome;
-class Room;
+class BoatWithChest;
+class Sea;
+
 
 /// <summary>
 /// クリアシーン
@@ -53,14 +55,13 @@ public:
     void DrawUI() override;
 
 private:
-    ClearSceneUI*   clearSceneUI;     // クリアシーンで使用するUI
-    TreasureChest*  treasureChest;
-    GemManager*     gemManager;
-    Collision*      collision;
-    Camera*         camera;
-    SkyDome*        skyDome;
-    Room*           room;
-
+    ClearSceneUI*   clearSceneUI;       // クリアシーンで使用するUI
+    TreasureChest*  treasureChest;      // 宝箱
+    GemManager*     gemManager;         // 宝石マネージャー
+    Camera*         camera;             // カメラ
+    SkyDome*        skyDome;            // スカイドーム
+    BoatWithChest*  boatWithChest;      // 宝箱を乗せる船
+    Sea*            sea;                // 海
 };
 
 
