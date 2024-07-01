@@ -30,12 +30,35 @@ public:
 	/// </summary>
 	~Camera();
 
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    /// <param name="initializePosition">カメラの座標</param>
+    /// <param name="targetPosition">カメラの見ている座標</param>
+    void Initialize(VECTOR initializePosition,VECTOR targetPosition);
+
 	/// <summary>
 	/// 更新
 	/// </summary>
 	void Update();
 
+    /// <summary>
+    /// メニューシーンでの更新
+    /// </summary>
+    void UpdateMenuScene();
+
+    /// <summary>
+    /// 回転移動
+    /// </summary>
+    void MovementRotaitionl();
+
 private:
-	VECTOR	pos;			// ポジション.
+    static constexpr float ROTATIONAL_SPEED = 0.01f;
+    static constexpr int START_POSITION_X = 150;
+    static constexpr int START_POSITION_Y = 50;
+    static constexpr int START_POSITION_Z = 150;
+
+	VECTOR	position;			// ポジション
+    float   angle;              // 角度
 
 };
