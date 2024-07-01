@@ -87,7 +87,7 @@ private:
     static constexpr float GRAVITY = 0.5f;                          // キャラに掛かる重力加速度
     static constexpr float JUMP_POWER = 25.0f;                      // キャラのジャンプ力
     static constexpr float SMALL_JUMP_POWER = 17.0f;                // 小ジャンプ力
-    static constexpr int	MOVE_LIMIT_Y = 820;                     // キャラのY座標の移動制限
+    static constexpr int MOVE_LIMIT_Y = 820;                        // キャラのY座標の移動制限
     static constexpr float SPEED = 0.35f;                           // キャラの移動スピード
     static constexpr int MOVE_SIDE_LIMIT_MIN = -20;                 // 横の移動制限(カメラから見て左)
     static constexpr int MOVE_SIDE_LIMIT_MAX = 2;                   // 横の移動制限(カメラから見て右)
@@ -100,28 +100,28 @@ private:
     EffectManager* effectManager;   // エフェクト管理
     
     // ハンドル
-    int     modelHandle;    // モデルハンドル
-    int     collisionGraph; // 当たり判定用画像
+    int     modelHandle;            // モデルハンドル
+    int     collisionGraph;         // 当たり判定用画像
 
     // 情報
-    VECTOR  pos;            // ポジション
-    VECTOR  dir;            // 方向
-    VECTOR  scale;          // スケール
-    VECTOR  rotationRate;   // 回転率
-    float   width;          // 幅
-    float   height;         // 高さ
-    float   fallSpeed;      // 落下速度
-    float   speed;          // 移動スピード
+    VECTOR  pos;                    // ポジション
+    VECTOR  dir;                    // 方向
+    VECTOR  scale;                  // スケール
+    VECTOR  rotationRate;           // 回転率
+    float   width;                  // 幅
+    float   height;                 // 高さ
+    float   fallSpeed;              // 落下速度
+    float   speed;                  // 移動スピード
 
     // フラグ
-    bool    isGround;       // プレイヤーが接地中か
-    bool    isHitTop;       // プレイヤーの頭が天井に当たっているか
-    bool    isGreatJump;    // ジャンプが成功したか
+    bool    isGround;               // プレイヤーが接地中か
+    bool    isHitTop;               // プレイヤーの頭が天井に当たっているか
+    bool    isGreatJump;            // ジャンプが成功したか
 
     // 当たり判定
-    float   r;              // 球型当たり判定の半径
-    bool    isHitEnemy;     // エネミーと接触したか
-    bool    isHitGem;       // ジェムと接触したか
+    float   r;                      // 球型当たり判定の半径
+    bool    isHitEnemy;             // エネミーと接触したか
+    bool    isHitGem;               // ジェムと接触したか
 
     // アニメーション関係
     int     animationPlayTime;      // アニメーションの再生管理時間(これをインクリメントして再生する)

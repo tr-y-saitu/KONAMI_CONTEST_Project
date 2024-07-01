@@ -13,7 +13,7 @@ class Room;
 class Calculation;
 class GameSceneUI;
 class EffectManager;
-class StageManager;
+class StageObjectSet;
 class SkyDome;
 
 /// <summary>
@@ -87,7 +87,7 @@ private:
     Room*           room;
     GameSceneUI*    gameSceneUI;
     EffectManager*  effectManager;
-    StageManager*   stageManager;
+    StageObjectSet*   stageObjectSet;
     SkyDome*        skyDome;
 
     // 時間

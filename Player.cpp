@@ -10,13 +10,13 @@
 /// コンストラクタ
 /// </summary>
 Player::Player()
-	:   isGreatJump             (false)
-	,   isGround                (false)
-	,   isHitEnemy              (false)
-	,   isHitTop                (false)
-	,   isHitGem                (false)
-	,   speed                   (5)
-	,   r                       (1)
+    :   isGreatJump             (false)
+    ,   isGround                (false)
+    ,   isHitEnemy              (false)
+    ,   isHitTop                (false)
+    ,   isHitGem                (false)
+    ,   speed                   (5)
+    ,   r                       (1)
     ,   width                   (HIT_BOX_WIDTH)
     ,   height                  (HIT_BOX_HEIGHT)
     ,   collisionGraph          (-1)
@@ -28,12 +28,12 @@ Player::Player()
     animationPlayTotalTime = MV1GetAttachAnimTotalTime(modelHandle, animationAttachIndex);
     collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Red.png");
     pos = VGet(-18, 1, -5);
-	dir = VGet(0,0,0);
+    dir = VGet(0,0,0);
     fallSpeed = 0.0f;
     rotationRate = VGet(0.0f, -90.0f * DX_PI_F / 180.0f, 0.0f);
     MV1SetRotationXYZ(modelHandle, rotationRate);
     scale = VGet(0.02f, 0.02f, 0.02f);
-	MV1SetScale(modelHandle, scale);
+    MV1SetScale(modelHandle, scale);
     // プレイヤー装備品
     playerOar = new PlayerOar();
     playerBoat = new PlayerBoat();
@@ -46,7 +46,7 @@ Player::Player()
 /// </summary>
 Player::~Player()
 {
-	MV1DeleteModel(modelHandle);
+    MV1DeleteModel(modelHandle);
     delete(playerOar);
     delete(playerBoat);
     delete(playerCushion);
@@ -88,8 +88,8 @@ void Player::Update()
     // アニメーションの更新
     UpdateAnimation();
 
-	// ３Dモデルのポジション設定
-	MV1SetPosition(modelHandle, pos);
+    // ３Dモデルのポジション設定
+    MV1SetPosition(modelHandle, pos);
 
     // プレイヤー装備品のポジション設定
     SetPositionAssetModle();
@@ -184,8 +184,8 @@ void Player::UpdateAnimation()
 }
 
 /// <summary>
- /// プレイヤーの当たり判定描画2DBOX
- /// </summary>
+/// プレイヤーの当たり判定描画2DBOX
+/// </summary>
 void Player::Draw2DBOXCollision()
 {
     DrawBillboard3D(pos, 0.5f, 0.9f, 4.0f, 0, collisionGraph, true);
@@ -197,7 +197,7 @@ void Player::Draw2DBOXCollision()
 void Player::Draw()
 {
     // プレイヤー
-	MV1DrawModel(modelHandle);
+    MV1DrawModel(modelHandle);
     // プレイヤー装備品
     DrawPlayerAssetModel();
 }

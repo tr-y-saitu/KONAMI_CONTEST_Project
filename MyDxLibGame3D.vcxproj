@@ -188,8 +188,9 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="SceneUIBase.cpp" />
     <ClCompile Include="SkyDome.cpp" />
-    <ClCompile Include="StageManager.cpp" />
+    <ClCompile Include="StageObjectSet.cpp" />
     <ClCompile Include="StageObjectBase.cpp" />
+    <ClCompile Include="stage.cpp" />
     <ClCompile Include="TreasureChest.cpp" />
     <ClCompile Include="Calculation.cpp" />
     <ClCompile Include="TimeLimitsWarningUI.cpp" />
@@ -224,8 +225,9 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="SceneUIBase.h" />
     <ClInclude Include="SkyDome.h" />
-    <ClInclude Include="StageManager.h" />
+    <ClInclude Include="StageObjectSet.h" />
     <ClInclude Include="StageObjectBase.h" />
+    <ClInclude Include="stage.h" />
     <ClInclude Include="TreasureChest.h" />
     <ClInclude Include="TimeLimitsWarningUI.h" />
     <ClInclude Include="WaveConstants.h" />
