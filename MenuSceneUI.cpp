@@ -7,6 +7,7 @@
 /// </summary>
 MenuSceneUI::MenuSceneUI()
 {
+    SetFontSize(UI_FONT_SIZE);  // フォントサイズ設定
     titileGraph = LoadGraph("data/texture/Menu/GemPiratesMenuGraph.png");
 }
 
@@ -23,7 +24,7 @@ MenuSceneUI::~MenuSceneUI()
 /// </summary>
 void MenuSceneUI::Update()
 {
-
+    // 処理なし
 }
 
 /// <summary>
@@ -34,8 +35,6 @@ void MenuSceneUI::Draw(int highScore)
     // メニュー画像（タイトル画像の描画）
     DrawGraph(0, 0, titileGraph, true);
 
-    // キー入力指示
-    SetFontSize(90);
     DrawFormatString(200, SCREEN_SIZE_Y - 300, GetColor(255, 255, 255), "Press Any Button to Start");
 
     // スコア描画

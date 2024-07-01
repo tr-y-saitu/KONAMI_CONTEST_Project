@@ -39,7 +39,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     //描画先を裏画面に変更する。
     SetDrawScreen(DX_SCREEN_BACK);
 
-    // 降るシーンアンチエイリアスを設定する
+    // フルシーンアンチエイリアスを設定する
     SetFullSceneAntiAliasingMode(4, 2);  // 4x アンチエイリアシングを設定
 
     // ＤＸライブラリ初期化処理

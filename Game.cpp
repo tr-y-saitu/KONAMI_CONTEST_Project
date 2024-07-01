@@ -21,16 +21,12 @@ Game::Game()
     , keyRelease(false)
     , prevKeyOn(false)
 {
-    // フォント設定
-    ChangeFont("チョークS");
-
     // 最初のシーンの設定
     nowScene = SceneBase::InitializeBase();
     // 次のシーンの初期化
     nextScene = NULL;
     // FPS
     fpsSetting = new FPSSetting();
-
 }
 
 /// <summary>
@@ -135,9 +131,6 @@ void Game::UpdateKeyState()
 /// </summary>
 void Game::DrawTimer()
 {
-    // フォントサイズ設定
-    SetFontSize(100);
-
     // 色保持
     int _color = GetColor(200, 200, 200);
 

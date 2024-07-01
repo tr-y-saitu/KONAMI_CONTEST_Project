@@ -28,6 +28,11 @@ EffectManager::EffectManager()
     // Effekseerを使用する場合は必ず設定する。
     SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
 
+    // DXライブラリのデバイスロストした時のコールバックを設定する。
+    // ウインドウとフルスクリーンの切り替えが発生する場合は必ず実行する。
+    // ただし、DirectX11を使用する場合は実行する必要はない。
+    Effekseer_SetGraphicsDeviceLostCallbackFunctions();
+
     // Zバッファを有効にする。
     // Effekseerを使用する場合、2DゲームでもZバッファを使用する。
     SetUseZBuffer3D(TRUE);
@@ -57,9 +62,14 @@ EffectManager::~EffectManager()
 /// </summary>
 void EffectManager::LoadEffect()
 {
-    gemGetEffect = LoadEffekseerEffect("data/effect/getEffectLight.efk", 0.3f);
+    gemGetEffect = LoadEffekseerEffect("data/effect/GemGetUpEffect.efk", 2.3f);
     playerHitEffect = LoadEffekseerEffect("data/effect/playerHitWaveEffect.efk", 2.0f);
-    gemFallEffect = LoadEffekseerEffect("data/effect/gemFallEffect.efk", 2.0f);
+    //gemFallEffect = LoadEffekseerEffect("data/effect/gemFallEffect.efk", 2.0f);
+    pirateShipBurnsSmallEffect = LoadEffekseerEffect("data/effect/GameScene/FireLOD10.efk",1.0f);
+    pirateShipBurnsMediumEffect = LoadEffekseerEffect("data/effect/GameScene/Fire2.efk", 1.0f);
+    pirateShipExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/Explosion.efk", 1.0f);
+    pirateShipBigExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/BigExplosion.efk", 0.3f);
+    thunderEffect = LoadEffekseerEffect("data/effect/GameScene/ThunderLOD50.efk", 1.0f);
 }
 
 /// <summary>
@@ -98,7 +108,7 @@ void EffectManager::Update()
     // エフェクトが終了したら、再生中から削除する
     for (int i = 0; i < playingList.size(); i++)
     {
-        if (playingList[i] == -1)
+        if (IsEffekseer3DEffectPlaying(playingList[i]) == -1)
         {
             playingList.erase(playingList.begin());
         }
@@ -134,6 +144,61 @@ void EffectManager::PlayPlayerHitEffect(VECTOR playPosition)
 void EffectManager::PlayGemFallEffect(VECTOR playPosition)
 {
     playingEffectHandle = PlayEffekseer3DEffect(gemFallEffect);
+    playingList.push_back(playingEffectHandle);
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
+}
+
+/// <summary>
+/// 海賊船が燃えるエフェクト（小）を再生
+/// </summary>
+/// <param name="playPosition">再生する座標</param>
+void EffectManager::PlayPirateShipBurnsSmallEffect(VECTOR playPosition)
+{
+    playingEffectHandle = PlayEffekseer3DEffect(pirateShipBurnsSmallEffect);
+    playingList.push_back(playingEffectHandle);
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
+}
+
+/// <summary>
+/// 海賊船が燃えるエフェクト（中）を再生
+/// </summary>
+/// <param name="playPosition">再生する座標</param>
+void EffectManager::PlayPirateShipBurnsMediumEffect(VECTOR playPosition)
+{
+    playingEffectHandle = PlayEffekseer3DEffect(pirateShipBurnsMediumEffect);
+    playingList.push_back(playingEffectHandle);
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
+}
+
+/// <summary>
+/// 海賊船が爆発するエフェクトを再生
+/// </summary>
+/// <param name="playPosition">再生する座標</param>
+void EffectManager::PlayPirateShipExplosionEffect(VECTOR playPosition)
+{
+    playingEffectHandle = PlayEffekseer3DEffect(pirateShipExplosionEffect);
+    playingList.push_back(playingEffectHandle);
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
+}
+
+/// <summary>
+/// 海賊船が大爆発するエフェクトを再生
+/// </summary>
+/// <param name="playPosition">再生する座標</param>
+void EffectManager::PlayPirateShipBigExplosionEffect(VECTOR playPosition)
+{
+    playingEffectHandle = PlayEffekseer3DEffect(pirateShipBigExplosionEffect);
+    playingList.push_back(playingEffectHandle);
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
+}
+
+/// <summary>
+/// 雷のエフェクトを再生
+/// </summary>
+/// <param name="playPosition"></param>
+void EffectManager::PlayThunderEffect(VECTOR playPosition)
+{
+    playingEffectHandle = PlayEffekseer3DEffect(thunderEffect);
     playingList.push_back(playingEffectHandle);
     SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
 }

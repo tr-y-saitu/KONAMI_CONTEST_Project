@@ -9,6 +9,11 @@
 class EffectManager
 {
 public:
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	~EffectManager();
+
     /// <summary>
     /// インスタス作成
     /// </summary>
@@ -53,16 +58,41 @@ public:
     /// <param name="playPosition">再生する座標</param>
     void PlayGemFallEffect(VECTOR playPosition);
 
+    /// <summary>
+    /// 海賊船が燃えるエフェクト（小）を再生
+    /// </summary>
+    /// <param name="playPosition">再生する座標</param>
+    void PlayPirateShipBurnsSmallEffect(VECTOR playPosition);
+
+    /// <summary>
+    /// 海賊船が燃えるエフェクト（中）を再生
+    /// </summary>
+    /// <param name="playPosition">再生する座標</param>
+    void PlayPirateShipBurnsMediumEffect(VECTOR playPosition);
+
+    /// <summary>
+    /// 海賊船が爆発するエフェクトを再生
+    /// </summary>
+    /// <param name="playPosition">再生する座標</param>
+    void PlayPirateShipExplosionEffect(VECTOR playPosition);
+
+    /// <summary>
+    /// 海賊船が大爆発するエフェクトを再生
+    /// </summary>
+    /// <param name="playPosition">再生する座標</param>
+    void PlayPirateShipBigExplosionEffect(VECTOR playPosition);
+
+    /// <summary>
+    /// 雷のエフェクトを再生
+    /// </summary>
+    /// <param name="playPosition"></param>
+    void PlayThunderEffect(VECTOR playPosition);
+
 private:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
 	EffectManager();
-
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
-	~EffectManager();
 
     // 管理用
     static EffectManager* effectManager;    // エフェクトマネージャーのインスタンス
@@ -70,8 +100,16 @@ private:
     std::vector<int> playingList;           // 現在再生中のリスト
 
     // ハンドル
-    int     gemGetEffect;       // 宝石ゲット時
+    // 宝石とプレイヤー
     int     playerHitEffect;    // プレイヤーと宝石のヒット時
+    // 宝石と宝箱
+    int     gemGetEffect;       // 宝石ゲット時
     int     gemFallEffect;      // 宝石が落ちてしまった時
+    // 海賊船
+    int     pirateShipBurnsSmallEffect;     // 海賊船が燃えるエフェクト（小）
+    int     pirateShipBurnsMediumEffect;    // 海賊船が燃えるエフェクト（中）
+    int     pirateShipExplosionEffect;      // 海賊船が爆発するエフェクト
+    int     pirateShipBigExplosionEffect;   // 海賊船が大爆発するエフェクト
+    int     thunderEffect;                  // 雷が落ちるエフェクト
 };
 

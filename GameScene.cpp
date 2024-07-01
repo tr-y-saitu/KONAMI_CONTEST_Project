@@ -1,6 +1,5 @@
 ﻿#include "SceneBase.h"
 #include "ClearScene.h"
-#include "Room.h"
 #include "TreasureChest.h"
 #include "Camera.h"
 #include "Collision.h"
@@ -35,7 +34,6 @@ GameScene::GameScene(int _highScore)
     collision       = new Collision();
     camera          = new Camera();
     skyDome         = new SkyDome();
-    room            = new Room();
     gameSceneUI     = new GameSceneUI();
     gemManager      = new GemManager();
     stageObjectSet  = new StageObjectSet();
@@ -52,8 +50,6 @@ GameScene::~GameScene()
     delete(treasureChest);
     delete(collision);
     delete(camera);
-    delete(skyDome);
-    delete(room);
     delete(gameSceneUI);
     delete(gemManager);
     delete(stageObjectSet);
@@ -81,7 +77,6 @@ void GameScene::Initialize()
     player->Initialize();
     treasureChest->Initialize();
     gemManager->Initialize();
-    room->Initialize();
     gameSceneUI->Initialize();
 }
 
@@ -105,12 +100,11 @@ void GameScene::Update()
         UpdateScore(*treasureChest);
     }
     // 更新
-    player->Update();                       // プレイヤー
-    skyDome->Update();                      // 背景
-    room->Update();                         // 部屋
+    player->Update();	                    // プレイヤー
+    skyDome->Update();		                // 背景
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();                // 宝箱
-    stageObjectSet->Update();                 // ステージ
+    stageObjectSet->Update();               // ステージ
     skyDome->Update();                      // スカイドーム
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
@@ -163,19 +157,20 @@ SceneBase* GameScene::UpdateScene()
         // スコアをアップさせる
         UpdateScore(*treasureChest);
     }
+
     // データのリセットフラグがたったら宝石のデータをリセットさせる
     gemManager->ResetGemData();             // treasureChest->Updateyよりも上に書かないと、ウェーブ切り替え時１フレームだけ原点に宝石が描画される
 
     // オブジェクト更新
-    player->Update();                       // プレイヤー
-    skyDome->Update();                      // 背景
-    room->Update();                         // 部屋
+    player->Update();	                    // プレイヤー
+    skyDome->Update();		                // 背景
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();                // 宝箱更新
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
     camera->Update();                       // カメラ
-    stageObjectSet->Update();                 // ステージ
+    effectManager->Update();                // エフェクトマネージャー更新
+    stageObjectSet->Update();               // ステージ
     UpdateEffekseer3D();                    // エフェクト更新
 
     // 終了時間になったらSCENE_CLEARに移行
@@ -192,24 +187,29 @@ SceneBase* GameScene::UpdateScene()
 /// <summary>
 /// 描画
 /// </summary>
+/// MEMO:UIで宝石が見えなくなるためgemManagerはUIより下に書く
 void GameScene::Draw()
 {
     bool _fadeInScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_IN_SCREEN_PLAYING;
     bool _fadeOutScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_OUT_SCREEN_PLAYING;
 
     // オブジェク描画画
-    //room->Draw();         // 部屋
-    player->Draw();         // プレイヤー
-    gemManager->DrawGems(); // 宝石たち
-    treasureChest->Draw();  // 宝箱
-    stageObjectSet->Draw();   // ステージ
-    skyDome->Draw();        // スカイドーム
-    DrawEffekseer3D();      // 3Dエフェクト描画
+    player->Draw();             // プレイヤー
+    treasureChest->Draw();      // 宝箱
+    skyDome->Draw();            // スカイドーム
+    DrawEffekseer3D();          // 3Dエフェクト描画
+    player->Draw();             // プレイヤー
+    gemManager->DrawGems();     // 宝石たち
+    treasureChest->Draw();      // 宝箱
+    stageObjectSet->Draw();     // ステージ
+    skyDome->Draw();            // スカイドーム
+    DrawEffekseer3D();          // 3Dエフェクト描画
     // フェード処理中は描画しない
     if (_fadeInScreen && _fadeOutScreen)
     {
         DrawUI();               // UI描画
     }
+    gemManager->DrawGems();     // 宝石たち
 }
 
 /// <summary>
@@ -237,7 +237,7 @@ void GameScene::UpdateScore(TreasureChest& chest)
     auto _hitGemType = chest.GetHitGemType();
 
     // スコアを計算
-    score += (_hitGemType + 1) * 100;
+    score += (_hitGemType + 1) * SCORE_MULTIPLE_RATE;
 
     if (highScore <= score)
     {

@@ -1,13 +1,16 @@
 ﻿#include "PirateShip.h"
+#include "EffectManager.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
 PirateShip::PirateShip()
+    : effectCount       (0)
 {
-    modelHandle = MV1LoadModel("data/model/pirateShip/pirateShip.mv1");
-    position = VGet(-33, -9, 0);
-    scale = VGet(0.11, 0.11, 0.11);
+    effectManager = EffectManager::GetInstance();
+    modelHandle = MV1LoadModel("data/model/pirateShip/Ship1/ship1.mv1");
+    position = VGet(-40, 30, 0);
+    scale = VGet(0.7, 0.7, 0.7);
     MV1SetScale(modelHandle, scale);
     MV1SetRotationXYZ(modelHandle, VGet(0.0f, -10.0f * DX_PI_F / 180.0f, 0.0f));
 }
@@ -25,6 +28,34 @@ PirateShip::~PirateShip()
 /// </summary>
 void PirateShip::Update()
 {
+    // 海賊船が燃えているエフェクトを再生
+    if (effectCount % PIRATE_SHIP_BURNS_SMALL_EFFECT_CYCLE == 0)
+    {
+        // 座標設定
+        VECTOR _playPosition1 = VAdd(position, PIRATE_SHIP_BURNS_SMALL_EFFECT_POSITION_1);
+        VECTOR _playPosition2 = VAdd(position, PIRATE_SHIP_BURNS_SMALL_EFFECT_POSITION_2);
+        VECTOR _playPosition3 = VAdd(position, PIRATE_SHIP_BURNS_SMALL_EFFECT_POSITION_3);
+        // 再生
+        effectManager->PlayPirateShipBurnsSmallEffect(_playPosition1);
+        effectManager->PlayPirateShipBurnsSmallEffect(_playPosition2);
+        effectManager->PlayPirateShipBurnsSmallEffect(_playPosition3);
+    }
+
+    // 雷のエフェクトを再生
+    if (effectCount % THUNDER_EFFECT_CYCLE == 0)
+    {
+        // X軸だけランダムで設定
+        int _positionX = GetRand(THUNDER_EFFECT_RANDOM_RANGE) + THUNDER_EFFECT_POSITION_X_OFFSET;
+        VECTOR _randX = VGet(_positionX, 0, 0);
+        VECTOR _offSet = VAdd(_randX, THUNDER_EFFECT_POSITION);
+        VECTOR _playPos = VAdd(position, _offSet);
+        // 再生
+        effectManager->PlayThunderEffect(_playPos);
+    }
+
+    // エフェクトカウント更新
+    effectCount++;
+
     // モデルの座標設定
     MV1SetPosition(modelHandle, position);
 }

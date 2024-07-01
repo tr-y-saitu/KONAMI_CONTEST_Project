@@ -12,6 +12,9 @@ GameSceneUI::GameSceneUI()
     : isHitGemToChest       (false)
     , getDirectionCount     (0)
 {
+    SetFontSize(FONT_SIZE_SCORE);
+    gemScoreTableGraph = LoadGraph("data/texture/UI/gemScoreImg.png");
+    scoreFrameGrpah = LoadGraph("data/texture/UI/scoreFrameImg400x100.png");
     timeLimitsWarningUI = new TimeLimitsWarningUI("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,825,0));
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
@@ -26,6 +29,10 @@ GameSceneUI::GameSceneUI()
 GameSceneUI::~GameSceneUI()
 {
     MV1DeleteModel(getDirectionModelHandle);
+    DeleteGraph(gemScoreTableGraph);
+    DeleteGraph(scoreFrameGrpah);
+    DeleteGraph(timerBarFrameGraph);
+    DeleteGraph(timerBarGraph);
     delete(timeLimitsWarningUI);
 }
 
@@ -61,47 +68,37 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 {
     char _timeCount[256];		// ゲームの経過時間
 
-    // タイマーバーの描画
-    DrawTimerBar(nowTimer,waveEndTime);
-    timeLimitsWarningUI->Draw();
-
-    // 「GET!」モデルのポジションを設定
-    MV1SetPosition(getDirectionModelHandle, VGet(1, 3, -3));
-
-    // 宝石獲得演出(宝石が当たっているかつ演出時間ないである)
-    if (isHitGemToChest && getDirectionCount <= GET_DIRECTION_DRAW_TIME)
-    {
-        // 演出時間を経過
-        getDirectionCount++;
-
-        // 演出用モデルの描画
-        MV1DrawModel(getDirectionModelHandle);
-    }
-    // 描画指定時間を越えたらゼロに戻す
-    if (getDirectionCount >= GET_DIRECTION_DRAW_TIME)
-    {
-        getDirectionCount = 0;
-        isHitGemToChest = false;
-    }
-
-    // 現在のWAVEステートの描画
-    DrawFormatString(100, 750, UI_COLOR, "%s", waveText);
-
     // スコアの描画
-    DrawScore(VGet(1200, 750, 0), FONT_SIZE_SCORE, gameScore);
-}
+    DrawScore(gameScore);
 
+    // 宝石のスコア表を描画
+    DrawGemScoreTable();
+}
 
 /// <summary>
 /// スコアの描画
 /// </summary>
-/// <param name="pos">スコアを描画する座標</param>
-/// <param name="fontSize">フォントサイズ</param>
 /// <param name="score">スコア</param>
-void GameSceneUI::DrawScore(VECTOR pos, int fontSize, int score)
+void GameSceneUI::DrawScore(int score)
 {
-    SetFontSize(fontSize);
-    DrawFormatString(pos.x, pos.y, UI_COLOR, "SCORE : %d", score);
+    // フレーム描画
+    DrawGraph(SCORE_POSITION_X - SCORE_FRAME_OFFSET_X,
+        SCORE_POSITION_Y - SCORE_FRAME_OFFSET_Y,
+        scoreFrameGrpah, true);
+
+    // スコア描画
+    DrawFormatString(SCORE_POSITION_X, SCORE_POSITION_Y, UI_COLOR_WHITE, "%d", score);
+}
+
+/// <summary>
+/// 宝石のスコア表を描画
+/// </summary>
+void GameSceneUI::DrawGemScoreTable()
+{
+    // スコアを描画している位置から少し下
+    DrawGraph(SCORE_POSITION_X - SCORE_FRAME_OFFSET_X,
+        SCORE_POSITION_Y - SCORE_FRAME_OFFSET_Y + GEM_SCORE_TABLE_OFFSET_Y,
+        gemScoreTableGraph, true);
 }
 
 /// <summary>
@@ -128,7 +125,6 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
 
     // 現在の経過時間を描画
     char _timeCount[256];		// ゲームの経過時間
-    SetFontSize(FONT_SIZE_NOW_TIME);
     sprintf_s(_timeCount, "あと%d秒", waveEndTime - nowTimer);
     DrawString(450, 850, _timeCount, UI_COLOR_BLACK, true);
 

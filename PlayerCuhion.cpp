@@ -5,7 +5,7 @@
 /// </summary>
 PlayerCushion::PlayerCushion()
 {
-    modelHandle = MV1LoadModel("data/model/player/playerAsset/playerCushion/cushion.mv1");
+    modelHandle = MV1LoadModel("data/model/player/playerAsset/playerCushion/cushionSand.mv1");
     position = VGet(0.0f, 0.0f, 0.0f);
     offSetPosition = VGet(3.0f, 0.5f, 0.0f);
     scale = VGet(0.07f, 0.07f, 0.07f);
