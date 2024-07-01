@@ -55,8 +55,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     SetDrawScreen(DX_SCREEN_BACK);
 
     // インスタンス化
-    Game* game = new Game();
     EffectManager::CreateInstance();
+    Game* game = new Game();
 
     // エスケープキーが押されるかウインドウが閉じられるまでループ
     while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)

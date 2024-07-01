@@ -10,6 +10,7 @@ class SkyDome;
 class BoatWithChest;
 class Sea;
 class Player;
+class EffectManager;
 
 
 /// <summary>
@@ -79,6 +80,7 @@ private:
     BoatWithChest*  boatWithChest;      // 宝箱を乗せる船
     Sea*            sea;                // 海
     Player*         player;             // プレイヤー
+    EffectManager*  effectManager;      // エフェクトマネージャー
 };
 
 

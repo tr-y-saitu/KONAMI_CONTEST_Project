@@ -2,7 +2,6 @@
 #include "ClearScene.h"
 #include "MenuScene.h"
 #include "SceneBase.h"
-#include "Room.h"
 #include "TreasureChest.h"
 #include "Camera.h"
 #include "Collision.h"
@@ -14,6 +13,7 @@
 #include "BoatWithChest.h"
 #include "sea.h"
 #include "Player.h"
+#include "EffectManager.h"
 
 /// <summary>
 /// コンストラクタ
@@ -30,6 +30,7 @@ ClearScene::ClearScene(int _score, int _highScore)
     boatWithChest   = new BoatWithChest();
     sea             = new Sea();
     player          = new Player();
+    effectManager   = EffectManager::GetInstance();
 }
 
 /// <summary>
@@ -87,11 +88,14 @@ SceneBase* ClearScene::UpdateScene()
     }
 
     // 更新処理
+    camera->Update();           // カメラ
     treasureChest->Update();    // 宝箱
     skyDome->Update();          // スカイドーム
     boatWithChest->Update();    // 宝箱を乗せる船
-    sea->Update();              // 海
+    sea->UpdateClearScene();    // 海
     player->UpdateClearScene(); // プレイヤー
+    effectManager->Update();    // エフェクトマネージャー
+    UpdateEffekseer3D();        // エフェクト更新
 
     // スペースキーが押されたらフェードアウトしてメニューへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
@@ -123,6 +127,7 @@ void ClearScene::Draw()
     boatWithChest->Draw();      // 宝石を乗せる船
     sea->Draw();                // 海
     player->DrawClearScene();   // プレイヤー
+    DrawEffekseer3D();          // 3Dエフェクト描画
 
     // UI描画
     DrawUI();
