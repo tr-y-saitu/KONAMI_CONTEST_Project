@@ -19,7 +19,7 @@ TreasureChest::TreasureChest()
     pos = VGet(5, 1, -5);
     scale = VGet(0.012f, 0.012f, 0.012f);
     radius = 3.0f;
-// モデルの回転(違和感ない位置に修正)
+    // モデルの回転(違和感ない位置に修正)
     MV1SetRotationXYZ(modelHanlde, VGet(0.0f, 50.0f * DX_PI_F / 180.0f, 0.0f));
 }
 
@@ -52,8 +52,8 @@ void TreasureChest::Update()
         effectManager->PlayGemGetEffect(pos);
     }
 
-	// 3Dモデルの座標設定
-	MV1SetPosition(modelHanlde, pos);
+    // 3Dモデルの座標設定
+    MV1SetPosition(modelHanlde, pos);
 }
 
 /// <summary>
@@ -61,8 +61,8 @@ void TreasureChest::Update()
 /// </summary>
 void TreasureChest::Draw()
 {
-	// 3Dモデルの描画
-	MV1DrawModel(modelHanlde);
+    // 3Dモデルの描画
+    MV1DrawModel(modelHanlde);
 }
 
 

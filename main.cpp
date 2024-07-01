@@ -32,57 +32,57 @@
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) 
 {
-	// DXライブラリの表示方法をウィンドウモードに変更する。
-	ChangeWindowMode(true);	// ウィンドウモード
-	//ChangeWindowMode(false);// 全画面モード
+    // DXライブラリの表示方法をウィンドウモードに変更する。
+    ChangeWindowMode(true);     // ウィンドウモード
+    //ChangeWindowMode(false);  // 全画面モード
 
-	//描画先を裏画面に変更する。
-	SetDrawScreen(DX_SCREEN_BACK);
+    //描画先を裏画面に変更する。
+    SetDrawScreen(DX_SCREEN_BACK);
 
     // フルシーンアンチエイリアスを設定する
     SetFullSceneAntiAliasingMode(4, 2);  // 4x アンチエイリアシングを設定
 
-	// ＤＸライブラリ初期化処理
-	if (DxLib_Init() == -1)		
-	{
-		return -1;	// エラーが起きたら直ちに終了
-	}
+    // ＤＸライブラリ初期化処理
+    if (DxLib_Init() == -1)
+    {
+        return -1;  // エラーが起きたら直ちに終了
+    }
 
-	// 画面モードのセット
-	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DEPTH);
+    // 画面モードのセット
+    SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DEPTH);
 
     // 描画先グラフィック領域の指定
-	SetDrawScreen(DX_SCREEN_BACK);
+    SetDrawScreen(DX_SCREEN_BACK);
 
-	// インスタンス化
-	Game* game = new Game();
+    // インスタンス化
+    Game* game = new Game();
     EffectManager::CreateInstance();
 
-	// エスケープキーが押されるかウインドウが閉じられるまでループ
-	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
-	{
+    // エスケープキーが押されるかウインドウが閉じられるまでループ
+    while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
+    {
         // ゲームループ
         game->Update();
 
-		// Windows 特有の面倒な処理をＤＸライブラリにやらせる
-		// マイナスの値（エラー値）が返ってきたらループを抜ける
-		if (ProcessMessage() < 0)
-		{
-			break;
-		}
-		// もしＥＳＣキーが押されていたらループから抜ける
-		else if (CheckHitKey(KEY_INPUT_ESCAPE))
-		{
-			break;
-		}
-	}
+        // Windows 特有の面倒な処理をＤＸライブラリにやらせる
+        // マイナスの値（エラー値）が返ってきたらループを抜ける
+        if (ProcessMessage() < 0)
+        {
+            break;
+        }
+        // もしＥＳＣキーが押されていたらループから抜ける
+        else if (CheckHitKey(KEY_INPUT_ESCAPE))
+        {
+            break;
+        }
+    }
 
-	// Effekseerを終了する。
-	Effkseer_End();
+    // Effekseerを終了する。
+    Effkseer_End();
 
-	// ＤＸライブラリの後始末
- 	DxLib_End();
+    // ＤＸライブラリの後始末
+    DxLib_End();
 
-	// ソフトの終了
-	return 0;
+    // ソフトの終了
+    return 0;
 }

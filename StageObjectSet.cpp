@@ -1,4 +1,4 @@
-﻿#include "StageManager.h"
+﻿#include "StageObjectSet.h"
 #include "BoatWithChest.h"
 #include "PirateShip.h"
 #include "sea.h"
@@ -7,7 +7,7 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-StageManager::StageManager()
+StageObjectSet::StageObjectSet()
 {
     boatWithChest = new BoatWithChest();
     pirateShip = new PirateShip();
@@ -17,7 +17,7 @@ StageManager::StageManager()
 /// <summary>
 /// デストラクタ
 /// </summary>
-StageManager::~StageManager()
+StageObjectSet::~StageObjectSet()
 {
     delete(boatWithChest);
     delete(pirateShip);
@@ -27,7 +27,7 @@ StageManager::~StageManager()
 /// <summary>
 /// 更新
 /// </summary>
-void StageManager::Update()
+void StageObjectSet::Update()
 {
     boatWithChest->Update();
     pirateShip->Update();
@@ -37,7 +37,7 @@ void StageManager::Update()
 /// <summary>
 /// 描画
 /// </summary>
-void StageManager::Draw()
+void StageObjectSet::Draw()
 {
     boatWithChest->Draw();
     pirateShip->Draw();

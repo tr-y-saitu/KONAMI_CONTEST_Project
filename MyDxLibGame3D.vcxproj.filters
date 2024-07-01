@@ -172,14 +172,14 @@
     <ClCompile Include="PlayerBoat.cpp">
       <Filter>FIRE\GameObject\PlayerAsset</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerCushion.cpp">
-      <Filter>FIRE\GameObject\PlayerAsset</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerOar.cpp">
       <Filter>FIRE\GameObject\PlayerAsset</Filter>
     </ClCompile>
-    <ClCompile Include="StageManager.cpp">
+    <ClCompile Include="StageObjectSet.cpp">
       <Filter>FIRE\GameObject\Stage\StageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCuhion.cpp">
+      <Filter>FIRE\GameObject\PlayerAsset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,14 +279,14 @@
     <ClInclude Include="PlayerBoat.h">
       <Filter>FIRE\GameObject\PlayerAsset</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerCushion.h">
-      <Filter>FIRE\GameObject\PlayerAsset</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerOar.h">
       <Filter>FIRE\GameObject\PlayerAsset</Filter>
     </ClInclude>
-    <ClInclude Include="StageManager.h">
+    <ClInclude Include="StageObjectSet.h">
       <Filter>FIRE\GameObject\Stage\StageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCuhion.h">
+      <Filter>FIRE\GameObject\PlayerAsset</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

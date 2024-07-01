@@ -13,7 +13,7 @@ class Room;
 class Calculation;
 class GameSceneUI;
 class EffectManager;
-class StageManager;
+class StageObjectSet;
 class SkyDome;
 
 /// <summary>
@@ -88,13 +88,13 @@ private:
     Room*           room;
     GameSceneUI*    gameSceneUI;
     EffectManager*  effectManager;
-    StageManager*   stageManager;
+    StageObjectSet*   stageObjectSet;
     SkyDome*        skyDome;
 
     // 時間
-    int		previousTime;	// ゲームループが始まる前の時間
-    int		timer;			// ゲーム時間
-    float	nowTimer;		// 現在の制限時間
+    int     previousTime;   // ゲームループが始まる前の時間
+    int     timer;          // ゲーム時間
+    float   nowTimer;       // 現在の制限時間
 
     // スコア
     bool    isScoreUp;      // スコアアップフラグ

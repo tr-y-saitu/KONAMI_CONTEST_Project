@@ -51,19 +51,19 @@ private:
     EffectManager* effectManager;   // エフェクトマネージャーへのポインタ
 
     // モデル
-	int		modelHanlde;		    // モデルハンドル
+    int     modelHanlde;    // モデルハンドル
 
-	// 情報
-	VECTOR	pos;			// ポジション
-	VECTOR	scale;			// スケール
-	float	width;			// 幅
-	float	height;			// 高さ
+    // 情報
+    VECTOR  pos;            // ポジション
+    VECTOR  scale;          // スケール
+    float   width;          // 幅
+    float   height;         // 高さ
 
-	// フラグ
-	bool	isHitGem;		// 宝箱が宝石と接触したか
+    // フラグ
+    bool    isHitGem;       // 宝箱が宝石と接触したか
 
-	// 当たり判定
-	float	radius;			// 球型当たり判定用の半径
+    // 当たり判定
+    float   radius;         // 球型当たり判定用の半径
     int     hitGemType;     // 当たった宝石の種類
 };
 

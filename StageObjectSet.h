@@ -7,18 +7,18 @@ class Sea;
 /// <summary>
 /// ステージ管理クラス
 /// </summary>
-class StageManager
+class StageObjectSet
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    StageManager();
+    StageObjectSet();
 
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    ~StageManager();
+    ~StageObjectSet();
 
     /// <summary>
     /// 更新

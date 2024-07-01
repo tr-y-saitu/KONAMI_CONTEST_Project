@@ -13,7 +13,7 @@
 #include "WaveConstants.h"
 #include "EffekseerForDXLib.h"
 #include "EffectManager.h"
-#include "StageManager.h"
+#include "StageObjectSet.h"
 
 /// <summary>
 /// コンストラクタ
@@ -36,7 +36,7 @@ GameScene::GameScene(int _highScore)
     skyDome         = new SkyDome();
     gameSceneUI     = new GameSceneUI();
     gemManager      = new GemManager();
-    stageManager    = new StageManager();
+    stageObjectSet  = new StageObjectSet();
     skyDome         = new SkyDome();
 }
 
@@ -52,7 +52,7 @@ GameScene::~GameScene()
     delete(camera);
     delete(gameSceneUI);
     delete(gemManager);
-    delete(stageManager);
+    delete(stageObjectSet);
     delete(skyDome);
 }
 
@@ -103,8 +103,8 @@ void GameScene::Update()
     player->Update();	                    // プレイヤー
     skyDome->Update();		                // 背景
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
-    treasureChest->Update();			    // 宝箱
-    stageManager->Update();                 // ステージ
+    treasureChest->Update();                // 宝箱
+    stageObjectSet->Update();               // ステージ
     skyDome->Update();                      // スカイドーム
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
@@ -159,18 +159,18 @@ SceneBase* GameScene::UpdateScene()
     }
 
     // データのリセットフラグがたったら宝石のデータをリセットさせる
-    gemManager->ResetGemData();     // treasureChest->Updateyよりも上に書かないと、ウェーブ切り替え時１フレームだけ原点に宝石が描画される
+    gemManager->ResetGemData();             // treasureChest->Updateyよりも上に書かないと、ウェーブ切り替え時１フレームだけ原点に宝石が描画される
 
     // オブジェクト更新
     player->Update();	                    // プレイヤー
     skyDome->Update();		                // 背景
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
-    treasureChest->Update();			    // 宝箱更新
+    treasureChest->Update();                // 宝箱更新
     gameSceneUI->Update(nowTimer,           // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
     camera->Update();                       // カメラ
-    stageManager->Update();                 // ステージ
     effectManager->Update();                // エフェクトマネージャー更新
+    stageObjectSet->Update();               // ステージ
     UpdateEffekseer3D();                    // エフェクト更新
 
     // 終了時間になったらSCENE_CLEARに移行
@@ -196,7 +196,12 @@ void GameScene::Draw()
     // オブジェク描画画
     player->Draw();             // プレイヤー
     treasureChest->Draw();      // 宝箱
-    stageManager->Draw();       // ステージ
+    skyDome->Draw();            // スカイドーム
+    DrawEffekseer3D();          // 3Dエフェクト描画
+    player->Draw();             // プレイヤー
+    gemManager->DrawGems();     // 宝石たち
+    treasureChest->Draw();      // 宝箱
+    stageObjectSet->Draw();     // ステージ
     skyDome->Draw();            // スカイドーム
     DrawEffekseer3D();          // 3Dエフェクト描画
     // フェード処理中は描画しない

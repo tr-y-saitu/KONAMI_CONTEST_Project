@@ -10,13 +10,13 @@
 /// コンストラクタ
 /// </summary>
 Player::Player()
-	:	isGreatJump		        (false)
-	,	isGround		        (false)
-	,	isHitEnemy		        (false)
-	,	isHitTop		        (false)
-	,	isHitGem		        (false)
-	,	speed			        (5)
-	,	r				        (1)
+    :   isGreatJump             (false)
+    ,   isGround                (false)
+    ,   isHitEnemy              (false)
+    ,   isHitTop                (false)
+    ,   isHitGem                (false)
+    ,   speed                   (5)
+    ,   r                       (1)
     ,   width                   (HIT_BOX_WIDTH)
     ,   height                  (HIT_BOX_HEIGHT)
     ,   collisionGraph          (-1)
@@ -28,12 +28,12 @@ Player::Player()
     animationPlayTotalTime = MV1GetAttachAnimTotalTime(modelHandle, animationAttachIndex);
     collisionGraph = LoadGraph("data/texture/Debug/TestHitGraph100x100Red.png");
     pos = VGet(-18, 1, -5);
-	dir = VGet(0,0,0);
+    dir = VGet(0,0,0);
     fallSpeed = 0.0f;
     rotationRate = VGet(0.0f, -90.0f * DX_PI_F / 180.0f, 0.0f);
     MV1SetRotationXYZ(modelHandle, rotationRate);
     scale = VGet(0.02f, 0.02f, 0.02f);
-	MV1SetScale(modelHandle, scale);
+    MV1SetScale(modelHandle, scale);
     // プレイヤー装備品
     playerOar = new PlayerOar();
     playerBoat = new PlayerBoat();
@@ -46,7 +46,7 @@ Player::Player()
 /// </summary>
 Player::~Player()
 {
-	MV1DeleteModel(modelHandle);
+    MV1DeleteModel(modelHandle);
     delete(playerOar);
     delete(playerBoat);
     delete(playerCushion);
@@ -57,15 +57,15 @@ Player::~Player()
 /// </summary>
 void Player::Initialize()
 {
-	pos = VGet(-18, 0, -5);	// 座標のセット
-	dir = VGet(0, 0, 0);	// 方向のセット
-	fallSpeed = 0.0f;		// 落下速度
-	isGround = false;		// 地面にいるか
-	isHitTop = false;		// 頭が当たっているか
-	isHitEnemy = false;		// エネミーと接触したか
-	isHitGem = false;		// ジェムとの当たり判定
-	isGreatJump = false;	// よいジャンプ判定
-	speed = 1;				// 移動スピード
+    pos = VGet(-18, 0, -5); // 座標のセット
+    dir = VGet(0, 0, 0);    // 方向のセット
+    fallSpeed = 0.0f;       // 落下速度
+    isGround = false;       // 地面にいるか
+    isHitTop = false;       // 頭が当たっているか
+    isHitEnemy = false;     // エネミーと接触したか
+    isHitGem = false;       // ジェムとの当たり判定
+    isGreatJump = false;    // よいジャンプ判定
+    speed = 1;              // 移動スピード
 }
 
 /// <summary>
@@ -88,8 +88,8 @@ void Player::Update()
     // アニメーションの更新
     UpdateAnimation();
 
-	// ３Dモデルのポジション設定
-	MV1SetPosition(modelHandle, pos);
+    // ３Dモデルのポジション設定
+    MV1SetPosition(modelHandle, pos);
 
     // プレイヤー装備品のポジション設定
     SetPositionAssetModle();
@@ -114,16 +114,16 @@ void Player::UpdateMovement()
     auto input = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 
     // 無限に移動しないように停止
-    dir = VGet(0, 0, 0);
+    dir = NO_DIRECTION;
 
     if (CheckHitKey(KEY_INPUT_LEFT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT) != 0)
     {
-        dir = VAdd(dir, VGet(-1, 0, 0));
+        dir = VAdd(dir, LEFT_DIRECTION);
         speed = SPEED;
     }
     else if (CheckHitKey(KEY_INPUT_RIGHT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_RIGHT) != 0)
     {
-        dir = VAdd(dir, VGet(1, 0, 0));
+        dir = VAdd(dir, RIGHT_DIRECTION);
         speed = SPEED;
     }
 
@@ -184,8 +184,8 @@ void Player::UpdateAnimation()
 }
 
 /// <summary>
- /// プレイヤーの当たり判定描画2DBOX
- /// </summary>
+/// プレイヤーの当たり判定描画2DBOX
+/// </summary>
 void Player::Draw2DBOXCollision()
 {
     DrawBillboard3D(pos, 0.5f, 0.9f, 4.0f, 0, collisionGraph, true);
@@ -197,7 +197,7 @@ void Player::Draw2DBOXCollision()
 void Player::Draw()
 {
     // プレイヤー
-	MV1DrawModel(modelHandle);
+    MV1DrawModel(modelHandle);
     // プレイヤー装備品
     DrawPlayerAssetModel();
 }
