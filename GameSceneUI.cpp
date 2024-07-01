@@ -14,7 +14,7 @@ GameSceneUI::GameSceneUI()
 {
     SetFontSize(FONT_SIZE_SCORE);
     gemScoreTableGraph = LoadGraph("data/texture/UI/gemScoreImg.png");
-    scoreFrameGrpah = LoadGraph("data/texture/UI/scoreFrameImg.png");
+    scoreFrameGrpah = LoadGraph("data/texture/UI/scoreFrameImg400x100.png");
     timeLimitsWarningUI = new TimeLimitsWarningUI("data/texture/time/LimitApproachingGraph400_100.png",VGet(1600,825,0));
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
