@@ -74,8 +74,7 @@ void GameScene::Initialize()
     gemManager->SetGemWaveState(GemManager::WAVE_FIRST);
 
     // 各シーン初期関数呼び出し
-    player->Initialize();
-    treasureChest->Initialize();
+    treasureChest->Initialize(TREASURE_CHEST_INITIALIZE_POSITION, TREASURE_CHEST_INITIALIZE_ROTATION_RATE);
     gemManager->Initialize();
     gameSceneUI->Initialize();
 }

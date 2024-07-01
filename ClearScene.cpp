@@ -13,6 +13,7 @@
 #include "GameScene.h"
 #include "BoatWithChest.h"
 #include "sea.h"
+#include "Player.h"
 
 /// <summary>
 /// コンストラクタ
@@ -28,6 +29,7 @@ ClearScene::ClearScene(int _score, int _highScore)
     skyDome         = new SkyDome();
     boatWithChest   = new BoatWithChest();
     sea             = new Sea();
+    player          = new Player();
 }
 
 /// <summary>
@@ -42,6 +44,7 @@ ClearScene::~ClearScene()
     delete(skyDome);
     delete(boatWithChest);
     delete(sea);
+    delete(player);
 }
 
 /// <summary>
@@ -49,9 +52,12 @@ ClearScene::~ClearScene()
 /// </summary>
 void ClearScene::Initialize()
 {
-    treasureChest->Initialize();
+    treasureChest->Initialize(TREASURE_CHEST_INITIALIZE_POSITION,
+                              TREASURE_CHEST_INITIALIZE_ROTATION_RATE);
     gemManager->Initialize();
-    boatWithChest->Initialize(VGet(0, 0, 0));
+    boatWithChest->Initialize(BOAT_WITH_CHEST_INITIALIZE_POSITION);
+    player->Initialize(PLAYER_INITILIZE_POSITION,
+                       PLAYER_INITILIZE_ROTATION_RATE);
 }
 
 /// <summary>
@@ -83,6 +89,7 @@ SceneBase* ClearScene::UpdateScene()
     skyDome->Update();          // スカイドーム
     boatWithChest->Update();    // 宝箱を乗せる船
     sea->Update();              // 海
+    player->UpdateClearScene(); // プレイヤー
 
     // スペースキーが押されたらフェードアウトしてメニューへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
@@ -113,6 +120,7 @@ void ClearScene::Draw()
     skyDome->Draw();            // スカイドーム
     boatWithChest->Draw();      // 宝石を乗せる船
     sea->Draw();                // 海
+    player->DrawClearScene();   // プレイヤー
 
     // UI描画
     DrawUI();
