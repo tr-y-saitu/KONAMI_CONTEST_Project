@@ -120,7 +120,7 @@ private:
     std::vector<int> playingList;           // 現在再生中のリスト
 
     // ハンドル
-    //                  ゲームシーン                  //
+    //------------------ゲームシーン------------------//
     // 宝石とプレイヤー
     int     playerHitEffect;    // プレイヤーと宝石のヒット時
     // 宝石と宝箱
@@ -133,7 +133,7 @@ private:
     int     pirateShipBigExplosionEffect;   // 海賊船が大爆発するエフェクト
     int     thunderEffect;                  // 雷が落ちるエフェクト
 
-    //                  クリアシーン                  //
+    //------------------クリアシーン------------------//
     int fireWorksEffect;                    // 花火のエフェクト
 };
 

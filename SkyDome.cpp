@@ -35,7 +35,7 @@ void SkyDome::Initialize()
     modelHandle = MV1LoadModel("data/model/skyDome/Sky_Twilight01.pmx");
 
     // テクスチャのハンドル読み込み
-    textureHandle = LoadGraph("data/model/skyDome/Tex_SkyDome_Twilght01.png");
+    //textureHandle = LoadGraph("data/model/skyDome/Tex_SkyDome_Twilght01.png");
 
     // モデルハンドルに設定したいテクスチャを貼り付け
     MV1SetTextureGraphHandle(modelHandle, 0, textureHandle, true);

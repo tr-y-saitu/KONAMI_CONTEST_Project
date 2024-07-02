@@ -172,6 +172,7 @@
     <ClCompile Include="GameSceneUI.cpp" />
     <ClCompile Include="Gem.cpp" />
     <ClCompile Include="GemManager.cpp" />
+    <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="PlayerBoat.cpp" />
     <ClCompile Include="PlayerCuhion.cpp" />
     <ClCompile Include="sea.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="GameSceneUI.h" />
     <ClInclude Include="Gem.h" />
     <ClInclude Include="GemManager.h" />
+    <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="PlayerBoat.h" />
     <ClInclude Include="PlayerCuhion.h" />
     <ClInclude Include="sea.h" />
