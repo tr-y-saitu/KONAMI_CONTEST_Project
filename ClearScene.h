@@ -59,13 +59,13 @@ public:
 private:
     // 定数
     // クリアシーンでの宝箱の初期化座標
-    static constexpr VECTOR TREASURE_CHEST_INITIALIZE_POSITION = { -4.0f,1.5f,-5.0f };
+    static constexpr VECTOR TREASURE_CHEST_INITIALIZE_POSITION = { -10.0f,1.5f,-5.0f };
     // クリアシーンでの宝箱の初期回転率
     static constexpr VECTOR TREASURE_CHEST_INITIALIZE_ROTATION_RATE = { 0.0f, 0.0f, 0.0f };
     // クリアシーンでの宝石の乗るボートの初期化座標
-    static constexpr VECTOR BOAT_WITH_CHEST_INITIALIZE_POSITION = { -7.0f,-0.5f,-5.0f };
+    static constexpr VECTOR BOAT_WITH_CHEST_INITIALIZE_POSITION = { -9.0f,-0.5f,-5.0f };
     // クリアシーンでのプレイヤーの初期座標
-    static constexpr VECTOR PLAYER_INITILIZE_POSITION = { -9.0f, 1.0f, -5.0f };
+    static constexpr VECTOR PLAYER_INITILIZE_POSITION = { -15.0f, 1.0f, -5.0f };
     // クリアシーンでのプレイヤーの回転率
     static constexpr VECTOR PLAYER_INITILIZE_ROTATION_RATE = { 0.0f, 0.0f, 0.0f };
     // クリアシーンでのプレイヤーのスケール
