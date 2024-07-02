@@ -4,6 +4,9 @@
 
 class SceneBase;
 class MenuSceneUI;
+class StageObjectSet;
+class Camera;
+class SkyDome;
 
 /// <summary>
 /// メニューシーンクラス
@@ -47,9 +50,25 @@ public:
     /// </summary>
     void DrawUI();
 
+    /// <summary>
+    /// フェードイン開始
+    /// </summary>
+    void PlayFadeIn();
+
+    /// <summary>
+    /// フェードアウト開始
+    /// </summary>
+    void PlayFadeOut();
+
+    
+
+
 private:
     
-    MenuSceneUI* menuSceneUI;   // メニューシーンで使用するUI
+    MenuSceneUI* menuSceneUI;       // メニューシーンで使用するUI
+    StageObjectSet* stageObjectSet; // ステージオブジェクト
+    Camera* camera;                 // カメラ
+    SkyDome* skyDome;               // スカイドーム
 };
 
 
