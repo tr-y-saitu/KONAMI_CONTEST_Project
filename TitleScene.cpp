@@ -1,8 +1,8 @@
 ﻿#include "SceneBase.h"
 #include "SceneUIBase.h"
 #include "GameScene.h"
-#include "MenuSceneUI.h"
-#include "MenuScene.h"
+#include "TitleSceneUI.h"
+#include "TitleScene.h"
 #include "Common.h"
 #include "Camera.h"
 #include "StageObjectSet.h"
@@ -12,10 +12,10 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-MenuScene::MenuScene(int _highScore)
+TitleScene::TitleScene(int _highScore)
 {
     highScore       = _highScore;
-    menuSceneUI     = new MenuSceneUI();
+    titleSceneUI    = new TitleSceneUI();
     stageObjectSet  = new StageObjectSet();
     camera          = new Camera();
     skyDome         = new SkyDome();
@@ -25,9 +25,9 @@ MenuScene::MenuScene(int _highScore)
 /// <summary>
 /// デストラクタ
 /// </summary>
-MenuScene::~MenuScene()
+TitleScene::~TitleScene()
 {
-    delete(menuSceneUI);
+    delete(titleSceneUI);
     delete(stageObjectSet);
     delete(camera);
     delete(skyDome);
@@ -36,7 +36,7 @@ MenuScene::~MenuScene()
 /// <summary>
 /// 初期化
 /// </summary>
-void MenuScene::Initialize()
+void TitleScene::Initialize()
 {
     camera->Initialize(VGet(0, 50, -150), VGet(0, 0, 0));
 }
@@ -44,7 +44,7 @@ void MenuScene::Initialize()
 /// <summary>
 /// 更新
 /// </summary>
-void MenuScene::Update()
+void TitleScene::Update()
 {
     
 }
@@ -53,7 +53,7 @@ void MenuScene::Update()
 /// シーンの更新
 /// </summary>
 /// <returns>次のシーンのポインタ</returns>
-SceneBase* MenuScene::UpdateScene()
+SceneBase* TitleScene::UpdateScene()
 {
     // フェードイン
     PlayFadeIn();
@@ -68,14 +68,14 @@ SceneBase* MenuScene::UpdateScene()
     {
         // フェードアウト開始指示
         isFadeOutStart = true;
-        menuSceneUI->SetFadeState(SceneUIBase::FADE_OUT_SCREEN_PLAYING);
+        titleSceneUI->SetFadeState(SceneUIBase::FADE_OUT_SCREEN_PLAYING);
     }
 
     // フェードアウト
     PlayFadeOut();
 
     // フェード終了
-    if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_END)
+    if (isFadeOutStart && titleSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_END)
     {
         return new GameScene(highScore);
     }
@@ -86,48 +86,48 @@ SceneBase* MenuScene::UpdateScene()
 /// <summary>
 /// 描画
 /// </summary>
-void MenuScene::Draw()
+void TitleScene::Draw()
 {
     // オブジェクト描画
     stageObjectSet->Draw(); // ステージオブジェクト
     skyDome->Draw();        // スカイドーム
 
     // UIの描画
-    //DrawUI();
+    DrawUI();
 }
 
 /// <summary>
 /// UIの描画
 /// </summary>
-void MenuScene::DrawUI()
+void TitleScene::DrawUI()
 {
     // メニューシーンUIの描画
-    menuSceneUI->Draw(highScore);
+    titleSceneUI->Draw(highScore);
 }
 
 /// <summary>
 /// フェードイン開始
 /// </summary>
-void MenuScene::PlayFadeIn()
+void TitleScene::PlayFadeIn()
 {
-    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_NONE)
+    if (titleSceneUI->GetFadeState() == SceneUIBase::FADE_NONE)
     {
-        menuSceneUI->SetFadeState(SceneUIBase::FADE_IN_UI_PLAYING);
+        titleSceneUI->SetFadeState(SceneUIBase::FADE_IN_UI_PLAYING);
     }
-    if (menuSceneUI->GetFadeState() == SceneUIBase::FADE_IN_UI_PLAYING)
+    if (titleSceneUI->GetFadeState() == SceneUIBase::FADE_IN_UI_PLAYING)
     {
-        menuSceneUI->StartFadeInUI();
+        titleSceneUI->StartFadeInUI();
     }
 }
 
 /// <summary>
 /// フェードアウト開始
 /// </summary>
-void MenuScene::PlayFadeOut()
+void TitleScene::PlayFadeOut()
 {
     // フェードアウト処理
-    if (isFadeOutStart && menuSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_PLAYING)
+    if (isFadeOutStart && titleSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_PLAYING)
     {
-        menuSceneUI->StartFadeOutScreen();
+        titleSceneUI->StartFadeOutScreen();
     }
 }

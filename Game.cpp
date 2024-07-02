@@ -1,7 +1,7 @@
 ﻿#include "SceneBase.h"
 #include "Game.h"
-#include "MenuSceneUI.h"
-#include "MenuScene.h"
+#include "TitleSceneUI.h"
+#include "TitleScene.h"
 #include "GameScene.h"
 #include "OverScene.h"
 #include "ClearScene.h"
@@ -21,6 +21,8 @@ Game::Game()
     , keyRelease(false)
     , prevKeyOn(false)
 {
+    // フォント変更
+    ChangeFont("Linux libertine G");
     // 最初のシーンの設定
     nowScene = SceneBase::InitializeBase();
     // 次のシーンの初期化

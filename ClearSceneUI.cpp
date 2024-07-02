@@ -71,6 +71,8 @@ void ClearSceneUI::PlayKeyPleaseTextFlashing()
     if (isKeyPleaseGraphDraw)
     {
         // キーを入力してください
-        DrawFormatString(475, SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 4) - 25, UI_COLOR, "Press Any Button to Start");
+        DrawFormatString(KEY_PLEASE_TEXT_POSITION_X,
+            SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 4) - KEY_PLEASE_TEXT_POSITION_OFFSET_Y,
+            UI_COLOR, "Press Any Button to Start");
     }
 }

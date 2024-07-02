@@ -1,6 +1,6 @@
 ﻿#include "ClearSceneUI.h"
 #include "ClearScene.h"
-#include "MenuScene.h"
+#include "TitleScene.h"
 #include "SceneBase.h"
 #include "TreasureChest.h"
 #include "Camera.h"
@@ -110,7 +110,7 @@ SceneBase* ClearScene::UpdateScene()
     if (isFadeOutStart && clearSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_END)
     {
         // メニューシーンへ移行
-        return new MenuScene(highScore);
+        return new TitleScene(highScore);
     }
 
     return this;
