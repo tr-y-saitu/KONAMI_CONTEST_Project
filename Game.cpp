@@ -1,4 +1,5 @@
 ﻿#include "SceneBase.h"
+#include "Common.h"
 #include "Game.h"
 #include "TitleSceneUI.h"
 #include "TitleScene.h"
@@ -23,6 +24,8 @@ Game::Game()
 {
     // フォント変更
     ChangeFont("Linux libertine G");
+    // 初期化
+    Initialize();
     // 最初のシーンの設定
     nowScene = SceneBase::InitializeBase();
     // 次のシーンの初期化
@@ -38,7 +41,6 @@ Game::Game()
 /// </summary>
 Game::~Game()
 {
-    EffectManager::DeleteInstance();
     delete(nowScene);
     delete(fpsSetting);
 }
@@ -100,6 +102,28 @@ void Game::Initialize()
     previousTime = GetNowHiPerformanceCount();
     nowTimer = 1;
     score = 0;
+
+    // DXライブラリの表示方法をウィンドウモードに変更する。
+    ChangeWindowMode(true);     // ウィンドウモード
+    //ChangeWindowMode(false);    // 全画面モード
+
+    //描画先を裏画面に変更する。
+    SetDrawScreen(DX_SCREEN_BACK);
+
+    // フルシーンアンチエイリアスを設定する
+    SetFullSceneAntiAliasingMode(4, 2);  // 4x アンチエイリアシングを設定
+
+    // ＤＸライブラリ初期化処理
+    if (DxLib_Init() == -1)
+    {
+        DxLib_End();  // エラーが起きたら直ちに終了
+    }
+
+    // 画面モードのセット
+    SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DEPTH);
+
+    // 描画先グラフィック領域の指定
+    SetDrawScreen(DX_SCREEN_BACK);
 }
 
 /// <summary>

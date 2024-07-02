@@ -77,6 +77,9 @@
     <Filter Include="FIRE\GameObject\Stage\StageManager">
       <UniqueIdentifier>{aaca295e-92ff-4e36-8393-c909375a6778}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FIRE\System\SoundManager">
+      <UniqueIdentifier>{35a63c19-c15a-4512-b554-2e020dda60e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -130,9 +133,6 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>FIRE\System\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>FIRE\System\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="OverScene.cpp">
       <Filter>FIRE\System\Scene</Filter>
     </ClCompile>
@@ -140,9 +140,6 @@
       <Filter>FIRE\System\SceneUI</Filter>
     </ClCompile>
     <ClCompile Include="GameSceneUI.cpp">
-      <Filter>FIRE\System\SceneUI</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuSceneUI.cpp">
       <Filter>FIRE\System\SceneUI</Filter>
     </ClCompile>
     <ClCompile Include="OverSceneUI.cpp">
@@ -180,6 +177,15 @@
     </ClCompile>
     <ClCompile Include="PlayerCuhion.cpp">
       <Filter>FIRE\GameObject\PlayerAsset</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>FIRE\System\SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleSceneUI.cpp">
+      <Filter>FIRE\System\SceneUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,9 +240,6 @@
     <ClInclude Include="GameScene.h">
       <Filter>FIRE\System\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="MenuScene.h">
-      <Filter>FIRE\System\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="OverScene.h">
       <Filter>FIRE\System\Scene</Filter>
     </ClInclude>
@@ -244,9 +247,6 @@
       <Filter>FIRE\System\SceneUI</Filter>
     </ClInclude>
     <ClInclude Include="GameSceneUI.h">
-      <Filter>FIRE\System\SceneUI</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuSceneUI.h">
       <Filter>FIRE\System\SceneUI</Filter>
     </ClInclude>
     <ClInclude Include="OverSceneUI.h">
@@ -287,6 +287,15 @@
     </ClInclude>
     <ClInclude Include="PlayerCuhion.h">
       <Filter>FIRE\GameObject\PlayerAsset</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>FIRE\System\SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>FIRE\System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleSceneUI.h">
+      <Filter>FIRE\System\SceneUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

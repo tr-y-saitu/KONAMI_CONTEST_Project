@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "SceneBase.h"
 
-class TitleScene;
+class MenuScene;
 class GameScene;
 class ClearScene;
 class OverScene;
