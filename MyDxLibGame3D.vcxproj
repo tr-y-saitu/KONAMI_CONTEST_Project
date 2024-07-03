@@ -176,8 +176,8 @@
     <ClCompile Include="PlayerCuhion.cpp" />
     <ClCompile Include="sea.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MenuScene.cpp" />
-    <ClCompile Include="MenuSceneUI.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="TitleSceneUI.cpp" />
     <ClCompile Include="OverScene.cpp" />
     <ClCompile Include="OverSceneUI.cpp" />
     <ClCompile Include="PirateShip.cpp" />
@@ -213,8 +213,8 @@
     <ClInclude Include="PlayerBoat.h" />
     <ClInclude Include="PlayerCuhion.h" />
     <ClInclude Include="sea.h" />
-    <ClInclude Include="MenuScene.h" />
-    <ClInclude Include="MenuSceneUI.h" />
+    <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="TitleSceneUI.h" />
     <ClInclude Include="OverScene.h" />
     <ClInclude Include="OverSceneUI.h" />
     <ClInclude Include="Player.h" />

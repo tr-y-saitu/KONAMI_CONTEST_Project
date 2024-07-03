@@ -32,16 +32,18 @@ public:
 
 private:
     // 定数
-    const int UI_COLOR = GetColor(20, 20, 10);      // UIの色
-    const int UI_COLOR_RED = GetColor(255, 0, 0);   // UIの色(赤)
-    static constexpr int FLASHING_INTERVAL = 500;   // 文字点滅の間隔(GetNowCountなのでミリ秒)
+    const int UI_COLOR = GetColor(20, 20, 10);                      // UIの色
+    const int UI_COLOR_RED = GetColor(255, 0, 0);                   // UIの色(赤)
+    static constexpr int FLASHING_INTERVAL = 500;                   // 文字点滅の間隔(GetNowCountなのでミリ秒)
+    static constexpr int KEY_PLEASE_TEXT_POSITION_X = 530;          // 入力指示文字X座標
+    static constexpr int KEY_PLEASE_TEXT_POSITION_OFFSET_Y = 25;    // 入力指示文字Y座標ずらし量
 
     // 変数
     int     clearUIGraph;           // クリアした時のUI画像
     int     scoreBoardGraph;        // スコアボード画像
     int     resultsGraph;           // リザルト画像
     int     keyPleaseGraph;         // キー入力指示画像
-    int     lastFlashingTime;          // 最後に点滅した時間
+    int     lastFlashingTime;       // 最後に点滅した時間
     bool    isKeyPleaseGraphDraw;   // 文字が描画されているか
 };
 

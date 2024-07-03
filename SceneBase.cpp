@@ -1,5 +1,5 @@
 ﻿#include "SceneBase.h"
-#include "MenuScene.h"
+#include "TitleScene.h"
 #include "GameScene.h"
 
 
@@ -24,7 +24,7 @@ SceneBase::~SceneBase()
 /// <returns>初期化するSceneBase*型のnewインスタンス</returns>
 SceneBase* SceneBase::InitializeBase()
 {
-    return new MenuScene(0);
+    return new TitleScene(0);
 }
 
 /// <summary>

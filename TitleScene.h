@@ -3,23 +3,26 @@
 #include "SceneBase.h"
 
 class SceneBase;
-class MenuSceneUI;
+class TitleSceneUI;
+class StageObjectSet;
+class Camera;
+class SkyDome;
 
 /// <summary>
-/// メニューシーンクラス
+/// タイトルシーン
 /// </summary>
-class MenuScene : public SceneBase
+class TitleScene : public SceneBase
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    MenuScene(int _highScore);
+    TitleScene(int _highScore);
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~MenuScene() override;
+    ~TitleScene() override;
 
     /// <summary>
     /// 初期化
@@ -47,9 +50,22 @@ public:
     /// </summary>
     void DrawUI();
 
+    /// <summary>
+    /// フェードイン開始
+    /// </summary>
+    void PlayFadeIn();
+
+    /// <summary>
+    /// フェードアウト開始
+    /// </summary>
+    void PlayFadeOut();
+
 private:
     
-    MenuSceneUI* menuSceneUI;   // メニューシーンで使用するUI
+    TitleSceneUI* titleSceneUI;     // メニューシーンで使用するUI
+    StageObjectSet* stageObjectSet; // ステージオブジェクト
+    Camera* camera;                 // カメラ
+    SkyDome* skyDome;               // スカイドーム
 };
 
 
