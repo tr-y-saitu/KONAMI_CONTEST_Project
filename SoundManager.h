@@ -5,7 +5,7 @@
 /// サウンドマネージャー
 /// </summary>
 /// MEMO:シングルトンクラス
-class SoundManager
+class SoundManager  final
 {
 public:
     /// <summary>
@@ -35,9 +35,44 @@ public:
     void LoadData();
 
     /// <summary>
-    /// 更新ん
+    /// 更新
     /// </summary>
     void Update();
+
+    /// <summary>
+    /// ボタンを押したときの音を再生
+    /// </summary>
+    void PlayPushuSE();
+
+    /// <summary>
+    /// タイトルシーンのBGMを再生
+    /// </summary>
+    void PlayTitleSceneBGM();
+
+    /// <summary>
+    /// ゲームシーンのBGMを再生
+    /// </summary>
+    void PlayGameSceneBGM();
+
+    /// <summary>
+    /// 宝石が跳ねた時の音を再生
+    /// </summary>
+    void PlayGemBoundSE();
+
+    /// <summary>
+    /// 宝石を獲得した時の音を再生
+    /// </summary>
+    void PlayGemGetSE();
+
+    /// <summary>
+    /// クリアシーンのBGMを再生
+    /// </summary>
+    void PlayClearSceneBGM();
+
+    /// <summary>
+    /// 花火が上がる音を再生
+    /// </summary>
+    void PlayFireWorksSE();
 
 private:
     /// <summary>
@@ -59,7 +94,7 @@ private:
 
     // ゲームシーン
     int     gameSceneBGM;       // ゲームシーンのBGM
-    int     gemHitSE;           // 宝石とプレイヤーが当たった時の音
+    int     gemBoundSE;         // 宝石とプレイヤーが当たった時の音
     int     gemGetSE;           // 宝石を獲得した時の音
     int     rainSE;             // 雨の音
     int     wavesSE;            // 波の音
@@ -68,10 +103,6 @@ private:
     // クリアシーン
     int     clearSceneBGM;      // クリアシーンのBGM
     int     fireworksSE;        // 花火の音
-
-
-
-
 };
 
 
