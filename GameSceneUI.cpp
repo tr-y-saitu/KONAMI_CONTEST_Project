@@ -66,7 +66,7 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     int gemWaveState, bool isBlackOut,int waveEndTime,
     char* waveText)
 {
-    char _timeCount[256];		// ゲームの経過時間
+    char _timeCount[256];       // ゲームの経過時間
 
     // スコアの描画
     DrawScore(gameScore);
@@ -114,7 +114,7 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
 
     // 時間バー
     // _leftBufでバー左を縮め、_rightBufでバー右をずらす
-    // _rightBufがないと少しづつ右に移動する
+    // _rightBufがないと少しづつ右に移動させる
     int _leftBuf = ((int)(TIMER_BAR_BOTTOM_RIGHT_X) * ((float)nowTimer / waveEndTime));
     int _rightBuf = ((int)(TIMER_BAR_TOP_LEFT_X) * ((float)nowTimer / waveEndTime));
 
