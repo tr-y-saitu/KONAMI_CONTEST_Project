@@ -31,7 +31,16 @@ public:
     /// </summary>
     virtual void Update() abstract; // 純粋仮想関数
 
+    /// <summary>
+    /// シーン内の更新
+    /// </summary>
+    /// <returns></returns>
     virtual SceneBase* UpdateScene() abstract;
+
+    /// <summary>
+    /// サウンドの更新
+    /// </summary>
+    virtual void UpdateSound() abstract;
 
     /// <summary>
     /// 描画

@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "SceneBase.h"
+#include "SoundManager.h"
 
 class SceneBase;
 class Player;
@@ -15,6 +16,7 @@ class GameSceneUI;
 class EffectManager;
 class StageObjectSet;
 class SkyDome;
+class SoundManager;
 
 /// <summary>
 /// ゲームシーンクラス
@@ -61,6 +63,11 @@ public:
     void DrawUI() override;
 
     /// <summary>
+    /// サウンドの更新
+    /// </summary>
+    void UpdateSound();
+
+    /// <summary>
     /// スコアの更新
     /// </summary>
     /// <param name="chest">宝箱</param>
@@ -93,8 +100,9 @@ private:
     Room*           room;
     GameSceneUI*    gameSceneUI;
     EffectManager*  effectManager;
-    StageObjectSet*   stageObjectSet;
+    StageObjectSet* stageObjectSet;
     SkyDome*        skyDome;
+    SoundManager*   soundManager;
 
     // 時間
     int     previousTime;   // ゲームループが始まる前の時間

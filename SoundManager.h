@@ -40,6 +40,11 @@ public:
     void Update();
 
     /// <summary>
+    /// 再生中の音をすべて止める
+    /// </summary>
+    void StopAllSounds();
+
+    /// <summary>
     /// ボタンを押したときの音を再生
     /// </summary>
     void PlayPushuSE();

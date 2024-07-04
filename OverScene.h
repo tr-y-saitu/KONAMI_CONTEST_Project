@@ -38,6 +38,11 @@ public:
     SceneBase* UpdateScene() override;
 
     /// <summary>
+    /// サウンドの更新
+    /// </summary>
+    void UpdateSound() override;
+
+    /// <summary>
     /// 描画
     /// </summary>
     void Draw() override;

@@ -7,6 +7,7 @@
 #include "OverScene.h"
 #include "ClearScene.h"
 #include "FPSSetting.h"
+#include "SoundManager.h"
 #include "EffectManager.h"
 
 /// <summary>
@@ -30,10 +31,10 @@ Game::Game()
     nowScene = SceneBase::InitializeBase();
     // 次のシーンの初期化
     nextScene = NULL;
-    // FPS
+
     fpsSetting = new FPSSetting();
-    // エフェクト
     effectManager = EffectManager::GetInstance();
+    soundManager = SoundManager::GetInstance();
 }
 
 /// <summary>
@@ -88,6 +89,7 @@ void Game::ChangeScene()
     // 初期関数を呼ぶ
     nowScene->Initialize();
     effectManager->Initialize();
+    soundManager->StopAllSounds();
 
     // 次のシーンを初期化
     nextScene = NULL;

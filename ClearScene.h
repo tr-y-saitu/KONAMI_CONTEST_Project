@@ -11,7 +11,7 @@ class BoatWithChest;
 class Sea;
 class Player;
 class EffectManager;
-
+class SoundManager;
 
 /// <summary>
 /// クリアシーン
@@ -45,6 +45,8 @@ public:
     /// </summary>
     /// <returns>次のシーンのポインタ</returns>
     SceneBase* UpdateScene() override;
+
+    void UpdateSound() override;
 
     /// <summary>
     /// 描画
@@ -81,6 +83,7 @@ private:
     Sea*            sea;                // 海
     Player*         player;             // プレイヤー
     EffectManager*  effectManager;      // エフェクトマネージャー
+    SoundManager*   soundManager;       // サウンドマネージャー
 };
 
 

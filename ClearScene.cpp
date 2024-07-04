@@ -14,6 +14,7 @@
 #include "sea.h"
 #include "Player.h"
 #include "EffectManager.h"
+#include "SoundManager.h"
 
 /// <summary>
 /// コンストラクタ
@@ -31,6 +32,7 @@ ClearScene::ClearScene(int _score, int _highScore)
     sea             = new Sea();
     player          = new Player();
     effectManager   = EffectManager::GetInstance();
+    soundManager    = SoundManager::GetInstance();
 }
 
 /// <summary>
@@ -96,6 +98,7 @@ SceneBase* ClearScene::UpdateScene()
     player->UpdateClearScene(); // プレイヤー
     effectManager->Update();    // エフェクトマネージャー
     UpdateEffekseer3D();        // エフェクト更新
+    UpdateSound();              // サウンド更新
 
     // スペースキーが押されたらフェードアウトしてメニューへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
@@ -114,6 +117,17 @@ SceneBase* ClearScene::UpdateScene()
     }
 
     return this;
+}
+
+/// <summary>
+/// サウンドの更新
+/// </summary>
+void ClearScene::UpdateSound()
+{
+    // BGM再生
+    soundManager->PlayClearSceneBGM();
+    // 花火音再生
+    soundManager->PlayFireWorksSE();
 }
 
 /// <summary>

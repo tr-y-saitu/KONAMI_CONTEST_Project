@@ -97,6 +97,7 @@ public:
     const float GetHeight() { return height; }
     const float GetRadius() { return r; }
     const VECTOR GetPlayerCushionOffSetPosition()const { return playerCushionOffsetPosition; }
+    const bool GetIsHitGem() { return isHitGem; }
 
     void SetIsHitGem(const bool set) { isHitGem = set; }
 

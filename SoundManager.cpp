@@ -9,6 +9,8 @@ SoundManager* SoundManager::soundManager = NULL;
 SoundManager::SoundManager()
     : playingSoundHandle        (0)
 {
+    // サウンドデータ読み込み
+    LoadData();
 }
 
 /// <summary>
@@ -23,12 +25,12 @@ SoundManager::~SoundManager()
 /// </summary>
 void SoundManager::LoadData()
 {
-    pushuSE = LoadSoundMem("data/sound/");
+    pushuSE = LoadSoundMem("data/sound/Common/pushuSE.mp3");
     titleSceneBGM = LoadSoundMem("data/sound/TitleScene/TitleSceneBGM1.mp3");
     gameSceneBGM = LoadSoundMem("data/sound/GameScene/GameSceneBMG1.mp3");
     gemBoundSE = LoadSoundMem("data/sound/GameScene/gemHitSE2.mp3");
     gemGetSE = LoadSoundMem("data/sound/GameScene/gemGetSE.mp3");
-    clearSceneBGM = LoadSoundMem("data/sound/ClearScene/gameClearSE.mp3");
+    clearSceneBGM = LoadSoundMem("data/sound/ClearScene/ClearSceneBGM.mp3");
     fireworksSE = LoadSoundMem("data/sound/ClearScene/fireworksSE.mp3");
 }
 
@@ -68,11 +70,31 @@ void SoundManager::Update()
 }
 
 /// <summary>
+/// 再生中の音をすべて止める
+/// </summary>
+void SoundManager::StopAllSounds()
+{
+    // 再生中のサウンドを探す
+    for (int i = playingList.size() - 1; i >= 0; i--)
+    {
+        if (CheckSoundMem(playingList[i]))
+        {
+            StopSoundMem(playingList[i]);               // 停止
+        }
+        playingList.erase(playingList.begin() + i);     // 削除
+    }
+}
+
+/// <summary>
 /// ボタンを押したときの音を再生
 /// </summary>
 void SoundManager::PlayPushuSE()
 {
-    PlaySoundMem(pushuSE, DX_PLAYTYPE_BACK, true);
+    if (!CheckSoundMem(pushuSE))
+    {
+        playingList.push_back(pushuSE);
+        PlaySoundMem(pushuSE, DX_PLAYTYPE_BACK, true);
+    }
 }
 
 /// <summary>
@@ -80,7 +102,11 @@ void SoundManager::PlayPushuSE()
 /// </summary>
 void SoundManager::PlayTitleSceneBGM()
 {
-    PlaySoundMem(titleSceneBGM, DX_PLAYTYPE_LOOP, true);
+    if (!CheckSoundMem(titleSceneBGM))
+    {
+        playingList.push_back(titleSceneBGM);
+        PlaySoundMem(titleSceneBGM, DX_PLAYTYPE_LOOP, true);
+    }
 }
 
 /// <summary>
@@ -88,7 +114,11 @@ void SoundManager::PlayTitleSceneBGM()
 /// </summary>
 void SoundManager::PlayGameSceneBGM()
 {
-    PlaySoundMem(gameSceneBGM, DX_PLAYTYPE_LOOP, true);
+    if (!CheckSoundMem(gameSceneBGM))
+    {
+        playingList.push_back(gameSceneBGM);
+        PlaySoundMem(gameSceneBGM, DX_PLAYTYPE_LOOP, true);
+    }
 }
 
 /// <summary>
@@ -96,6 +126,8 @@ void SoundManager::PlayGameSceneBGM()
 /// </summary>
 void SoundManager::PlayGemBoundSE()
 {
+    // 音が重なってもいいため再生チェックなし
+    playingList.push_back(gemBoundSE);
     PlaySoundMem(gemBoundSE, DX_PLAYTYPE_BACK, true);
 }
 
@@ -104,6 +136,8 @@ void SoundManager::PlayGemBoundSE()
 /// </summary>
 void SoundManager::PlayGemGetSE()
 {
+    // 音が重なってもいいため再生チェックなし
+    playingList.push_back(gemGetSE);
     PlaySoundMem(gemGetSE, DX_PLAYTYPE_BACK, true);
 }
 
@@ -112,7 +146,11 @@ void SoundManager::PlayGemGetSE()
 /// </summary>
 void SoundManager::PlayClearSceneBGM()
 {
-    PlaySoundMem(clearSceneBGM, DX_PLAYTYPE_LOOP, true);
+    if (!CheckSoundMem(clearSceneBGM))
+    {
+        playingList.push_back(clearSceneBGM);
+        PlaySoundMem(clearSceneBGM, DX_PLAYTYPE_LOOP, true);
+    }
 }
 
 /// <summary>
@@ -120,5 +158,9 @@ void SoundManager::PlayClearSceneBGM()
 /// </summary>
 void SoundManager::PlayFireWorksSE()
 {
-    PlaySoundMem(fireworksSE, DX_PLAYTYPE_LOOP, true);
+    if (!CheckSoundMem(fireworksSE))
+    {
+        playingList.push_back(fireworksSE);
+        PlaySoundMem(fireworksSE, DX_PLAYTYPE_LOOP, true);
+    }
 }

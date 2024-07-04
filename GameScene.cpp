@@ -14,6 +14,7 @@
 #include "EffekseerForDXLib.h"
 #include "EffectManager.h"
 #include "StageObjectSet.h"
+#include "SoundManager.h"
 
 /// <summary>
 /// コンストラクタ
@@ -28,6 +29,7 @@ GameScene::GameScene(int _highScore)
     highScore = _highScore;
     score = 0;
     effectManager   = EffectManager::GetInstance();
+    soundManager = SoundManager::GetInstance();
     // newインスタンス
     player          = new Player();
     treasureChest   = new TreasureChest();
@@ -135,6 +137,7 @@ SceneBase* GameScene::UpdateScene()
     camera->Update();                       // カメラ
     effectManager->Update();                // エフェクトマネージャー更新
     stageObjectSet->Update();               // ステージ
+    UpdateSound();                          // サウンド更新
     UpdateEffekseer3D();                    // エフェクト更新
 
     // 終了時間になったらSCENE_CLEARに移行
@@ -142,7 +145,6 @@ SceneBase* GameScene::UpdateScene()
     {
         return new ClearScene(score,highScore);
     }
-
 
     // シーン終了判定がなければそのまま
     return this;
@@ -188,6 +190,19 @@ void GameScene::DrawUI()
     gameSceneUI->Draw(score,nowTimer,
                       gemManager->GetGemWaveState(),false,
                       _waveEndTime, _waveText);
+}
+
+/// <summary>
+/// サウンドの更新
+/// </summary>
+void GameScene::UpdateSound()
+{
+    // BGM
+    soundManager->PlayGameSceneBGM();
+    // 宝石バウンド音
+    if (player->GetIsHitGem()) { soundManager->PlayGemBoundSE(); }
+    // 宝石獲得音
+    if (treasureChest->GetIsHitGem()) { soundManager->PlayGemGetSE(); }
 }
 
 /// <summary>

@@ -48,6 +48,14 @@ SceneBase* OverScene::UpdateScene()
 }
 
 /// <summary>
+/// サウンドの更新
+/// </summary>
+void OverScene::UpdateSound()
+{
+
+}
+
+/// <summary>
 /// 描画
 /// </summary>
 void OverScene::Draw()

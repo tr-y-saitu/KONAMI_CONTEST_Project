@@ -64,7 +64,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
     // インスタンス化
     Game* game = new Game();            // ゲームループ
-
+    
     // エスケープキーが押されるかウインドウが閉じられるまでループ
     while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
     {
