@@ -53,13 +53,14 @@ void PlayerCushion::PlayBoundAnimation()
     // アニメーション開始
     if (animationState == PLAY)
     {
-        //animationState = SCALE_UP;
         animationState = BOUND;
     }
+
+    // 最初は少しへこませる(スケールダウン)
     if (animationState == BOUND)
     {
-        boundScaleY -= 0.007;
-        if (boundScaleY <= -0.02)
+        boundScaleY -= BOUND_START_ANIMATION_SPEED;
+        if (boundScaleY <= -BOUND_START_SCALE_Y_LIMIT)
         {
             animationState = SCALE_UP;
         }
@@ -68,8 +69,8 @@ void PlayerCushion::PlayBoundAnimation()
     // スケールアップさせる
     if (animationState == SCALE_UP)
     {
-        boundScaleY += BOUND_ANIMATION_SPEED;
-        if (boundScaleY >= 0.05)
+        boundScaleY += BOUND_UP_ANIMATION_SPEED;
+        if (boundScaleY >= BOUND_UP_SCALE_Y_LIMIT)
         {
             animationState = SCALE_DOWN;
         }
@@ -78,14 +79,15 @@ void PlayerCushion::PlayBoundAnimation()
     // スケールダウンさせる
     if(animationState == SCALE_DOWN)
     {
-        boundScaleY -= BOUND_ANIMATION_SPEED;
-        if (boundScaleY <= 0)
+        boundScaleY -= BOUND_DONW_ANIMATION_SPEED;
+        if (boundScaleY <= BOUND_DOWN_SCALE_Y_LIMIT)
         {
+            // アニメーション終了
             animationState = END;
         }
     }
 
-    VECTOR setScale = VAdd(scale,VGet(0, boundScaleY, 0));
     // スケールをセットする
+    VECTOR setScale = VAdd(scale,VGet(0, boundScaleY, 0));
     MV1SetScale(modelHandle, setScale);
 }

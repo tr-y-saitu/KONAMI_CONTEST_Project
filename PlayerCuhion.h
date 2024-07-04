@@ -51,7 +51,12 @@ public:
     void SetAnimationState(const int set) { animationState = set; }
 
 private:
-    static constexpr float BOUND_ANIMATION_SPEED = 0.005;  // バウンドアニメーションを再生する速度
+    static constexpr float BOUND_START_ANIMATION_SPEED = 0.007; // バウンドアニメーションの最初の再生速度
+    static constexpr float BOUND_START_SCALE_Y_LIMIT = 0.02;    // バウンドアニメーション最初のスケールの限度
+    static constexpr float BOUND_UP_ANIMATION_SPEED = 0.005;    // スケールを大きくする時の速度
+    static constexpr float BOUND_UP_SCALE_Y_LIMIT = 0.05;       // スケールを大きくする時のスケールの限度
+    static constexpr float BOUND_DONW_ANIMATION_SPEED = 0.005;  // スケールを小さくする時の速度
+    static constexpr float BOUND_DOWN_SCALE_Y_LIMIT = 0;        // スケールを小さくする時のスケールの限度
 
     int     modelHandle;
     VECTOR  position;
