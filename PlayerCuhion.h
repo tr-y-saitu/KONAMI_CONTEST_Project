@@ -44,7 +44,7 @@ public:
     /// <summary>
     /// バウンドアニメーションの再生
     /// </summary>
-    void PlayBoundAnimation();
+    void UpdateBoundAnimationState();
 
     // Getter/Setter
     VECTOR GetOffSetPosition() const { return offSetPosition; } // 当たり判定調整用
