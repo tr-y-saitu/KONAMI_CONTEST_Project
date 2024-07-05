@@ -41,7 +41,7 @@ void PlayerOar::Update(VECTOR playerPosition)
 /// オールを漕ぐ
 /// </summary>
 /// <param name="playerState">プレイヤーの状態</param>
-void PlayerOar::PlayRowingAnimation(int movingState)
+void PlayerOar::UpdateRowingAnimationSpeed(int movingState)
 {
     // 移動中であれば再生
     if (movingState == Player::MOVE)

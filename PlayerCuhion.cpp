@@ -31,7 +31,8 @@ PlayerCushion::~PlayerCushion()
 /// <param name="playerPosition">プレイヤーの座標</param>
 void PlayerCushion::Update(VECTOR playerPosition)
 {
-    PlayBoundAnimation();
+    // バウンドアニメーション更新
+    UpdateBoundAnimationState();
     // 座標の更新
     position = VAdd(playerPosition, offSetPosition);
     MV1SetPosition(modelHandle, position);
@@ -48,7 +49,7 @@ void PlayerCushion::Draw()
 /// <summary>
 /// バウンドアニメーションの再生
 /// </summary>
-void PlayerCushion::PlayBoundAnimation()
+void PlayerCushion::UpdateBoundAnimationState()
 {
     // アニメーション開始
     if (animationState == PLAY)

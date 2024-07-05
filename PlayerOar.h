@@ -27,7 +27,7 @@ public:
     /// オールを漕ぐ
     /// </summary>
     /// <param name="playerState">移動状態</param>
-    void PlayRowingAnimation(int movingState);
+    void UpdateRowingAnimationSpeed(int movingState);
 
     /// <summary>
     /// 描画

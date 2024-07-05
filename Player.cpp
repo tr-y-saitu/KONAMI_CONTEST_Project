@@ -197,7 +197,7 @@ void Player::UpdateAssetAnimation()
         playerCushion->SetAnimationState(PlayerCushion::ANIMATION_STATE::PLAY);
     }
     // オールを漕ぐアニメーション再生
-    playerOar->PlayRowingAnimation(movingState);
+    playerOar->UpdateRowingAnimationSpeed(movingState);
 }
 
 /// <summary>
