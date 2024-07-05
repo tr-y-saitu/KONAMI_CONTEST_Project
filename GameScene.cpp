@@ -198,11 +198,19 @@ void GameScene::DrawUI()
 void GameScene::UpdateSound()
 {
     // BGM
-    soundManager->PlayGameSceneBGM();
+    soundManager->PlaySoundListBGM(SoundManager::GAME_SCENE_BGM);
+
+    // 効果音
     // 宝石バウンド音
-    if (player->GetIsHitGem()) { soundManager->PlayGemBoundSE(); }
+    if (player->GetIsHitGem())
+    {
+        soundManager->PlaySoundListSE(SoundManager::GEM_BOUND_SE);
+    }
     // 宝石獲得音
-    if (treasureChest->GetIsHitGem()) { soundManager->PlayGemGetSE(); }
+    if (treasureChest->GetIsHitGem())
+    {
+        soundManager->PlaySoundListSE(SoundManager::GEM_GET_SE);
+    }
 }
 
 /// <summary>

@@ -125,9 +125,17 @@ SceneBase* ClearScene::UpdateScene()
 void ClearScene::UpdateSound()
 {
     // BGM再生
-    soundManager->PlayClearSceneBGM();
-    // 花火音再生
-    soundManager->PlayFireWorksSE();
+    soundManager->PlaySoundListBGM(SoundManager::CLEAR_SCENE_BGM);
+
+    // 効果音再生
+    // 花火
+    soundManager->PlaySoundListSE(SoundManager::FIREWORKS_SE);
+    // 入力音
+    if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
+    {
+        // プッシュ音再生
+        soundManager->PlaySoundListSE(SoundManager::PUSH_SE);
+    }
 }
 
 /// <summary>
