@@ -25,13 +25,22 @@ SoundManager::~SoundManager()
 /// </summary>
 void SoundManager::LoadData()
 {
+    // 効果音
     pushuSE = LoadSoundMem("data/sound/Common/pushuSE.mp3");
-    titleSceneBGM = LoadSoundMem("data/sound/TitleScene/TitleSceneBGM1.mp3");
-    gameSceneBGM = LoadSoundMem("data/sound/GameScene/GameSceneBMG1.mp3");
     gemBoundSE = LoadSoundMem("data/sound/GameScene/gemHitSE2.mp3");
     gemGetSE = LoadSoundMem("data/sound/GameScene/gemGetSE.mp3");
-    clearSceneBGM = LoadSoundMem("data/sound/ClearScene/ClearSceneBGM.mp3");
     fireworksSE = LoadSoundMem("data/sound/ClearScene/fireworksSE.mp3");
+    soundListSE[PUSH_SE] = pushuSE;
+    soundListSE[GEM_BOUND_SE] = gemBoundSE;
+    soundListSE[GEM_GET_SE] = gemGetSE;
+    soundListSE[FIREWORKS_SE] = fireworksSE;
+    // BGM
+    titleSceneBGM = LoadSoundMem("data/sound/TitleScene/TitleSceneBGM1.mp3");
+    gameSceneBGM = LoadSoundMem("data/sound/GameScene/GameSceneBMG1.mp3");
+    clearSceneBGM = LoadSoundMem("data/sound/ClearScene/ClearSceneBGM.mp3");
+    soundListBGM[TITLE_SCENE_BGM] = titleSceneBGM;
+    soundListBGM[GAME_SCENE_BGM] = gameSceneBGM;
+    soundListBGM[CLEAR_SCENE_BGM] = clearSceneBGM;
 }
 
 /// <summary>
@@ -86,81 +95,27 @@ void SoundManager::StopAllSounds()
 }
 
 /// <summary>
-/// ボタンを押したときの音を再生
+/// 読み込んだサウンドリストから効果音再生
 /// </summary>
-void SoundManager::PlayPushuSE()
+/// <param name="soundType">再生したい効果音の種類</param>
+void SoundManager::PlaySoundListSE(PLAY_SOUND_SE soundType)
 {
-    if (!CheckSoundMem(pushuSE))
+    playingSoundHandle = soundListSE[soundType];
+    playingList.push_back(playingSoundHandle);
+    PlaySoundMem(playingSoundHandle, DX_PLAYTYPE_BACK, true);
+}
+
+/// <summary>
+/// 読み込んだサウンドリストからBGM再生
+/// </summary>
+/// <param name="soundType">再生したいBGMの種類</param>
+void SoundManager::PlaySoundListBGM(PLAY_SOUND_BGM soundType)
+{
+    playingSoundHandle = soundListBGM[soundType];
+    if (!CheckSoundMem(playingSoundHandle))
     {
-        playingList.push_back(pushuSE);
-        PlaySoundMem(pushuSE, DX_PLAYTYPE_BACK, true);
+        playingList.push_back(playingSoundHandle);
+        PlaySoundMem(playingSoundHandle, DX_PLAYTYPE_LOOP, true);
     }
 }
 
-/// <summary>
-/// タイトルシーンのBGMを再生
-/// </summary>
-void SoundManager::PlayTitleSceneBGM()
-{
-    if (!CheckSoundMem(titleSceneBGM))
-    {
-        playingList.push_back(titleSceneBGM);
-        PlaySoundMem(titleSceneBGM, DX_PLAYTYPE_LOOP, true);
-    }
-}
-
-/// <summary>
-/// ゲームシーンのBGMを再生
-/// </summary>
-void SoundManager::PlayGameSceneBGM()
-{
-    if (!CheckSoundMem(gameSceneBGM))
-    {
-        playingList.push_back(gameSceneBGM);
-        PlaySoundMem(gameSceneBGM, DX_PLAYTYPE_LOOP, true);
-    }
-}
-
-/// <summary>
-/// 宝石が跳ねた時の音を再生
-/// </summary>
-void SoundManager::PlayGemBoundSE()
-{
-    // 音が重なってもいいため再生チェックなし
-    playingList.push_back(gemBoundSE);
-    PlaySoundMem(gemBoundSE, DX_PLAYTYPE_BACK, true);
-}
-
-/// <summary>
-/// 宝石を獲得した時の音を再生
-/// </summary>
-void SoundManager::PlayGemGetSE()
-{
-    // 音が重なってもいいため再生チェックなし
-    playingList.push_back(gemGetSE);
-    PlaySoundMem(gemGetSE, DX_PLAYTYPE_BACK, true);
-}
-
-/// <summary>
-/// クリアシーンのBGMを再生
-/// </summary>
-void SoundManager::PlayClearSceneBGM()
-{
-    if (!CheckSoundMem(clearSceneBGM))
-    {
-        playingList.push_back(clearSceneBGM);
-        PlaySoundMem(clearSceneBGM, DX_PLAYTYPE_LOOP, true);
-    }
-}
-
-/// <summary>
-/// 花火が上がる音を再生
-/// </summary>
-void SoundManager::PlayFireWorksSE()
-{
-    if (!CheckSoundMem(fireworksSE))
-    {
-        playingList.push_back(fireworksSE);
-        PlaySoundMem(fireworksSE, DX_PLAYTYPE_LOOP, true);
-    }
-}

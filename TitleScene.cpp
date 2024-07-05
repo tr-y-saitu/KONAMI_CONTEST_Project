@@ -15,12 +15,12 @@
 /// </summary>
 TitleScene::TitleScene(int _highScore)
 {
-    highScore       = _highScore;
-    soundManager    = SoundManager::GetInstance();
-    titleSceneUI    = new TitleSceneUI();
-    stageObjectSet  = new StageObjectSet();
-    camera          = new Camera();
-    skyDome         = new SkyDome();
+    highScore = _highScore;
+    soundManager = SoundManager::GetInstance();
+    titleSceneUI = new TitleSceneUI();
+    stageObjectSet = new StageObjectSet();
+    camera = new Camera();
+    skyDome = new SkyDome();
     Initialize();
 }
 
@@ -48,7 +48,7 @@ void TitleScene::Initialize()
 /// </summary>
 void TitleScene::Update()
 {
-    
+
 }
 
 /// <summary>
@@ -92,11 +92,11 @@ SceneBase* TitleScene::UpdateScene()
 void TitleScene::UpdateSound()
 {
     // BGM再生
-    soundManager->PlayTitleSceneBGM();
+    soundManager->PlaySoundListBGM(SoundManager::TITLE_SCENE_BGM);
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
     {
         // プッシュ音再生
-        soundManager->PlayPushuSE();
+        soundManager->PlaySoundListSE(SoundManager::PUSH_SE);
     }
 }
 

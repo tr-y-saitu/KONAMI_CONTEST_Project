@@ -9,6 +9,27 @@ class SoundManager  final
 {
 public:
     /// <summary>
+    /// 再生する効果音
+    /// </summary>
+    enum PLAY_SOUND_SE
+    {
+        PUSH_SE,        // ボタン入力音
+        GEM_BOUND_SE,   // 宝石が跳ねた時の音
+        GEM_GET_SE,     // 宝石を獲得した時の音
+        FIREWORKS_SE,   // 花火が上がる音
+    };
+
+    /// <summary>
+    /// 再生するBGM
+    /// </summary>
+    enum PLAY_SOUND_BGM
+    {
+        TITLE_SCENE_BGM,    // タイトルシーンのBGM
+        GAME_SCENE_BGM,     // ゲームシーンのBGM
+        CLEAR_SCENE_BGM,    // クリアシーンのBGM
+    };
+
+    /// <summary>
     /// デストラクタ
     /// </summary>
     virtual ~SoundManager();
@@ -45,39 +66,16 @@ public:
     void StopAllSounds();
 
     /// <summary>
-    /// ボタンを押したときの音を再生
+    /// 読み込んだサウンドリストから効果音再生
     /// </summary>
-    void PlayPushuSE();
+    /// <param name="soundType">再生したい効果音の種類</param>
+    void PlaySoundListSE(PLAY_SOUND_SE soundType);
 
     /// <summary>
-    /// タイトルシーンのBGMを再生
+    /// 読み込んだサウンドリストからBGM再生
     /// </summary>
-    void PlayTitleSceneBGM();
-
-    /// <summary>
-    /// ゲームシーンのBGMを再生
-    /// </summary>
-    void PlayGameSceneBGM();
-
-    /// <summary>
-    /// 宝石が跳ねた時の音を再生
-    /// </summary>
-    void PlayGemBoundSE();
-
-    /// <summary>
-    /// 宝石を獲得した時の音を再生
-    /// </summary>
-    void PlayGemGetSE();
-
-    /// <summary>
-    /// クリアシーンのBGMを再生
-    /// </summary>
-    void PlayClearSceneBGM();
-
-    /// <summary>
-    /// 花火が上がる音を再生
-    /// </summary>
-    void PlayFireWorksSE();
+    /// <param name="soundType">再生したいBGMの種類</param>
+    void PlaySoundListBGM(PLAY_SOUND_BGM soundType);
 
 private:
     /// <summary>
@@ -89,6 +87,8 @@ private:
     static SoundManager* soundManager;      // サウンドマネージャークラスのインスタンス
     int playingSoundHandle;                 // 現在再生中のサウンド
     vector<int> playingList;                // 現在再生中のサウンドリスト
+    map<PLAY_SOUND_SE, int> soundListSE;    // 再生する効果音のリスト
+    map<PLAY_SOUND_BGM, int> soundListBGM;  // 再生するBGMのリスト
 
     //                  サウンドデータ                  //
     // 共通
