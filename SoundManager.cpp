@@ -18,6 +18,13 @@ SoundManager::SoundManager()
 /// </summary>
 SoundManager::~SoundManager()
 {
+    DeleteSoundMem(pushuSE);
+    DeleteSoundMem(gemBoundSE);
+    DeleteSoundMem(gemGetSE);
+    DeleteSoundMem(fireworksSE);
+    DeleteSoundMem(titleSceneBGM);
+    DeleteSoundMem(gameSceneBGM);
+    DeleteSoundMem(clearSceneBGM);
 }
 
 /// <summary>
