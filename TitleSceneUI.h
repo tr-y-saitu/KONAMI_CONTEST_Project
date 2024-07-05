@@ -43,6 +43,7 @@ private:
     int     keyPleaseGraph;         // キー入力指示画像
     int     lastFlashingTime;       // 最後に点滅した時間
     bool    isKeyPleaseGraphDraw;   // 文字が描画されているか
+    int     highScoreFrameGraph;    // ハイスコアを描画するフレーム
 };
 
 

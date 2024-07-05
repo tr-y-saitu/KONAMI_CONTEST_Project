@@ -12,6 +12,7 @@ TitleSceneUI::TitleSceneUI()
     SetFontSize(UI_FONT_SIZE);  // フォントサイズ設定
     titileGraph = LoadGraph("data/texture/Menu/titileLogo1200.png");
     keyPleaseGraph = LoadGraph("data/texture/State/KeyReleseImg800x119.png");
+    highScoreFrameGraph = LoadGraph("data/texture/Menu/highscoreFrame.png");
 }
 
 /// <summary>
@@ -39,6 +40,7 @@ void TitleSceneUI::Draw(int highScore)
     DrawRotaGraph(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 4, 1, 0, titileGraph, true);
 
     // スコア
+    DrawRotaGraph(SCREEN_SIZE_X / 2, 525, 1, 0, highScoreFrameGraph, true);
     char drawText[256];
     snprintf(drawText, sizeof(drawText), "HIGHSCORE : %d", highScore);
     DrawStringCenterScreen(drawText, 500, UI_COLOR_BLACK);
