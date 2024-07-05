@@ -176,6 +176,7 @@
     <ClCompile Include="PlayerCuhion.cpp" />
     <ClCompile Include="sea.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="TitleSceneUI.cpp" />
     <ClCompile Include="OverScene.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="PlayerBoat.h" />
     <ClInclude Include="PlayerCuhion.h" />
     <ClInclude Include="sea.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="TitleSceneUI.h" />
     <ClInclude Include="OverScene.h" />

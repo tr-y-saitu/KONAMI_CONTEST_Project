@@ -1,12 +1,13 @@
 ﻿#pragma once
 #include "SceneBase.h"
 
-class TitleScene;
+class MenuScene;
 class GameScene;
 class ClearScene;
 class OverScene;
 class FPSSetting;
 class EffectManager;
+class SoundManager;
 
 /// <summary>
 /// シーンマネージャー
@@ -71,6 +72,9 @@ private:
 
     // エフェクト
     EffectManager* effectManager;   //エフェクト
+
+    // サウンド
+    SoundManager* soundManager;     // サウンド
 
     // ステート
     int     sceneState;             // 現在のシーン

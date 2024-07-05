@@ -1,4 +1,5 @@
 ﻿#include "SceneBase.h"
+#include "Common.h"
 #include "Game.h"
 #include "TitleSceneUI.h"
 #include "TitleScene.h"
@@ -6,6 +7,7 @@
 #include "OverScene.h"
 #include "ClearScene.h"
 #include "FPSSetting.h"
+#include "SoundManager.h"
 #include "EffectManager.h"
 
 /// <summary>
@@ -23,14 +25,16 @@ Game::Game()
 {
     // フォント変更
     ChangeFont("Linux libertine G");
+    // 初期化
+    Initialize();
     // 最初のシーンの設定
     nowScene = SceneBase::InitializeBase();
     // 次のシーンの初期化
     nextScene = NULL;
-    // FPS
+
     fpsSetting = new FPSSetting();
-    // エフェクト
     effectManager = EffectManager::GetInstance();
+    soundManager = SoundManager::GetInstance();
 }
 
 /// <summary>
@@ -38,7 +42,6 @@ Game::Game()
 /// </summary>
 Game::~Game()
 {
-    EffectManager::DeleteInstance();
     delete(nowScene);
     delete(fpsSetting);
 }
@@ -86,6 +89,7 @@ void Game::ChangeScene()
     // 初期関数を呼ぶ
     nowScene->Initialize();
     effectManager->Initialize();
+    soundManager->StopAllSounds();
 
     // 次のシーンを初期化
     nextScene = NULL;

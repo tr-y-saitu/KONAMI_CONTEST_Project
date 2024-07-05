@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "StageObjectSet.h"
 #include "SkyDome.h"
+#include "SoundManager.h"
 
 
 /// <summary>
@@ -14,11 +15,12 @@
 /// </summary>
 TitleScene::TitleScene(int _highScore)
 {
-    highScore       = _highScore;
-    titleSceneUI    = new TitleSceneUI();
-    stageObjectSet  = new StageObjectSet();
-    camera          = new Camera();
-    skyDome         = new SkyDome();
+    highScore = _highScore;
+    soundManager = SoundManager::GetInstance();
+    titleSceneUI = new TitleSceneUI();
+    stageObjectSet = new StageObjectSet();
+    camera = new Camera();
+    skyDome = new SkyDome();
     Initialize();
 }
 
@@ -46,7 +48,7 @@ void TitleScene::Initialize()
 /// </summary>
 void TitleScene::Update()
 {
-    
+
 }
 
 /// <summary>
@@ -59,9 +61,10 @@ SceneBase* TitleScene::UpdateScene()
     PlayFadeIn();
 
     // オブジェクト更新
-    stageObjectSet->Update();
-    camera->UpdateMenuScene();
-    skyDome->Update();
+    stageObjectSet->Update();   // ステージ
+    camera->UpdateMenuScene();  // カメラ
+    skyDome->Update();          // スカイドーム
+    UpdateSound();              // サウンド更新
 
     // スペースキーが押されたらゲームへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
@@ -81,6 +84,20 @@ SceneBase* TitleScene::UpdateScene()
     }
 
     return this;
+}
+
+/// <summary>
+/// サウンドの更新
+/// </summary>
+void TitleScene::UpdateSound()
+{
+    // BGM再生
+    soundManager->PlaySoundListBGM(SoundManager::TITLE_SCENE_BGM);
+    if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
+    {
+        // プッシュ音再生
+        soundManager->PlaySoundListSE(SoundManager::PUSH_SE);
+    }
 }
 
 /// <summary>

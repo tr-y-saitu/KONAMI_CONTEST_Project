@@ -1,12 +1,14 @@
 ﻿#pragma once
 
 #include "SceneBase.h"
+#include "SoundManager.h"
 
 class SceneBase;
 class TitleSceneUI;
 class StageObjectSet;
 class Camera;
 class SkyDome;
+class SoundManager;
 
 /// <summary>
 /// タイトルシーン
@@ -41,6 +43,11 @@ public:
     SceneBase* UpdateScene() override;
 
     /// <summary>
+    /// サウンドの更新
+    /// </summary>
+    void UpdateSound() override;
+
+    /// <summary>
     /// 描画
     /// </summary>
     void Draw() override;
@@ -66,6 +73,7 @@ private:
     StageObjectSet* stageObjectSet; // ステージオブジェクト
     Camera* camera;                 // カメラ
     SkyDome* skyDome;               // スカイドーム
+    SoundManager* soundManager;     // サウンドマネージャー
 };
 
 

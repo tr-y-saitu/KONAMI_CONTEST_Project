@@ -17,6 +17,7 @@
 #include "Camera.h"
 #include "Collision.h"
 #include "EffectManager.h"
+#include "SoundManager.h"
 #include "FPSSetting.h"
 #include "Room.h"
 #include "Gem.h"
@@ -33,8 +34,11 @@
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) 
 {
     // DXライブラリの表示方法をウィンドウモードに変更する。
-    //ChangeWindowMode(true);     // ウィンドウモード
+#ifdef _DEBUG
+    ChangeWindowMode(true);     // ウィンドウモード
+#else
     ChangeWindowMode(false);    // 全画面モード
+#endif
 
     //描画先を裏画面に変更する。
     SetDrawScreen(DX_SCREEN_BACK);
@@ -45,7 +49,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     // ＤＸライブラリ初期化処理
     if (DxLib_Init() == -1)
     {
-        return -1;  // エラーが起きたら直ちに終了
+        DxLib_End();  // エラーが起きたら直ちに終了
     }
 
     // 画面モードのセット
@@ -54,10 +58,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     // 描画先グラフィック領域の指定
     SetDrawScreen(DX_SCREEN_BACK);
 
-    // インスタンス化
-    EffectManager::CreateInstance();
-    Game* game = new Game();
+    // シングルトンクラスのインスタンス化
+    EffectManager::CreateInstance();    // エフェクト
+    SoundManager::CreateInstance();     // サウンド
 
+    // インスタンス化
+    Game* game = new Game();            // ゲームループ
+    
     // エスケープキーが押されるかウインドウが閉じられるまでループ
     while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
     {
@@ -76,6 +83,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             break;
         }
     }
+
+    // シングルトンクラスの削除
+    EffectManager::DeleteInstance();
+    SoundManager::DeleteInstance();
+
+    // ゲームの削除
+    delete(game);
 
     // Effekseerを終了する。
     Effkseer_End();

@@ -6,7 +6,7 @@
 /// <summary>
 /// エフェクトマネージャー
 /// </summary>
-class EffectManager
+class EffectManager     final
 {
 public:
     /// <summary>
