@@ -62,7 +62,7 @@ SceneBase* TitleScene::UpdateScene()
 
     // オブジェクト更新
     stageObjectSet->Update();   // ステージ
-    camera->UpdateMenuScene();  // カメラ
+    camera->UpdateTitleScene();  // カメラ
     skyDome->Update();          // スカイドーム
     UpdateSound();              // サウンド更新
 

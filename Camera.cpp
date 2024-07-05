@@ -52,7 +52,7 @@ void Camera::Update()
 /// <summary>
 /// メニューシーンでの更新
 /// </summary>
-void Camera::UpdateMenuScene()
+void Camera::UpdateTitleScene()
 {
     // 回転移動
     MovementRotaitionl();

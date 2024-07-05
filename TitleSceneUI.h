@@ -35,8 +35,8 @@ private:
     const int UI_COLOR_WHITE = GetColor(255, 255, 255); // UIの色(白)
     const int UI_COLOR_BLACK = GetColor(0, 0, 0);       // UIの文字の色(黒)
     static const int UI_FONT_SIZE = 60;                 // UIのフォントサイズ
-    static constexpr int FLASHING_INTERVAL = 500;       // 文字点滅の間隔(GetNowCountなのでミリ秒)
-    static constexpr int KEY_PLEASE_TEXT_OFFSET_X = 25; // キー入力指示のオフセット
+    static constexpr int FLASHING_INTERVAL = 800;       // 文字点滅の間隔(GetNowCountなのでミリ秒)
+    static constexpr int KEY_PLEASE_TEXT_OFFSET_Y = 30; // キー入力指示のオフセット
 
     // 変数
     int     titileGraph;            // タイトル画像
