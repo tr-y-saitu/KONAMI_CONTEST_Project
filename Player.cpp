@@ -79,7 +79,7 @@ void Player::Update()
         // 再生位置はクッションの座標
         VECTOR _playPos = VAdd(pos, playerCushionOffsetPosition);
         _playPos = VAdd(_playPos, VGet(0.0f, 1.3f, 0.0f));  // 少し上
-        //effectManager->PlayPlayerHitEffect(_playPos);
+        effectManager->PlayPlayerHitEffect(_playPos);
     }
 
     // アニメーションの更新
