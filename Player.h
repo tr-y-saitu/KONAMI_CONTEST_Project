@@ -24,6 +24,15 @@ public:
     };
 
     /// <summary>
+    /// プレイヤーの状態
+    /// </summary>
+    enum MOVING_STATE
+    {
+        STOP,       // 停止状態
+        MOVE,       // 移動中
+    };
+
+    /// <summary>
     /// コンストラクタ
     /// </summary>
     Player();
@@ -61,6 +70,11 @@ public:
     /// アニメーションの更新
     /// </summary>
     void UpdateAnimation();
+
+    /// <summary>
+    /// プレイヤーアセットのアニメーション更新
+    /// </summary>
+    void UpdateAssetAnimation();
 
     /// 装備品モデルの座標設定
     /// </summary>
@@ -104,7 +118,7 @@ public:
 private:
     // 定数
     static constexpr float HIT_BOX_WIDTH = 4.5f;                    // 当たり判定の幅
-    static constexpr float HIT_BOX_HEIGHT = 4.0f;                   // 当たり判定の高さ
+    static constexpr float HIT_BOX_HEIGHT = 3.0f;                   // 当たり判定の高さ
     static constexpr float GRAVITY = 0.5f;                          // キャラに掛かる重力加速度
     static constexpr float JUMP_POWER = 25.0f;                      // キャラのジャンプ力
     static constexpr float SMALL_JUMP_POWER = 17.0f;                // 小ジャンプ力
@@ -133,6 +147,7 @@ private:
     float   height;                 // 高さ
     float   fallSpeed;              // 落下速度
     float   speed;                  // 移動スピード
+    int     movingState;            // プレイヤーの状態
 
     // 当たり判定
     float   r;                      // 球型当たり判定の半径
