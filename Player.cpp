@@ -22,6 +22,7 @@ Player::Player()
     ,   dir                     (VGet(0, 0, 0))
     ,   scale                   (VGet(0.02f, 0.02f, 0.02f))
     ,   rotationRate            (VGet(0.0f, -90.0f * DX_PI_F / 180.0f, 0.0f))
+    ,   movingState             (STOP)
 {
     effectManager = EffectManager::GetInstance();
     modelHandle = MV1LoadModel("data/model/player/PlayerModle.mv1");
@@ -83,12 +84,8 @@ void Player::Update()
     }
 
     // アニメーションの更新
-    UpdateAnimation();
-
-    if (isHitGem)
-    {
-        playerCushion->SetAnimationState(PlayerCushion::ANIMATION_STATE::PLAY);
-    }
+    UpdateAnimation();          // プレイヤー
+    UpdateAssetAnimation();     // プレイヤー装備品
 
     // ３Dモデルのポジション設定
     MV1SetPosition(modelHandle, pos);
@@ -118,6 +115,9 @@ void Player::UpdateMovement()
     // 無限に移動しないように停止
     dir = NO_DIRECTION;
 
+    // 入力が無ければ停止状態
+    movingState = STOP;
+
     if (CheckHitKey(KEY_INPUT_LEFT) == 1 || (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT) != 0)
     {
         dir = VAdd(dir, LEFT_DIRECTION);
@@ -133,6 +133,7 @@ void Player::UpdateMovement()
     if (VSquareSize(dir) > 0)
     {
         dir = VNorm(dir);
+        movingState = MOVE; // 移動状態
     }
 
     // 移動量を出す
@@ -183,6 +184,20 @@ void Player::UpdateAnimation()
 
     // 再生時間のセット
     MV1SetAttachAnimTime(modelHandle, animationAttachIndex, animationPlayTime);
+}
+
+/// <summary>
+/// プレイヤーアセットのアニメーション更新
+/// </summary>
+void Player::UpdateAssetAnimation()
+{
+    // クッションのバウンド再生
+    if (isHitGem)
+    {
+        playerCushion->SetAnimationState(PlayerCushion::ANIMATION_STATE::PLAY);
+    }
+    // オールを漕ぐアニメーション再生
+    playerOar->PlayRowingAnimation(movingState);
 }
 
 /// <summary>

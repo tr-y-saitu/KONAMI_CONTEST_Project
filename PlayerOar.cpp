@@ -4,8 +4,9 @@
 /// コンストラクタ
 /// </summary>
 PlayerOar::PlayerOar()
-    : turnOverRate  (0.0f)
-    , isBuckReverse (false)
+    : turnOverRate      (0.0f)
+    , isBuckReverse     (false)
+    , animationSpeed    (0)
 {
     modelHandle = MV1LoadModel("data/model/player/playerAsset/playerOar/playerOar.mv1");
     position = VGet(0.0f, 0.0f, 0.0f);
@@ -33,34 +34,46 @@ void PlayerOar::Update(VECTOR playerPosition)
 {
     // 座標の設定
     position = VAdd(playerPosition, offSetPosition);
-
-    // 漕ぐアニメーション再生
-    PlayRowingAnimation();
-
     MV1SetPosition(modelHandle, position);
 }
 
 /// <summary>
 /// オールを漕ぐ
 /// </summary>
-void PlayerOar::PlayRowingAnimation()
+/// <param name="playerState">プレイヤーの状態</param>
+void PlayerOar::PlayRowingAnimation(int movingState)
 {
-    // 漕ぐ
-    if (turnOverRate <= LIMIT_ANGLE_MAX && !isBuckReverse)
+    // 移動中であれば再生
+    if (movingState == Player::MOVE)
     {
-        turnOverRate += ANIMATION_SPEED;
+        // 再生速度の設定
+        if (animationSpeed <= MOVE_ACCELARATION_LIMIT)
+        {
+            animationSpeed += MOVE_ACCELARATION;
+        }
+
+        // 漕ぐ
+        if (turnOverRate <= LIMIT_ANGLE_MAX && !isBuckReverse)
+        {
+            turnOverRate += animationSpeed;
+        }
+        else
+        {
+            turnOverRate -= animationSpeed;
+        }
+        if (turnOverRate > LIMIT_ANGLE_MAX)
+        {
+            isBuckReverse = true;
+        }
+        if (turnOverRate < LIMIT_ANGLE_MIN)
+        {
+            isBuckReverse = false;
+        }
     }
-    else
+    else if (animationSpeed >= MOVE_DECELERATION_LIMIT)
     {
-        turnOverRate -= ANIMATION_SPEED;
-    }
-    if (turnOverRate > LIMIT_ANGLE_MAX)
-    {
-        isBuckReverse = true;
-    }
-    if (turnOverRate < LIMIT_ANGLE_MIN)
-    {
-        isBuckReverse = false;
+        // 加速度を減速
+        animationSpeed -= MOVE_DECELERATION;
     }
 
     // オールを回転

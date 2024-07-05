@@ -24,6 +24,15 @@ public:
     };
 
     /// <summary>
+    /// プレイヤーの状態
+    /// </summary>
+    enum MOVING_STATE
+    {
+        STOP,       // 停止状態
+        MOVE,       // 移動中
+    };
+
+    /// <summary>
     /// コンストラクタ
     /// </summary>
     Player();
@@ -61,6 +70,11 @@ public:
     /// アニメーションの更新
     /// </summary>
     void UpdateAnimation();
+
+    /// <summary>
+    /// プレイヤーアセットのアニメーション更新
+    /// </summary>
+    void UpdateAssetAnimation();
 
     /// 装備品モデルの座標設定
     /// </summary>
@@ -133,6 +147,7 @@ private:
     float   height;                 // 高さ
     float   fallSpeed;              // 落下速度
     float   speed;                  // 移動スピード
+    int     movingState;            // プレイヤーの状態
 
     // 当たり判定
     float   r;                      // 球型当たり判定の半径
