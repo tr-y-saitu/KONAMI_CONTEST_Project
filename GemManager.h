@@ -46,8 +46,8 @@ public:
     // 宝石が登場するデータ
     struct EntryGemDataBase
     {
-        float	entryTime;			// 登場する時間
-        VECTOR	entryPosition;		// 登場する位置
+        float   entryTime;          // 登場する時間
+        VECTOR  entryPosition;      // 登場する位置
     };
 
     // メソッド
@@ -139,8 +139,8 @@ public:
     Calculation calculation;    // 計算用
 
     // 実際のデータ
-    EntryGemDataBase entryGemDataBase[GEM_TOTAL_NUM];	// 宝石のエントリー情報を格納するための構造体
-    map<WAVE_STATE, WaveConstants*> waveConstantsTable;  // ウェーブごとの定数
+    EntryGemDataBase entryGemDataBase[GEM_TOTAL_NUM];   // 宝石のエントリー情報を格納するための構造体
+    map<WAVE_STATE, WaveConstants*> waveConstantsTable; // ウェーブごとの定数
     vector<Gem*> gems;
 
 private:
