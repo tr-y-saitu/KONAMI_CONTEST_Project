@@ -206,10 +206,17 @@ void GameScene::UpdateSound()
     {
         soundManager->PlaySoundListSE(SoundManager::GEM_BOUND_SE);
     }
+
     // 宝石獲得音
     if (treasureChest->GetIsHitGem())
     {
         soundManager->PlaySoundListSE(SoundManager::GEM_GET_SE);
+    }
+
+    // 終了音
+    if (gemManager->GetGemWaveState() == GemManager::WAVE_END)
+    {
+        soundManager->PlaySoundListBGM(SoundManager::CLEAR_FINISH_BGM);
     }
 }
 

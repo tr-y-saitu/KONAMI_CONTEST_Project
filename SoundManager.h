@@ -19,7 +19,6 @@ public:
         FIREWORKS_SE,       // 花火が上がる音
         THUNDER_SE,         // 雷が落ちる音
         EXPLOSION_SE,       // 爆発する音
-        CLEAR_FINISH_SE,    // 終了音
     };
 
     /// <summary>
@@ -30,6 +29,7 @@ public:
         TITLE_SCENE_BGM,    // タイトルシーンのBGM
         GAME_SCENE_BGM,     // ゲームシーンのBGM
         CLEAR_SCENE_BGM,    // クリアシーンのBGM
+        CLEAR_FINISH_BGM,    // 終了音
     };
 
     /// <summary>
@@ -113,7 +113,7 @@ private:
     // クリアシーン
     int     clearSceneBGM;      // クリアシーンのBGM
     int     fireworksSE;        // 花火の音
-    int     clearFinishSE;      // クリア演出音
+    int     clearFinishBGM;      // クリア演出音
 };
 
 
