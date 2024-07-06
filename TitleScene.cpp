@@ -79,6 +79,8 @@ SceneBase* TitleScene::UpdateScene()
 
         // 雷のエフェクトを再生
         effectManager->PlayThunderEffect(PIRATE_SHIP_POSITION);
+        // 爆発エフェクト再生
+        effectManager->PlayPirateShipBigExplosionEffect(EXPLOSION_POSITION);
     }
 
     // フェードアウト
@@ -87,7 +89,11 @@ SceneBase* TitleScene::UpdateScene()
     // フェード終了
     if (isFadeOutStart && titleSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_END)
     {
-        return new GameScene(highScore);
+        // 再生中のエフェクトが無ければ
+        if (!effectManager->IsAnyEffectPlaying())
+        {
+            return new GameScene(highScore);
+        }
     }
 
     return this;

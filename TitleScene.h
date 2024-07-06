@@ -71,6 +71,7 @@ public:
 private:
     // 定数
     static constexpr VECTOR PIRATE_SHIP_POSITION = { -40, 30, 0 };
+    static constexpr VECTOR EXPLOSION_POSITION = { -40,12,0 };
 
     // 変数
     TitleSceneUI* titleSceneUI;     // メニューシーンで使用するUI
