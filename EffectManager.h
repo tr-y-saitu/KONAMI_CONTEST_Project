@@ -55,6 +55,12 @@ public:
     void Update();
 
     /// <summary>
+    /// 現在再生中のエフェクトがあるかどうか
+    /// </summary>
+    /// <returns></returns>
+    bool IsAnyEffectPlaying();
+
+    /// <summary>
     /// 宝石獲得エフェクト
     /// </summary>
     /// <param name="playPosition">再生する座標</param>
@@ -120,20 +126,18 @@ private:
     std::vector<int> playingList;           // 現在再生中のリスト
 
     // ハンドル
-    //                  ゲームシーン                  //
     // 宝石とプレイヤー
-    int     playerHitEffect;    // プレイヤーと宝石のヒット時
+    int     playerHitEffect;                // プレイヤーと宝石のヒット時
     // 宝石と宝箱
-    int     gemGetEffect;       // 宝石ゲット時
-    int     gemFallEffect;      // 宝石が落ちてしまった時
+    int     gemGetEffect;                   // 宝石ゲット時
+    int     gemFallEffect;                  // 宝石が落ちてしまった時
     // 海賊船
     int     pirateShipBurnsSmallEffect;     // 海賊船が燃えるエフェクト（小）
     int     pirateShipBurnsMediumEffect;    // 海賊船が燃えるエフェクト（中）
     int     pirateShipExplosionEffect;      // 海賊船が爆発するエフェクト
     int     pirateShipBigExplosionEffect;   // 海賊船が大爆発するエフェクト
     int     thunderEffect;                  // 雷が落ちるエフェクト
-
-    //                  クリアシーン                  //
-    int fireWorksEffect;                    // 花火のエフェクト
+    // その他
+    int     fireWorksEffect;                // 花火のエフェクト
 };
 

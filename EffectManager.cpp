@@ -66,7 +66,7 @@ void EffectManager::LoadEffect()
     pirateShipBurnsSmallEffect = LoadEffekseerEffect("data/effect/GameScene/FireLOD10.efk",1.0f);
     pirateShipBurnsMediumEffect = LoadEffekseerEffect("data/effect/GameScene/Fire2.efk", 1.0f);
     pirateShipExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/Explosion.efk", 1.0f);
-    pirateShipBigExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/BigExplosion.efk", 0.3f);
+    pirateShipBigExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/flamesEffect.efk", 5.0f);
     thunderEffect = LoadEffekseerEffect("data/effect/GameScene/ThunderLOD50.efk", 10.0f);
     fireWorksEffect = LoadEffekseerEffect("data/effect/FireWorks/FireWorks.efk", 1.0f);
 }
@@ -130,6 +130,26 @@ void EffectManager::Update()
             playingList.erase(playingList.begin());
         }
     }
+}
+
+/// <summary>
+/// 現在再生中のエフェクトがあるかどうか
+/// </summary>
+/// <returns>ある:true  ない:false</returns>
+bool EffectManager::IsAnyEffectPlaying()
+{
+    bool isPlaying = false;
+
+    for (int i = 0; i < playingList.size(); i++)
+    {
+        // 再生中か調べる
+        if (IsEffekseer3DEffectPlaying(playingList[i]) == PLAY)
+        {
+            isPlaying = true;
+        }
+    }
+
+    return isPlaying;
 }
 
 /// <summary>
