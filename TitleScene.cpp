@@ -8,6 +8,7 @@
 #include "StageObjectSet.h"
 #include "SkyDome.h"
 #include "SoundManager.h"
+#include "EffectManager.h"
 
 
 /// <summary>
@@ -17,6 +18,7 @@ TitleScene::TitleScene(int _highScore)
 {
     highScore = _highScore;
     soundManager = SoundManager::GetInstance();
+    effectManager = EffectManager::GetInstance();
     titleSceneUI = new TitleSceneUI();
     stageObjectSet = new StageObjectSet();
     camera = new Camera();
@@ -61,10 +63,12 @@ SceneBase* TitleScene::UpdateScene()
     PlayFadeIn();
 
     // オブジェクト更新
-    stageObjectSet->Update();   // ステージ
-    camera->UpdateTitleScene();  // カメラ
-    skyDome->Update();          // スカイドーム
-    UpdateSound();              // サウンド更新
+    stageObjectSet->UpdateTitleScene(); // ステージ
+    camera->UpdateTitleScene();         // カメラ
+    skyDome->Update();                  // スカイドーム
+    UpdateSound();                      // サウンド更新
+    effectManager->Update();            // エフェクト
+    UpdateEffekseer3D();                // エフェクト更新
 
     // スペースキーが押されたらゲームへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
@@ -72,6 +76,9 @@ SceneBase* TitleScene::UpdateScene()
         // フェードアウト開始指示
         isFadeOutStart = true;
         titleSceneUI->SetFadeState(SceneUIBase::FADE_OUT_SCREEN_PLAYING);
+
+        // 雷のエフェクトを再生
+        effectManager->PlayThunderEffect(PIRATE_SHIP_POSITION);
     }
 
     // フェードアウト
@@ -97,6 +104,9 @@ void TitleScene::UpdateSound()
     {
         // プッシュ音再生
         soundManager->PlaySoundListSE(SoundManager::PUSH_SE);
+
+        // 雷が落ちた音再生
+        soundManager->PlaySoundListSE(SoundManager::THUNDER_SE);
     }
 }
 
@@ -108,6 +118,7 @@ void TitleScene::Draw()
     // オブジェクト描画
     stageObjectSet->Draw(); // ステージオブジェクト
     skyDome->Draw();        // スカイドーム
+    DrawEffekseer3D();      // 3Dエフェクト描画
 
     // UIの描画
     DrawUI();

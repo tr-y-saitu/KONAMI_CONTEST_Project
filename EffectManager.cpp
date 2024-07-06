@@ -67,7 +67,7 @@ void EffectManager::LoadEffect()
     pirateShipBurnsMediumEffect = LoadEffekseerEffect("data/effect/GameScene/Fire2.efk", 1.0f);
     pirateShipExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/Explosion.efk", 1.0f);
     pirateShipBigExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/BigExplosion.efk", 0.3f);
-    thunderEffect = LoadEffekseerEffect("data/effect/GameScene/ThunderLOD50.efk", 1.0f);
+    thunderEffect = LoadEffekseerEffect("data/effect/GameScene/ThunderLOD50.efk", 10.0f);
     fireWorksEffect = LoadEffekseerEffect("data/effect/FireWorks/FireWorks.efk", 1.0f);
 }
 

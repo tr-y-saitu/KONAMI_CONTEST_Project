@@ -17,6 +17,7 @@ public:
         GEM_BOUND_SE,   // 宝石が跳ねた時の音
         GEM_GET_SE,     // 宝石を獲得した時の音
         FIREWORKS_SE,   // 花火が上がる音
+        THUNDER_SE,     // 雷が落ちる音
     };
 
     /// <summary>
@@ -96,6 +97,7 @@ private:
 
     // タイトルシーン
     int     titleSceneBGM;      // タイトルシーンのBGM
+    int     thunderSE;          // 雷が落ちる効果音
 
     // ゲームシーン
     int     gameSceneBGM;       // ゲームシーンのBGM

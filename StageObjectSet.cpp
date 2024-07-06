@@ -35,6 +35,16 @@ void StageObjectSet::Update()
 }
 
 /// <summary>
+/// タイトルシーでの更新
+/// </summary>
+void StageObjectSet::UpdateTitleScene()
+{
+    boatWithChest->Update();
+    pirateShip->UpdateTitleScene();
+    sea->Update();
+}
+
+/// <summary>
 /// 描画
 /// </summary>
 void StageObjectSet::Draw()

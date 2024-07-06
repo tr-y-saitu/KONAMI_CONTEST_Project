@@ -24,6 +24,11 @@ public:
     /// </summary>
     void Update() override;
 
+    /// <summary>
+    /// タイトルシーンでの更新
+    /// </summary>
+    void UpdateTitleScene();
+
     // 描画
     void Draw() override;
 
