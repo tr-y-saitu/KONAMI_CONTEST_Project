@@ -15,6 +15,9 @@
 /// コンストラクタ
 /// </summary>
 TitleScene::TitleScene(int _highScore)
+    : isKeyOn           (false)
+    , isKeyRelease      (false)
+    , isPreviousKeyOn   (false)
 {
     highScore = _highScore;
     soundManager = SoundManager::GetInstance();
@@ -59,6 +62,9 @@ void TitleScene::Update()
 /// <returns>次のシーンのポインタ</returns>
 SceneBase* TitleScene::UpdateScene()
 {
+    // 入力更新
+    UpdateKeyState();
+
     // フェードイン
     PlayFadeIn();
 
@@ -71,7 +77,7 @@ SceneBase* TitleScene::UpdateScene()
     UpdateEffekseer3D();                // エフェクト更新
 
     // スペースキーが押されたらゲームへ
-    if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
+    if (isKeyRelease)
     {
         // フェードアウト開始指示
         isFadeOutStart = true;
@@ -81,6 +87,9 @@ SceneBase* TitleScene::UpdateScene()
         effectManager->PlayThunderEffect(PIRATE_SHIP_POSITION);
         // 爆発エフェクト再生
         effectManager->PlayPirateShipBigExplosionEffect(EXPLOSION_POSITION);
+
+        // キーは離れていません
+        isKeyRelease = false;
     }
 
     // フェードアウト
@@ -106,13 +115,12 @@ void TitleScene::UpdateSound()
 {
     // BGM再生
     soundManager->PlaySoundListBGM(SoundManager::TITLE_SCENE_BGM);
-    if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
-    {
-        // プッシュ音再生
-        soundManager->PlaySoundListSE(SoundManager::PUSH_SE);
 
-        // 雷が落ちた音再生
-        soundManager->PlaySoundListSE(SoundManager::THUNDER_SE);
+    if (isKeyRelease)
+    {
+        soundManager->PlaySoundListSE(SoundManager::PUSH_SE);       // プッシュ音、再生
+        soundManager->PlaySoundListSE(SoundManager::THUNDER_SE);    // 雷音、再生
+        soundManager->PlaySoundListSE(SoundManager::EXPLOSION_SE);  // 爆発音、再生
     }
 }
 
@@ -163,5 +171,37 @@ void TitleScene::PlayFadeOut()
     if (isFadeOutStart && titleSceneUI->GetFadeState() == SceneUIBase::FADE_OUT_SCREEN_PLAYING)
     {
         titleSceneUI->StartFadeOutScreen();
+    }
+}
+
+/// <summary>
+/// 入力更新
+/// </summary>
+void TitleScene::UpdateKeyState()
+{
+    // キー入力すでにされている場合
+    if (isKeyOn)
+    {
+        if (CheckHitKey(KEY_INPUT_SPACE) == 0)
+        {
+            isKeyOn = false;          // キーが入力されていない
+            isKeyRelease = true;      // キーが離れた
+        }
+    }
+    else if (isPreviousKeyOn == false && CheckHitKey(KEY_INPUT_SPACE) == 1)
+    {
+        // キーは長押しされていない && 前フレームで入力なし && キーが押された
+        isKeyRelease = false;   // キーは離れていない
+        isKeyOn = true;         // キーが押された
+    }
+
+    // キー入力されたら
+    if (CheckHitKey(KEY_INPUT_SPACE) == 1)
+    {
+        isPreviousKeyOn = true;   // このフレームではキーが押された
+    }
+    else
+    {
+        isPreviousKeyOn = false;  // このフレームでキーは押されなかった
     }
 }

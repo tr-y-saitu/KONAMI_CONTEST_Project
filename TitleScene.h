@@ -68,6 +68,11 @@ public:
     /// </summary>
     void PlayFadeOut();
 
+    /// <summary>
+    /// 入力更新
+    /// </summary>
+    void UpdateKeyState();
+
 private:
     // 定数
     static constexpr VECTOR PIRATE_SHIP_POSITION = { -40, 30, 0 };
@@ -80,6 +85,11 @@ private:
     SkyDome* skyDome;               // スカイドーム
     SoundManager* soundManager;     // サウンドマネージャー
     EffectManager* effectManager;   // エフェクトマネージャー
+
+    // 入力関係
+    bool    isKeyOn;                  // キー入力されたか
+    bool    isKeyRelease;             // キー入力が離れたか
+    bool    isPreviousKeyOn;          // 前フレームでキー入力があったか
 };
 
 

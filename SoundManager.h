@@ -13,11 +13,13 @@ public:
     /// </summary>
     enum PLAY_SOUND_SE
     {
-        PUSH_SE,        // ボタン入力音
-        GEM_BOUND_SE,   // 宝石が跳ねた時の音
-        GEM_GET_SE,     // 宝石を獲得した時の音
-        FIREWORKS_SE,   // 花火が上がる音
-        THUNDER_SE,     // 雷が落ちる音
+        PUSH_SE,            // ボタン入力音
+        GEM_BOUND_SE,       // 宝石が跳ねた時の音
+        GEM_GET_SE,         // 宝石を獲得した時の音
+        FIREWORKS_SE,       // 花火が上がる音
+        THUNDER_SE,         // 雷が落ちる音
+        EXPLOSION_SE,       // 爆発する音
+        CLEAR_FINISH_SE,    // 終了音
     };
 
     /// <summary>
@@ -98,6 +100,7 @@ private:
     // タイトルシーン
     int     titleSceneBGM;      // タイトルシーンのBGM
     int     thunderSE;          // 雷が落ちる効果音
+    int     explosionSE;        // 爆発する効果音
 
     // ゲームシーン
     int     gameSceneBGM;       // ゲームシーンのBGM
@@ -110,6 +113,7 @@ private:
     // クリアシーン
     int     clearSceneBGM;      // クリアシーンのBGM
     int     fireworksSE;        // 花火の音
+    int     clearFinishSE;      // クリア演出音
 };
 
 

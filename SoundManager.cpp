@@ -38,11 +38,15 @@ void SoundManager::LoadData()
     gemGetSE = LoadSoundMem("data/sound/GameScene/gemGetSE.mp3");
     fireworksSE = LoadSoundMem("data/sound/ClearScene/fireworksSE.mp3");
     thunderSE = LoadSoundMem("data/sound/TitleScene/thunderSE.mp3");
+    explosionSE = LoadSoundMem("data/sound/TitleScene/explosion1.mp3");
+    clearFinishSE = LoadSoundMem("data/sound/ClearScene/gameClearSE.mp3");
     soundListSE[PUSH_SE] = pushuSE;
     soundListSE[GEM_BOUND_SE] = gemBoundSE;
     soundListSE[GEM_GET_SE] = gemGetSE;
     soundListSE[FIREWORKS_SE] = fireworksSE;
     soundListSE[THUNDER_SE] = thunderSE;
+    soundListSE[EXPLOSION_SE] = explosionSE;
+    soundListSE[CLEAR_FINISH_SE] = clearFinishSE;
     // BGM
     titleSceneBGM = LoadSoundMem("data/sound/TitleScene/TitleSceneBGM1.mp3");
     gameSceneBGM = LoadSoundMem("data/sound/GameScene/GameSceneBMG1.mp3");
