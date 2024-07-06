@@ -12,7 +12,7 @@ TitleSceneUI::TitleSceneUI()
     SetFontSize(UI_FONT_SIZE);  // フォントサイズ設定
     titileGraph = LoadGraph("data/texture/Menu/titileLogo1200.png");
     keyPleaseGraph = LoadGraph("data/texture/State/KeyReleseImg800x119.png");
-    highScoreFrameGraph = LoadGraph("data/texture/Menu/highscoreFrame.png");
+    highScoreFrameGraph = LoadGraph("data/texture/Clear/socreResult700.png");
 }
 
 /// <summary>
@@ -37,13 +37,15 @@ void TitleSceneUI::Update()
 void TitleSceneUI::Draw(int highScore)
 {
     // タイトルロゴ
-    DrawRotaGraph(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 4, 1, 0, titileGraph, true);
+    DrawRotaGraph(TITLE_LOGO_POSITION_X, TITLE_LOGO_POSITION_Y,
+        TITLE_LOGO_EXPAND_RATE, TITLE_LOGO_ANGEL, titileGraph, true);
 
     // スコア
-    DrawRotaGraph(SCREEN_SIZE_X / 2, 525, 1, 0, highScoreFrameGraph, true);
+    DrawRotaGraph(SCORE_DRAW_POSITION_X, SCORE_DRAW_POSITION_Y,
+        SCORE_FRAME_EXPAND_RATE, SCORE_FRAME_ANGLE, highScoreFrameGraph, true);
     char drawText[256];
     snprintf(drawText, sizeof(drawText), "HIGHSCORE : %d", highScore);
-    DrawStringCenterScreen(drawText, 500, UI_COLOR_BLACK);
+    DrawStringCenterScreen(drawText, SOCRE_FRAME_DRAW_POSITION_Y, UI_COLOR_BLACK);
 
     // キー入力指示
     DrawKeyPleaseTextFlashing();
