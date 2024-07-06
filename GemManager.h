@@ -120,6 +120,7 @@ public:
     const int GetGemWaveState()const { return gemWaveState; }
     const int GetResetTimer()const { return resetTimer; }
     const int GetIsResetEntyrData()const { return isResetEntryData; }
+    const bool GetIsEndOfGemEntry()const { return isEndOfGemEntry; }
 
     // setter
     void SetGemWaveState(const int set) { gemWaveState = set; }
@@ -129,16 +130,16 @@ public:
     // 定数
     static constexpr int GEM_TOTAL_NUM = 100;   // 総合の宝石の数
 
-	// 変数
-	// 宝石のベースモデルハンドル
-	int modelHandleDiamond;		// ダイアモンド
-	int modelHandleRuby;		// ルビー
-	int modelHandleSapphire;	// サファイア
-	int	modelHandleEmerald;		// エメラルド
+    // 変数
+    // 宝石のベースモデルハンドル
+    int modelHandleDiamond;     // ダイアモンド
+    int modelHandleRuby;        // ルビー
+    int modelHandleSapphire;    // サファイア
+    int	modelHandleEmerald;     // エメラルド
     Calculation calculation;    // 計算用
 
-	// 実際のデータ
-	EntryGemDataBase entryGemDataBase[GEM_TOTAL_NUM];	// 宝石のエントリー情報を格納するための構造体
+    // 実際のデータ
+    EntryGemDataBase entryGemDataBase[GEM_TOTAL_NUM];	// 宝石のエントリー情報を格納するための構造体
     map<WAVE_STATE, WaveConstants*> waveConstantsTable;  // ウェーブごとの定数
     vector<Gem*> gems;
 
@@ -147,6 +148,7 @@ private:
 
     int     gemWaveState;       // 現在のウェーブステート
     bool    resetTimer;         // 時間をリセットするフラグ
-    bool    isResetEntryData;     // エントリーデータをリセットする
+    bool    isResetEntryData;   // エントリーデータをリセットする
+    bool    isEndOfGemEntry;    // 宝石の出現が終了したかどうか
 };
 

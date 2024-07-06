@@ -128,8 +128,8 @@ SceneBase* GameScene::UpdateScene()
     gemManager->ResetGemData();             // treasureChest->Updateyよりも上に書かないと、ウェーブ切り替え時１フレームだけ原点に宝石が描画される
 
     // オブジェクト更新
-    player->Update();	                    // プレイヤー
-    skyDome->Update();		                // 背景
+    player->Update();                       // プレイヤー
+    skyDome->Update();                      // 背景
     gemManager->UpdateWaveGem(nowTimer);    // 宝石
     treasureChest->Update();                // 宝箱更新
     gameSceneUI->Update(nowTimer,           // UI
@@ -140,8 +140,8 @@ SceneBase* GameScene::UpdateScene()
     UpdateSound();                          // サウンド更新
     UpdateEffekseer3D();                    // エフェクト更新
 
-    // 終了時間になったらSCENE_CLEARに移行
-    if (nowTimer >= STATE_GAME_TIME_LIMIT && !isFadeOutStart)
+    // 宝石の出現が終了したらSCENE_CLEARに移行
+    if (gemManager->GetIsEndOfGemEntry() && !isFadeOutStart)
     {
         return new ClearScene(score,highScore);
     }
