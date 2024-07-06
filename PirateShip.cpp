@@ -32,13 +32,15 @@ void PirateShip::Update()
     if (effectCount % PIRATE_SHIP_BURNS_SMALL_EFFECT_CYCLE == 0)
     {
         // 座標設定
-        VECTOR _playPosition1 = VAdd(position, PIRATE_SHIP_BURNS_SMALL_EFFECT_POSITION_1);
-        VECTOR _playPosition2 = VAdd(position, PIRATE_SHIP_BURNS_SMALL_EFFECT_POSITION_2);
-        VECTOR _playPosition3 = VAdd(position, PIRATE_SHIP_BURNS_SMALL_EFFECT_POSITION_3);
-        // 再生
-        effectManager->PlayPirateShipBurnsSmallEffect(_playPosition1);
-        effectManager->PlayPirateShipBurnsSmallEffect(_playPosition2);
-        effectManager->PlayPirateShipBurnsSmallEffect(_playPosition3);
+        VECTOR playPosition = VAdd(position, PIRATE_SHIP_BURNS_EFFECT_POSITION);
+
+        // 複数再生
+        for (int i = 0; i < PIRATE_SHIP_BURNS_EFFECT_PLAY_NUN; i++)
+        {
+            VECTOR offSet = VGet(-i /PIRATE_SHIP_BURNS_EFFECT_OFFSET_X, 0, i * PIRATE_SHIP_BURNS_EFFECT_OFFSET_Z);
+            playPosition = VAdd(playPosition, offSet);
+            effectManager->PlayPirateShipBurnsSmallEffect(playPosition);
+        }
     }
 
     // エフェクトカウント更新
