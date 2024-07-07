@@ -160,7 +160,6 @@ void GameScene::Draw()
     bool _fadeOutScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_OUT_SCREEN_PLAYING;
 
     // オブジェク描画画
-    player->Draw();             // プレイヤー
     treasureChest->Draw();      // 宝箱
     skyDome->Draw();            // スカイドーム
     player->Draw();             // プレイヤー
@@ -174,6 +173,7 @@ void GameScene::Draw()
     {
         DrawUI();               // UI描画
     }
+    player->Draw();             // プレイヤー
     gemManager->DrawGems();     // 宝石たち
 }
 

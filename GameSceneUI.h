@@ -6,6 +6,7 @@
 
 class WaveConstants;
 class TimeLimitsWarningUI ;
+class Tutorial;
 
 /// <summary>
 /// ゲームシーンUI
@@ -13,7 +14,6 @@ class TimeLimitsWarningUI ;
 class GameSceneUI : public SceneUIBase
 {
 public:
-
     /// <summary>
     /// コンストラクタ
     /// </summary>
@@ -111,6 +111,8 @@ private:
     static constexpr double WAVE_END_GRAPH_EXPAND_RATE_SPEED = 0.5; // WAVE終了演出画像の拡大スピード
     static constexpr double WAVE_END_GRAPH_EXPAND_MAX_LIMIT = 1.4;  // WAVE終了演出画像の最大拡大率
     static constexpr double WAVE_END_GRAPH_ANGLE_SPEED = 1.0;       // WAVE終了演出画像の回転スピード
+    // チュートリアル
+    static constexpr int TUTORIAL_UPDATE_INTERVAL = 5000;           // チュートリアルが進行する時間(ミリ秒)
 
     // 変数
     int     getDirectionModelHandle;        // 宝石獲得演出用モデル
@@ -124,6 +126,9 @@ private:
     int     waveEndFinishGraph;             // Waveが終了した時の演出画像
     double  waveEndFinishGraphExpandRate;   // Wave終了演出用画像の拡大率
     double  waveEndFinishGraphAngle;        // Wave終了演出用回転率(ラジアン度)
+
+    // チュートリアル
+    Tutorial* tutorial;                     // チュートリアル管理クラス
 };
 
 

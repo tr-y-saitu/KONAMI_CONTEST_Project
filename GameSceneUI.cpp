@@ -4,6 +4,8 @@
 #include "GemManager.h"
 #include "WaveConstants.h"
 #include "TimeLimitsWarningUI.h"
+#include "TutorialStateInformation.h"
+#include "Tutorial.h"
 
 /// <summary>
 /// コンストラクタ
@@ -24,6 +26,7 @@ GameSceneUI::GameSceneUI()
     waveEndFinishGraph = LoadGraph("data/texture/UI/finishImg.png");
     MV1SetScale(getDirectionModelHandle, VGet(0.05f, 0.05f, 0.0f));
     MV1SetRotationXYZ(getDirectionModelHandle, VGet(0, 25.0f * DX_PI_F / 180.0f, 0));
+    tutorial = new Tutorial();
 }
 
 /// <summary>
@@ -37,6 +40,7 @@ GameSceneUI::~GameSceneUI()
     DeleteGraph(timerBarFrameGraph);
     DeleteGraph(timerBarGraph);
     delete(timeLimitsWarningUI);
+    delete(tutorial);
 }
 
 /// <summary>
@@ -70,6 +74,9 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     char* waveText)
 {
     char _timeCount[256];       // ゲームの経過時間
+
+    // チュートリアル更新
+    tutorial->Update(gemWaveState);
 
     // スコアの描画
     DrawScore(gameScore);
@@ -157,3 +164,4 @@ void GameSceneUI::PlayWaveFinishAnimation()
     DrawRotaGraph(SCREEN_SIZE_X_HALF, SCREEN_SIZE_Y_HALF,
         expand, angle, waveEndFinishGraph, true);
 }
+
