@@ -40,17 +40,17 @@ void ClearSceneUI::Draw(int score, int highScore)
     DrawGraph(0, 0, clearUIGraph, true);
 
     // リザルトテキスト
-    DrawRotaGraph(SCREEN_SIZE_X / 2, 150, 1, 0, resultsGraph, true);
+    DrawRotaGraph(SCREEN_SIZE_X_HALF, 150, 1, 0, resultsGraph, true);
 
     // スコアボード
-    DrawRotaGraph(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 2, 1, 0, scoreBoardGraph, true);
+    DrawRotaGraph(SCREEN_SIZE_X_HALF, SCREEN_SIZE_Y_HALF, 1, 0, scoreBoardGraph, true);
 
     // クリア文字
-    DrawFormatString(600, 400, UI_COLOR, "SCORE : %d", score);
-    DrawFormatString(600, 500, UI_COLOR_RED, "HIGHSCORE : %d", highScore);
+    DrawFormatString(600, 420, UI_COLOR, "SCORE : %d", score);
+    DrawFormatString(600, 480, UI_COLOR_RED, "HIGHSCORE : %d", highScore);
 
     // キー入力指示
-    DrawRotaGraph(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 4), 1, 0, keyPleaseGraph, true);
+    DrawRotaGraph(SCREEN_SIZE_X_HALF, SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 4), 1, 0, keyPleaseGraph, true);
     PlayKeyPleaseTextFlashing();    // 文字点滅表示
 }
 
