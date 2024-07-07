@@ -187,9 +187,10 @@ void GameScene::DrawUI()
     // WAVEごとの終了時間,説明文を渡す
     auto _waveText = gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->uiWaveStateText;
     auto _waveEndTime = gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime;
+    auto _playerPosition = player->GetPos();
     gameSceneUI->Draw(score,nowTimer,
                       gemManager->GetGemWaveState(),false,
-                      _waveEndTime, _waveText);
+                      _waveEndTime, _waveText,_playerPosition);
 }
 
 /// <summary>

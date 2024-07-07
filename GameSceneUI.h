@@ -46,7 +46,7 @@ public:
     /// <param name="waveEndTime">現在のウェーブの終了時間</param>
     void Draw(int gameScore, float nowTimer,
         int gemWaveState, bool isBlackOut,int waveEndTime,
-        char* waveText);
+        char* waveText,VECTOR playerPosition);
 
     /// <summary>
     /// スコアの描画

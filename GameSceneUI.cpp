@@ -71,12 +71,12 @@ void GameSceneUI::Update(int nowTimer, int waveEndTime)
 /// <param name="waveEndTime">現在のウェーブの終了時間</param>
 void GameSceneUI::Draw(int gameScore, float nowTimer,
     int gemWaveState, bool isBlackOut,int waveEndTime,
-    char* waveText)
+    char* waveText, VECTOR playerPosition)
 {
     char _timeCount[256];       // ゲームの経過時間
 
     // チュートリアル更新
-    tutorial->Update(gemWaveState);
+    tutorial->Update(gemWaveState,playerPosition);
 
     // スコアの描画
     DrawScore(gameScore);
