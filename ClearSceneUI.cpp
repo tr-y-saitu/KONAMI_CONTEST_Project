@@ -10,7 +10,7 @@ ClearSceneUI::ClearSceneUI()
     : lastFlashingTime         (0)
     , isKeyPleaseGraphDraw  (false)
 {
-    clearUIGraph = LoadGraph("data/texture/Clear/FrameUINoClearColor.png");
+    clearUIFrame = LoadGraph("data/texture/Clear/FrameUINoClearColor.png");
     scoreBoardGraph = LoadGraph("data/texture/Clear/socreResult600x200.png");
     resultsGraph = LoadGraph("data/texture/Clear/ResultsImg.png");
     keyPleaseGraph = LoadGraph("data/texture/State/KeyRelese.png");
@@ -37,20 +37,29 @@ void ClearSceneUI::Update()
 void ClearSceneUI::Draw(int score, int highScore)
 {
     // クリアUI
-    DrawGraph(0, 0, clearUIGraph, true);
+    DrawGraph(CLEAR_FRAME_DRAW_POSITION_X, CLEAR_FRAME_DRAW_POSITION_Y, clearUIFrame, true);
 
     // リザルトテキスト
-    DrawRotaGraph(SCREEN_SIZE_X_HALF, 150, 1, 0, resultsGraph, true);
+    DrawRotaGraph(SCREEN_SIZE_X_HALF, RESULT_DRAW_POSITION_Y,
+        RESULT_DRAW_EXPAND_RATE, RESULT_DRAW_ANGLE, resultsGraph, true);
 
     // スコアボード
-    DrawRotaGraph(SCREEN_SIZE_X_HALF, SCREEN_SIZE_Y_HALF, 1, 0, scoreBoardGraph, true);
+    DrawRotaGraph(SCREEN_SIZE_X_HALF, SCREEN_SIZE_Y_HALF,
+        SOCRE_BOARD_EXPAND_RATE, SOCRE_BOARD_ANGLE, scoreBoardGraph, true);
 
-    // クリア文字
-    DrawFormatString(600, 420, UI_COLOR, "SCORE : %d", score);
-    DrawFormatString(600, 480, UI_COLOR_RED, "HIGHSCORE : %d", highScore);
+    // スコア描画
+    char scoreText[256];
+    snprintf(scoreText, sizeof(scoreText), "SCORE : %d", score);
+    DrawStringCenterScreen(scoreText, SCORE_DRAW_POSITION_Y, UI_COLOR);
+
+    // ハイスコア描画
+    char highScoreText[256];
+    snprintf(highScoreText, sizeof(highScoreText), "HIGHSCORE : %d", highScore);
+    DrawStringCenterScreen(highScoreText, HIGH_SCORE_DRAW_POSITION_Y, UI_COLOR_RED);
 
     // キー入力指示
-    DrawRotaGraph(SCREEN_SIZE_X_HALF, SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 4), 1, 0, keyPleaseGraph, true);
+    DrawRotaGraph(SCREEN_SIZE_X_HALF, KEY_PLEASE_TEXT_DRAW_POSITION_Y,
+        KEY_PLEASE_TEXT_EXPAND_RATE, KEY_PLEASE_TEXT_ANGLE, keyPleaseGraph, true);
     PlayKeyPleaseTextFlashing();    // 文字点滅表示
 }
 
@@ -71,8 +80,10 @@ void ClearSceneUI::PlayKeyPleaseTextFlashing()
     if (isKeyPleaseGraphDraw)
     {
         // キーを入力してください
-        DrawFormatString(KEY_PLEASE_TEXT_POSITION_X,
+        /*DrawFormatString(KEY_PLEASE_TEXT_POSITION_X,
             SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 4) - KEY_PLEASE_TEXT_POSITION_OFFSET_Y,
-            UI_COLOR, "Press Any Button to Start");
+            UI_COLOR, "Press Any Button to Start");*/
+        char text[256] = "Press Any Button to Title";
+        DrawStringCenterScreen(text, SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 4) - KEY_PLEASE_TEXT_POSITION_OFFSET_Y, UI_COLOR);
     }
 }
