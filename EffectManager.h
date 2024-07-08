@@ -84,7 +84,7 @@ public:
     /// <param name="effectType">再生するエフェクトの種類</param>
     /// <param name="playPosition">再生する座標</param>
     /// <param name="scale">※エフェクトの描画サイズ</param>
-    /// NOTE:第２引数の「scale」はデフォルト引数　デフォルト値{1.0f,1.0f,1.0f}
+    /// NOTE:第3引数の「scale」はデフォルト引数　デフォルト値{1.0f,1.0f,1.0f}
     ///      1.0fが読み込み時サイズ
     void PlayEffectList(EFFECT_TYPE effectType,VECTOR playPosition, VECTOR scale = {1.0f,1.0f,1.0f});
 

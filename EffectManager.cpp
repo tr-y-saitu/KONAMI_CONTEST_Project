@@ -70,14 +70,14 @@ void EffectManager::LoadEffect()
     thunderEffect = LoadEffekseerEffect("data/effect/GameScene/ThunderLOD50.efk", 10.0f);
     fireWorksEffect = LoadEffekseerEffect("data/effect/FireWorks/FireWorks.efk", 1.0f);
     // エフェクトリストに書き込み
-    /*effectList[GEM_GET_EFFECT] = gemGetEffect;
+    effectList[GEM_GET_EFFECT] = gemGetEffect;
     effectList[PLAYER_HIT_EFFECT] = playerHitEffect;
     effectList[PIRATE_SHIP_BURNS_SMALL_EFFECT] = pirateShipBurnsSmallEffect;
     effectList[PIRATE_SHIP_BURNS_MEDIUM_EFFECT] = pirateShipBurnsMediumEffect;
     effectList[PIRATE_SHIP_EXPLOSION_EFFECT] = pirateShipExplosionEffect;
     effectList[PIRATE_SHIP_BIG_EXPLOSION_EFFECT] = pirateShipBigExplosionEffect;
     effectList[THUNDER_EFFECT] = thunderEffect;
-    effectList[FIRE_WORKS_EFFECT] = fireWorksEffect;*/
+    effectList[FIRE_WORKS_EFFECT] = fireWorksEffect;
 }
 
 /// <summary>
@@ -167,13 +167,13 @@ bool EffectManager::IsAnyEffectPlaying()
 /// <param name="effectType">再生するエフェクトの種類</param>
 /// <param name="playPosition">再生する座標</param>
 /// <param name="scale">※エフェクトの描画サイズ</param>
-/// NOTE:第２引数の「scale」はデフォルト引数　デフォルト値{1.0f,1.0f,1.0f}
+/// NOTE:第3引数の「scale」はデフォルト引数　デフォルト値{1.0f,1.0f,1.0f}
 ///      1.0fが読み込み時サイズ
 void EffectManager::PlayEffectList(EFFECT_TYPE effectType,VECTOR playPosition, VECTOR scale)
 {
+
     // 再生するエフェクトを設定
     playingEffectHandle = effectList[effectType];
-
     // 再生するエフェクトの拡大率を設定
     SetScalePlayingEffekseer3DEffect(playingEffectHandle, scale.x, scale.y, scale.z);
 
