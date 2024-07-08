@@ -13,7 +13,7 @@ ClearSceneUI::ClearSceneUI()
     clearUIFrame = LoadGraph("data/texture/Clear/FrameUINoClearColor.png");
     scoreBoardGraph = LoadGraph("data/texture/Clear/socreResult600x200.png");
     resultsGraph = LoadGraph("data/texture/Clear/ResultsImg.png");
-    keyPleaseGraph = LoadGraph("data/texture/State/KeyRelese.png");
+    keyPleaseGraph = LoadGraph("data/texture/State/KeyReleseImg800x119.png");
 }
 
 /// <summary>

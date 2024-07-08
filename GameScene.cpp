@@ -228,10 +228,7 @@ void GameScene::UpdateSound()
 void GameScene::UpdateEffect()
 {
     // 爆発エフェクト再生
-    if (gemManager->GetResetTimer())
-    {
-        effectManager->PlayPirateShipExplosionEffect(BIG_EXPLOSION_EFFECT_POSITION);
-    }
+
 }
 
 /// <summary>
