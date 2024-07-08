@@ -141,6 +141,7 @@ public:
 	void SetEntryPosition(const VECTOR set) { entryPosition = set; }
 
 	// 定数
+    static constexpr VECTOR END_POSITION = {80,0,0};    // WAVE_ENDでの座標位置
 	const float GRAVITY_POWER = 0.003f;		// 宝石にかかる重力の値
 	const float GRAVITY_POWER_LIMIT = 0.3f; // 宝石にかかる重力の限界値
 	const float MOVE_SPEED = 0.17f;			// 移動速度

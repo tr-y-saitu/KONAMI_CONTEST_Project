@@ -224,7 +224,7 @@ void Gem::Update(Calculation& cal, float nowTimer)
 void Gem::UpdateWaveEnd()
 {
     // 3Dモデルの座標設定
-    MV1SetPosition(modelHandle, pos);
+    MV1SetPosition(modelHandle, END_POSITION);
 }
 
 /// <summary>
@@ -392,7 +392,6 @@ void Gem::UpdateGravity()
     {
         pos.y = 0.1;			// 座標を地面に固定
         isHitGround = true;		// 地面についている状態
-        //visibleFlag = false;	// 存在を消す
         entryTime = 0;			// 登場時間を強制的にゼロにする
     }
 }
