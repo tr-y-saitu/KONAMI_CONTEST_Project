@@ -71,8 +71,7 @@ void TitleSceneUI::DrawKeyPleaseTextFlashing()
     if (isKeyPleaseGraphDraw)
     {
         // キーを入力してください
-        char drawString[256] = "Press Any Button to Start";
         int drawPostionY = SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 5) - KEY_PLEASE_TEXT_OFFSET_Y;
-        DrawStringCenterScreen(drawString, drawPostionY, UI_COLOR_BLACK);
+        DrawStringCenterScreen(KEY_PLEASE_TEXT, drawPostionY, UI_COLOR_BLACK);
     }
 }
