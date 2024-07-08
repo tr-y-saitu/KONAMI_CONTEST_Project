@@ -84,6 +84,11 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
     // 宝石のスコア表を描画
     DrawGemScoreTable();
 
+#ifdef _DEBUG
+    // 宝石のウェーブステート描画
+    DrawGemWaveState(gemWaveState);
+#endif
+
     // ウェーブ終了したら
     if (gemWaveState == GemManager::WAVE_END)
     {
@@ -165,3 +170,32 @@ void GameSceneUI::PlayWaveFinishAnimation()
         expand, angle, waveEndFinishGraph, true);
 }
 
+/// <summary>
+/// 宝石のウェーブステート描画
+/// </summary>
+/// <param name="gemWaveState">宝石のウェーブステート情報</param>
+/// MEMO:デバッグ用
+void GameSceneUI::DrawGemWaveState(int gemWaveState)
+{
+    switch (gemWaveState)
+    {
+    case GemManager::WAVE_FIRST:
+        DrawString(0, 0, "WAVE_FIRST", UI_COLOR_BLACK, true);
+        break;
+
+    case GemManager::WAVE_SECOND:
+        DrawString(0, 0, "WAVE_SECOND", UI_COLOR_BLACK, true);
+        break;
+
+    case GemManager::WAVE_THIRD:
+        DrawString(0, 0, "WAVE_THIRD", UI_COLOR_BLACK, true);
+        break;
+
+    case GemManager::WAVE_END:
+        DrawString(0, 0, "WAVE_END", UI_COLOR_BLACK, true);
+        break;
+
+    default:
+        break;
+    }
+}

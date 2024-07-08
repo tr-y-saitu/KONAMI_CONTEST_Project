@@ -107,6 +107,11 @@ public:
     void ResetGemData();
 
     /// <summary>
+    /// 次のウェーブに行くための準備
+    /// </summary>
+    void ReadyingNextWave();
+
+    /// <summary>
     /// 宝石のウェーブ更新
     /// </summary>
     void UpdateWaveGem(float nowTimer);
