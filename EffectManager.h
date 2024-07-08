@@ -82,7 +82,7 @@ public:
     /// 海賊船が燃えるエフェクト（小）を再生
     /// </summary>
     /// <param name="playPosition">再生する座標</param>
-    void PlayPirateShipBurnsSmallEffect(VECTOR playPosition);
+    void PlayPirateShipBurnsSmallEffect(VECTOR playPosition,VECTOR scale);
 
     /// <summary>
     /// 海賊船が燃えるエフェクト（中）を再生

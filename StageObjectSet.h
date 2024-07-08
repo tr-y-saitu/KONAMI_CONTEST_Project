@@ -23,7 +23,8 @@ public:
     /// <summary>
     /// 更新
     /// </summary>
-    void Update();
+    /// <param name="gemWaveState">宝石のウェーブステート</param>
+    void Update(int gemWaveState);
 
     /// <summary>
     /// タイトルシーンでの更新

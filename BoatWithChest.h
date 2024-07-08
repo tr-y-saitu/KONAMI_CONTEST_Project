@@ -26,7 +26,7 @@ public:
     /// <summary>
     /// 更新
     /// </summary>
-    void Update() override;
+    void Update();
 
     /// <summary>
     /// 描画

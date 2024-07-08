@@ -189,8 +189,9 @@ void EffectManager::PlayGemFallEffect(VECTOR playPosition)
 /// 海賊船が燃えるエフェクト（小）を再生
 /// </summary>
 /// <param name="playPosition">再生する座標</param>
-void EffectManager::PlayPirateShipBurnsSmallEffect(VECTOR playPosition)
+void EffectManager::PlayPirateShipBurnsSmallEffect(VECTOR playPosition, VECTOR scale)
 {
+    SetScalePlayingEffekseer3DEffect(playingEffectHandle,scale.x, scale.y, scale.z);
     playingEffectHandle = PlayEffekseer3DEffect(pirateShipBurnsSmallEffect);
     playingList.push_back(playingEffectHandle);
     SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
