@@ -21,6 +21,10 @@ ClearSceneUI::ClearSceneUI()
 /// </summary>
 ClearSceneUI::~ClearSceneUI()
 {
+    DeleteGraph(clearUIFrame);
+    DeleteGraph(scoreBoardGraph);
+    DeleteGraph(resultsGraph);
+    DeleteGraph(keyPleaseGraph);
 }
 
 /// <summary>
@@ -80,9 +84,6 @@ void ClearSceneUI::PlayKeyPleaseTextFlashing()
     if (isKeyPleaseGraphDraw)
     {
         // キーを入力してください
-        /*DrawFormatString(KEY_PLEASE_TEXT_POSITION_X,
-            SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 4) - KEY_PLEASE_TEXT_POSITION_OFFSET_Y,
-            UI_COLOR, "Press Any Button to Start");*/
         char text[256] = "Press Any Button to Title";
         DrawStringCenterScreen(text, SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 4) - KEY_PLEASE_TEXT_POSITION_OFFSET_Y, UI_COLOR);
     }
