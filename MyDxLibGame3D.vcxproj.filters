@@ -83,6 +83,12 @@
     <Filter Include="FIRE\GameObject\Stage\StageObject">
       <UniqueIdentifier>{f3b56307-ff36-4e95-a101-14792296ea8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FIRE\System\SceneUI\TutorialStateInformation">
+      <UniqueIdentifier>{fa1b12f9-c8b4-4b5b-b68e-8c9ca891583c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FIRE\System\SceneUI\Tutorial">
+      <UniqueIdentifier>{04c4ed33-2688-49d7-bca8-4c9c65efad55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -189,6 +195,12 @@
     </ClCompile>
     <ClCompile Include="StageObjectBase.cpp">
       <Filter>FIRE\GameObject\Stage\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialStateInformation.cpp">
+      <Filter>FIRE\System\SceneUI\TutorialStateInformation</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial.cpp">
+      <Filter>FIRE\System\SceneUI\Tutorial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -299,6 +311,12 @@
     </ClInclude>
     <ClInclude Include="StageObjectBase.h">
       <Filter>FIRE\GameObject\Stage\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialStateInformation.h">
+      <Filter>FIRE\System\SceneUI\TutorialStateInformation</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial.h">
+      <Filter>FIRE\System\SceneUI\Tutorial</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -117,10 +117,10 @@ public:
     void DrawGems();
 
     // getter
-    const int GetGemWaveState()const { return gemWaveState; }
-    const int GetResetTimer()const { return resetTimer; }
-    const int GetIsResetEntyrData()const { return isResetEntryData; }
-    const bool GetIsEndOfGemEntry()const { return isEndOfGemEntry; }
+    int GetGemWaveState() const { return gemWaveState; }
+    int GetResetTimer() const { return resetTimer; }
+    int GetIsResetEntyrData()const { return isResetEntryData; }
+    bool GetIsEndOfGemEntry()const { return isEndOfGemEntry; }
 
     // setter
     void SetGemWaveState(const int set) { gemWaveState = set; }
