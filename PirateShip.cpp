@@ -51,56 +51,25 @@ void PirateShip::UpdateTitleScene()
 /// <param name="gemWaveState">宝石のウェーブステート</param>
 void PirateShip::PlayShipFireEffect(int gemWaveState)
 {
-    //// 海賊船が燃えているエフェクトを再生
-    //if (effectCount % PIRATE_SHIP_BURNS_SMALL_EFFECT_CYCLE == 0)
-    //{
-    //    // 再生する座標設定
-    //    VECTOR playPosition = VAdd(position, PIRATE_SHIP_BURNS_EFFECT_POSITION);
-
-    //    // ウェーブ更新で再生するエフェクトの数が増加
-    //    int numberToPlay = gemWaveState + PIRATE_SHIP_BURNS_EFFECT_PLAY_BUF;
-    //    for (int i = 0; i < numberToPlay; i++)
-    //    {
-    //        // 再生位置ずらし量
-    //        VECTOR offSet = VGet(-i / PIRATE_SHIP_BURNS_EFFECT_OFFSET_X, 0, i * PIRATE_SHIP_BURNS_EFFECT_OFFSET_Z);
-
-    //        // 再生位置設定
-    //        playPosition = VAdd(playPosition, offSet);
-
-    //        // エフェクト拡大率
-    //        float scaleNum = (float)numberToPlay / 3;
-
-    //        // 拡大率設定
-    //        VECTOR scale = VGet(scaleNum, scaleNum, scaleNum);
-
-    //        // エフェクト再生
-    //        effectManager->PlayPirateShipBurnsSmallEffect(playPosition, scale);
-    //    }
-    //}
-
-    //// エフェクトカウント更新
-    //effectCount++;
-
-
+    // ウェーブに応じてエフェクト内容を再生
     switch (gemWaveState)
     {
     case GemManager::WAVE_FIRST:
-        UpdateShipFireEffect(1, VGet(0.3f, 0.3f, 0.3f));
+        UpdateShipFireEffect(WAVE_FIRST_EFECT_PLAY_NUM, WAVE_FIRST_EFFECT_SCALE);
         break;
 
 
     case GemManager::WAVE_SECOND:
-        UpdateShipFireEffect(4, VGet(0.7f, 1.0f, 0.7f));
+        UpdateShipFireEffect(WAVE_SECOND_EFFECT_PLAY_NUM, WAVE_SECOND_EFFECT_SCALE);
         break;
 
     case GemManager::WAVE_THIRD:
-        UpdateShipFireEffect(5, VGet(2.0f, 3.0f, 2.0f));
+        UpdateShipFireEffect(WAVE_THIRD_EFFECT_PLAY_NUM, WAVE_THIRD_EFFECT_SCALE);
         break;
 
     case GemManager::WAVE_END:
-        UpdateShipFireEffect(5, VGet(2.0f, 3.0f, 2.0f));
+        UpdateShipFireEffect(WAVE_END_EFFECT_PLAY_NUM, WAVE_END_EFFECT_SCALE);
         break;
-
 
     default:
         break;

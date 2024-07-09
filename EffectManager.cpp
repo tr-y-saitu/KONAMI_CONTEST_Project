@@ -61,7 +61,9 @@ EffectManager::~EffectManager()
 void EffectManager::LoadEffect()
 {
     // エフェクトのロード
-    gemGetEffect = LoadEffekseerEffect("data/effect/GemGetUpEffect.efk", 2.3f);
+    //gemGetEffect = LoadEffekseerEffect("data/effect/GemGetUpEffect.efk", 2.3f);
+    gemGetEffect = LoadEffekseerEffect("data/effect/getEffectLight.efk", 2.3f);
+
     playerHitEffect = LoadEffekseerEffect("data/effect/GemHitEffectStar60Frame.efk", 0.5f);
     pirateShipBurnsSmallEffect = LoadEffekseerEffect("data/effect/GameScene/fireEffect.efk",1.0f);
     pirateShipBurnsMediumEffect = LoadEffekseerEffect("data/effect/GameScene/Fire2.efk", 1.0f);
