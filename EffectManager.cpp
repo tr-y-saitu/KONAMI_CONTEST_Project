@@ -171,9 +171,9 @@ bool EffectManager::IsAnyEffectPlaying()
 ///      1.0fが読み込み時サイズ
 void EffectManager::PlayEffectList(EFFECT_TYPE effectType,VECTOR playPosition, VECTOR scale)
 {
-
     // 再生するエフェクトを設定
     playingEffectHandle = effectList[effectType];
+
     // 再生するエフェクトの拡大率を設定
     SetScalePlayingEffekseer3DEffect(playingEffectHandle, scale.x, scale.y, scale.z);
 

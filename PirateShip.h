@@ -29,6 +29,19 @@ public:
     /// </summary>
     void UpdateTitleScene();
 
+    /// <summary>
+    /// 海賊船が炎上するエフェクトを再生
+    /// </summary>
+    /// <param name="gemWaveState">宝石のウェーブステート</param>
+    void PlayShipFireEffect(int gemWaveState);
+
+    /// <summary>
+    /// 海賊船が炎上するエフェクトの更新
+    /// </summary>
+    /// <param name="playNum">再生する数</param>
+    /// <param name="effectScale">エフェクトの拡大率</param>
+    void UpdateShipFireEffect(int playNum, VECTOR effectScale);
+
     // 描画
     void Draw() override;
 
@@ -41,6 +54,9 @@ private:
     static constexpr int PIRATE_SHIP_BURNS_EFFECT_OFFSET_X = 3;         // 海賊船が燃えるエフェクトの位置調整用
     static constexpr int PIRATE_SHIP_BURNS_EFFECT_OFFSET_Z = 4;         // 海賊船が燃えるエフェクトの位置調整用
     static constexpr int PIRATE_SHIP_BURNS_EFFECT_PLAY_BUF = 2;         // 海賊船が燃えるエフェクトを描画する数のバフ値
+    static constexpr int RANDOM_RANGE = 3;                              // 乱数の範囲
+    static constexpr int RANDOM_OFFSET = 3;                             // 乱数値調整用
+
 
     // 変数
     int effectCount;                    // エフェクトをループ再生するためのカウント
