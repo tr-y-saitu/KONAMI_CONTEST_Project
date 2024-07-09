@@ -66,6 +66,11 @@ public:
     /// <param name="waveEndTime">現在のウェーブが終了する時間</param>
     void DrawTimerBar(int nowTimer,int waveEndTime);
 
+    /// <summary>
+    /// ウェーブが終了した時のアニメーション再生
+    /// </summary>
+    void PlayWaveFinishAnimation();
+
     // Setter
     void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }
 
@@ -102,6 +107,10 @@ private:
     static constexpr int FONT_SIAE_WAVE_STATE_UI = 50;      // WAVEステートのフォントサイズ
     static constexpr int WAVE_TITLE_MESSAGE_X = 50;         // WAVEごとのタイトルを描画するX座標
     static constexpr int WAVE_TITLE_MESSAGE_Y = 750;        // WAVEごとのタイトルを描画するY座標
+    // WAVEフィニッシュ演出
+    static constexpr double WAVE_END_GRAPH_EXPAND_RATE_SPEED = 0.5; // WAVE終了演出画像の拡大スピード
+    static constexpr double WAVE_END_GRAPH_EXPAND_MAX_LIMIT = 1.4;  // WAVE終了演出画像の最大拡大率
+    static constexpr double WAVE_END_GRAPH_ANGLE_SPEED = 1.0;       // WAVE終了演出画像の回転スピード
 
     // 変数
     int     getDirectionModelHandle;        // 宝石獲得演出用モデル
@@ -112,6 +121,9 @@ private:
     bool    isHitGemToChest;                // 宝石と宝箱が接触した
     int     scoreFrameGrpah;                // スコア装飾用フレーム
     int     gemScoreTableGraph;             // 宝石スコア表画像
+    int     waveEndFinishGraph;             // Waveが終了した時の演出画像
+    double  waveEndFinishGraphExpandRate;   // Wave終了演出用画像の拡大率
+    double  waveEndFinishGraphAngle;        // Wave終了演出用回転率(ラジアン度)
 };
 
 
