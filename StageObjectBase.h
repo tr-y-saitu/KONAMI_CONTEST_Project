@@ -20,7 +20,7 @@ public:
     /// <summary>
     /// 更新
     /// </summary>
-    virtual void Update() abstract;
+    virtual void Update();
 
     /// <summary>
     /// 描画

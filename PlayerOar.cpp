@@ -6,7 +6,7 @@
 PlayerOar::PlayerOar()
     : turnOverRate      (0.0f)
     , isBuckReverse     (false)
-    , animationSpeed    (0)
+    , animationSpeed    (MOVE_DECELERATION_LIMIT)
 {
     modelHandle = MV1LoadModel("data/model/player/playerAsset/playerOar/playerOar.mv1");
     position = VGet(0.0f, 0.0f, 0.0f);

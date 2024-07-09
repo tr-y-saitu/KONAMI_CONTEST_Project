@@ -26,7 +26,7 @@ PirateShip::~PirateShip()
 /// <summary>
 /// 更新
 /// </summary>
-void PirateShip::Update()
+void PirateShip::Update(int gemWaveState)
 {
     // 海賊船が燃えているエフェクトを再生
     if (effectCount % PIRATE_SHIP_BURNS_SMALL_EFFECT_CYCLE == 0)
@@ -34,12 +34,19 @@ void PirateShip::Update()
         // 座標設定
         VECTOR playPosition = VAdd(position, PIRATE_SHIP_BURNS_EFFECT_POSITION);
 
-        // 複数再生
-        for (int i = 0; i < PIRATE_SHIP_BURNS_EFFECT_PLAY_NUN; i++)
+        // 宝石のWAVEステートに応じて数を変更
+        int numberToPlay = gemWaveState + PIRATE_SHIP_BURNS_EFFECT_PLAY_BUF;
+        for (int i = 0; i < numberToPlay; i++)
         {
+            // エフェクトずらし量
             VECTOR offSet = VGet(-i /PIRATE_SHIP_BURNS_EFFECT_OFFSET_X, 0, i * PIRATE_SHIP_BURNS_EFFECT_OFFSET_Z);
+            // 再生位置
             playPosition = VAdd(playPosition, offSet);
-            effectManager->PlayPirateShipBurnsSmallEffect(playPosition);
+            // エフェクト拡大率
+            float scaleNum = (float)numberToPlay / 2;
+            VECTOR scale = VGet(scaleNum, scaleNum, scaleNum);
+            // エフェクト再生
+            effectManager->PlayPirateShipBurnsSmallEffect(playPosition,scale);
         }
     }
 

@@ -68,6 +68,11 @@ public:
     void UpdateSound();
 
     /// <summary>
+    /// エフェクトの更新
+    /// </summary>
+    void UpdateEffect();
+
+    /// <summary>
     /// スコアの更新
     /// </summary>
     /// <param name="chest">宝箱</param>
@@ -89,6 +94,9 @@ private:
     static constexpr VECTOR TREASURE_CHEST_INITIALIZE_POSITION = { 5.0f,1.0f,-5.0f};
     // ゲームシーンでの宝箱の初期回転率
     static constexpr VECTOR TREASURE_CHEST_INITIALIZE_ROTATION_RATE = { 0.0f, 50.0f * DX_PI_F / 180.0f, 0.0f };
+    // 爆発エフェクトを描画する位置
+    static constexpr VECTOR BIG_EXPLOSION_EFFECT_POSITION = { 18,-19, -5 };
+
 
     // 変数
     Player*         player;

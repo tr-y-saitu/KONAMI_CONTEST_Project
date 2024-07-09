@@ -27,10 +27,11 @@ StageObjectSet::~StageObjectSet()
 /// <summary>
 /// 更新
 /// </summary>
-void StageObjectSet::Update()
+/// <param name="gemWaveState">宝石のウェーブステート</param>
+void StageObjectSet::Update(int gemWaveState)
 {
     boatWithChest->Update();
-    pirateShip->Update();
+    pirateShip->Update(gemWaveState);
     sea->Update();
 }
 

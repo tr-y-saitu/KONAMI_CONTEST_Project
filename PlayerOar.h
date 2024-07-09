@@ -45,8 +45,8 @@ private:
     static constexpr int LIMIT_ANGLE_MIN = -10;             // 漕いでよい最小角度
     static constexpr float MOVE_ACCELARATION = 0.09;        // 漕ぐ加速度
     static constexpr float MOVE_ACCELARATION_LIMIT = 12;    // 加速度の限度値
-    static constexpr float MOVE_DECELERATION = 0.1;         // 漕ぐ減速度
-    static constexpr float MOVE_DECELERATION_LIMIT = 2;     // 減速度の限度値
+    static constexpr float MOVE_DECELERATION = 0.5f;        // 漕ぐ減速度
+    static constexpr float MOVE_DECELERATION_LIMIT = 9;     // 減速度の限度値
 
     int     modelHandle;
     VECTOR  position;

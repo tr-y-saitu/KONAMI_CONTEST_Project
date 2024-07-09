@@ -128,17 +128,18 @@ SceneBase* GameScene::UpdateScene()
     gemManager->ResetGemData();             // treasureChest->Updateyよりも上に書かないと、ウェーブ切り替え時１フレームだけ原点に宝石が描画される
 
     // オブジェクト更新
-    player->Update();                       // プレイヤー
-    skyDome->Update();                      // 背景
-    gemManager->UpdateWaveGem(nowTimer);    // 宝石
-    treasureChest->Update();                // 宝箱更新
-    gameSceneUI->Update(nowTimer,           // UI
+    player->Update();                                           // プレイヤー
+    skyDome->Update();                                          // 背景
+    gemManager->UpdateWaveGem(nowTimer);                        // 宝石
+    treasureChest->Update();                                    // 宝箱更新
+    gameSceneUI->Update(nowTimer,                               // UI
         gemManager->waveConstantsTable[(GemManager::WAVE_STATE)gemManager->GetGemWaveState()]->waveEndTime);
-    camera->Update();                       // カメラ
-    effectManager->Update();                // エフェクトマネージャー更新
-    stageObjectSet->Update();               // ステージ
-    UpdateSound();                          // サウンド更新
-    UpdateEffekseer3D();                    // エフェクト更新
+    camera->Update();                                           // カメラ
+    effectManager->Update();                                    // エフェクトマネージャー更新
+    stageObjectSet->Update(gemManager->GetGemWaveState());      // ステージ
+    UpdateEffect();                                             // エフェクト
+    UpdateSound();                                              // サウンド更新
+    UpdateEffekseer3D();                                        // エフェクト更新
 
     // 宝石の出現が終了したらSCENE_CLEARに移行
     if (gemManager->GetIsEndOfGemEntry() && !isFadeOutStart)
@@ -219,6 +220,15 @@ void GameScene::UpdateSound()
     {
         soundManager->PlaySoundListBGM(SoundManager::CLEAR_FINISH_BGM);
     }
+}
+
+/// <summary>
+/// エフェクトの更新
+/// </summary>
+void GameScene::UpdateEffect()
+{
+    // 爆発エフェクト再生
+
 }
 
 /// <summary>
