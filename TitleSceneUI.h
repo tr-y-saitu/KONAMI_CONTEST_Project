@@ -48,6 +48,8 @@ private:
     static constexpr int SOCRE_FRAME_DRAW_POSITION_Y = 495;         // スコアフレームを描画するY座標
     static constexpr int SCORE_FRAME_EXPAND_RATE = 1;               // スコアフレームの拡大率
     static constexpr int SCORE_FRAME_ANGLE = 0;                     // スコアフレームの回転率
+    // キー入力
+    static constexpr char* KEY_PLEASE_TEXT = "Press Any Button to Start";   // 文字列「Press Any Button to Start」
 
     // 変数
     int     titileGraph;            // タイトル画像
