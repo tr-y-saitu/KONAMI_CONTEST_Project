@@ -77,7 +77,11 @@ void PirateShip::PlayShipFireEffect(int gemWaveState)
 
 }
 
-
+/// <summary>
+/// 海賊船が炎上するエフェクトの更新
+/// </summary>
+/// <param name="playNum">再生する数</param>
+/// <param name="effectScale">エフェクトの拡大率</param>
 void PirateShip::UpdateShipFireEffect(int playNum, VECTOR effectScale)
 {
     // 海賊船が燃えているエフェクトを再生
