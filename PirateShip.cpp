@@ -41,21 +41,18 @@ void PirateShip::Update()
         effectManager->PlayPirateShipBurnsSmallEffect(_playPosition3);
     }
 
-    // 雷のエフェクトを再生
-    if (effectCount % THUNDER_EFFECT_CYCLE == 0)
-    {
-        // X軸だけランダムで設定
-        int _positionX = GetRand(THUNDER_EFFECT_RANDOM_RANGE) + THUNDER_EFFECT_POSITION_X_OFFSET;
-        VECTOR _randX = VGet(_positionX, 0, 0);
-        VECTOR _offSet = VAdd(_randX, THUNDER_EFFECT_POSITION);
-        VECTOR _playPos = VAdd(position, _offSet);
-        // 再生
-        effectManager->PlayThunderEffect(_playPos);
-    }
-
     // エフェクトカウント更新
     effectCount++;
 
+    // モデルの座標設定
+    MV1SetPosition(modelHandle, position);
+}
+
+/// <summary>
+/// タイトルシーンでの更新
+/// </summary>
+void PirateShip::UpdateTitleScene()
+{
     // モデルの座標設定
     MV1SetPosition(modelHandle, position);
 }

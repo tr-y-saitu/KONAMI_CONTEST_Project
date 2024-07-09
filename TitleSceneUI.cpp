@@ -11,7 +11,8 @@ TitleSceneUI::TitleSceneUI()
 {
     SetFontSize(UI_FONT_SIZE);  // フォントサイズ設定
     titileGraph = LoadGraph("data/texture/Menu/titileLogo1200.png");
-    keyPleaseGraph = LoadGraph("data/texture/State/KeyRelese.png");
+    keyPleaseGraph = LoadGraph("data/texture/State/KeyReleseImg800x119.png");
+    highScoreFrameGraph = LoadGraph("data/texture/Clear/socreResult700.png");
 }
 
 /// <summary>
@@ -36,10 +37,15 @@ void TitleSceneUI::Update()
 void TitleSceneUI::Draw(int highScore)
 {
     // タイトルロゴ
-    DrawRotaGraph(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 4, 1, 0, titileGraph, true);
+    DrawRotaGraph(TITLE_LOGO_POSITION_X, TITLE_LOGO_POSITION_Y,
+        TITLE_LOGO_EXPAND_RATE, TITLE_LOGO_ANGEL, titileGraph, true);
 
     // スコア
-    DrawFormatString(450, 500, UI_COLOR_BLACK, "HIGHSCORE : %d", highScore);
+    DrawRotaGraph(SCORE_DRAW_POSITION_X, SCORE_DRAW_POSITION_Y,
+        SCORE_FRAME_EXPAND_RATE, SCORE_FRAME_ANGLE, highScoreFrameGraph, true);
+    char drawText[256];
+    snprintf(drawText, sizeof(drawText), "HIGHSCORE : %d", highScore);
+    DrawStringCenterScreen(drawText, SOCRE_FRAME_DRAW_POSITION_Y, UI_COLOR_BLACK);
 
     // キー入力指示
     DrawKeyPleaseTextFlashing();
@@ -65,6 +71,7 @@ void TitleSceneUI::DrawKeyPleaseTextFlashing()
     if (isKeyPleaseGraphDraw)
     {
         // キーを入力してください
-        DrawFormatString(485, SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 5) - KEY_PLEASE_TEXT_OFFSET_X, UI_COLOR_BLACK, "Press Any Button to Start");
+        int drawPostionY = SCREEN_SIZE_Y - (SCREEN_SIZE_Y / 5) - KEY_PLEASE_TEXT_OFFSET_Y;
+        DrawStringCenterScreen(KEY_PLEASE_TEXT, drawPostionY, UI_COLOR_BLACK);
     }
 }

@@ -26,6 +26,11 @@ public:
     void Update();
 
     /// <summary>
+    /// タイトルシーンでの更新
+    /// </summary>
+    void UpdateTitleScene();
+
+    /// <summary>
     /// 描画
     /// </summary>
     void Draw();

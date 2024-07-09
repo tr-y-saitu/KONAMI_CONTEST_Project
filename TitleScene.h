@@ -9,6 +9,7 @@ class StageObjectSet;
 class Camera;
 class SkyDome;
 class SoundManager;
+class EffectManager;
 
 /// <summary>
 /// タイトルシーン
@@ -68,12 +69,17 @@ public:
     void PlayFadeOut();
 
 private:
-    
+    // 定数
+    static constexpr VECTOR PIRATE_SHIP_POSITION = { -40, 30, 0 };
+    static constexpr VECTOR EXPLOSION_POSITION = { -40,12,0 };
+
+    // 変数
     TitleSceneUI* titleSceneUI;     // メニューシーンで使用するUI
     StageObjectSet* stageObjectSet; // ステージオブジェクト
     Camera* camera;                 // カメラ
     SkyDome* skyDome;               // スカイドーム
     SoundManager* soundManager;     // サウンドマネージャー
+    EffectManager* effectManager;   // エフェクトマネージャー
 };
 
 

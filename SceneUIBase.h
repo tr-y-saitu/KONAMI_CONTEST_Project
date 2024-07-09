@@ -65,6 +65,16 @@ public:
     /// </summary>
     void StartFadeOutScreen();
 
+    /// <summary>
+    /// 画面中央に文字を描画
+    /// </summary>
+    /// <param name="string">描画したい文字列が格納されたchar型変数</param>
+    /// <param name="drawPosition">描画したいY座標位置</param>
+    /// <param name="uiColor">UIの色</param>
+    /// MEMO:数値も同時に描画したい場合はsnprintfを使い、
+    ///      数値を代入後、第一引数に渡してください。
+    void DrawStringCenterScreen(char* string,int drawPositionY,int uiColor);
+
     // Getter/Setter
     const FadeState GetFadeState()const { return fadeState; }
 
