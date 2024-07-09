@@ -212,7 +212,16 @@ void GameScene::UpdateSound()
     // 宝石獲得音
     if (treasureChest->GetIsHitGem())
     {
-        soundManager->PlaySoundListSE(SoundManager::GEM_GET_SE);
+        // ダイアモンド専用SE
+        if (treasureChest->GetHitGemType() == GemManager::DIAMOND)
+        {
+            soundManager->PlaySoundListSE(SoundManager::GEM_GET_DIAMOND_SE);
+        }
+        else
+        {
+            // ダイア以外の宝石SE
+            soundManager->PlaySoundListSE(SoundManager::GEM_GET_SE);
+        }
     }
 
     // 終了音

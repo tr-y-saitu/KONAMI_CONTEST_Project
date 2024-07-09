@@ -16,6 +16,7 @@ public:
         PUSH_SE,            // ボタン入力音
         GEM_BOUND_SE,       // 宝石が跳ねた時の音
         GEM_GET_SE,         // 宝石を獲得した時の音
+        GEM_GET_DIAMOND_SE, // 宝石(ダイアモンド)を獲得した時の音
         FIREWORKS_SE,       // 花火が上がる音
         THUNDER_SE,         // 雷が落ちる音
         EXPLOSION_SE,       // 爆発する音
@@ -107,6 +108,7 @@ private:
     int     gameSceneBGM;       // ゲームシーンのBGM
     int     gemBoundSE;         // 宝石とプレイヤーが当たった時の音
     int     gemGetSE;           // 宝石を獲得した時の音
+    int     gemGetDiamondSE;    // 宝石(ダイアモンド)を獲得したときの音
     int     rainSE;             // 雨の音
     int     wavesSE;            // 波の音
     int     burningSE;          // 燃える音
