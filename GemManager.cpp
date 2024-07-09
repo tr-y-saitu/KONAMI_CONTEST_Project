@@ -295,7 +295,6 @@ void GemManager::UpdateWaveGem(float nowTimer)
         {
             // 宝石の更新
             gems[i]->Update(calculation, nowTimer);
-
         }
 
         // そのウェーブの制限時間が終了したら

@@ -55,13 +55,13 @@ void TreasureChest::Update()
         // ダイアモンドの場合
         if (hitGemType == GemManager::DIAMOND)
         {
-            VECTOR playPosition = VAdd(pos, GEM_GET_DIAMOND_EFFECT_PLAY_POSITION_OFFSET);
-            effectManager->PlayGemGetDiamondEffect(playPosition);
+            effectManager->PlayGemGetDiamondEffect(pos);
         }
         else
         {
             // それ以外
-            effectManager->PlayGemGetEffect(pos);
+            VECTOR playPosition = VAdd(pos, GEM_GET_DIAMOND_EFFECT_PLAY_POSITION_OFFSET);
+            effectManager->PlayGemGetEffect(playPosition);
         }
     }
 
