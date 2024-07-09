@@ -54,6 +54,7 @@ void SoundManager::LoadData()
     soundListBGM[GAME_SCENE_BGM] = gameSceneBGM;
     soundListBGM[CLEAR_SCENE_BGM] = clearSceneBGM;
     soundListBGM[CLEAR_FINISH_BGM] = clearFinishBGM;
+    soundListBGM[FIRE_WORKS_BGM] = fireworksSE;
 }
 
 /// <summary>

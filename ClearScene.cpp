@@ -131,7 +131,7 @@ void ClearScene::UpdateSound()
 
     // 効果音再生
     // 花火
-    soundManager->PlaySoundListSE(SoundManager::FIREWORKS_SE);
+    soundManager->PlaySoundListBGM(SoundManager::FIRE_WORKS_BGM);
     // 入力音
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
     {

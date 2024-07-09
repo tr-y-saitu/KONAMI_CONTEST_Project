@@ -29,7 +29,8 @@ public:
         TITLE_SCENE_BGM,    // タイトルシーンのBGM
         GAME_SCENE_BGM,     // ゲームシーンのBGM
         CLEAR_SCENE_BGM,    // クリアシーンのBGM
-        CLEAR_FINISH_BGM,    // 終了音
+        CLEAR_FINISH_BGM,   // 終了音
+        FIRE_WORKS_BGM,     // 花火の音
     };
 
     /// <summary>
