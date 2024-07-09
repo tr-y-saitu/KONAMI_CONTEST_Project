@@ -71,6 +71,16 @@ public:
     /// </summary>
     void PlayWaveFinishAnimation();
 
+#ifdef _DEBUG
+    /// <summary>
+    /// 宝石のウェーブステート描画
+    /// </summary>
+    /// <param name="gemWaveState">宝石のウェーブステート情報</param>
+    /// MEMO:デバッグ用
+    void DrawGemWaveState(int gemWaveState);
+#endif // _DEBUG
+
+
     // Setter
     void SetIsHitGemToChest(const bool set) { isHitGemToChest = set; }
 

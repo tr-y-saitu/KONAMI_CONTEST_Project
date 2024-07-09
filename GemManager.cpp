@@ -8,7 +8,7 @@
 #include "TreasureChest.h"
 #include "Player.h"
 
-enum GEM_STATE;
+enum GEM_HIT_STATE;
 
 
 /// <summary>
@@ -31,10 +31,10 @@ GemManager::GemManager()
     // WAVEごとの情報を代入
     // 1:20,2:30,3:40
 #ifdef _DEBUG
-    waveConstantsTable[WAVE_FIRST]  = new WaveConstants(5, 3, "ウェーブ１：宝石との出会い");
-    waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 3, "ウェーブ２：失う焦り");
-    waveConstantsTable[WAVE_THIRD]  = new WaveConstants(1, 4, "ウェーブ３：手放す勇気");
-    waveConstantsTable[WAVE_END]    = new WaveConstants(0, 5, "終了");
+    waveConstantsTable[WAVE_FIRST]  = new WaveConstants(5, 10, "ウェーブ１：宝石との出会い");
+    waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 20, "ウェーブ２：失う焦り");
+    waveConstantsTable[WAVE_THIRD]  = new WaveConstants(1, 10, "ウェーブ３：手放す勇気");
+    waveConstantsTable[WAVE_END]    = new WaveConstants(0, 10, "終了");
 #else
     waveConstantsTable[WAVE_FIRST]  = new WaveConstants(5, 30, "ウェーブ１：宝石との出会い");
     waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "ウェーブ２：失う焦り");
@@ -232,7 +232,7 @@ bool GemManager::IsCollisionGem(Player& player, TreasureChest& chest, Collision&
 
         // 宝石と宝箱の当たり判定
         bool _isHitGemAndChest = collision.IsHit2DGemToTreasureChest(*gems[i], chest);
-        if (_isHitGemAndChest && gems[i]->GetGemStateWithTreasureChest() == Gem::GEM_STATE::ENTER)
+        if (_isHitGemAndChest && gems[i]->GetGemStateWithTreasureChest() == Gem::GEM_HIT_STATE::ENTER)
         {
             _result = true;
         }
@@ -260,6 +260,25 @@ void GemManager::ResetGemData()
 }
 
 /// <summary>
+/// 次のウェーブに行くための準備
+/// </summary>
+void GemManager::ReadyingNextWave()
+{
+    int entryTimeShiftCount = 0;        // 宝石
+    for (int i = 0; i < gems.size(); i++)
+    {
+        // 現在使用中以外の宝石の情報を書き換え
+        if (!(gems[i]->GetGemUseState()) == Gem::IN_USE)
+        {
+            entryTimeShiftCount++;
+            // 情報をリセット
+            auto constant = waveConstantsTable[(WAVE_STATE)gemWaveState];
+            gems[i]->ResetGem(GEM_ENTRYR_POSITION, constant->entryTime, entryTimeShiftCount);
+        }
+    }
+}
+
+/// <summary>
 /// 宝石のウェーブ更新
 /// </summary>
 /// <param name="nowTimer">現在の時間</param>
@@ -276,18 +295,20 @@ void GemManager::UpdateWaveGem(float nowTimer)
         {
             // 宝石の更新
             gems[i]->Update(calculation, nowTimer);
+
         }
+
         // そのウェーブの制限時間が終了したら
         if (nowTimer >= waveConstant->waveEndTime)
         {
             // タイマーをリセットするフラグを立てる
             resetTimer = true;
 
-            // 宝石のデータを更新するフラグを立てる
-            isResetEntryData = true;
-
-            // 次のステージへ移行
+            // 次のウェーブへ移行
             gemWaveState++;
+
+            // 次のウェーブへ行くための準備
+            ReadyingNextWave();
         }
     }
     else

@@ -19,12 +19,22 @@ public:
     /// <summary>
     /// 宝石の状態
     /// </summary>
-    enum GEM_STATE
+    enum GEM_HIT_STATE
     {
         NORN,   // 接触していない
         ENTER,  // 接触した瞬間
         STAY,   // 接触し続けている
         EXIT    // 接触状態から接触していない状態へ移行した
+    };
+
+    /// <summary>
+    /// 宝石の出現状態
+    /// </summary>
+    enum GEM_USE_STATE
+    {
+        UN_USED,        // 未使用
+        IN_USE,         // 使用中
+        USED,           // 使用済み
     };
 
 	// メソッド
@@ -72,7 +82,37 @@ public:
     /// <param name="state">宝石の状態</param>
     /// <param name="withTarget">対象と当たっているかどうか</param>
     /// <returns>宝石の対象との接触状態</returns>
-    int UpdateGemState(GEM_STATE state, bool withTarget);
+    int UpdateGemHitState(GEM_HIT_STATE state, bool withTarget);
+
+    /// <summary>
+    /// 宝石の情報リセット
+    /// </summary>
+    void ResetGem(VECTOR resetPosition, int constantEntyrTime,int index);
+
+    /// <summary>
+    /// 宝石の使用状態の更新
+    /// </summary>
+    void UpdateGemUseState();
+
+    /// <summary>
+    /// 回転更新
+    /// </summary>
+    void UpdateRotation();
+
+    /// <summary>
+    /// 移動更新
+    /// </summary>
+    void UpdateMove();
+
+    /// <summary>
+    /// バウンド処理更新
+    /// </summary>
+    void UpdateBound();
+
+    /// <summary>
+    /// 重力を掛ける更新
+    /// </summary>
+    void UpdateGravity();
 
 	/// <summary>
 	/// 宝石の描画
@@ -80,7 +120,6 @@ public:
 	void Draw();
 
 	// ポジションのgetter/setter.
-	const int GetModelHandle() const { return modelHandle; }
 	const VECTOR& GetPos() const { return pos; }
 	const float GetWidth() const{ return width; }
 	const float GetHeight() const { return height; }
@@ -88,23 +127,21 @@ public:
 	const bool GetIsHitPlayer() const { return isHitPlayer; }
 	const bool GetIsHitGround() const { return isHitGround; }
 	const bool GetIsHitChest() const { return isHitTreasureChest; }
-	const float GetRadius() const { return radius; }
 	const float GetEntyrTime()const { return entryTime; }
     const int GetGemType()const { return gemType; }
-    const GEM_STATE GetGemStateWithPlayer()const { return statusWithPlayer; }
-    const GEM_STATE GetGemStateWithTreasureChest()const { return statusWithTreasureChest; }
+    const GEM_HIT_STATE GetGemStateWithPlayer()const { return statusWithPlayer; }
+    const GEM_HIT_STATE GetGemStateWithTreasureChest()const { return statusWithTreasureChest; }
+    const GEM_USE_STATE GetGemUseState()const { return useState; }
 
 	// setter
-	void SetPos(const VECTOR set) { pos = set; }
 	void SetIsHitPlayer(const bool set) { isHitPlayer = set; }
 	void SetIsHitGround(const bool set) { isHitGround = set; }
 	void SetIsHitChest(const bool set) { isHitTreasureChest = set; }
 	void SetEntryTime(const float set) { entryTime = set; }
 	void SetEntryPosition(const VECTOR set) { entryPosition = set; }
-    void SetVisibleFlag(const bool set) { visibleFlag = set; }
-    void SetDirection(const VECTOR set) { dir = set; }
 
 	// 定数
+    static constexpr VECTOR END_POSITION = {80,0,0};    // WAVE_ENDでの座標位置
 	const float GRAVITY_POWER = 0.003f;		// 宝石にかかる重力の値
 	const float GRAVITY_POWER_LIMIT = 0.3f; // 宝石にかかる重力の限界値
 	const float MOVE_SPEED = 0.17f;			// 移動速度
@@ -117,29 +154,27 @@ public:
     int     collisionGraph; // 当たり判定の２次元画像
 
 	// ステータス
-	int		gemType;		// 宝石の種類(ダイア,ルビー,サファイア,エメラルド)
-	VECTOR	pos;			// ポジション
-	VECTOR	dir;			// 方向
-	VECTOR	contactDir;		// 接触時の方向
-	float	width;			// 幅
-	float	height;			// 高さ
-	VECTOR	scale;			// スケール
-	float	scaleAdjust;	// スケールの調整
-	float	speed;			// 移動スピード
-	float	radius;			// 球型当たり判定の半径
-	float	fallSpeed;		// 落下速度
-	float	boundPower;		// バウンドする値
-	float	rotateCount;	// ゲーム中に少しづつ回転させるためのカウント
+	int             gemType;        // 宝石の種類(ダイア,ルビー,サファイア,エメラルド)
+	VECTOR          pos;            // ポジション
+	VECTOR          dir;            // 方向
+	VECTOR          contactDir;     // 接触時の方向
+	float           width;          // 幅
+	float           height;         // 高さ
+	VECTOR          scale;          // スケール
+	float           scaleAdjust;    // スケールの調整
+	float           speed;          // 移動スピード
+	float           fallSpeed;      // 落下速度
+	float           rotateCount;    // ゲーム中に少しづつ回転させるためのカウント
+    GEM_USE_STATE   useState;       // 宝石の使用状態
 
     // 状態
-    GEM_STATE     statusWithPlayer;           // プレイヤーとの状態
-    GEM_STATE     statusWithTreasureChest;    // 宝箱との状態
+    GEM_HIT_STATE     statusWithPlayer;           // プレイヤーとの状態
+    GEM_HIT_STATE     statusWithTreasureChest;    // 宝箱との状態
 
 	// フラグ
 	bool	visibleFlag;	// 存在しているか
 	bool	isHitPlayer;	// プレイヤーと接触中か
 	bool	isHitGround;	// 床と接触したか
-	bool	previousIsHitPlayer;	// 前のフレームでプレイヤーと接触していたか
 	bool	isHitTreasureChest;	// 宝箱と接触したか
 
 	// エントリー情報
