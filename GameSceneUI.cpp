@@ -170,6 +170,7 @@ void GameSceneUI::PlayWaveFinishAnimation()
         expand, angle, waveEndFinishGraph, true);
 }
 
+#ifdef _DEBUG
 /// <summary>
 /// 宝石のウェーブステート描画
 /// </summary>
@@ -199,3 +200,5 @@ void GameSceneUI::DrawGemWaveState(int gemWaveState)
         break;
     }
 }
+#endif // _DEBUG
+
