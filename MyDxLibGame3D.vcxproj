@@ -194,6 +194,8 @@
     <ClCompile Include="TreasureChest.cpp" />
     <ClCompile Include="Calculation.cpp" />
     <ClCompile Include="TimeLimitsWarningUI.cpp" />
+    <ClCompile Include="Tutorial.cpp" />
+    <ClCompile Include="TutorialStateInformation.cpp" />
     <ClCompile Include="WaveConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +232,8 @@
     <ClInclude Include="StageObjectBase.h" />
     <ClInclude Include="TreasureChest.h" />
     <ClInclude Include="TimeLimitsWarningUI.h" />
+    <ClInclude Include="Tutorial.h" />
+    <ClInclude Include="TutorialStateInformation.h" />
     <ClInclude Include="WaveConstants.h" />
     <ClInclude Include="ゲーム構造.h" />
     <ClInclude Include="PirateShip.h" />

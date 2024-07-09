@@ -31,12 +31,12 @@ GemManager::GemManager()
     // WAVEごとの情報を代入
     // 1:20,2:30,3:40
 #ifdef _DEBUG
-    waveConstantsTable[WAVE_FIRST]  = new WaveConstants(5, 2, "ウェーブ１：宝石との出会い");
+    waveConstantsTable[WAVE_FIRST]  = new WaveConstants(5, 30, "ウェーブ１：宝石との出会い");
     waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 3, "ウェーブ２：失う焦り");
     waveConstantsTable[WAVE_THIRD]  = new WaveConstants(1, 4, "ウェーブ３：手放す勇気");
     waveConstantsTable[WAVE_END]    = new WaveConstants(0, 5, "終了");
 #else
-    waveConstantsTable[WAVE_FIRST]  = new WaveConstants(5, 20, "ウェーブ１：宝石との出会い");
+    waveConstantsTable[WAVE_FIRST]  = new WaveConstants(5, 30, "ウェーブ１：宝石との出会い");
     waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "ウェーブ２：失う焦り");
     waveConstantsTable[WAVE_THIRD]  = new WaveConstants(1, 40, "ウェーブ３：手放す勇気");
     waveConstantsTable[WAVE_END]    = new WaveConstants(0, 5, "終了");
