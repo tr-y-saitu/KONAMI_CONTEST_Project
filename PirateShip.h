@@ -56,14 +56,14 @@ private:
     static constexpr int PIRATE_SHIP_BURNS_EFFECT_PLAY_BUF = 2;         // 海賊船が燃えるエフェクトを描画する数のバフ値
     static constexpr int RANDOM_RANGE = 3;                              // 乱数の範囲
     static constexpr int RANDOM_OFFSET = 3;                             // 乱数値調整用
-    static constexpr int WAVE_FIRST_EFECT_PLAY_NUM = 1;     // ファーストウェーブのエフェクト再生数
-    static constexpr VECTOR WAVE_FIRST_EFFECT_SCALE = { 0.3f, 0.3f, 0.3f };
-    static constexpr int WAVE_SECOND_EFFECT_PLAY_NUM = 4;   // セカンドウェーブのエフェクト再生数
-    static constexpr VECTOR WAVE_SECOND_EFFECT_SCALE = { 0.7f, 1.0f, 0.7f };
-    static constexpr int WAVE_THIRD_EFFECT_PLAY_NUM = 5;    // サードウェーブのエフェクト再生数
-    static constexpr VECTOR WAVE_THIRD_EFFECT_SCALE = { 2.0f, 3.0f, 2.0f };
-    static constexpr int WAVE_END_EFFECT_PLAY_NUM = 5;      // エンドウェーブのエフェクト再生数
-    static constexpr VECTOR WAVE_END_EFFECT_SCALE = { 2.0f, 3.0f, 2.0f };
+    static constexpr int WAVE_FIRST_EFECT_PLAY_NUM = 1;                     // ファーストウェーブのエフェクト再生数
+    static constexpr VECTOR WAVE_FIRST_EFFECT_SCALE = { 0.3f, 0.3f, 0.3f }; // ファーストウェー5ぶのエフェクトの拡大率
+    static constexpr int WAVE_SECOND_EFFECT_PLAY_NUM = 4;                   // セカンドウェーブのエフェクト再生数
+    static constexpr VECTOR WAVE_SECOND_EFFECT_SCALE = { 0.7f, 1.0f, 0.7f };// セカンドウェーブのエフェクトの拡大率
+    static constexpr int WAVE_THIRD_EFFECT_PLAY_NUM = 5;                    // サードウェーブのエフェクト再生数
+    static constexpr VECTOR WAVE_THIRD_EFFECT_SCALE = { 1.5f, 2.5f, 1.5f }; // サードウェーブのエフェクトの拡大率
+    static constexpr int WAVE_END_EFFECT_PLAY_NUM = 5;                      // エンドウェーブのエフェクト再生数
+    static constexpr VECTOR WAVE_END_EFFECT_SCALE = { 1.5f, 2.5f, 1.5f };   // エンドウェーブのエフェクト拡大率
 
     // 変数
     int effectCount;                    // エフェクトをループ再生するためのカウント

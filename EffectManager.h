@@ -27,6 +27,7 @@ public:
     enum EFFECT_TYPE
     {
         GEM_GET_EFFECT,                     // 宝石をゲットした時
+        GEM_GET_DIAMOND_EFFECT,             // ダイヤモンドをゲットした時
         PLAYER_HIT_EFFECT,                  // プレイヤーと宝石が当たった時
         PIRATE_SHIP_BURNS_SMALL_EFFECT,     // 海賊船炎上エフェクト(小)
         PIRATE_SHIP_BURNS_MEDIUM_EFFECT,    // 海賊船炎上エフェクト(中)
@@ -95,6 +96,12 @@ public:
     void PlayGemGetEffect(VECTOR playPosition);
 
     /// <summary>
+    /// 宝石獲得エフェクト(ダイヤモンド専用)
+    /// </summary>
+    /// <param name="playPosition">再生する座標</param>
+    void PlayGemGetDiamondEffect(VECTOR playPosition);
+
+    /// <summary>
     /// プレイヤーが宝石に当たった時のエフェクト
     /// </summary>
     /// <param name="playPosition">再生する座標</param>
@@ -159,6 +166,7 @@ private:
     int     playerHitEffect;                // プレイヤーと宝石のヒット時
     // 宝石と宝箱
     int     gemGetEffect;                   // 宝石ゲット時
+    int     gemGetDiamondEffect;            // ダイアモンドをゲットした時
     int     gemFallEffect;                  // 宝石が落ちてしまった時
     // 海賊船
     int     pirateShipBurnsSmallEffect;     // 海賊船が燃えるエフェクト（小）

@@ -61,9 +61,8 @@ EffectManager::~EffectManager()
 void EffectManager::LoadEffect()
 {
     // エフェクトのロード
-    //gemGetEffect = LoadEffekseerEffect("data/effect/GemGetUpEffect.efk", 2.3f);
-    gemGetEffect = LoadEffekseerEffect("data/effect/getEffectLight.efk", 0.5f);
-
+    gemGetEffect = LoadEffekseerEffect("data/effect/GemGetUpEffect.efk", 2.3f);
+    gemGetDiamondEffect = LoadEffekseerEffect("data/effect/diamondGemGetEffect.efk", 3.0f);
     playerHitEffect = LoadEffekseerEffect("data/effect/GemHitEffectStar60Frame.efk", 0.5f);
     pirateShipBurnsSmallEffect = LoadEffekseerEffect("data/effect/GameScene/fireEffect.efk",1.0f);
     pirateShipBurnsMediumEffect = LoadEffekseerEffect("data/effect/GameScene/Fire2.efk", 1.0f);
@@ -198,6 +197,17 @@ void EffectManager::PlayGemGetEffect(VECTOR playPosition)
     playingEffectHandle = PlayEffekseer3DEffect(gemGetEffect);
     playingList.push_back(playingEffectHandle);
     SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x,playPosition.y,playPosition.z);
+}
+
+/// <summary>
+/// 宝石獲得エフェクト(ダイヤモンド専用)
+/// </summary>
+/// <param name="playPosition">再生する座標</param>
+void EffectManager::PlayGemGetDiamondEffect(VECTOR playPosition)
+{
+    playingEffectHandle = PlayEffekseer3DEffect(gemGetDiamondEffect);
+    playingList.push_back(playingEffectHandle);
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
 }
 
 /// <summary>
