@@ -22,6 +22,7 @@ GemManager::GemManager()
     , gemWaveState          (WAVE_FIRST)
     , resetTimer            (false)
     , isResetEntryData      (false)
+    , isEndOfGemEntry(false)
 {
     for (int i = 0; i < GEM_TOTAL_NUM; i++)
     {
@@ -29,10 +30,17 @@ GemManager::GemManager()
     }
     // WAVEごとの情報を代入
     // 1:20,2:30,3:40
-    waveConstantsTable[WAVE_FIRST] = new WaveConstants(5, 20, "ウェーブ１：宝石との出会い");
+#ifdef _DEBUG
+    waveConstantsTable[WAVE_FIRST]  = new WaveConstants(5, 2, "ウェーブ１：宝石との出会い");
+    waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 3, "ウェーブ２：失う焦り");
+    waveConstantsTable[WAVE_THIRD]  = new WaveConstants(1, 4, "ウェーブ３：手放す勇気");
+    waveConstantsTable[WAVE_END]    = new WaveConstants(0, 5, "終了");
+#else
+    waveConstantsTable[WAVE_FIRST]  = new WaveConstants(5, 20, "ウェーブ１：宝石との出会い");
     waveConstantsTable[WAVE_SECOND] = new WaveConstants(3, 30, "ウェーブ２：失う焦り");
-    waveConstantsTable[WAVE_THIRD] = new WaveConstants(1, 40, "ウェーブ３：手放す勇気");
-    waveConstantsTable[WAVE_END] = new WaveConstants(0, 0, "終了");
+    waveConstantsTable[WAVE_THIRD]  = new WaveConstants(1, 40, "ウェーブ３：手放す勇気");
+    waveConstantsTable[WAVE_END]    = new WaveConstants(0, 5, "終了");
+#endif
     // モデルハンドルの取得
     modelHandleDiamond = MV1LoadModel("data/model/Gem/Diamonds.mv1");
     modelHandleRuby = MV1LoadModel("data/model/Gem/Ruby.mv1");
@@ -69,7 +77,7 @@ void GemManager::CreateGem()
 /// </summary>
 void GemManager::DeleteGem()
 {
-    for (int i = 0; i < GEM_TOTAL_NUM; i++)
+    for (int i = 0; i < gems.size(); i++)
     {
         delete(gems[i]);
     }
@@ -84,21 +92,20 @@ void GemManager::Initialize()
     CreateEntyrInformation();
 
     // 宝石のエントリー情報の書き込み
-    for (int i = 0; i < GEM_TOTAL_NUM; i++)
+    for (int i = 0; i < gems.size(); i++)
     {
         gems[i]->entryTime = entryGemDataBase[i].entryTime;         // 登場時間
         gems[i]->entryPosition = entryGemDataBase[i].entryPosition; // 登場座標
     }
 
     // 初期化関数の呼び出し
-    for (int i = 0; i < GEM_TOTAL_NUM; i++)
+    for (int i = 0; i < gems.size(); i++)
     {
         gems[i]->gemType = GetRand(3);
         // 宝石のタイプ別にモデルハンドルを設定する
         int _modelHandle = SettingGemModle(gems[i]->gemType);
         gems[i]->Initialize(_modelHandle);
     }
-
 }
 
 /// <summary>
@@ -176,7 +183,7 @@ void GemManager::CreateEntyrInformation()
     // NOTE:(WAVE_STATE)gemWaveStateでキャスト変換しないと使用できない
     auto constant = waveConstantsTable[(WAVE_STATE)gemWaveState];
 
-    for (int i = 0; i < GEM_TOTAL_NUM; i++)
+    for (int i = 0; i < gems.size(); i++)
     {
         // 登場時間を設定
         entryGemDataBase[i].entryTime = i * constant->entryTime;
@@ -214,7 +221,7 @@ bool GemManager::IsCollisionGem(Player& player, TreasureChest& chest, Collision&
     bool _resultPlayer = false;
     bool _flag = false;
 
-    for (int i = 0; i < GEM_TOTAL_NUM; i++)
+    for (int i = 0; i < gems.size(); i++)
     {
         // プレイヤーと宝石との当たり判定
         _resultPlayer = collision.IsHit2DPlayerToGem(player, *gems[i]);
@@ -265,7 +272,7 @@ void GemManager::UpdateWaveGem(float nowTimer)
     // もしもWAVEが終了していなければ
     if (gemWaveState != WAVE_END)
     {
-        for (int i = 0; i < GEM_TOTAL_NUM; i++)
+        for (int i = 0; i < gems.size(); i++)
         {
             // 宝石の更新
             gems[i]->Update(calculation, nowTimer);
@@ -285,8 +292,18 @@ void GemManager::UpdateWaveGem(float nowTimer)
     }
     else
     {
-        // クリアステートに移動させる
+        // エンドウェーブの宝石更新
+        for (int i = 0; i < gems.size(); i++)
+        {
+            // MV1SetPositionだけはやっておかないと(0,0,0)に原点描画されしまう
+            gems[i]->UpdateWaveEnd();
+        }
 
+        if (nowTimer >= waveConstant->waveEndTime)
+        {
+            // 宝石の出現は終了
+            isEndOfGemEntry = true;
+        }
     }
 }
 

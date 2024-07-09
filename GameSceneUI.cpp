@@ -9,8 +9,10 @@
 /// コンストラクタ
 /// </summary>
 GameSceneUI::GameSceneUI()
-    : isHitGemToChest       (false)
-    , getDirectionCount     (0)
+    : isHitGemToChest               (false)
+    , getDirectionCount             (0)
+    , waveEndFinishGraphExpandRate  (20.0)
+    , waveEndFinishGraphAngle       (0.0)
 {
     SetFontSize(FONT_SIZE_SCORE);
     gemScoreTableGraph = LoadGraph("data/texture/UI/gemScoreImg.png");
@@ -19,6 +21,7 @@ GameSceneUI::GameSceneUI()
     getDirectionModelHandle = MV1LoadModel("data/model/UI/GET!.mv1");
     timerBarFrameGraph = LoadGraph("data/texture/time/TimerBarFrame.png");
     timerBarGraph = LoadGraph("data/texture/time/TimerBar_2.png");
+    waveEndFinishGraph = LoadGraph("data/texture/UI/finishImg.png");
     MV1SetScale(getDirectionModelHandle, VGet(0.05f, 0.05f, 0.0f));
     MV1SetRotationXYZ(getDirectionModelHandle, VGet(0, 25.0f * DX_PI_F / 180.0f, 0));
 }
@@ -73,6 +76,13 @@ void GameSceneUI::Draw(int gameScore, float nowTimer,
 
     // 宝石のスコア表を描画
     DrawGemScoreTable();
+
+    // ウェーブ終了したら
+    if (gemWaveState == GemManager::WAVE_END)
+    {
+        // ウェーブ終了演出
+        PlayWaveFinishAnimation();
+    }
 }
 
 /// <summary>
@@ -130,3 +140,20 @@ void GameSceneUI::DrawTimerBar(int nowTimer, int waveEndTime)
 
 }
 
+/// <summary>
+/// ウェーブが終了した際のアニメーション再生
+/// </summary>
+void GameSceneUI::PlayWaveFinishAnimation()
+{
+    // サイズ縮小
+    if (waveEndFinishGraphExpandRate >= WAVE_END_GRAPH_EXPAND_MAX_LIMIT)
+    {
+        waveEndFinishGraphExpandRate -= WAVE_END_GRAPH_EXPAND_RATE_SPEED;
+    }
+
+    // フィニッシュ文字を描画
+    double expand = waveEndFinishGraphExpandRate;
+    double angle = waveEndFinishGraphAngle;
+    DrawRotaGraph(SCREEN_SIZE_X_HALF, SCREEN_SIZE_Y_HALF,
+        expand, angle, waveEndFinishGraph, true);
+}

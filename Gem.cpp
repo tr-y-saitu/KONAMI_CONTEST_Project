@@ -282,6 +282,15 @@ void Gem::Update(Calculation& cal, float nowTimer)
 }
 
 /// <summary>
+/// エンドウェーブでの宝石の更新
+/// </summary>
+void Gem::UpdateWaveEnd()
+{
+    // 3Dモデルの座標設定
+    MV1SetPosition(modelHandle, pos);
+}
+
+/// <summary>
 /// 宝石の２次元での当たり判定を3D空間上で表示
 /// </summary>
 void Gem::Draw2DBOXCollision()
