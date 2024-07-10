@@ -49,6 +49,11 @@ public:
     void SetHitGemType(const int set) { hitGemType = set; }
 
 private:
+    // 定数
+    static constexpr VECTOR GEM_GET_EFFECT_PLAY_POSITION = { 5.0f, 1.0f, -5.0f };           // 宝石獲得エフェクト描画位置
+    static constexpr VECTOR GEM_GET_DIAMOND_EFFECT_PLAY_POSITION = { 10.0f, 2.0f, 8.0f };   // 宝石(ダイヤ)獲得エフェクト描画位置
+    static constexpr VECTOR GEM_GET_DIAMOND_EFFECT_PLAY_POSITION_OFFSET = { 4.0f,1.0f,7.0f };
+
     // 変数
     EffectManager* effectManager;   // エフェクトマネージャーへのポインタ
 

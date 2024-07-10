@@ -60,15 +60,25 @@ EffectManager::~EffectManager()
 /// </summary>
 void EffectManager::LoadEffect()
 {
-    gemGetEffect = LoadEffekseerEffect("data/effect/GemGetUpEffect.efk", 2.3f);
+    // エフェクトのロード
+    gemGetEffect = LoadEffekseerEffect("data/effect/nomalGemGetEffect.efk", 3.3f);
+    gemGetDiamondEffect = LoadEffekseerEffect("data/effect/GemGetUpEffect.efk", 3.0f);
     playerHitEffect = LoadEffekseerEffect("data/effect/GemHitEffectStar60Frame.efk", 0.5f);
-    //gemFallEffect = LoadEffekseerEffect("data/effect/gemFallEffect.efk", 2.0f);
     pirateShipBurnsSmallEffect = LoadEffekseerEffect("data/effect/GameScene/fireEffect.efk",1.0f);
     pirateShipBurnsMediumEffect = LoadEffekseerEffect("data/effect/GameScene/Fire2.efk", 1.0f);
     pirateShipExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/Explosion.efk", 1.0f);
     pirateShipBigExplosionEffect = LoadEffekseerEffect("data/effect/GameScene/flamesEffect.efk", 5.0f);
     thunderEffect = LoadEffekseerEffect("data/effect/GameScene/ThunderLOD50.efk", 10.0f);
     fireWorksEffect = LoadEffekseerEffect("data/effect/FireWorks/FireWorks.efk", 1.0f);
+    // エフェクトリストに書き込み
+    effectList[GEM_GET_EFFECT] = gemGetEffect;
+    effectList[PLAYER_HIT_EFFECT] = playerHitEffect;
+    effectList[PIRATE_SHIP_BURNS_SMALL_EFFECT] = pirateShipBurnsSmallEffect;
+    effectList[PIRATE_SHIP_BURNS_MEDIUM_EFFECT] = pirateShipBurnsMediumEffect;
+    effectList[PIRATE_SHIP_EXPLOSION_EFFECT] = pirateShipExplosionEffect;
+    effectList[PIRATE_SHIP_BIG_EXPLOSION_EFFECT] = pirateShipBigExplosionEffect;
+    effectList[THUNDER_EFFECT] = thunderEffect;
+    effectList[FIRE_WORKS_EFFECT] = fireWorksEffect;
 }
 
 /// <summary>
@@ -153,6 +163,32 @@ bool EffectManager::IsAnyEffectPlaying()
 }
 
 /// <summary>
+/// 読み込んだエフェクトリストから再生
+/// </summary>
+/// <param name="effectType">再生するエフェクトの種類</param>
+/// <param name="playPosition">再生する座標</param>
+/// <param name="scale">※エフェクトの描画サイズ</param>
+/// NOTE:第3引数の「scale」はデフォルト引数　デフォルト値{1.0f,1.0f,1.0f}
+///      1.0fが読み込み時サイズ
+void EffectManager::PlayEffectList(EFFECT_TYPE effectType,VECTOR playPosition, VECTOR scale)
+{
+    // 再生するエフェクトを設定
+    playingEffectHandle = effectList[effectType];
+
+    // 再生するエフェクトの拡大率を設定
+    SetScalePlayingEffekseer3DEffect(playingEffectHandle, scale.x, scale.y, scale.z);
+
+    // エフェクトを再生
+    PlayEffekseer3DEffect(playingEffectHandle);
+
+    // 再生中リストに追加
+    playingList.push_back(playingEffectHandle);
+
+    // エフェクトの描画座標を設定
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
+}
+
+/// <summary>
 /// 宝石獲得エフェクト
 /// </summary>
 /// <param name="playPosition">再生する座標</param>
@@ -161,6 +197,17 @@ void EffectManager::PlayGemGetEffect(VECTOR playPosition)
     playingEffectHandle = PlayEffekseer3DEffect(gemGetEffect);
     playingList.push_back(playingEffectHandle);
     SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x,playPosition.y,playPosition.z);
+}
+
+/// <summary>
+/// 宝石獲得エフェクト(ダイヤモンド専用)
+/// </summary>
+/// <param name="playPosition">再生する座標</param>
+void EffectManager::PlayGemGetDiamondEffect(VECTOR playPosition)
+{
+    playingEffectHandle = PlayEffekseer3DEffect(gemGetDiamondEffect);
+    playingList.push_back(playingEffectHandle);
+    SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
 }
 
 /// <summary>
@@ -191,8 +238,8 @@ void EffectManager::PlayGemFallEffect(VECTOR playPosition)
 /// <param name="playPosition">再生する座標</param>
 void EffectManager::PlayPirateShipBurnsSmallEffect(VECTOR playPosition, VECTOR scale)
 {
-    SetScalePlayingEffekseer3DEffect(playingEffectHandle,scale.x, scale.y, scale.z);
     playingEffectHandle = PlayEffekseer3DEffect(pirateShipBurnsSmallEffect);
+    SetScalePlayingEffekseer3DEffect(playingEffectHandle,scale.x, scale.y, scale.z);
     playingList.push_back(playingEffectHandle);
     SetPosPlayingEffekseer3DEffect(playingEffectHandle, playPosition.x, playPosition.y, playPosition.z);
 }

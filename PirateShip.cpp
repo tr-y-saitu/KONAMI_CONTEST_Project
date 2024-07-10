@@ -1,5 +1,6 @@
 ﻿#include "PirateShip.h"
 #include "EffectManager.h"
+#include "GemManager.h"
 
 /// <summary>
 /// コンストラクタ
@@ -29,29 +30,7 @@ PirateShip::~PirateShip()
 void PirateShip::Update(int gemWaveState)
 {
     // 海賊船が燃えているエフェクトを再生
-    if (effectCount % PIRATE_SHIP_BURNS_SMALL_EFFECT_CYCLE == 0)
-    {
-        // 座標設定
-        VECTOR playPosition = VAdd(position, PIRATE_SHIP_BURNS_EFFECT_POSITION);
-
-        // 宝石のWAVEステートに応じて数を変更
-        int numberToPlay = gemWaveState + PIRATE_SHIP_BURNS_EFFECT_PLAY_BUF;
-        for (int i = 0; i < numberToPlay; i++)
-        {
-            // エフェクトずらし量
-            VECTOR offSet = VGet(-i /PIRATE_SHIP_BURNS_EFFECT_OFFSET_X, 0, i * PIRATE_SHIP_BURNS_EFFECT_OFFSET_Z);
-            // 再生位置
-            playPosition = VAdd(playPosition, offSet);
-            // エフェクト拡大率
-            float scaleNum = (float)numberToPlay / 2;
-            VECTOR scale = VGet(scaleNum, scaleNum, scaleNum);
-            // エフェクト再生
-            effectManager->PlayPirateShipBurnsSmallEffect(playPosition,scale);
-        }
-    }
-
-    // エフェクトカウント更新
-    effectCount++;
+    PlayShipFireEffect(gemWaveState);
 
     // モデルの座標設定
     MV1SetPosition(modelHandle, position);
@@ -64,6 +43,71 @@ void PirateShip::UpdateTitleScene()
 {
     // モデルの座標設定
     MV1SetPosition(modelHandle, position);
+}
+
+/// <summary>
+/// 海賊船が炎上するエフェクトを再生
+/// </summary>
+/// <param name="gemWaveState">宝石のウェーブステート</param>
+void PirateShip::PlayShipFireEffect(int gemWaveState)
+{
+    // ウェーブに応じてエフェクト内容を再生
+    switch (gemWaveState)
+    {
+    case GemManager::WAVE_FIRST:
+        UpdateShipFireEffect(WAVE_FIRST_EFECT_PLAY_NUM, WAVE_FIRST_EFFECT_SCALE);
+        break;
+
+
+    case GemManager::WAVE_SECOND:
+        UpdateShipFireEffect(WAVE_SECOND_EFFECT_PLAY_NUM, WAVE_SECOND_EFFECT_SCALE);
+        break;
+
+    case GemManager::WAVE_THIRD:
+        UpdateShipFireEffect(WAVE_THIRD_EFFECT_PLAY_NUM, WAVE_THIRD_EFFECT_SCALE);
+        break;
+
+    case GemManager::WAVE_END:
+        UpdateShipFireEffect(WAVE_END_EFFECT_PLAY_NUM, WAVE_END_EFFECT_SCALE);
+        break;
+
+    default:
+        break;
+    }
+
+}
+
+/// <summary>
+/// 海賊船が炎上するエフェクトの更新
+/// </summary>
+/// <param name="playNum">再生する数</param>
+/// <param name="effectScale">エフェクトの拡大率</param>
+void PirateShip::UpdateShipFireEffect(int playNum, VECTOR effectScale)
+{
+    // 海賊船が燃えているエフェクトを再生
+    if (effectCount % PIRATE_SHIP_BURNS_SMALL_EFFECT_CYCLE == 0)
+    {
+        // 再生する座標設定
+        VECTOR playPosition = VAdd(position, PIRATE_SHIP_BURNS_EFFECT_POSITION);
+
+        // ウェーブ更新で再生するエフェクトの数が増加
+        for (int i = 0; i < playNum; i++)
+        {
+            // 再生位置ずらし量
+            // Y座標をずらし、ゆらゆら燃えている感を出す
+            float positionY = GetRand(RANDOM_RANGE) - RANDOM_OFFSET;
+            VECTOR offSet = VGet(-i / PIRATE_SHIP_BURNS_EFFECT_OFFSET_X, positionY, i * PIRATE_SHIP_BURNS_EFFECT_OFFSET_Z);
+
+            // 再生位置設定
+            playPosition = VAdd(playPosition, offSet);
+
+            // エフェクト再生
+            effectManager->PlayPirateShipBurnsSmallEffect(playPosition, effectScale);
+        }
+    }
+
+    // エフェクトカウント更新
+    effectCount++;
 }
 
 /// <summary>

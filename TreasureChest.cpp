@@ -52,7 +52,17 @@ void TreasureChest::Update()
     // 宝石と接触したらエフェクト再生
     if (isHitGem)
     {
-        effectManager->PlayGemGetEffect(pos);
+        // ダイアモンドの場合
+        if (hitGemType == GemManager::DIAMOND)
+        {
+            effectManager->PlayGemGetDiamondEffect(pos);
+        }
+        else
+        {
+            // それ以外
+            VECTOR playPosition = VAdd(pos, GEM_GET_DIAMOND_EFFECT_PLAY_POSITION_OFFSET);
+            effectManager->PlayGemGetEffect(playPosition);
+        }
     }
 
     // 3Dモデルの座標設定

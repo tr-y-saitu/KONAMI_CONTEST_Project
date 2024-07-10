@@ -20,6 +20,7 @@
 /// コンストラクタ
 /// </summary>
 ClearScene::ClearScene(int _score, int _highScore)
+    : fireWorksEffectCount      (0)
 {
     score           = _score;
     highScore       = _highScore;
@@ -97,8 +98,9 @@ SceneBase* ClearScene::UpdateScene()
     sea->UpdateClearScene();    // 海
     player->UpdateClearScene(); // プレイヤー
     effectManager->Update();    // エフェクトマネージャー
-    UpdateEffekseer3D();        // エフェクト更新
     UpdateSound();              // サウンド更新
+    UpdateEffect();             // エフェクト更新
+    UpdateEffekseer3D();        // エフェクシア更新
 
     // スペースキーが押されたらフェードアウトしてメニューへ
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
@@ -129,13 +131,26 @@ void ClearScene::UpdateSound()
 
     // 効果音再生
     // 花火
-    soundManager->PlaySoundListSE(SoundManager::FIREWORKS_SE);
+    soundManager->PlaySoundListBGM(SoundManager::FIRE_WORKS_BGM);
     // 入力音
     if (CheckHitKey(KEY_INPUT_SPACE) == 1 || GetJoypadInputState(DX_INPUT_KEY_PAD1))
     {
         // プッシュ音再生
         soundManager->PlaySoundListSE(SoundManager::PUSH_SE);
     }
+}
+
+/// <summary>
+/// エフェクトの更新
+/// </summary>
+void ClearScene::UpdateEffect()
+{
+    // 花火のエフェクト再生
+    if (fireWorksEffectCount % FIRE_WORKS_EFFECT_PLAY_CYCLE == 0)
+    {
+        effectManager->PlayFireWorksEffect(FIRE_WORKS_EFFECT_PLAY_POSITION);
+    }
+    fireWorksEffectCount++;
 }
 
 /// <summary>

@@ -1,7 +1,10 @@
 ﻿#pragma once
+#include "EffekseerForDXLib.h"
 #include <iostream>
 #include <vector>
-#include "EffekseerForDXLib.h"
+#include <map>
+
+using namespace std;
 
 /// <summary>
 /// エフェクトマネージャー
@@ -16,6 +19,22 @@ public:
     {
         NO_PLAY = -1,   // 再生されていない
         PLAY,           // 再生中
+    };
+
+    /// <summary>
+    /// エフェクトの種類
+    /// </summary>
+    enum EFFECT_TYPE
+    {
+        GEM_GET_EFFECT,                     // 宝石をゲットした時
+        GEM_GET_DIAMOND_EFFECT,             // ダイヤモンドをゲットした時
+        PLAYER_HIT_EFFECT,                  // プレイヤーと宝石が当たった時
+        PIRATE_SHIP_BURNS_SMALL_EFFECT,     // 海賊船炎上エフェクト(小)
+        PIRATE_SHIP_BURNS_MEDIUM_EFFECT,    // 海賊船炎上エフェクト(中)
+        PIRATE_SHIP_EXPLOSION_EFFECT,       // 海賊船が爆発するエフェクト
+        PIRATE_SHIP_BIG_EXPLOSION_EFFECT,   // 海賊船が爆発するエフェクト(大)
+        THUNDER_EFFECT,                     // 雷が落ちるエフェクト
+        FIRE_WORKS_EFFECT,                  // 花火が上がるエフェクト
     };
 
 	/// <summary>
@@ -61,10 +80,26 @@ public:
     bool IsAnyEffectPlaying();
 
     /// <summary>
+    /// 読み込んだエフェクトリストから再生
+    /// </summary>
+    /// <param name="effectType">再生するエフェクトの種類</param>
+    /// <param name="playPosition">再生する座標</param>
+    /// <param name="scale">※エフェクトの描画サイズ</param>
+    /// NOTE:第3引数の「scale」はデフォルト引数　デフォルト値{1.0f,1.0f,1.0f}
+    ///      1.0fが読み込み時サイズ
+    void PlayEffectList(EFFECT_TYPE effectType,VECTOR playPosition, VECTOR scale = {1.0f,1.0f,1.0f});
+
+    /// <summary>
     /// 宝石獲得エフェクト
     /// </summary>
     /// <param name="playPosition">再生する座標</param>
     void PlayGemGetEffect(VECTOR playPosition);
+
+    /// <summary>
+    /// 宝石獲得エフェクト(ダイヤモンド専用)
+    /// </summary>
+    /// <param name="playPosition">再生する座標</param>
+    void PlayGemGetDiamondEffect(VECTOR playPosition);
 
     /// <summary>
     /// プレイヤーが宝石に当たった時のエフェクト
@@ -123,13 +158,15 @@ private:
     // 管理用
     static EffectManager* effectManager;    // エフェクトマネージャーのインスタンス
     int playingEffectHandle;                // 現在再生中のエフェクトのハンドル
-    std::vector<int> playingList;           // 現在再生中のリスト
+    vector<int> playingList;           // 現在再生中のリスト
+    map< EFFECT_TYPE, int> effectList;      // 再生するエフェクトのリスト
 
     // ハンドル
     // 宝石とプレイヤー
     int     playerHitEffect;                // プレイヤーと宝石のヒット時
     // 宝石と宝箱
     int     gemGetEffect;                   // 宝石ゲット時
+    int     gemGetDiamondEffect;            // ダイアモンドをゲットした時
     int     gemFallEffect;                  // 宝石が落ちてしまった時
     // 海賊船
     int     pirateShipBurnsSmallEffect;     // 海賊船が燃えるエフェクト（小）

@@ -161,13 +161,12 @@ void GameScene::Draw()
     bool _fadeOutScreen = gameSceneUI->GetFadeState() != GameSceneUI::FadeState::FADE_OUT_SCREEN_PLAYING;
 
     // オブジェク描画画
-    treasureChest->Draw();      // 宝箱
     skyDome->Draw();            // スカイドーム
     player->Draw();             // プレイヤー
     gemManager->DrawGems();     // 宝石たち
-    treasureChest->Draw();      // 宝箱
     stageObjectSet->Draw();     // ステージ
     skyDome->Draw();            // スカイドーム
+    treasureChest->Draw();      // 宝箱
     DrawEffekseer3D();          // 3Dエフェクト描画
     // フェード処理中は描画しない
     if (_fadeInScreen && _fadeOutScreen)
@@ -212,7 +211,16 @@ void GameScene::UpdateSound()
     // 宝石獲得音
     if (treasureChest->GetIsHitGem())
     {
-        soundManager->PlaySoundListSE(SoundManager::GEM_GET_SE);
+        // ダイアモンド専用SE
+        if (treasureChest->GetHitGemType() == GemManager::DIAMOND)
+        {
+            soundManager->PlaySoundListSE(SoundManager::GEM_GET_DIAMOND_SE);
+        }
+        else
+        {
+            // ダイア以外の宝石SE
+            soundManager->PlaySoundListSE(SoundManager::GEM_GET_SE);
+        }
     }
 
     // 終了音

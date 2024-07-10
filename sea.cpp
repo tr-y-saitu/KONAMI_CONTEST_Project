@@ -80,13 +80,6 @@ void Sea::PlayWaveAnimation()
 /// </summary>
 void Sea::UpdateClearScene()
 {
-    // 花火のエフェクト再生
-    if (effectCount % FIRE_WORKS_EFFECT_PLAY_CYCLE == 0)
-    {
-        effectManager->PlayFireWorksEffect(FIRE_WORKS_EFFECT_PLAY_POSITION);
-    }
-    effectCount++;
-
     // 波のアニメーションを再生
     PlayWaveAnimation();
 
