@@ -36,7 +36,10 @@ Player::Player()
     playerOar = new PlayerOar();
     playerBoat = new PlayerBoat();
     playerCushion = new PlayerCushion();
+
+    // クッションの大きさ分の当たり判定ずらし量
     playerCushionOffsetPosition = playerCushion->GetOffSetPosition();
+    playerCushionOffsetPosition.y += HIT_BOX_HEIGHT_OFFSET;
 }
 
 /// <summary>

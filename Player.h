@@ -115,10 +115,12 @@ public:
 
     void SetIsHitGem(const bool set) { isHitGem = set; }
 
+
 private:
     // 定数
     static constexpr float HIT_BOX_WIDTH = 4.5f;                    // 当たり判定の幅
-    static constexpr float HIT_BOX_HEIGHT = 3.0f;                   // 当たり判定の高さ
+    static constexpr float HIT_BOX_HEIGHT = 0.31f;                   // 当たり判定の高さ
+    static constexpr float HIT_BOX_HEIGHT_OFFSET = 0.5f;            // 当たり判定の高さのずらし量
     static constexpr float GRAVITY = 0.5f;                          // キャラに掛かる重力加速度
     static constexpr float JUMP_POWER = 25.0f;                      // キャラのジャンプ力
     static constexpr float SMALL_JUMP_POWER = 17.0f;                // 小ジャンプ力
@@ -162,6 +164,6 @@ private:
     PlayerOar*      playerOar;
     PlayerBoat*     playerBoat;
     PlayerCushion*  playerCushion;
-    VECTOR          playerCushionOffsetPosition;
+    VECTOR          playerCushionOffsetPosition;    // クッションの大きさ分の当たり判定ずらし量
 };
 
